@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
-import { dataCategory } from '../../../store/action'
+import { dataCategory } from '../../../store/actions/aboutUsAction'
 import './css/style.css';
 import { Container, Row, Col} from 'react-bootstrap'
 import { CardCategory } from '../../../components/aboutUs/cardCategory/index'

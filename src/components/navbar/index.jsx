@@ -1,16 +1,17 @@
 import React from 'react';
+import Cookies from 'js-cookie'
 import './css/style.css';
 import { useDispatch } from 'react-redux';
 import { Col, Container, Row, Button } from 'react-bootstrap'
 import { useHistory, useLocation, Link  } from 'react-router-dom';
 
-import { logoutProcess } from '../../store/action'
+import { logoutProcess } from '../../store/actions/userAction'
 
 export const Navbar = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const location = useLocation()
-
+  let role = Cookies.get('role')
   const processLogout = () => {
     dispatch(logoutProcess(history, location))
   }
@@ -22,7 +23,7 @@ export const Navbar = (props) => {
           <Container>
             <Row>
               <Col md={8} lg={8} className="part-one">
-                <Link to = '/responden'>
+                <Link to = {`/${role}`}>
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">

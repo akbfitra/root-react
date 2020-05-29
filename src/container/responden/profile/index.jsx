@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
-import { logoutProcess, dataProfileUser } from '../../../store/action'
+import { dataProfileUser } from '../../../store/actions/userAction'
 
 import './css/style.css';
 import { Button,Tabs, Tab, Container, Row, Col, Table} from 'react-bootstrap'

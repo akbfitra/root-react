@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux'
 
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
-import { loginProcess } from '../../../store/action'
+import { loginProcess } from '../../../store/actions/userAction'
 
 import './css/style.css';
-import { Button, Modal, Tabs, Tab, Container, Row, Col, Nav, Form} from 'react-bootstrap';
+import { Button, Container, Row, Col, Form} from 'react-bootstrap';
 
 const Login = (props) => {
   const dispatch = useDispatch()

@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux'
-
 const initialUser = {
   user:{
     username : '',
@@ -8,12 +6,6 @@ const initialUser = {
   }
 }
 
-const intialTempat = {
-  tempat:{
-    provinsi : [],
-    kota: []
-  }
-}
 
 const user = (state = initialUser, action) => {
   switch( action.type ){
@@ -46,23 +38,4 @@ const user = (state = initialUser, action) => {
   }
 }
 
-const tempat = (state = intialTempat, action) => {
-  switch( action.type ){
-    case 'DATA_PROVINSI':
-      return { ...state,
-                tempat:{
-                  provinsi: action.payload
-                }
-              }
-    case 'DATA_KOTA':
-      return { ...state,
-                tempat:{
-                  kota: action.payload
-                }
-      }
-    default:
-      return state
-  }
-}
-
-export default combineReducers({ user, tempat })
+export default user

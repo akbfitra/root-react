@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Provider, useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,7 +30,7 @@ import SubmissionResponden from './container/responden/submission'
 import TicketResponden from './container/responden/ticket'
 import EditProfileResponden from './container/responden/editProfile'
 
-import {CekLogin} from './store/action'
+import { CekLogin } from './store/actions/userAction'
 
 const App = () => {
   const dispatch = useDispatch()

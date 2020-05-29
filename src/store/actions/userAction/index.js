@@ -1,6 +1,6 @@
-import axios from 'axios'
-import { instance, instanceTempat } from '../config/axios'
-import { verifyToken } from '../config/jwt'
+
+import { instance } from '../../../config/axios'
+import { verifyToken } from '../../../config/jwt'
 
 import Cookies from 'js-cookie'
 
@@ -85,49 +85,6 @@ export const logoutProcess = (history, location) => async dispatch => {
   history.push('/')
 }
 
-export const dataProvinsi = () => async dispatch => {
-  try{
-    const { data } = await axios({
-      method: 'GET',
-      url: 'http://dev.farizdotid.com/api/daerahindonesia/provinsi'
-    })
-    dispatch({type: 'DATA_PROVINSI', payload: data.semuaprovinsi})
-    return data.semuaprovinsi
-  }
-  catch(err){
-    console.log(err.response)
-  }
-}
-
-export const dataKota = (idProvinsi) => async dispatch => {
-  try{
-    const { data } = await axios({
-      method: 'GET',
-      url: `http://dev.farizdotid.com/api/daerahindonesia/provinsi/${idProvinsi}/kabupaten`
-    })
-    dispatch({type: 'DATA_KOTA', payload: data.kabupatens})
-  }
-  catch(err){
-    console.log(err.response)
-  }
-}
-
-export const dataCategory = () => async dispatch => {
-  try{
-    const { data } = await instance({
-      method: 'GET',
-      url: '/category',
-      headers:{
-        "accesstoken": `${Cookies.get('test')}`
-      }
-    })
-    return data
-  }
-  catch(err){
-    console.log(err.response)
-  }
-}
-
 export const dataProfileUser = (id) => async dispatch => {
   try{
     const { id } = verifyToken(Cookies.get('test'))
@@ -141,5 +98,3 @@ export const dataProfileUser = (id) => async dispatch => {
     console.log(err.response)
   }
 }
-
-
