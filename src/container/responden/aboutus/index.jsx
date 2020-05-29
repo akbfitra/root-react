@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { dataCategory } from '../../../store/action'
 import './css/style.css';
 import { Container, Row, Col} from 'react-bootstrap'
-import { CardCategory } from '../../../components/aboutUs/cardCategory'
+import { CardCategory } from '../../../components/aboutUs/cardCategory/index'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
@@ -51,9 +51,9 @@ const AboutUsResponden = (props) => {
         <Row>
           {
             category.map( (data, i) => 
-              <Link to = { `/responden/category/${data._id}`}>
+              
                 <CardCategory key={i} categories = {data} />
-              </Link>
+              
             )
           }
         </Row>
