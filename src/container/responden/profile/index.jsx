@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-<<<<<<< HEAD
-import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
-
-import { logoutProcess, dataProfileUser } from '../../../store/action'
-=======
 import { withRouter, Link } from 'react-router-dom'
 
 import { dataProfileUser } from '../../../store/actions/userAction'
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 
 import './css/style.css';
 import { Button,Tabs, Tab, Container, Row, Col, Table} from 'react-bootstrap'

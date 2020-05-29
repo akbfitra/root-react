@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
-<<<<<<< HEAD
-import { registerProcess } from '../../../store/action'
-
-import './css/style.css';
-import { Button, Modal, Tabs, Tab, Container, Row, Col, Nav, Form} from 'react-bootstrap';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
-import { dataProvinsi, dataKota } from '../../../store/action'
-=======
 import { registerProcess } from '../../../store/actions/userAction'
 
 import './css/style.css';
@@ -19,7 +9,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 
 const Register = (props) => {
   const dispatch = useDispatch()

@@ -3,11 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
-<<<<<<< HEAD
-import { registerSurveyorProcess } from '../../../store/action'
-=======
 import { registerSurveyorProcess } from '../../../store/actions/userAction'
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 import './css/style.css';
 import { Button, Modal, Tabs, Tab, Container, Row, Col, Nav, Form} from 'react-bootstrap';
 import DatePicker from "react-datepicker";

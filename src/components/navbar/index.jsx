@@ -1,28 +1,17 @@
 import React from 'react';
-<<<<<<< HEAD
-=======
 import Cookies from 'js-cookie'
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 import './css/style.css';
 import { useDispatch } from 'react-redux';
 import { Col, Container, Row, Button } from 'react-bootstrap'
 import { useHistory, useLocation, Link  } from 'react-router-dom';
 
-<<<<<<< HEAD
-import { logoutProcess } from '../../store/action'
-=======
 import { logoutProcess } from '../../store/actions/userAction'
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 
 export const Navbar = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const location = useLocation()
-<<<<<<< HEAD
-
-=======
   let role = Cookies.get('role')
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
   const processLogout = () => {
     dispatch(logoutProcess(history, location))
   }
@@ -34,11 +23,7 @@ export const Navbar = (props) => {
           <Container>
             <Row>
               <Col md={8} lg={8} className="part-one">
-<<<<<<< HEAD
-                <Link to = '/responden'>
-=======
                 <Link to = {`/${role}`}>
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">

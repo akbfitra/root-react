@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
-<<<<<<< HEAD
 import { dataCategory } from '../../../store/action'
 import './css/style.css';
 import { Container, Row, Col} from 'react-bootstrap'
 import { CardCategory } from '../../../components/aboutUs/cardCategory'
-=======
-import { dataCategory } from '../../../store/actions/aboutUsAction'
-import './css/style.css';
-import { Container, Row, Col} from 'react-bootstrap'
-import { CardCategory } from '../../../components/aboutUs/cardCategory/index'
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
@@ -23,10 +16,7 @@ const AboutUsResponden = (props) => {
     dispatch(dataCategory())
       .then( data => {
         setCategory(data)
-<<<<<<< HEAD
         console.log(data, 'aaaaaaaaaaa')
-=======
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
       })
   }
 
@@ -61,15 +51,9 @@ const AboutUsResponden = (props) => {
         <Row>
           {
             category.map( (data, i) => 
-<<<<<<< HEAD
               <Link to = { `/responden/category/${data._id}`}>
                 <CardCategory key={i} categories = {data} />
               </Link>
-=======
-              
-                <CardCategory key={i} categories = {data} idCategory={data._id} />
-              
->>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
             )
           }
         </Row>
