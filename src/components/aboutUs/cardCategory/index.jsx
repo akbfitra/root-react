@@ -12,7 +12,7 @@ export const CardCategory = (props) => {
           <div className="table-100">
             <div className="table-row">
               <div className="table-cell-one">
-                <Link to={`/responden/category/${props.idCategory}`}>
+                <Link to={`/responden/category/${props.categories._id}`}>
                   <center>
                     <img src="https://via.placeholder.com/140" alt=""/>
                     <h4 className="title-three m-t-15"><strong>{props.categories.name}</strong></h4>

@@ -6,41 +6,15 @@ import { Button, Container, Row, Col, Form} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { Navbar } from '../../../components/navbar'
+import { Footer } from '../../../components/footer'
+
 const EditProfileSurveyor = (props) => {
   const [startDate, setStartDate] = useState(new Date());
 
   return(
     <>
-      <div id="general-header">
-        <div className="main-header-one">
-          <Container>
-            <Row>
-              <Col md={8} lg={8} className="part-one">
-                <div className="table-100">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                      <img src="https://via.placeholder.com/60"></img>
-                    </div>
-
-                    <div className="table-cell-two">
-                      <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col md={4} lg={4} className="part-two">
-                <div className="table-100">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                    <Button variant="primary" className="float-right">LOGIN</Button>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </div>
+      <Navbar/>
 
       <div id="edit-profile-surveyor">
       <Container>
@@ -184,28 +158,7 @@ const EditProfileSurveyor = (props) => {
       </Container>
       </div>
 
-      <div id="main-footer-one">
-        <Container>
-          <Row>
-            <Col md={4} lg={4} className="part-one">
-              <Row>
-                <Col><h3 className="title-one"><strong>suRvplus</strong></h3></Col>
-              </Row>
-
-              <Row className="m-t-30">
-                <Col><p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p></Col>
-              </Row>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-      <div id="main-footer-two">
-        <Container>
-          <Row>
-            <Col><h4 className="text-center title-three">Copyright © 2020 suRvplus  </h4></Col>
-          </Row>
-        </Container>
-      </div>
+      <Footer/>
     </>
   )
 }
