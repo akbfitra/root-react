@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useStore, Connect } from 'react-redux';
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
@@ -50,6 +51,26 @@ const FormSurveyor = (props) => {
           </Container>
         </div>
       </div>
+=======
+import React, { useState } from 'react';
+import { withRouter, Link } from 'react-router-dom'
+
+import './css/style.css';
+import { Tabs, Tab, Container, Row, Col, Form} from 'react-bootstrap'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import { QuestionList } from '../../../components/form/questionList'
+import { Navbar } from '../../../components/navbar'
+import { Footer } from '../../../components/footer'
+
+const FormSurveyor = () => {
+  const [startDate, setStartDate] = useState(new Date());
+
+  return(
+    <>
+      <Navbar/>
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 
       <div id="form-surveyor">
       <Container>
@@ -122,6 +143,7 @@ const FormSurveyor = (props) => {
               </Tab>
 
               <Tab eventKey="Question" title="question" className="m-t-15">
+<<<<<<< HEAD
                 <Row>
                   <Col md={12} lg={12}>
                   <div className="part-two">
@@ -198,6 +220,9 @@ const FormSurveyor = (props) => {
                   </div>
                   </Col>
                 </Row>
+=======
+                <QuestionList/>
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
               </Tab>
             </Tabs>
           </Col>
@@ -209,6 +234,7 @@ const FormSurveyor = (props) => {
       </Container>
       </div>
 
+<<<<<<< HEAD
       <div id="main-footer-one">
         <Container>
           <Row>
@@ -231,6 +257,9 @@ const FormSurveyor = (props) => {
           </Row>
         </Container>
       </div>
+=======
+      <Footer/>
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
     </>
   )
 }

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+=======
+import React, { useState } from 'react';
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 import { withRouter, Link } from 'react-router-dom'
 
 import './css/style.css';
@@ -12,7 +16,10 @@ import { Footer } from '../../../components/footer'
 
 const EditProfileResponden = (props) => {
   const [startDate, setStartDate] = useState(new Date());
+<<<<<<< HEAD
   const dispatch = useDispatch()
+=======
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 
   return(
     <>

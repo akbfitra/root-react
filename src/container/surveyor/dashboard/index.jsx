@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useStore, Connect } from 'react-redux';
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
 import { logoutProcess } from '../../../store/action'
+=======
+import React from 'react';
+import { withRouter, Link } from 'react-router-dom'
+
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 import './css/style.css';
 import { Button, Modal, Tabs, Tab, Container, Row, Col, Nav, Form, Table} from 'react-bootstrap'
 
 const SurveyorDashboard = (props) => {
+<<<<<<< HEAD
   const dispatch = useDispatch()
   const history = useHistory()
   const location = useLocation()
@@ -14,6 +21,8 @@ const SurveyorDashboard = (props) => {
   const processLogout = () => {
     dispatch(logoutProcess(history, location))
   }
+=======
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 
   return(
     <>

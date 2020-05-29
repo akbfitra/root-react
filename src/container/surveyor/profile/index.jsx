@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useStore, Connect } from 'react-redux';
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
@@ -14,6 +15,15 @@ const ProfileSurveyor = (props) => {
   const processLogout = () => {
     dispatch(logoutProcess(history, location))
   }
+=======
+import React from 'react';
+import { withRouter, Link } from 'react-router-dom'
+
+import './css/style.css';
+import { Button, Container, Row, Col, Table} from 'react-bootstrap'
+
+const ProfileSurveyor = (props) => {
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 
   return(
     <>

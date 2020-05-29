@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector, Connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
@@ -5,6 +6,16 @@ import './css/style.css';
 import { Button, Modal, Tabs, Tab, Container, Row, Col, Nav} from 'react-bootstrap';
 import Slider from "react-slick";
 
+=======
+import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import './css/style.css';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import Slider from "react-slick";
+
+import { Footer } from '../../components/footer'
+
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
 const LandingPage = () => {
   const settings = {
     dots: true,
@@ -416,6 +427,7 @@ const LandingPage = () => {
         </Container>
       </div>
 
+<<<<<<< HEAD
 
       <div id="main-footer-one">
         <Container>
@@ -439,6 +451,9 @@ const LandingPage = () => {
           </Row>
         </Container>
       </div>
+=======
+      <Footer/>
+>>>>>>> 5b6fb794b707104fe5f2645ddddc09b3c8a70803
     </>
   )
 }
