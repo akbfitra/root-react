@@ -22,20 +22,37 @@ const LandingPage = () => {
   };
 
   const options = {
-    title: {
-      text: "Basic Column Chart in React"
-    },
+    height:400,
+    // title: {
+    //   text: "Basic Column Chart in React"
+    // },
     data: [{				
               type: "column",
               dataPoints: [
-                  { label: "Apple",  y: 10  },
-                  { label: "Orange", y: 15  },
-                  { label: "Banana", y: 25  },
-                  { label: "Mango",  y: 30  },
-                  { label: "Grape",  y: 28  }
+                  { label: "Laki-Laki",  y: 10  },
+                  { label: "Perempuan", y: 15  }
               ]
      }]
     }
+
+    const options2 = {
+      width:825,
+      height:400,
+      // title: {
+      //   text: "Basic Column Chart in React"
+      // },
+      data: [{				
+                type: "column",
+                dataPoints: [
+                    { label: "Swasta",  y: 10  },
+                    { label: "PNS/TNI/Polri", y: 15  },
+                    { label: "Sedang mencari pekerjaan tetep", y: 25  },
+                    { label: "Sekolah/Kuliah",  y: 30  },
+                    { label: "Ibu Rumah Tangga",  y: 28  },
+                    { label: "Lainnya",  y: 28  }
+                ]
+       }]
+      }
 
   return(
     <>
@@ -407,10 +424,15 @@ const LandingPage = () => {
               <Col md={9} lg={9}>
                 <Tab.Content>
                   <Tab.Pane eventKey="first">
-
+                    <Row>
+                      <Col><CanvasJSChart options = {options}/></Col>
+                    </Row>
+                  
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
-
+                    <Row>
+                      <Col><CanvasJSChart options = {options2}/></Col>
+                    </Row>
                   </Tab.Pane>
                 </Tab.Content>
               </Col>
@@ -468,10 +490,9 @@ const LandingPage = () => {
           </Row>
           
           
-          <CanvasJSChart options = {options}
-            /* onRef = {ref => this.chart = ref} */
-        />
+          
 
+          
         </Container>
       </div>
 
