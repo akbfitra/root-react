@@ -1,8 +1,9 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import './css/style.css';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Tab, Nav } from 'react-bootstrap';
 import Slider from "react-slick";
+
 
 import { Footer } from '../../components/footer'
 
@@ -365,6 +366,36 @@ const LandingPage = () => {
       <div id="section-two">
         <Container>
           <Row>
+            <Col>
+            <h3 className="text-center title-one"><strong>Profil Responden suRvplus</strong></h3>
+            </Col>
+          </Row>
+
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first" className="m-t-30">
+            <Row>
+              <Col md={3} lg={3}>
+                <Nav variant="pills" className="flex-column">
+                  <Nav.Item>
+                    <Nav.Link eventKey="first" className="text-center">JENIS KELAMIN</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="second" className="text-center">PEKERJAAN</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+              <Col md={9} lg={9}>
+                <Tab.Content>
+                  <Tab.Pane eventKey="first">
+
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="second">
+
+                  </Tab.Pane>
+                </Tab.Content>
+              </Col>
+            </Row>
+          </Tab.Container>
+          <Row className="m-t-30">
             <Col>
             <h3 className="text-center title-one"><strong>Kata Mereka Tentang suRvplus ?</strong></h3>
             </Col>
