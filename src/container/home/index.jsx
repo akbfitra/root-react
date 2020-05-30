@@ -6,6 +6,11 @@ import Slider from "react-slick";
 
 import { Footer } from '../../components/footer'
 
+import CanvasJSReact from '../../assets/canvasjs.react';
+//var CanvasJSReact = require('./canvasjs.react');
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
 const LandingPage = () => {
   const settings = {
     dots: true,
@@ -14,6 +19,22 @@ const LandingPage = () => {
     slidesToShow: 5,
     slidesToScroll: 5
   };
+
+  const options = {
+    title: {
+      text: "Basic Column Chart in React"
+    },
+    data: [{				
+              type: "column",
+              dataPoints: [
+                  { label: "Apple",  y: 10  },
+                  { label: "Orange", y: 15  },
+                  { label: "Banana", y: 25  },
+                  { label: "Mango",  y: 30  },
+                  { label: "Grape",  y: 28  }
+              ]
+     }]
+    }
 
   return(
     <>
@@ -414,6 +435,12 @@ const LandingPage = () => {
             </div>
             </Col>
           </Row>
+          
+          
+          <CanvasJSChart options = {options}
+            /* onRef = {ref => this.chart = ref} */
+        />
+
         </Container>
       </div>
 
