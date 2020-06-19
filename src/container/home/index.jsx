@@ -97,8 +97,10 @@ const LandingPage = () => {
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
-                      <h3 className="title-one"><strong>Duis aute irure dolor in reprehenderit in voluptate</strong></h3>
-                      <h4 className="m-t-15">Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</h4>
+                      <h3 className="title-one"><strong>SuRvplus</strong></h3>
+                      <h4 className="m-t-15">Survey online dengan manfaat “plus-plus”</h4>
+                      <h4 className="m-t-15">SuRvplus merupakan portal penyelenggara survey online yang hadir untuk memenuhi tantangan kelaziman baru “the new normal”. Tanpa perlu kontak fisik antara surveyor dan responden. Semuanya bisa dilakukan #dirumahaja.</h4>
+                      <h4 className="m-t-15">SuRvplus memberikan banyak manfaat, antara lain surveyor akan mendapatkan responden yang tervalidasi dengan cepat, sedangkan responden bisa mendapatkan tambahan penghasilan.</h4>
                     </div>
                   </div>
                 </div>
@@ -129,92 +131,48 @@ const LandingPage = () => {
 
 
           <Row className="m-t-30">
-            <Col md={4} lg={4}>
-            <div className="table-100 part-one">
-              <div className="table-row">
-                <div className="table-cell-one">
-                  <center>
-                    <img src="https://via.placeholder.com/80"></img>
-                  </center>
-                </div>
-
-                <div className="table-cell-two">
-                  <h4 className="m-b-5 title-two"><strong>Sistem informasinya handal</strong></h4>
-                  <p>Sistemnya dibangun dengan cermat dan matang, sehingga kehandalannya tidak diragukan lagi</p>
-                </div>
-              </div>
-            </div>
+            <Col md={3} lg={3}>
+              <center>
+                <img src="images/s.png" style={{height:"60px"}}></img>
+                <h5 className="m-t-15 m-b-15"><strong>Sistem yang andal</strong></h5>
+                <div style={{paddingLeft:"20px", paddingRight:"20px"}}><h6>Aplikasi dan sistem informasinya dibangun dengan cermat dan matang, sehingga keandalannya tidak perlu diragukan lagi</h6></div>
+              </center>
             </Col>
-            <Col md={4} lg={4}>
-            <div className="table-100 part-one">
-              <div className="table-row">
-                <div className="table-cell-one">
-                  <center>
-                    <img src="https://via.placeholder.com/80"></img>
-                  </center>
-                </div>
-
-                <div className="table-cell-two">
-                  <h4 className="m-b-5 title-two"><strong>Unggul dalam inovasi</strong></h4>
-                  <p>Mengikuti kebutuhan pasar</p>
-                </div>
-              </div>
-            </div>
+            <Col md={3} lg={3}>
+              <center>
+                <img src="images/u.png" style={{height:"60px"}}></img>
+                <h5 className="m-t-15 m-b-15"><strong>Unggul dalam inovasi</strong></h5>
+                <div style={{paddingLeft:"20px", paddingRight:"20px"}}><h6>SurvPlus hadir menjawab tantantangan-tantangan terkini dan untuk memenuhi kebutuhan komersial maupun akademis</h6></div>
+              </center>
             </Col>
-            <Col md={4} lg={4}>
-            <div className="table-100 part-one">
-              <div className="table-row">
-                <div className="table-cell-one">
-                  <center>
-                    <img src="https://via.placeholder.com/80"></img>
-                  </center>
-                </div>
+            <Col md={3} lg={3}>
+              <center>
+                <img src="images/r.png" style={{height:"60px"}}></img>
+                <h5 className="m-t-15 m-b-15"><strong>Responsif</strong></h5>
+                <div style={{paddingLeft:"20px", paddingRight:"20px"}}><h6>Selalu tanggap dalam memberikan bantuan dan solutif dalam memecahkan permasalahan, baik yang dihadapi surveyor maupun responden</h6></div>
+              </center>
+            </Col>
 
-                <div className="table-cell-two">
-                  <h4 className="m-b-5 title-two"><strong>Responsif</strong></h4>
-                  <p>Tanggap dan solutif dalam memberikan bantuan, baik bagi surveyot maupun responden</p>
+            <Col md={3} lg={3}>
+              <center>
+                <img src="images/v.png" style={{height:"60px"}}></img>
+                <h5 className="m-t-15 m-b-15"><strong>Valid</strong></h5>
+                <div style={{paddingLeft:"20px", paddingRight:"20px"}}>
+                <h6>SurvPlus mengedepankan validitas metode kerja maupun terhadap kualitas hasil survey yang akan dimanfaatkan oleh banyak pihak </h6>
                 </div>
-              </div>
-            </div>
+              </center>
             </Col>
           </Row>
 
           <Row className="m-t-30">
-            <Col md={{ span: 8, offset:2}}>
-              <Row>
-                <Col md={6} lg={6}>
-                <div className="table-100 part-one">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                      <center>
-                        <img src="https://via.placeholder.com/80"></img>
-                      </center>
-                    </div>
-
-                    <div className="table-cell-two">
-                      <h4 className="m-b-5 title-two"><strong>Valid</strong></h4>
-                      <p>Kami mengedepankan validitas metode kerja mapupun terhadap hasil-hasil yang akan digunakan oleh semua pihak.</p>
-                    </div>
-                  </div>
+            <Col md={{ span: 4, offset:4}}>
+              <center>
+                <img src="images/plus.png" style={{height:"60px"}}></img>
+                <h5 className="m-t-15 m-b-15"><strong>Manfaat Plus-plus</strong></h5>
+                <div style={{paddingLeft:"30px", paddingRight:"30px"}}>
+                <h6>SurvPlus memberikan manfaat plus-plus, antara lain sebagai fasilitator penyelenggaraan survey bagi surveyor atau peneliti, dan memberikan tambahan penghasilan bagi para responden.</h6>
                 </div>
-                </Col>
-                <Col md={6} lg={6}>
-                <div className="table-100 part-one">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                      <center>
-                        <img src="https://via.placeholder.com/80"></img>
-                      </center>
-                    </div>
-
-                    <div className="table-cell-two">
-                      <h4 className="m-b-5 title-two"><strong>Plus</strong></h4>
-                      <p>Memberikan manfaat plus-plus, antara lain sebagai tangan kanan surveyor atau peneliti dan memberikan tambahan penghasilan bagi responden</p>
-                    </div>
-                  </div>
-                </div>
-                </Col>
-              </Row>
+              </center>
             </Col>
           </Row>
 
@@ -286,8 +244,13 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
-              <ul className="list-inline float-right">
+              <Col md={12} lg={12}>
+                <div style={{width:"90%", backgroundColor:"#007bff",padding:"10px 15px",borderRadius:".25rem"}} className="float-right">
+                  <h5 style={{color:"#fff"}} className="text-right">Jumlah surveyor saat ini : 0000</h5>
+                </div>
+              </Col>
+              <Col md={12} lg={12}>
+              <ul className="list-inline float-right m-t-15">
                 <li class="list-inline-item">
                   <Link to="/surveyor/register">
                   <Button variant="primary">DAFTAR SURVEYOR</Button>
@@ -382,7 +345,12 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
+              <Col md={12} lg={12}>
+                <div style={{width:"90%", backgroundColor:"#007bff",padding:"10px 15px",borderRadius:".25rem"}}>
+                  <h5 style={{color:"#fff"}}>Jumlah surveyor saat ini : 0000</h5>
+                </div>
+              </Col>
+              <Col md={12} lg={12} className="m-t-15">
               <ul className="list-inline float-left">
                 <li class="list-inline-item">
                   <Link to="/register">
@@ -405,11 +373,17 @@ const LandingPage = () => {
         <Container>
           <Row>
             <Col>
-            <h3 className="text-center title-one"><strong>Profil Responden suRvplus</strong></h3>
+            <h3 className="text-center title-one"><strong>Bagaimana Survey Online ini Bekerja ?</strong></h3>
             </Col>
           </Row>
 
-          <Tab.Container id="left-tabs-example" defaultActiveKey="first" className="m-t-30">
+          <Row className="m-t-30">
+            <Col md={5} lg={5}>
+              <img src="https://via.placeholder.com/475" style={{width:"100%"}}></img>
+            </Col>
+            <Col md={7} lg={7}></Col>
+          </Row>
+          {/* <Tab.Container id="left-tabs-example" defaultActiveKey="first" className="m-t-30">
             <Row>
               <Col md={3} lg={3}>
                 <Nav variant="pills" className="flex-column">
@@ -437,7 +411,7 @@ const LandingPage = () => {
                 </Tab.Content>
               </Col>
             </Row>
-          </Tab.Container>
+          </Tab.Container> */}
           <Row className="m-t-30">
             <Col>
             <h3 className="text-center title-one"><strong>Kata Mereka Tentang suRvplus ?</strong></h3>
