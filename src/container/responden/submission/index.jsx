@@ -3,7 +3,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom'
 
 import './css/style.css';
-import { Container, Row, Col} from 'react-bootstrap'
+import { Container, Row, Col, Tabs, Tab, Button} from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -34,35 +34,80 @@ const SubmissionResponden = (props) => {
           </Col>
         </Row>
         <Row className="m-t-30">
-          <Col  >
-            <div className="part-one">
-              <Row>
-                <Col md={10} lg={10}>
-                  <div className="table-100">
-                    <div className="table-row">
-                      <div className="table-cell-one  p-r-30">
-                        <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                        <h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
-                        <h4 className="m-t-5 m-b-0 title-three">6 hari yang lalu</h4>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
+          <Col>
+            <Tabs defaultActiveKey="Belum Terlaksana" id="noanim-tab-example">
+                <Tab eventKey="Belum Terlaksana" title="Belum Terlaksana">
+                    <Row className="m-t-15">
+                      <Col md={12} lg={12}>
+                        <div className="part-one">
+                          <Row>
+                            <Col md={12} lg={12}>
+                              <div className="box">
+                                <div className="box-left">
+                                <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
+                                <h4 h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
+                                <h4 className="m-t-5 m-b-0 title-three">6 hari yang akan lalu</h4>
+                                </div>
+                                <div className="box-right">
+                                <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
+                                <Button href="#" variant="danger btn-block" className="m-t-15">Join</Button>
+                                </div>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
+                      </Col>
+                    </Row>
+                </Tab>
 
+                <Tab eventKey="Sudah Terlaksana" title="Sudah Terlaksana">
+                    <Row className="m-t-15">
+                      <Col md={12} lg={12}>
+                        <div className="part-one">
+                          <Row>
+                            <Col md={12} lg={12}>
+                              <div className="box">
+                                <div className="box-left">
+                                <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
+                                <h4 h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
+                                <h4 className="m-t-5 m-b-0 title-three">6 hari yang akan lalu</h4>
+                                </div>
+                                <div className="box-right">
+                                <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
+                                <Button href="#" variant="success btn-block" className="m-t-15">Detail</Button>
+                                </div>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
+                      </Col>
+                    </Row>
 
-                <Col md={2} lg={2}>
-                  <div className="table-100">
-                    <div className="table-row">
-                      <div className="table-cell-two">
-                          <h4 className="title-two text-center"><strong>Rp 90.000,-</strong></h4>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-              
-            </div>
+                    <Row className="m-t-15">
+                      <Col md={12} lg={12}>
+                        <div className="part-one">
+                          <Row>
+                            <Col md={12} lg={12}>
+                              <div className="box">
+                                <div className="box-left">
+                                <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
+                                <h4 h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
+                                <h4 className="m-t-5 m-b-0 title-three">6 hari yang akan lalu</h4>
+                                </div>
+                                <div className="box-right">
+                                <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
+                                <Button href="#" variant="success btn-block" className="m-t-15">Detail</Button>
+                                </div>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
+                      </Col>
+                    </Row>
+                </Tab>
+            </Tabs>
           </Col>
+          
         </Row>
       </Container>
       </div>

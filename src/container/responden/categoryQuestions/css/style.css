@@ -451,114 +451,51 @@ p{
 }
 /* End Table No Border */
 
-
-/* datepicker */
-.react-datepicker-wrapper{
-  width:100%;
-}
-.react-datepicker__input-container input{
-  display: block;
-  width: 100%;
-  height: calc(1.5em + .75rem + 2px);
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-/* end datepicker */
-/* ======================================== general-header ============================================= */
-#general-header{
-    box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
-}
-
-#general-header .main-header-one .part-one .table-cell-one{
-    display: table-cell;
-    vertical-align: middle;
-    height: 80px;
-    width: 80px;
-    /* background-color: yellow; */
-}
-
-#general-header .main-header-one .part-one .table-cell-two{
-    display: table-cell;
-    vertical-align: middle;
-    height: 80px;
-}
-
-#general-header .main-header-one .part-two .table-cell-one{
-    display: table-cell;
-    vertical-align: middle;
-    height: 80px;
-}
-/* ======================================== end general-header ============================================= */
+/* ======================================== pertanyaan-responden ============================================= */
 
 
-/* ======================================== main-footer ============================================= */
-#main-footer-one{
-    background-color: #1f59bb;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-#main-footer-one .part-one h3{
-    color: #fff;
-}
-
-#main-footer-one .part-one p{
-    color: #fff;
-}
-
-#main-footer-two {
-    padding-top:10px;
-    padding-bottom: 10px;
-}
-/* ======================================== end main-footer ============================================= */
-/* ======================================== submission-responden ============================================= */
-#submission-responden {
+#pertanyaan-responden {
   padding-top: 60px;
   padding-bottom: 60px;
 }
 
-#submission-responden .part-one{
+#pertanyaan-responden .container-pertanyaan{
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
   padding:30px;
-  /* display: flex; */
+
 }
-#submission-responden .part-one .box{
+
+#pertanyaan-responden .container-pertanyaan .box-pertanyaan {
   width: 100%;
   display: flex;
-  /* justify-items: center; */
 }
-#submission-responden .part-one .box .box-left{
-  width:80%;
-  /* height: 100px; */
+
+#pertanyaan-responden .container-pertanyaan .box-pertanyaan .left{
+  width: 3%;
   /* background-color: red; */
 }
 
-#submission-responden .part-one .box .box-right{
-  width:20%;
-  /* height: 100px; */
-  /* background-color: yellow; */
-  padding-left: 15px;
-  padding-right: 15px;
-  justify-content: center;
-  align-self: center;
+#pertanyaan-responden .container-pertanyaan .box-pertanyaan .right{
+  width: 97%;
+  /* background-color: pink; */
 }
 
-#submission-responden .part-one .box .box-right h4{
-  color:#fff;
-  background-color: #1f59bb;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-  border-radius: 10px;
-  
+#pertanyaan-responden .container-pertanyaan .box-answer {
+  width: 100%;
+  display: flex;
 }
-/* ======================================== end submission-responden ============================================= */
+
+#pertanyaan-responden .container-pertanyaan .box-answer .left{
+  width: 3%;
+  /* background-color: red; */
+}
+
+#pertanyaan-responden .container-pertanyaan .box-answer .right{
+  width: 97%;
+  /* background-color: pink; */
+}
+
+/* ======================================== end pertanyaan-responden ============================================= */
+
