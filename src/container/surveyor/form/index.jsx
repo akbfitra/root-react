@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
-import { withRouter, Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
+import { connect, useDispatch, useSelector } from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import './css/style.css';
-import { Tabs, Tab, Container, Row, Col, Form} from 'react-bootstrap'
+import { Tabs, Tab, Container, Row, Col, Form, Button } from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { QuestionList } from '../../../components/form/questionList'
+import { QuestionBuilder } from '../../../components/form/questionBuilder'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
-const FormSurveyor = () => {
+import * as surveyActions from '../../../store/actions/surveyFormAction'
+import * as questionActions from '../../../store/actions/questionsAction'
+import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
+
+
+const FormSurveyor = (props) => {
+  const dispatch = useDispatch()
   const [startDate, setStartDate] = useState(new Date());
+
+  useEffect(() => {
+    dispatch(surveyActions.INIT_QUESTION)
+  }, [dispatch])
+
+  let listQuestions = props.survey
+  
+  const addQuestion = () => {
+    dispatch(questionActions.addNewQuestion(listQuestions._id))
+  }
 
   return(
     <>
@@ -21,7 +39,7 @@ const FormSurveyor = () => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Form</strong></h3>
+            <h3 className="title-one text-center"><strong>FORM</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
@@ -88,7 +106,18 @@ const FormSurveyor = () => {
               </Tab>
 
               <Tab eventKey="Question" title="question" className="m-t-15">
-                <QuestionList/>
+
+                <Button variant="primary" size="sm" onClick={ addQuestion }>
+                            Tambah Opsi
+                </Button>
+
+                {
+                  listQuestions && listQuestions.questions &&
+                  <QuestionBuilder
+                    surveyId={ listQuestions._id}
+                    questions = { listQuestions.questions }
+                  />
+                }
               </Tab>
             </Tabs>
           </Col>
@@ -105,4 +134,19 @@ const FormSurveyor = () => {
   )
 }
 
-export default withRouter(FormSurveyor)
+const mapStateToProps = (state) => ({
+  survey: getDenormalizedSurvey(state),
+  // initialValues: getInitialFormBuilderValues(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  surveyActions: bindActionCreators(surveyActions, dispatch),
+  questionActions: bindActionCreators(questionActions, dispatch)
+});
+
+const ConnectedFormSurveyor = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormSurveyor);
+
+export default ConnectedFormSurveyor
