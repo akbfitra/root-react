@@ -39,7 +39,7 @@ const SurveyorDashboard = (props) => {
               <div className="part-one">
                 <center>
                 <img src="https://via.placeholder.com/140" className="img-responsive"/>
-                <h4 className="title-two m-t-15"><strong>Form</strong></h4>
+                <h4 className="title-two m-t-15"><strong>Study</strong></h4>
                 </center>
               </div>
               </Link>

@@ -4,7 +4,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import './css/style.css';
-import { Tabs, Tab, Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Tabs, Tab, Container, Row, Col, Form, Table, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -54,11 +54,146 @@ const FormSurveyor = (props) => {
           </Col>
         </Row>
         
+        <Row>
+          <Col md={12} lg={12}>
+          <Button variant="primary" href="#">Tambah Study</Button>
+          </Col>
+          <Col md={12} lg={12} className="m-t-15">
+            <div className="part-one-list">
+              <Row>
+                <Col md={12} lg={12}>
+                  <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
+                </Col>
+              </Row>
 
+              <Row className="m-t-15">
+                <Col md={5} lg={5}>
+                  <Table striped size="sm">
+                    <tbody>
+                      <tr>
+                        <td style={{width:"180px"}}>Jumlah Soal</td>
+                        <td style={{width:"1px"}}>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Jumlah Responden</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Tanggal Mulai</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
+
+                <Col md={5} lg={5}>
+                  <Table striped size="sm">
+                    <tbody>
+                      <tr>
+                        <td style={{width:"180px"}}>Lama Menjawab (menit)</td>
+                        <td style={{width:"1px"}}>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Reward Perorang (Rp)</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Tanggal Akhir</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
+
+                <Col md={2} lg={2}>
+                  <Button variant="success" size="sm" href="#">Detail Study</Button>
+                  <Button variant="warning" size="sm" className="m-t-5" href="#">Detail Pertanyaan</Button>
+                  <Button variant="info" size="sm" className="m-t-5" href="#">Detail Jawaban</Button>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+
+          <Col md={12} lg={12} className="m-t-15">
+            <div className="part-one-list">
+              <Row>
+                <Col md={12} lg={12}>
+                  <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
+                </Col>
+              </Row>
+
+              <Row className="m-t-15">
+                <Col md={5} lg={5}>
+                  <Table striped size="sm">
+                    <tbody>
+                      <tr>
+                        <td style={{width:"180px"}}>Jumlah Soal</td>
+                        <td style={{width:"1px"}}>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Jumlah Responden</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Tanggal Mulai</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
+
+                <Col md={5} lg={5}>
+                  <Table striped size="sm">
+                    <tbody>
+                      <tr>
+                        <td style={{width:"180px"}}>Lama Menjawab (menit)</td>
+                        <td style={{width:"1px"}}>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Reward Perorang (Rp)</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+
+                      <tr>
+                        <td>Tanggal Akhir</td>
+                        <td>:</td>
+                        <td>00</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
+
+                <Col md={2} lg={2}>
+                  <Button variant="success" size="sm" href="#">Detail Study</Button>
+                  <Button variant="warning" size="sm" className="m-t-5" href="#">Detail Pertanyaan</Button>
+                  <Button variant="info" size="sm" className="m-t-5" href="#">Detail Jawaban</Button>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+        </Row>
         <Row>
           <Col>
             <Tabs defaultActiveKey="Project" id="noanim-tab-example">
-              <Tab eventKey="Project" title="project" className="m-t-15">
+              <Tab eventKey="Project" title="Project" className="m-t-15">
                 <Row>
                   <Col>
                   <div className="part-one">
@@ -118,7 +253,29 @@ const FormSurveyor = (props) => {
                     questions = { listQuestions.questions }
                   />
                 }
+                </Tab>
+              <Tab eventKey="Responden" title="Responden" className="m-t-15">
+                <Row>
+                  <Col>
+                    <div className="part-one">
+                      <Form.Group>
+                        <Form.Label>Kategori Profil Responden</Form.Label>
+                        <Form.Control as="select">
+                          <option>-- Pilih --</option>
+                          <option>Keluarga</option>
+                          <option>Harta</option>
+                          <option>Kesehatan</option>
+                          <option>Pekerjaan</option>
+                        </Form.Control>
+                      </Form.Group>
+                    </div>
+                  </Col>
+                </Row>
               </Tab>
+
+              {/* <Tab eventKey="Question" title="Question" className="m-t-15">
+                <QuestionList/>
+              </Tab> */}
             </Tabs>
           </Col>
           

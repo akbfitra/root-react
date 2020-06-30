@@ -526,6 +526,13 @@ p{
   padding-bottom: 60px;
 }
 
+#form-surveyor .part-one-list{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
+  padding:30px;
+}
+
 #form-surveyor .part-one{
   background-color: #fff;
   border-radius: 8px;
