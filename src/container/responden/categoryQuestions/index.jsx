@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
+import { withRouter, useHistory, useLocation, Link, useParams } from 'react-router-dom'
 
 import './css/style.css';
-import {Container, Row, Col, Button, Form} from 'react-bootstrap'
-
-import { logoutProcess } from '../../../store/actions/userAction'
+import {Container, Row, Col, Button } from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
+import { dataQuestionByCategory, createAnswer } from '../../../store/actions/aboutUsAction'
 
 const CategoryQuestions = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const location = useLocation()
+  const params = useParams()
 
-  const processLogout = () => {
-    dispatch(logoutProcess(history, location))
+  const [questions, setQuestions ] = useState([])
+  const [answer, setAnswer] = useState('')
+
+  let { categoryId } = params
+
+  const getQuestions = () => {
+    dispatch(dataQuestionByCategory(categoryId))
+      .then( data => {
+        setQuestions(data)
+      })
+      .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    getQuestions()
+  })
+
+  const chooseAnswer = (answer, questionId) => {
+    dispatch(createAnswer(answer, questionId, categoryId))
   }
 
   return(
@@ -55,77 +72,33 @@ const CategoryQuestions = (props) => {
         <Row className="m-t-30">
           <Col md={12} lg={12}>
             <div className="container-pertanyaan">
-              <Row>
-                <Col md={12} lg={12}>
-                  <div className="box-pertanyaan">
-                    <div className="left"><h5>1.</h5></div>
-                    <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
-                  </div>
-                </Col>
+                {
+                  questions.map((data, i) => 
+                    <Row>
 
-                <Col md={12} lg={12} className="m-t-10">
-                  <div className="box-answer">
-                    <div className="left"></div>
-                    <div className="right">
-                    <Button variant="outline-dark">A. Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                  </div>
-                </Col>
+                      <Col md={12} lg={12}>
+                        <div className="box-pertanyaan">
+                          <div className="left"><h5>{i + 1}.</h5></div>
+                          <div className="right"><h5>{ data.name }</h5></div>
+                        </div>
+                      </Col>
 
-                <Col md={12} lg={12} className="m-t-10">
-                  <div className="box-answer">
-                    <div className="left"></div>
-                    <div className="right">
-                    <Button variant="outline-dark">B. Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                  </div>
-                </Col>
-
-                <Col md={12} lg={12} className="m-t-10">
-                  <div className="box-answer">
-                    <div className="left"></div>
-                    <div className="right">
-                    <Button variant="outline-dark">C. Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-
-              <Row className="m-t-30">
-                <Col md={12} lg={12}>
-                  <div className="box-pertanyaan">
-                    <div className="left"><h5>2.</h5></div>
-                    <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
-                  </div>
-                </Col>
-
-                <Col md={12} lg={12} className="m-t-10">
-                  <div className="box-answer">
-                    <div className="left"></div>
-                    <div className="right">
-                    <Button variant="outline-dark">A. Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                  </div>
-                </Col>
-
-                <Col md={12} lg={12} className="m-t-10">
-                  <div className="box-answer">
-                    <div className="left"></div>
-                    <div className="right">
-                    <Button variant="outline-dark">B. Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                  </div>
-                </Col>
-
-                <Col md={12} lg={12} className="m-t-10">
-                  <div className="box-answer">
-                    <div className="left"></div>
-                    <div className="right">
-                    <Button variant="outline-dark">C. Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
+                      {
+                        data.listAnswers.map((answers, i) =>
+                          <Col md={12} lg={12} className="m-t-10">
+                            <div className="box-answer">
+                              <div className="left"></div>
+                              <div className="right">
+                              <Button variant={ data.answer === answers ? "primary":"outline-dark"} onClick = { () => chooseAnswer(answers, data._id)}>{answers}</Button>
+                              </div>
+                            </div>
+                          </Col>
+                        )
+                      }
+                    </Row>
+                    
+                  )
+                }
             </div>
           </Col>
         </Row>

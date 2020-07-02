@@ -20,7 +20,6 @@ export const dataKota = (idProvinsi) => async dispatch => {
       method: 'GET',
       url: `https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${idProvinsi}`
     })
-    console.log(data)
     dispatch({type: 'DATA_KOTA', payload: data.kota_kabupaten})
   }
   catch(err){

@@ -16,7 +16,6 @@ const AboutUsResponden = (props) => {
     dispatch(dataCategory())
       .then( data => {
         setCategory(data)
-        console.log(data, 'aaaaaaaaaaa')
       })
   }
 
