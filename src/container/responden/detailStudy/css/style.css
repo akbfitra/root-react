@@ -473,34 +473,17 @@ p{
 }
 /* end datepicker */
 
-/* ======================================== form-suveyor ============================================= */
-#form-surveyor {
+/* ======================================== submission-responden ============================================= */
+#detail-study {
   padding-top: 60px;
   padding-bottom: 60px;
 }
 
-#form-surveyor .part-one{
+#detail-study .part-one{
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
   padding:30px;
 }
 
-#form-surveyor .part-one .box-pertanyaan{
-  width: 100%;
-  display: flex;
-}
-
-#form-surveyor .part-one .box-pertanyaan .left{
-  width: 3%;
-}
-
-#form-surveyor .part-one .box-pertanyaan .right{
-  width: 97%;
-}
-
-#form-surveyor .part-one .box-answer{
-  width: 100%;
-  padding-left: 3%;
-}
-/* ======================================== end form-suveyor ============================================= */
+/* ======================================== end submission-responden ============================================= */

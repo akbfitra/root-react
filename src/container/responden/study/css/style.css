@@ -438,8 +438,6 @@ p{
     padding:0px !important;
 }
 
-
-
 /* Table No Border */
 .table-no-border .table-bordered > thead > tr > th, 
 .table-no-border .table-bordered > tbody > tr > th, 
@@ -473,34 +471,36 @@ p{
 }
 /* end datepicker */
 
-/* ======================================== form-suveyor ============================================= */
-#form-surveyor {
+/* ======================================== study-responden ============================================= */
+#study {
   padding-top: 60px;
   padding-bottom: 60px;
 }
 
-#form-surveyor .part-one{
+#study .part-one{
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
-  padding:30px;
+  padding:0px 30px 30px 30px;
+  /* display: flex; */
 }
 
-#form-surveyor .part-one .box-pertanyaan{
+#study .part-one .box-pertanyaan{
   width: 100%;
   display: flex;
 }
 
-#form-surveyor .part-one .box-pertanyaan .left{
+#study .part-one .box-pertanyaan .left{
   width: 3%;
 }
 
-#form-surveyor .part-one .box-pertanyaan .right{
+#study .part-one .box-pertanyaan .right{
   width: 97%;
 }
 
-#form-surveyor .part-one .box-answer{
+#study .part-one .box-answer{
   width: 100%;
   padding-left: 3%;
+  margin-top: 15px;
 }
-/* ======================================== end form-suveyor ============================================= */
+/* ======================================== end study-responden ============================================= */

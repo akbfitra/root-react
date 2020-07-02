@@ -35,7 +35,7 @@ const SurveyorDashboard = (props) => {
             </Col>
 
             <Col md={4} lg={4}>
-              <Link to = '/surveyor/form' style={{textDecoration:"none"}}>
+              <Link to = '/surveyor/liststudy' style={{textDecoration:"none"}}>
               <div className="part-one">
                 <center>
                 <img src="https://via.placeholder.com/140" className="img-responsive"/>
