@@ -50,7 +50,7 @@ const SubmissionResponden = (props) => {
                                 </div>
                                 <div className="box-right">
                                 <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
-                                <Button href="#" variant="danger btn-block" className="m-t-15">Join</Button>
+                                <Button href="/responden/detailstudy" variant="danger btn-block" className="m-t-15">Join</Button>
                                 </div>
                               </div>
                             </Col>
@@ -74,7 +74,7 @@ const SubmissionResponden = (props) => {
                                 </div>
                                 <div className="box-right">
                                 <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
-                                <Button href="#" variant="success btn-block" className="m-t-15">Detail</Button>
+                                <Button href="/responden/detailstudy" variant="success btn-block" className="m-t-15">Detail</Button>
                                 </div>
                               </div>
                             </Col>
@@ -96,7 +96,7 @@ const SubmissionResponden = (props) => {
                                 </div>
                                 <div className="box-right">
                                 <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
-                                <Button href="#" variant="success btn-block" className="m-t-15">Detail</Button>
+                                <Button href="/responden/submission/detailstudy" variant="success btn-block" className="m-t-15">Detail</Button>
                                 </div>
                               </div>
                             </Col>

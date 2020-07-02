@@ -452,49 +452,36 @@ p{
 /* End Table No Border */
 
 /* ======================================== pertanyaan-responden ============================================= */
-
-
 #pertanyaan-responden {
   padding-top: 60px;
   padding-bottom: 60px;
 }
 
-#pertanyaan-responden .container-pertanyaan{
+#pertanyaan-responden .part-one{
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
-  padding:30px;
-
+  padding:0px 30px 30px 30px;
+  /* display: flex; */
 }
 
-#pertanyaan-responden .container-pertanyaan .box-pertanyaan {
+#pertanyaan-responden .part-one .box-pertanyaan{
   width: 100%;
   display: flex;
 }
 
-#pertanyaan-responden .container-pertanyaan .box-pertanyaan .left{
+#pertanyaan-responden .part-one .box-pertanyaan .left{
   width: 3%;
-  /* background-color: red; */
 }
 
-#pertanyaan-responden .container-pertanyaan .box-pertanyaan .right{
+#pertanyaan-responden .part-one .box-pertanyaan .right{
   width: 97%;
-  /* background-color: pink; */
 }
 
-#pertanyaan-responden .container-pertanyaan .box-answer {
+#pertanyaan-responden .part-one .box-answer{
   width: 100%;
-  display: flex;
-}
-
-#pertanyaan-responden .container-pertanyaan .box-answer .left{
-  width: 3%;
-  /* background-color: red; */
-}
-
-#pertanyaan-responden .container-pertanyaan .box-answer .right{
-  width: 97%;
-  /* background-color: pink; */
+  padding-left: 3%;
+  margin-top: 15px;
 }
 
 /* ======================================== end pertanyaan-responden ============================================= */

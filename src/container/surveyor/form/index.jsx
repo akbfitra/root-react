@@ -21,7 +21,7 @@ const FormSurveyor = () => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Form</strong></h3>
+            <h3 className="title-one text-center"><strong>Tambah Study</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
@@ -30,148 +30,18 @@ const FormSurveyor = () => {
                 </li>
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Form</h4>
+                  <Link to='/surveyor/liststudy' style={{textDecoration:"none"}}>
+                  <h4 className="title-three">Data Study</h4>
+                  </Link>
+                </li>
+                <li className="list-inline-item">|</li>
+                <li className="list-inline-item">
+                  <h4 className="title-three">Tambah Study</h4>
                 </li>
               </ul>
           </Col>
         </Row>
         
-        <Row>
-          <Col md={12} lg={12}>
-          <Button variant="primary" href="#">Tambah Study</Button>
-          </Col>
-          <Col md={12} lg={12} className="m-t-15">
-            <div className="part-one-list">
-              <Row>
-                <Col md={12} lg={12}>
-                  <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                </Col>
-              </Row>
-
-              <Row className="m-t-15">
-                <Col md={5} lg={5}>
-                  <Table striped size="sm">
-                    <tbody>
-                      <tr>
-                        <td style={{width:"180px"}}>Jumlah Soal</td>
-                        <td style={{width:"1px"}}>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Jumlah Responden</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Tanggal Mulai</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Col>
-
-                <Col md={5} lg={5}>
-                  <Table striped size="sm">
-                    <tbody>
-                      <tr>
-                        <td style={{width:"180px"}}>Lama Menjawab (menit)</td>
-                        <td style={{width:"1px"}}>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Reward Perorang (Rp)</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Tanggal Akhir</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Col>
-
-                <Col md={2} lg={2}>
-                  <Button variant="success" size="sm" href="#">Detail Study</Button>
-                  <Button variant="warning" size="sm" className="m-t-5" href="#">Detail Pertanyaan</Button>
-                  <Button variant="info" size="sm" className="m-t-5" href="#">Detail Jawaban</Button>
-                </Col>
-              </Row>
-            </div>
-          </Col>
-
-          <Col md={12} lg={12} className="m-t-15">
-            <div className="part-one-list">
-              <Row>
-                <Col md={12} lg={12}>
-                  <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                </Col>
-              </Row>
-
-              <Row className="m-t-15">
-                <Col md={5} lg={5}>
-                  <Table striped size="sm">
-                    <tbody>
-                      <tr>
-                        <td style={{width:"180px"}}>Jumlah Soal</td>
-                        <td style={{width:"1px"}}>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Jumlah Responden</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Tanggal Mulai</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Col>
-
-                <Col md={5} lg={5}>
-                  <Table striped size="sm">
-                    <tbody>
-                      <tr>
-                        <td style={{width:"180px"}}>Lama Menjawab (menit)</td>
-                        <td style={{width:"1px"}}>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Reward Perorang (Rp)</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Tanggal Akhir</td>
-                        <td>:</td>
-                        <td>00</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Col>
-
-                <Col md={2} lg={2}>
-                  <Button variant="success" size="sm" href="#">Detail Study</Button>
-                  <Button variant="warning" size="sm" className="m-t-5" href="#">Detail Pertanyaan</Button>
-                  <Button variant="info" size="sm" className="m-t-5" href="#">Detail Jawaban</Button>
-                </Col>
-              </Row>
-            </div>
-          </Col>
-        </Row>
         <Row>
           <Col>
             <Tabs defaultActiveKey="Project" id="noanim-tab-example">
@@ -190,17 +60,17 @@ const FormSurveyor = () => {
                     </Form.Group>
 
                     <Form.Group>
-                      <Form.Label>Lama Menjawab (menit)</Form.Label>
+                      <Form.Label>Waktu Menjawab (menit)</Form.Label>
                       <Form.Control type="text" placeholder="" />
                     </Form.Group>
 
                     <Form.Group>
-                      <Form.Label>Jumlah Responden</Form.Label>
+                      <Form.Label>Jumlah Responden Yang Dibutuhkan</Form.Label>
                       <Form.Control type="text" placeholder="" />
                     </Form.Group>
 
                     <Form.Group>
-                      <Form.Label>Reward Perorang (Rp)</Form.Label>
+                      <Form.Label>Reward Per Responden (Rp)</Form.Label>
                       <Form.Control type="text" placeholder="" />
                     </Form.Group>
 
@@ -222,20 +92,151 @@ const FormSurveyor = () => {
                 </Row>
               </Tab>
 
-              <Tab eventKey="Responden" title="Responden" className="m-t-15">
-                <Row>
-                  <Col>
+              <Tab eventKey="Kriteria Responden" title="Kriteria Responden" className="m-t-15">
+                <Row className="m-t-30">
+                  <Col md={12} lg={12}>
                     <div className="part-one">
-                      <Form.Group>
-                        <Form.Label>Kategori Profil Responden</Form.Label>
-                        <Form.Control as="select">
-                          <option>-- Pilih --</option>
-                          <option>Keluarga</option>
-                          <option>Harta</option>
-                          <option>Kesehatan</option>
-                          <option>Pekerjaan</option>
-                        </Form.Control>
-                      </Form.Group>
+                      <Row>
+                        <Col md={12} lg={12}>
+                          <Form.Group>
+                            <Form.Label>Kriteria Responden</Form.Label>
+                            <Form.Control as="select">
+                              <option>-- Pilih --</option>
+                              <option>Keluarga</option>
+                              <option>Harta</option>
+                              <option>Kesehatan</option>
+                              <option>Pekerjaan</option>
+                            </Form.Control>
+                          </Form.Group>
+                        </Col>
+
+                        <Col md={12} lg={12}>
+                        <hr className="m-b-0"></hr>
+                        </Col>
+
+                        <Col md={12} lg={12}>
+                        <Row className="m-t-30">
+                          <Col md={12} lg={12}>
+                            <div className="box-pertanyaan">
+                              <div className="left"><h5>1.</h5></div>
+                              <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
+                            </div>
+                          </Col>
+                          <Col md={12} lg={12}>
+                            <div className="box-answer">
+                            <Form.Group style={{width:'100%'}}>
+                              <Form.Control as="select" >
+                                <option>-- Pilih --</option>
+                              </Form.Control>
+                            </Form.Group>
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row className="m-t-30">
+                          <Col md={12} lg={12}>
+                            <div className="box-pertanyaan">
+                              <div className="left"><h5>1.</h5></div>
+                              <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
+                            </div>
+                          </Col>
+                          <Col md={12} lg={12}>
+                            <div className="box-answer">
+                            <Form.Group style={{width:'100%'}}>
+                              <Form.Control as="select" >
+                                <option>-- Pilih --</option>
+                              </Form.Control>
+                            </Form.Group>
+                            </div>
+                          </Col>
+                        </Row>
+                        </Col>
+                        <Col md={12} lg={12}>
+                          <hr/>
+                          <ul className="list-inline text-right m-b-0">
+                            <li className="list-inline-item">
+                              <Button variant="primary">Tambah Kriteria</Button>{' '}
+                            </li>
+                            <li className="list-inline-item">|</li>
+                            <li className="list-inline-item">
+                              <Button variant="danger">Hapus Kriteria</Button>{' '}
+                            </li>
+                          </ul>
+                        </Col>
+                      </Row>
+                    </div>
+                  </Col>
+                </Row>
+
+                <Row className="m-t-30">
+                  <Col md={12} lg={12}>
+                    <div className="part-one">
+                      <Row>
+                        <Col md={12} lg={12}>
+                          <Form.Group>
+                            <Form.Label>Kriteria Responden</Form.Label>
+                            <Form.Control as="select">
+                              <option>-- Pilih --</option>
+                              <option>Keluarga</option>
+                              <option>Harta</option>
+                              <option>Kesehatan</option>
+                              <option>Pekerjaan</option>
+                            </Form.Control>
+                          </Form.Group>
+                        </Col>
+
+                        <Col md={12} lg={12}>
+                        <hr className="m-b-0"></hr>
+                        </Col>
+
+                        <Col md={12} lg={12}>
+                        <Row className="m-t-30">
+                          <Col md={12} lg={12}>
+                            <div className="box-pertanyaan">
+                              <div className="left"><h5>1.</h5></div>
+                              <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
+                            </div>
+                          </Col>
+                          <Col md={12} lg={12}>
+                            <div className="box-answer">
+                            <Form.Group style={{width:'100%'}}>
+                              <Form.Control as="select" >
+                                <option>-- Pilih --</option>
+                              </Form.Control>
+                            </Form.Group>
+                            </div>
+                          </Col>
+                        </Row>
+                        <Row className="m-t-30">
+                          <Col md={12} lg={12}>
+                            <div className="box-pertanyaan">
+                              <div className="left"><h5>1.</h5></div>
+                              <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
+                            </div>
+                          </Col>
+                          <Col md={12} lg={12}>
+                            <div className="box-answer">
+                            <Form.Group style={{width:'100%'}}>
+                              <Form.Control as="select" >
+                                <option>-- Pilih --</option>
+                              </Form.Control>
+                            </Form.Group>
+                            </div>
+                          </Col>
+                        </Row>
+                        </Col>
+                        <Col md={12} lg={12}>
+                          <hr/>
+                          <ul className="list-inline text-right m-b-0">
+                            <li className="list-inline-item">
+                              <Button variant="primary">Tambah Kriteria</Button>{' '}
+                            </li>
+                            <li className="list-inline-item">|</li>
+                            <li className="list-inline-item">
+                              <Button variant="danger">Hapus Kriteria</Button>{' '}
+                            </li>
+                          </ul>
+                        </Col>
+                      </Row>
                     </div>
                   </Col>
                 </Row>

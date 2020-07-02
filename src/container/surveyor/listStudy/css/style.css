@@ -472,11 +472,65 @@ p{
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 /* end datepicker */
+/* ======================================== general-header ============================================= */
+#general-header{
+    box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
+}
+
+#general-header .main-header-one .part-one .table-cell-one{
+    display: table-cell;
+    vertical-align: middle;
+    height: 80px;
+    width: 80px;
+    /* background-color: yellow; */
+}
+
+#general-header .main-header-one .part-one .table-cell-two{
+    display: table-cell;
+    vertical-align: middle;
+    height: 80px;
+}
+
+#general-header .main-header-one .part-two .table-cell-one{
+    display: table-cell;
+    vertical-align: middle;
+    height: 80px;
+}
+/* ======================================== end general-header ============================================= */
+
+
+/* ======================================== main-footer ============================================= */
+#main-footer-one{
+    background-color: #1f59bb;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#main-footer-one .part-one h3{
+    color: #fff;
+}
+
+#main-footer-one .part-one p{
+    color: #fff;
+}
+
+#main-footer-two {
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+/* ======================================== end main-footer ============================================= */
 
 /* ======================================== form-suveyor ============================================= */
 #form-surveyor {
   padding-top: 60px;
   padding-bottom: 60px;
+}
+
+#form-surveyor .part-one-list{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
+  padding:30px;
 }
 
 #form-surveyor .part-one{
@@ -501,6 +555,54 @@ p{
 
 #form-surveyor .part-one .box-answer{
   width: 100%;
-  padding-left: 3%;
+  display: flex;
+  margin-top: 15px;
+}
+
+#form-surveyor .part-one .box-answer .left{
+  width: 3%;
+}
+
+#form-surveyor .part-one .box-answer .right{
+  width: 97%;
+}
+
+#form-surveyor .part-two{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
+  padding:30px;
+}
+
+#form-surveyor .question .table-cell-one{
+  display: table-cell;
+  height: 70px;
+  vertical-align: middle;
+  background-color: ;
+}
+
+
+#form-surveyor .answer .table-cell-one{
+  display: table-cell;
+  height: 40px;
+  vertical-align: middle;
+  width: 15%;
+  background-color: ;
+}
+
+#form-surveyor .answer .table-cell-two{
+  display: table-cell;
+  height: 40px;
+  vertical-align: middle;
+  width: 65%;
+  background-color: ;
+}
+
+#form-surveyor .answer .table-cell-three{
+  display: table-cell;
+  height: 40px;
+  vertical-align: middle;
+  width:20%;
+  background-color: ;
 }
 /* ======================================== end form-suveyor ============================================= */

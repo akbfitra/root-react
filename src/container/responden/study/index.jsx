@@ -1,33 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
+
+import { withRouter, Link } from 'react-router-dom'
 
 import './css/style.css';
-import {Container, Row, Col, Button, Form} from 'react-bootstrap'
-
-import { logoutProcess } from '../../../store/actions/userAction'
+import { Container, Row, Col, Button, Table} from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
-
-const CategoryQuestions = (props) => {
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const location = useLocation()
-
-  const processLogout = () => {
-    dispatch(logoutProcess(history, location))
-  }
-
+const StudyResponden = (props) => {
   return(
     <>
-      <Navbar/>
-      <div id="pertanyaan-responden">
+    <Navbar/>
+
+      <div id="study">
         <Container>
           <Row>
-            <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-              <h3 className="title-one text-center"><strong>Question Responden</strong></h3>
+            <Col md={12} lg={12}>
+              <h3 className="title-one text-center"><strong>Study</strong></h3>
                 <ul className="list-inline text-center">
                   <li className="list-inline-item">
                     <Link to='/responden' style={{textDecoration:"none"}}>
@@ -38,20 +28,18 @@ const CategoryQuestions = (props) => {
                   <li className="list-inline-item">|</li>
 
                   <li className="list-inline-item">
-                    <Link to='/responden/aboutus' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">About Responden</h4>
+                    <Link to='/responden/submission' style={{textDecoration:"none"}}>
+                    <h4 className="title-three">Submission Responden</h4>
                     </Link>
                   </li>
 
                   <li className="list-inline-item">|</li>
-
                   <li className="list-inline-item">
-                    <h4 className="title-three">Question Responden</h4>
+                    <h4 className="title-three">Study Responden</h4>
                   </li>
                 </ul>
             </Col>
           </Row>
-
           <Row className="m-t-30">
             <Col md={12} lg={12}>
               <div className="part-one">
@@ -110,4 +98,4 @@ const CategoryQuestions = (props) => {
   )
 }
 
-export default withRouter(CategoryQuestions)
+export default withRouter(StudyResponden)

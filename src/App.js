@@ -18,6 +18,7 @@ import RegisterSurveyor from './container/user/registerSurveyor'
 
 import DashboardSurveyor from './container/surveyor/dashboard'
 import FormSurveyor from './container/surveyor/form'
+import ListStudy from './container/surveyor/listStudy'
 import TopUpSurveyor from './container/surveyor/topup'
 import ProfileSurveyor from './container/surveyor/profile'
 import EditProfileSurveyor from './container/surveyor/editProfile'
@@ -27,6 +28,8 @@ import AboutUsResponden from './container/responden/aboutus'
 import CategoryQuestions from './container/responden/categoryQuestions'
 import ProfileResponden from './container/responden/profile'
 import SubmissionResponden from './container/responden/submission'
+import DetailStudyResponden from './container/responden/detailStudy'
+import StudyResponden from './container/responden/study'
 import TicketResponden from './container/responden/ticket'
 import EditProfileResponden from './container/responden/editProfile'
 
@@ -46,6 +49,7 @@ const App = () => {
       <Route path = '/surveyor/register' component = {RegisterSurveyor}/>
       <Route path = '/register' component = {Register}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
+      <PrivateRouteSurveyor path = '/surveyor/liststudy' component = {ListStudy}/>
       <PrivateRouteSurveyor path = '/surveyor/profile/edit' component = {EditProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/profile' component = {ProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup' component = {TopUpSurveyor}/>
@@ -54,6 +58,8 @@ const App = () => {
       <PrivateRouteResponden path = '/responden/category/:categoryId' component = {CategoryQuestions}/>
       <PrivateRouteResponden path = '/responden/profile/edit' component = {EditProfileResponden}/>
       <PrivateRouteResponden path = '/responden/profile' component = {ProfileResponden}/>
+      <PrivateRouteResponden path = '/responden/detailstudy' component = {DetailStudyResponden}/>
+      <PrivateRouteResponden path = '/responden/study' component = {StudyResponden}/>
       <PrivateRouteResponden path = '/responden/submission' component = {SubmissionResponden}/>
       <PrivateRouteResponden path = '/responden/ticket' component = {TicketResponden}/>
       <PrivateRouteResponden path = '/responden' component = {DashboardResponden} />
