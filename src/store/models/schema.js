@@ -16,7 +16,7 @@ const question = new schema.Entity('questions', {
   idAttribute: '_id'
 });
 
-const survey = new schema.Entity('form',
+const survey = new schema.Entity('surveys',
   {questions: [question]},
   {idAttribute: '_id'}
 );

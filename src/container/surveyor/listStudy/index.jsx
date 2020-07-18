@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter, Link } from 'react-router-dom'
 
 import './css/style.css';
-import { Tabs, Tab, Container, Row, Col, Table, Button, Alert} from 'react-bootstrap'
+import {  Container, Row, Col, Table, Button, Alert} from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -35,7 +35,9 @@ const ListStudy = () => {
         
         <Row>
           <Col md={12} lg={12}>
-          <Button variant="primary" href="/surveyor/form">Tambah Study</Button>
+          <Link to='/surveyor/form'>
+            <Button variant="primary" >Tambah Study</Button>
+          </Link>
           </Col>
           <Col md={12} lg={12} className="m-t-15">
             <div className="part-one-list">

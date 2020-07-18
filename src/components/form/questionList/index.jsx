@@ -2,9 +2,12 @@ import React from 'react'
 import { Button,  Row, Col, Form } from 'react-bootstrap'
 import { AnswerOptions } from '../answerOption'
 import { useDispatch } from 'react-redux';
+import { Field } from 'redux-form';
+import { required } from 'redux-form-validators'
 
 import { changeQuestionType } from '../../../store/actions/questionsAction'
 import { deleteQuestion } from '../../../store/actions/questionsAction'
+import { FormInput } from '../../../components/inputForm'
 
 export const QuestionList = (props) => {
   const dispatch = useDispatch()
@@ -50,14 +53,21 @@ export const QuestionList = (props) => {
                   <div className="table-cell-one">
                     <Form.Group>
                       <Form.Label>Soal</Form.Label>
-                      <Form.Control type="text" placeholder="" />
+                        <Field
+                          className="input survey-builder__title"
+                          type="text"
+                          component={FormInput}
+                          name={`questions.${props.question._id}`} 
+                          placeholder="soal"
+                          validate={[required()]}
+                        />
                     </Form.Group>
                   </div>
                 </div>
               </div>
             </Col>
             <Button variant="danger" size="sm" onClick={ handleDeleteQuestion }>
-                          delete {props.question._id}
+                          delete
               </Button>
             <Col md={4} lg={4}>
               <div className="table-100">

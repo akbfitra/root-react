@@ -2,34 +2,54 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { reduxForm, Field } from 'redux-form';
+import { required } from 'redux-form-validators'
 
 import './css/style.css';
-import { Tabs, Tab, Container, Row, Col, Form, Table, Button} from 'react-bootstrap'
+import { Tabs, Tab, Container, Row, Col, Form, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { QuestionBuilder } from '../../../components/form/questionBuilder'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
+import { FormInput } from '../../../components/inputForm'
 
 import * as surveyActions from '../../../store/actions/surveyFormAction'
 import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
+import { SAVE_STUDY } from '../../../store/actions/surveyFormAction'
+import { renderDatePicker } from '../../../components/inputForm'
+import ReactDatePicker from 'react-datepicker';
+
 
 
 const FormSurveyor = (props) => {
   const dispatch = useDispatch()
-  const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
+  const [judul, setJudul] = useState('')
+  const [jumlahSoal, setJumlahSoal] = useState(0)
+  const [waktuJawab, setWaktuJawab] = useState(0)
+  const [jumlahResponden, setJumlahResponden] = useState(0)
+  const [rewardResponden, setRewardResponden] = useState(0)
+  const [tanggalMulai, setTanggalMulai] = useState(new Date())
+  const [tanggalAkhir, setTanggalAkhir] = useState(new Date())
 
   useEffect(() => {
     dispatch(surveyActions.INIT_QUESTION)
   }, [dispatch])
 
   let listQuestions = props.survey
-  
+
   const addQuestion = () => {
+    
     dispatch(questionActions.addNewQuestion(listQuestions._id))
   }
+
+  const handleSaveSurvey = (surveyFormData) => {
+    console.log(listQuestions)
+    dispatch(SAVE_STUDY(listQuestions._id, judul, jumlahSoal, waktuJawab, jumlahResponden, rewardResponden, tanggalMulai, tanggalAkhir, listQuestions.questions))
+  };
 
   return(
     <>
@@ -69,45 +89,99 @@ const FormSurveyor = (props) => {
                   <div className="part-one">
                     <Form.Group>
                       <Form.Label>Judul Survey</Form.Label>
-                      <Form.Control type="text" placeholder="" />
+                      <Field
+                          // className="input survey-builder__title"
+                          type="text"
+                          component={FormInput}
+                          name='judul' 
+                          placeholder="judul"
+                          validate={[required()]}
+                        />
+                      {/* <Form.Control type="text" placeholder="" onChange={ (e) => {setJudul( e.target.value )}} /> */}
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Jumlah Soal</Form.Label>
-                      <Form.Control type="text" placeholder="" />
+                      <Field
+                          // className="input survey-builder__title"
+                          type="number"
+                          component={FormInput}
+                          name='jumlahSoal'
+                          placeholder="jumlah soal"
+                          validate={[required()]}
+                        />
+                      {/* <Form.Control type="text" placeholder="" onChange={ (e) => {setJumlahSoal( e.target.value )}}/> */}
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Waktu Menjawab (menit)</Form.Label>
-                      <Form.Control type="text" placeholder="" />
+                      <Field
+                          // className="input survey-builder__title"
+                          type="number"
+                          component={FormInput}
+                          name='waktuJawab'
+                          placeholder="waktu menjawab"
+                          validate={[required()]}
+                        />
+                      {/* <Form.Control type="number" placeholder="" onChange={ (e) => {setWaktuJawab( e.target.value )}}/> */}
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Jumlah Responden Yang Dibutuhkan</Form.Label>
-                      <Form.Control type="text" placeholder="" />
+                      <Field
+                          // className="input survey-builder__title"
+                          type="text"
+                          component={FormInput}
+                          name='jumlahResponden'
+                          placeholder="jumlah responden"
+                          validate={[required()]}
+                        />
+                      {/* <Form.Control type="number" placeholder="" onChange={ (e) => {setJumlahResponden( e.target.value )}}/> */}
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Reward Per Responden (Rp)</Form.Label>
-                      <Form.Control type="text" placeholder="" />
+                      <Field
+                          // className="input survey-builder__title"
+                          type="text"
+                          component={FormInput}
+                          name='rewardResponden'
+                          placeholder="reward Responden"
+                          validate={[required()]}
+                        />
+                      {/* <Form.Control type="number" placeholder="" onChange={ (e) => {setRewardResponden( e.target.value )}}/> */}
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Tanggal Mulai</Form.Label>
                       <Row>
-                        <Col><DatePicker selected={startDate}/></Col>
+                        <Col>
+                          <Field
+                            // placeholder={tanggalMulai}
+                            name="tanggalMulai"
+                            component={renderDatePicker}
+                          />
+                          {/* <DatePicker selected={tanggalMulai}  onChange={date => setTanggalMulai(date)}/> */}
+                        </Col>
                       </Row>
                     </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Tanggal Akhir</Form.Label>
                       <Row>
-                        <Col><DatePicker selected={startDate}/></Col>
+                        <Col>
+                        <Field
+                            // placeholder={tanggalMulai}
+                            name="tanggalAkhir"
+                            component={renderDatePicker}
+                          />
+                        </Col>
                       </Row>
                     </Form.Group>
                   </div>
                   </Col>
                 </Row>
+                <Button onClick= {handleSaveSurvey}>Submit</Button>
               </Tab>
 
               <Tab eventKey="Kriteria Responden" title="Kriteria Responden" className="m-t-15">
@@ -221,14 +295,20 @@ const mapStateToProps = (state) => ({
   // initialValues: getInitialFormBuilderValues(state),
 });
 
+export const FormSurveyorForm = reduxForm({
+  form: 'surveyForm',
+  shouldValidate: () => true // Due to bug https://github.com/erikras/redux-form/issues/3276
+})(FormSurveyor);
+
 const mapDispatchToProps = (dispatch) => ({
   surveyActions: bindActionCreators(surveyActions, dispatch),
   questionActions: bindActionCreators(questionActions, dispatch)
 });
 
+
 const ConnectedFormSurveyor = connect(
   mapStateToProps,
   mapDispatchToProps
-)(FormSurveyor);
+)(FormSurveyorForm);
 
 export default ConnectedFormSurveyor
