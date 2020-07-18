@@ -19,6 +19,7 @@ import RegisterSurveyor from './container/user/registerSurveyor'
 import DashboardSurveyor from './container/surveyor/dashboard'
 import FormSurveyor from './container/surveyor/form'
 import ListStudy from './container/surveyor/listStudy'
+import DetailStudySurveyor from './container/surveyor/detailStudy'
 import TopUpSurveyor from './container/surveyor/topup'
 import ProfileSurveyor from './container/surveyor/profile'
 import EditProfileSurveyor from './container/surveyor/editProfile'
@@ -50,6 +51,7 @@ const App = () => {
       <Route path = '/register' component = {Register}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/liststudy' component = {ListStudy}/>
+      <PrivateRouteSurveyor path='/surveyor/detailstudy' component={DetailStudySurveyor} />
       <PrivateRouteSurveyor path = '/surveyor/profile/edit' component = {EditProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/profile' component = {ProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup' component = {TopUpSurveyor}/>

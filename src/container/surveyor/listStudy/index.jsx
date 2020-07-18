@@ -101,7 +101,7 @@ const ListStudy = () => {
 
               <Row>
                 <Col md={12} lg={12}>
-                <Button variant="primary" href="#">Detail Study</Button>
+                    <Button variant="primary" href="/surveyor/detailstudy">Detail Study</Button>
                 </Col>
               </Row>
             </div>
@@ -171,7 +171,7 @@ const ListStudy = () => {
 
               <Row>
                 <Col md={12} lg={12}>
-                <Button variant="primary" href="#">Detail Study</Button>
+                    <Button variant="primary" href="/surveyor/detailstudy">Detail Study</Button>
                 </Col>
               </Row>
             </div>
