@@ -84,22 +84,14 @@ const ProfileResponden = (props) => {
 
           <Col md={9} lg={9} className="">
             <div className="part-two">
-            <Tabs defaultActiveKey="identitas" id="noanim-tab-example">
-              <Tab eventKey="identitas" title="Identitas" className="m-t-15">
-                <Row>
+              <Row>
                   <Col className="table-no-border">
                     <Table bordered className="m-b-0">
                       <tbody>
                         <tr>
-                          <td style={{width:"250px"}}>Nama Lengkap</td>
+                          <td style={{width:"360px"}}>Nama Lengkap</td>
                           <td style={{width:"1px"}}>:</td>
                           <td>{dataProfile.name}</td>
-                        </tr>
-
-                        <tr>
-                          <td>Tanggal Lahir</td>
-                          <td>:</td>
-                          <td>{dataProfile.birth}</td>
                         </tr>
 
                         <tr>
@@ -111,13 +103,31 @@ const ProfileResponden = (props) => {
                         <tr>
                           <td>No. Identitas</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.ktp}</td>
                         </tr>
 
                         <tr>
-                          <td>Kartu Tanda Penduduk</td>
+                          <td>Tanggal Lahir</td>
                           <td>:</td>
-                          <td>{dataProfile.ktp}</td>
+                          <td>{dataProfile.birth}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Pekerjaan</td>
+                          <td>:</td>
+                          <td>{dataProfile.pekerjaan}</td>
+                        </tr>
+
+                        <tr>
+                          <td style={{ width: "250px" }}>Provinsi Tempat Tinggal</td>
+                          <td style={{ width: "1px" }}>:</td>
+                          <td>{dataProfile.provinsi}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Kab/Kota Tempat Tinggal</td>
+                          <td>:</td>
+                          <td>{dataProfile.kota}</td>
                         </tr>
 
                         <tr>
@@ -129,153 +139,6 @@ const ProfileResponden = (props) => {
                     </Table>
                   </Col>
                 </Row>
-              </Tab>
-              <Tab eventKey="tempat" title="Tempat Tinggal" className="m-t-15">
-                <Row>
-                  <Col className="table-no-border">
-                    <Table bordered className="m-b-0">
-                      <tbody>
-                        <tr>
-                          <td style={{width:"250px"}}>Provinsi Tempat Tinggal</td>
-                          <td style={{width:"1px"}}>:</td>
-                          <td>{dataProfile.provinsi}</td>
-                        </tr>
-
-                        <tr>
-                          <td>Kecamatan Tempat Tinggal</td>
-                          <td>:</td>
-                          <td>-</td>
-                        </tr>
-
-                        <tr>
-                          <td>Kab/Kota Tempat Tinggal</td>
-                          <td>:</td>
-                          <td>{dataProfile.kota}</td>
-                        </tr>
-
-                        <tr>
-                          <td>Kelurahan Tempat Tinggal</td>
-                          <td>:</td>
-                          <td>-</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row>
-              </Tab>
-              <Tab eventKey="pendidikan" title="Pendidikan & Pekerjaan" className="m-t-15">
-                <Row>
-                  <Col className="table-no-border">
-                    <Table bordered className="m-b-0">
-                      <tbody>
-                          <tr>
-                            <td style={{width:'250px'}}>Pendidikan Terakhir</td>
-                            <td style={{width:'1px'}}>:</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>Bidang Pendidikan</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>Jenis Pekerjaan</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-
-                          <tr>
-                            <td>Lama Kerja Dari Awal Kerja Tetap</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-
-                          <tr>
-                            <td>Jenis Pendapatan</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-
-                          <tr>
-                            <td>Kartu Mahasiswa</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row>
-              </Tab>
-
-              <Tab eventKey="keluarga" title="Keluarga" className="m-t-15">
-                <Row>
-                  <Col className="table-no-border">
-                  <Table bordered className="m-b-0">
-                      <tbody>
-                          <tr>
-                            <td style={{width:'250px'}}>Status Pernikahan</td>
-                            <td style={{width:'1px'}}>:</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>Jumlah Anak</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>Jenis Kelamin</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row>
-              </Tab>
-
-              <Tab eventKey="kesehatan" title="Kesehatan" className="m-t-15">
-                <Row>
-                  <Col className="table-no-border">
-                    <Table bordered className="m-b-0">
-                      <tbody>
-                          <tr>
-                            <td style={{width:'250px'}}>Golongan Darah</td>
-                            <td style={{width:'1px'}}>:</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>Sakit Yang Pernah Dialamai</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row> 
-              </Tab>
-
-              <Tab eventKey="minat" title="Minat & Hobby" className="m-t-15">
-                <Row>
-                  <Col className="table-no-border">
-                    <Table bordered className="m-b-0">
-                      <tbody>
-                          <tr>
-                            <td style={{width:'250px'}}>Jenis Kendaraan Yang Dimiliki</td>
-                            <td style={{width:'1px'}}>:</td>
-                            <td>-</td>
-                          </tr>
-                          <tr>
-                            <td>Apa Saja Hobby Anda</td>
-                            <td>:</td>
-                            <td>-</td>
-                          </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row>
-              </Tab>
-            </Tabs>
-
             </div>
           </Col>
         </Row>

@@ -22,7 +22,8 @@ export const INIT_QUESTION = (dispatch) => {
         reward: 0,
         tanggalMulai: '',
         tanggalAkhir: '',
-        questions: []
+        questions: [],
+        inputed: false
       }
     })
     
@@ -46,6 +47,7 @@ export const SAVE_STUDY = (_id, judul, jumlahSoal, waktuJawab, jumlahResponden, 
       }
     })
     alert(data)
+
   } catch(err){
     console.log(err)
   }
