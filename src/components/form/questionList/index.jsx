@@ -66,10 +66,8 @@ export const QuestionList = (props) => {
                 </div>
               </div>
             </Col>
-            <Button variant="danger" size="sm" onClick={ handleDeleteQuestion }>
-                          delete
-              </Button>
-            <Col md={4} lg={4}>
+            
+            <Col md={3} lg={3}>
               <div className="table-100">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -85,6 +83,13 @@ export const QuestionList = (props) => {
                   </div>
                 </div>
               </div>
+            </Col>
+
+            <Col md={1} lg={1}>
+              <div style={{width:'100%', backgroundColor:'red', height:'38px', display:'flex', alignItems:'center'}}>
+                  <Button variant="danger" size="sm" onClick={handleDeleteQuestion}>Delete</Button>
+              </div>
+              
             </Col>
           </Row>
 

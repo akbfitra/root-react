@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames'
 
+import { Form } from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
@@ -11,12 +12,22 @@ export const FormInput = ({meta, type, input, placeholder}) => {
   });
   return (
     <div>
-      <input
+      <Form.Group>
+        <Form.Control 
+          className={inputSyle}
+          type={type}
+          placeholder={placeholder}
+          {...input} />
+      </Form.Group>
+
+      {/* <input
         className={inputSyle}
         type={type}
         placeholder={placeholder}
         {...input}
-      />
+      /> */}
+
+      
       <div className="input__error-message">
         {
           meta.touched && meta.error &&

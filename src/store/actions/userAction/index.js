@@ -85,13 +85,15 @@ export const logoutProcess = (history, location) => async dispatch => {
   history.push('/')
 }
 
-export const dataProfileUser = (id) => async dispatch => {
+export const dataProfileUser = () => async dispatch => {
   try{
     const { id } = verifyToken(Cookies.get('test'))
+  
     const { data } = await instance ({
       method: 'GET',
       url: `user/profile/${id}`
     })
+    console.log(data)
     return data
   }
   catch(err){

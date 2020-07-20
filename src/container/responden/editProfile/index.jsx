@@ -1,16 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
 
 import './css/style.css';
-import { Tabs, Tab, Container, Row, Col, Form} from 'react-bootstrap'
+import { Tabs, Tab, Container, Row, Col, Form, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { dataProfileUser } from '../../../store/actions/userAction'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
 const EditProfileResponden = (props) => {
+
   const [startDate, setStartDate] = useState(new Date());
+  const [pekerjaan, setPekerjaan] = useState('')
+  const [sumber, setSumber ] = useState('')
+  const dispatch = useDispatch()
+
+  const [dataProfile, SetDataProfile] = useState('')
+
+  const getDataProfile = () => {
+    if (!dataProfile) {
+      dispatch(dataProfileUser())
+        .then(data => {
+          SetDataProfile(data)
+        })
+    }
+  }
+
+  useEffect(() => {
+    getDataProfile()
+  })
 
   return(
     <>
@@ -47,93 +68,87 @@ const EditProfileResponden = (props) => {
         <Row className="m-t-30">
           <Col md={12} lg={12}>
             <div className="part-one">
-            <Tabs defaultActiveKey="Account" id="noanim-tab-example">
-              <Tab eventKey="Account" title="Account" className="m-t-15">
-                  <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="text" placeholder="" />
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Label>Nama Lengkap</Form.Label>
+                  <Form.Control type="text" placeholder="" value={dataProfile.name} />
+                </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Konfirmasi Password</Form.Label>
-                    <Form.Control type="text" placeholder="" />
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Label>No. Telepon</Form.Label>
+                  <Form.Control type="text" placeholder="" value={dataProfile.phone} />
+                </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" placeholder="" />
-                  </Form.Group>
-              </Tab>
-              <Tab eventKey="Identitas Diri" title="Identitas Diri" className="m-t-15">
-                  <Form.Group>
-                    <Form.Label>Nama Lengkap</Form.Label>
-                    <Form.Control type="text" placeholder="" />
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Label>No. Identitas</Form.Label>
+                  <Form.Control type="text" placeholder="" value={dataProfile.ktp} />
+                </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Tanggal Lahir</Form.Label>
-                    <Row>
+                <Form.Group>
+                  <Form.Label>Tanggal Lahir</Form.Label>
+                  <Row>
                     <Col><DatePicker selected={startDate} onChange={date => setStartDate(date)} /></Col>
-                    </Row>
-                  </Form.Group>
+                  </Row>
+                </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>No. Telepon</Form.Label>
-                    <Form.Control type="text" placeholder="" />
-                  </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>No. Identitas</Form.Label>
-                    <Form.Control type="text" placeholder="" />
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Label>Jenis Pekerjaan</Form.Label>
+                  <Form.Control as="select" onChange={pekerjaan => setPekerjaan(pekerjaan)}>
+                    <option>{dataProfile.pekerjaan}</option>
+                    <option>Swasta</option>
+                    <option>PNS/TNI/Polri</option>
+                    <option>Sekolah/Kuliah</option>
+                    <option>Ibu Rumah Tangga</option>
+                    <option>Lainnya</option>
+                  </Form.Control>
+                </Form.Group>
 
-                  <Form.Group>
+
+                {/* <Form.Group>
                     <Form.Label>Unggah Kartu Tanda Penduduk</Form.Label>
                     <Form.Control type="file" placeholder="" />
-                  </Form.Group>
+                  </Form.Group> */}
 
-                  <Form.Group>
-                    <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                      <option>Jaringan Pribadi</option>
-                      <option>Media Sosial</option>
-                      <option>Iklan Surat Kabar/TV</option>
-                      <option>Lainnya</option>
-                    </Form.Control>
-                  </Form.Group>
-              </Tab>
-              <Tab eventKey="tempat" title="Tempat Tinggal" className="m-t-15">
-                  <Form.Group>
-                    <Form.Label>Provinsi Tempat Tinggal</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Label>Provinsi Tempat Tinggal</Form.Label>
+                  <Form.Control as="select">
+                    <option>-- Pilih --</option>
+                  </Form.Control>
+                </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
+                  <Form.Control as="select">
+                    <option>-- Pilih --</option>
+                  </Form.Control>
+                </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Kecamatan Tempat Tinggal</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
+                <Form.Group>
+                  <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
+                  <Form.Control as="select" onChange={sumber => setSumber(sumber)}>
+                    <option>{dataProfile.sumber}</option>
+                    <option>Jaringan Pribadi</option>
+                    <option>Media Sosial</option>
+                    <option>Iklan Surat Kabar/TV</option>
+                    <option>Lainnya</option>
+                  </Form.Control>
+                </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Kelurahan Tempat Tinggal</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
-              </Tab>
+                <Form.Group>
+                  <Button variant="primary">Update</Button>
+                </Form.Group>
 
-              <Tab eventKey="pendidikan" title="Pendidikan & Pekerjaan" className="m-t-15">
+
+            {/* <Tabs defaultActiveKey="Identitas Diri" id="noanim-tab-example"> */}
+
+              {/* <Tab eventKey="Identitas Diri" title="Identitas Diri" className="m-t-15">
+                  
+              </Tab> */}
+              {/* <Tab eventKey="tempat" title="Tempat Tinggal" className="m-t-15">
+                  
+              </Tab> */}
+
+              {/* <Tab eventKey="pendidikan" title="Pendidikan & Pekerjaan" className="m-t-15">
                   <Form.Group>
                     <Form.Label>Pendidikan Terakhir</Form.Label>
                     <Form.Control as="select">
@@ -255,8 +270,8 @@ const EditProfileResponden = (props) => {
                       <option>-- Pilih --</option>
                     </Form.Control>
                   </Form.Group>
-              </Tab>
-            </Tabs>
+              </Tab> */}
+            {/* </Tabs> */}
 
             </div>
           </Col>
