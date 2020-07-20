@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
 import { required } from 'redux-form-validators'
 
 import './css/style.css';
@@ -35,11 +35,14 @@ const FormSurveyor = (props) => {
   const [tanggalMulai, setTanggalMulai] = useState(new Date())
   const [tanggalAkhir, setTanggalAkhir] = useState(new Date())
 
+  const { handleSubmit} = props
+
   useEffect(() => {
     dispatch(surveyActions.INIT_QUESTION)
   }, [dispatch])
 
   let listQuestions = props.survey
+  const selector = formValueSelector('surveyForm')
 
   const addQuestion = () => {
     
@@ -47,8 +50,9 @@ const FormSurveyor = (props) => {
   }
 
   const handleSaveSurvey = (surveyFormData) => {
-    console.log(listQuestions)
-    dispatch(SAVE_STUDY(listQuestions._id, judul, jumlahSoal, waktuJawab, jumlahResponden, rewardResponden, tanggalMulai, tanggalAkhir, listQuestions.questions))
+    console.log(selector)
+    console.log(props.formValues)
+    // dispatch(SAVE_STUDY(listQuestions._id, judul, jumlahSoal, waktuJawab, jumlahResponden, rewardResponden, tanggalMulai, tanggalAkhir, listQuestions.questions))
   };
 
   return(
@@ -290,16 +294,16 @@ const FormSurveyor = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  survey: getDenormalizedSurvey(state),
-  // initialValues: getInitialFormBuilderValues(state),
-});
 
 export const FormSurveyorForm = reduxForm({
   form: 'surveyForm',
   shouldValidate: () => true // Due to bug https://github.com/erikras/redux-form/issues/3276
 })(FormSurveyor);
 
+const mapStateToProps = (state) => ({
+  survey: getDenormalizedSurvey(state),
+  formValues: getFormValues('surveyForm')(state)
+});
 const mapDispatchToProps = (dispatch) => ({
   surveyActions: bindActionCreators(surveyActions, dispatch),
   questionActions: bindActionCreators(questionActions, dispatch)

@@ -4,6 +4,7 @@ import { Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export const CardCategory = (props) => {
+  let dataUser = props.dataUser.flatMap( x => x === null ? [] : [x])
   
   return(
     <>
@@ -15,8 +16,9 @@ export const CardCategory = (props) => {
                 <Link to={`/responden/category/${props.categories._id}`}>
                   <center>
                     <img src="https://via.placeholder.com/140" alt=""/>
+                    <h2>{props.answerUser}</h2>
                     <h4 className="title-three m-t-15"><strong>{props.categories.name}</strong></h4>
-                    <h4 className="title-two"><strong>0/00</strong></h4>
+                    <h4 className="title-two"><strong>{dataUser.length}/{props.categories.listQuestions.length}</strong></h4>
                   </center>
                 </Link>
               </div>

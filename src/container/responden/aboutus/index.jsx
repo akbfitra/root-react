@@ -1,26 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
-import { dataCategory } from '../../../store/action'
+import { dataCategory, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
 import './css/style.css';
 import { Container, Row, Col} from 'react-bootstrap'
 import { CardCategory } from '../../../components/aboutUs/cardCategory/index'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
+import ConnectedFormSurveyor from '../../surveyor/form';
 
 const AboutUsResponden = (props) => {
   const dispatch = useDispatch()
   const [category, setCategory ] = useState([])
+  const [dataAnswerUser, setDataAnswerUser ] = useState([])
 
   const getCategory = () =>{
     dispatch(dataCategory())
       .then( data => {
         setCategory(data)
+        // break;
+      })
+  }
+
+  const getAnswerUser = () => {
+    dispatch(getDataAnswerUser())
+      .then( data => {
+        setDataAnswerUser(data)
+        // break;
       })
   }
 
   useEffect(() => {
-    getCategory()
+    if(!category.length){
+      getCategory()
+    }
+  })
+
+  useEffect(() => {
+    if(!dataAnswerUser.length){
+      getAnswerUser()
+    }
   })
 
   return(
@@ -49,10 +68,18 @@ const AboutUsResponden = (props) => {
         </Row>
         <Row>
           {
-            category.map( (data, i) => 
+            category.map( (data, i) => {
+              let dataAnswer
               
-                <CardCategory key={i} categories = {data} />
+              dataAnswerUser ?
+                dataAnswer = dataAnswerUser.flatMap(x => [x.categoryId === data._id ? x : null ])
+              :
+                dataAnswer = []
               
+                return(
+                  <CardCategory key={i} categories = {data} dataUser = {!dataAnswerUser.length ? []: dataAnswer}/>
+                )
+              }
             )
           }
         </Row>
@@ -63,5 +90,14 @@ const AboutUsResponden = (props) => {
     </>
   )
 }
+
+// const mapStateToProps = state => ({
+//   category: state.category.category,
+//   listAnswers: state.category.listAnswers
+// });
+
+// const ConnectedAboutUsResponden = connect(
+//   mapStateToProps,
+// )(AboutUsResponden);
 
 export default withRouter(AboutUsResponden)

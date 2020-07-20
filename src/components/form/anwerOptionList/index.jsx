@@ -1,8 +1,12 @@
 import React from 'react'
 import { Button, Col, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
+import { Field } from 'redux-form';
+import { required } from 'redux-form-validators'
 
 import { deleteAnswerOption } from '../../../store/actions/answerOptionAction'
+
+import { FormInput } from '../../../components/inputForm'
 
 export const AnswerOptionList = ({ questionId, answerOptionId, index}) =>{
   const dispatch = useDispatch()
@@ -23,12 +27,20 @@ export const AnswerOptionList = ({ questionId, answerOptionId, index}) =>{
             </div>
 
             <div className="table-cell-two">
-              <Form.Control type="text" placeholder="Opsi"/>
+              <Field
+                className="input survey-builder__answer"
+                type="text"
+                component={FormInput}
+                name={`${answerOptionId}`} 
+                placeholder="jawaban"
+                validate={[required()]}
+              />
+              {/* <Form.Control type="text" placeholder="Opsi"/> */}
             </div>
             <div className="table-cell-three">
               <center>
                 <Button variant="danger" size="sm" onClick = {deleteAnswer}>
-                  delete {answerOptionId}
+                  delete
                 </Button>
               </center>
             </div>

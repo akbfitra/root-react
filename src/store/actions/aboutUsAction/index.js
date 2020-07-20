@@ -10,6 +10,7 @@ export const dataCategory = () => async dispatch => {
         "accesstoken": `${Cookies.get('test')}`
       }
     })
+    await dispatch({type: 'DATA_CATEGORY', payload: data})
     return data
   }
   catch(err){
@@ -26,6 +27,7 @@ export const dataQuestionByCategory = (categoryId) => async dispatch => {
         "accesstoken": `${Cookies.get('test')}`
       }
     })
+    
     return data
   }
   catch(err){
@@ -50,3 +52,19 @@ export const createAnswer = (answer, questionId, categoryId) => async dispatch =
   }
 }
 
+export const getDataAnswerUser = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: `answer/datauser`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    await dispatch({type: 'DATA_LIST_ANSWERS', payload: data})
+    return data
+  }
+  catch(err){
+    console.log(err.response)
+  }
+}

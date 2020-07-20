@@ -6,6 +6,7 @@ import userReducer from './userReducer'
 import surveyFormReducer from './surveyFormReducer'
 import questionFormReducer from './questionFormReducer'
 import answerOptionReducer from './answerOptionReducer'
+import categoryReducer from './category'
 
 export default combineReducers({ 
   user: userReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   surveys: surveyFormReducer,
   form: formReducer,
   questions: questionFormReducer,
-  answerOptions: answerOptionReducer
+  answerOptions: answerOptionReducer,
+  category: categoryReducer
 })
