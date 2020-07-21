@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
+
+import { dataProfileUser } from '../../../store/actions/userAction'
 
 import './css/style.css';
 import { Button, Container, Row, Col, Table} from 'react-bootstrap'
@@ -8,6 +11,22 @@ import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
 const ProfileSurveyor = (props) => {
+  const dispatch = useDispatch()
+
+  const [dataProfile, SetDataProfile] = useState('')
+
+  const getDataProfile = () => {
+    if (!dataProfile) {
+      dispatch(dataProfileUser())
+        .then(data => {
+          SetDataProfile(data)
+        })
+    }
+  }
+
+  useEffect(() => {
+    getDataProfile()
+  })
 
   return(
     <>
@@ -68,69 +87,69 @@ const ProfileSurveyor = (props) => {
                     <Table bordered className="m-b-0">
                       <tbody>
                         <tr>
-                          <td style={{width:"250px"}}>Nama Lengkap</td>
+                          <td style={{width:"340px"}}>Nama Lengkap</td>
                           <td style={{width:"1px"}}>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.name}</td>
                         </tr>
                         
                         <tr>
                           <td>Email</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.email}</td>
                         </tr>
 
                         <tr>
                           <td>No. Telepon</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.phone}</td>
                         </tr>
 
                         <tr>
                           <td>No. Identitas</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.ktp}</td>
                         </tr>
 
                         <tr>
                           <td>Tanggal Lahir</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.birth}</td>
                         </tr>
 
                         <tr>
                           <td>Provinsi Tempat Tinggal</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.provinsi}</td>
                         </tr>
 
                         <tr>
                           <td>Kabupaten/Kota Tempat Tinggal</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.kota}</td>
                         </tr>
 
                         <tr>
                           <td>Jenis Pekerjaan</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.pekerjaan}</td>
                         </tr>
                         
-                        <tr>
+                        {/* <tr>
                           <td>Nama Institusi</td>
                           <td>:</td>
                           <td>-</td>
-                        </tr>
+                        </tr> */}
 
                         <tr>
                           <td>Tujuan Survey</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.tujuan}</td>
                         </tr>
 
                         <tr>
                           <td>Bagaimana Anda Mengetahui suRvplus</td>
                           <td>:</td>
-                          <td>-</td>
+                          <td>{dataProfile.sumber}</td>
                         </tr>
                       </tbody>
                     </Table>

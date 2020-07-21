@@ -90,6 +90,19 @@ const EditProfileResponden = (props) => {
                   </Row>
                 </Form.Group>
 
+                <Form.Group>
+                  <Form.Label>Provinsi Tempat Tinggal</Form.Label>
+                  <Form.Control as="select">
+                    <option>-- Pilih --</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
+                  <Form.Control as="select">
+                    <option>-- Pilih --</option>
+                  </Form.Control>
+                </Form.Group>
 
                 <Form.Group>
                   <Form.Label>Jenis Pekerjaan</Form.Label>
@@ -109,20 +122,7 @@ const EditProfileResponden = (props) => {
                     <Form.Control type="file" placeholder="" />
                   </Form.Group> */}
 
-                <Form.Group>
-                  <Form.Label>Provinsi Tempat Tinggal</Form.Label>
-                  <Form.Control as="select">
-                    <option>-- Pilih --</option>
-                  </Form.Control>
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
-                  <Form.Control as="select">
-                    <option>-- Pilih --</option>
-                  </Form.Control>
-                </Form.Group>
-
+                
                 <Form.Group>
                   <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
                   <Form.Control as="select" onChange={sumber => setSumber(sumber)}>
