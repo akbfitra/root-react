@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { withRouter,  Link } from 'react-router-dom'
 
+import { dataProfileUser } from '../../../store/actions/userAction'
+
 import './css/style.css';
-import { Button, Container, Row, Col, Form} from 'react-bootstrap'
+import { Button, Container, Row, Col, Form, Spinner} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -11,6 +14,25 @@ import { Footer } from '../../../components/footer'
 
 const EditProfileSurveyor = (props) => {
   const [startDate, setStartDate] = useState(new Date());
+  const [pekerjaan, setPekerjaan] = useState('')
+  const [sumber, setSumber] = useState('')
+  const [tujuan, setTujuan] = useState('')
+  const dispatch = useDispatch()
+
+  const [dataProfile, SetDataProfile] = useState('')
+
+  const getDataProfile = () => {
+    if (!dataProfile) {
+      dispatch(dataProfileUser())
+        .then(data => {
+          SetDataProfile(data)
+        })
+    }
+  }
+
+  useEffect(() => {
+    getDataProfile()
+  })
 
   return(
     <>
@@ -49,38 +71,38 @@ const EditProfileSurveyor = (props) => {
                 <Form>
                   <Form.Group>
                     <Form.Label>Nama Lengkap</Form.Label>
-                    <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={dataProfile.name}/>
                   </Form.Group>
 
-                  <Form.Group>
+                  {/* <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="" />
-                  </Form.Group>
+                  </Form.Group> */}
 
-                  <Form.Group>
+                  {/* <Form.Group>
                     <Form.Label>Konfirmasi Password</Form.Label>
                     <Form.Control type="password" placeholder="" />
-                  </Form.Group>
+                  </Form.Group> */}
 
-                  <Form.Group>
+                  {/* <Form.Group>
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" placeholder="" />
-                  </Form.Group>
+                  </Form.Group> */}
                   
                   <Form.Group>
                     <Form.Label>No. Telepon</Form.Label>
-                    <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={dataProfile.phone}/>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>No. Identitas</Form.Label>
-                    <Form.Control type="text" placeholder="" />
+                        <Form.Control type="text" placeholder="" value={dataProfile.ktp}/>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Row>
-                    <Col><DatePicker selected={startDate}/></Col>
+                          <Col><DatePicker selected={startDate} onChange={date => setStartDate(date)}/></Col>
                     </Row>
                   </Form.Group>
 
@@ -100,8 +122,8 @@ const EditProfileSurveyor = (props) => {
                   
                   <Form.Group>
                     <Form.Label>Jenis Pekerjaan</Form.Label>
-                    <Form.Control as="select" >
-                      <option>-- Pilih --</option>
+                      <Form.Control as="select" onChange={pekerjaan => setPekerjaan(pekerjaan)}>
+                      <option>{dataProfile.pekerjaan}</option>
                       <option>Swasta</option>
                       <option>PNS/TNI/Polri</option>
                       <option>Sedang mencari pekerjaan tetap</option>
@@ -111,15 +133,15 @@ const EditProfileSurveyor = (props) => {
                     </Form.Control>
                   </Form.Group>
                   
-                  <Form.Group>
+                  {/* <Form.Group>
                     <Form.Label>Nama Institusi</Form.Label>
                     <Form.Control type="text" placeholder="" />
-                  </Form.Group>
+                  </Form.Group> */}
 
                   <Form.Group>
                     <Form.Label>Tujuan Survey (bisa pilih lebih dari satu)</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
+                    <Form.Control as="select" onChange={tujuan => setTujuan(tujuan)}>
+                      <option>{dataProfile.tujuan}</option>
                       <option>Keperluan Pribadi</option>
                       <option>Keperluan Pekerjaan</option>
                       <option>Keperluan Tugas Kuliah/Pendidikan</option>
@@ -129,8 +151,8 @@ const EditProfileSurveyor = (props) => {
 
                   <Form.Group>
                     <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
+                    <Form.Control as="select" onChange={sumber => setSumber(sumber)}>
+                      <option>{dataProfile.sumber}</option>
                       <option>Jaringan Pribadi</option>
                       <option>Media Sosial</option>
                       <option>Iklan Surat Kabar/TV</option>

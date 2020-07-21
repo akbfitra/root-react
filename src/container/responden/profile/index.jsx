@@ -89,7 +89,7 @@ const ProfileResponden = (props) => {
                     <Table bordered className="m-b-0">
                       <tbody>
                         <tr>
-                          <td style={{width:"360px"}}>Nama Lengkap</td>
+                          <td style={{width:"340px"}}>Nama Lengkap</td>
                           <td style={{width:"1px"}}>:</td>
                           <td>{dataProfile.name}</td>
                         </tr>

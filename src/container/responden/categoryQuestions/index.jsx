@@ -71,39 +71,42 @@ const CategoryQuestions = (props) => {
 
         <Row className="m-t-30">
           <Col md={12} lg={12}>
-            <div className="container-pertanyaan">
-                {
-                  questions.map((data, i) => 
-                    <Row>
-
-                      <Col md={12} lg={12}>
-                        <div className="box-pertanyaan">
-                          <div className="left"><h5>{i + 1}.</h5></div>
-                          <div className="right"><h5>{ data.name }</h5></div>
-                        </div>
-                      </Col>
-
+            <div className="part-one">
+                <Row>
+                  <Col md={12} lg={12}>
+                    <div className="container-pertanyaan">
                       {
-                        data.listAnswers.map((answers, i) =>
-                          <Col md={12} lg={12} className="m-t-10">
-                            <div className="box-answer">
-                              <div className="left"></div>
-                              <div className="right">
-                              <Button variant={ data.answer === answers ? "primary":"outline-dark"} onClick = { () => chooseAnswer(answers, data._id)}>{answers}</Button>
+                        questions.map((data, i) =>
+                          <Row>
+
+                            <Col md={12} lg={12}>
+                              <div className="box-pertanyaan m-b-10">
+                                <div className="left"><h5>{i + 1}.</h5></div>
+                                <div className="right"><h5>{data.name}</h5></div>
                               </div>
-                            </div>
-                          </Col>
+                            </Col>
+
+                            {
+                              data.listAnswers.map((answers, i) =>
+                                <Col md={12} lg={12} >
+                                  <div className="box-answer m-b-10">
+                                    <div className="left"></div>
+                                    <div className="right">
+                                      <Button variant={data.answer === answers ? "primary" : "outline-dark"} onClick={() => chooseAnswer(answers, data._id)}>{answers}</Button>
+                                    </div>
+                                  </div>
+                                </Col>
+                              )
+                            }
+                          </Row>
+
                         )
                       }
-                    </Row>
-                    
-                  )
-                }
+                    </div>
+                  </Col>
+                </Row>
             </div>
           </Col>
-        </Row>
-        <Row>
-          
         </Row>
       </Container>
       </div>
