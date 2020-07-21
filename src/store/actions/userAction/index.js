@@ -100,3 +100,22 @@ export const dataProfileUser = () => async dispatch => {
     console.log(err.response)
   }
 }
+
+export const editProfileResponden = (username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, history) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'PUT',
+      url: `user/updateprofileresponden`,
+      data: {
+        username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp
+      },
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    history.push('/responden/profile')
+  }
+  catch(err){
+    console.log(err)
+  }
+}

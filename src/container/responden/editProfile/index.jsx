@@ -1,30 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, useHistory } from 'react-router-dom'
 
 import './css/style.css';
 import { Tabs, Tab, Container, Row, Col, Form, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { dataProfileUser } from '../../../store/actions/userAction'
+import { dataProfileUser, editProfileResponden } from '../../../store/actions/userAction'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
 const EditProfileResponden = (props) => {
-
-  const [startDate, setStartDate] = useState(new Date());
-  const [pekerjaan, setPekerjaan] = useState('')
-  const [sumber, setSumber ] = useState('')
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  const [dataProfile, SetDataProfile] = useState('')
+  const [dataProfile, setDataProfile] = useState('')
+  const [ username, setUsername] = useState('')
+  const [ phone, setPhone] = useState('')
+  const [ birth, setBirth] = useState(new Date())
+  const [ provinsi, setProvinsi] = useState('')
+  const [ kota, setKota] = useState('')
+  const [ pekerjaan, setPekerjaan] = useState('')
+  const [ sumber, setSumber] = useState('')
+  const [ ktp, setKtp] = useState('')
+  
+  const optionDataPekerjaan = ['Swasta', 'PNS/TNI/Polri', 'Sekolah/Kuliah ', 'Ibu Rumah Tangga', 'Lainnya']
+  const optionSumber = ["Jaringan Pribadi", "Media Sosial", "Iklan Surat Kabar/TV", "Lainnya"]
+
+  const handleProcessUpdate = () => {
+    console.log(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp)
+    dispatch(editProfileResponden(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, history))
+  }
 
   const getDataProfile = () => {
     if (!dataProfile) {
       dispatch(dataProfileUser())
         .then(data => {
-          SetDataProfile(data)
+          setDataProfile(data)
+          setUsername(data.name)
+          setPhone(data.phone)
+          // setBirth(data.birth)
+          setProvinsi(data.provinsi)
+          setKota(data.kota)
+          setPekerjaan(data.pekerjaan)
+          setSumber(data.sumber)
+          setKtp(data.ktp)
         })
     }
   }
@@ -35,251 +56,138 @@ const EditProfileResponden = (props) => {
 
   return(
     <>
-      <Navbar/>
+      {
+        !dataProfile ? 
+          <p>loading</p> 
+        : 
+      <>
+        <Navbar/>
 
-      <div id="edit-profile-responden">
-      <Container>
-        <Row>
-          <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Edit Profile Responden</strong></h3>
-              <ul className="list-inline text-center">
-                <li className="list-inline-item">
-                  <Link to='/responden' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Responden</h4>
-                  </Link>
-                </li>
+        <div id="edit-profile-responden">
+        <Container>
+          <Row>
+            <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
+              <h3 className="title-one text-center"><strong>Edit Profile Responden</strong></h3>
+                <ul className="list-inline text-center">
+                  <li className="list-inline-item">
+                    <Link to='/responden' style={{textDecoration:"none"}}>
+                    <h4 className="title-three">Dashboard Responden</h4>
+                    </Link>
+                  </li>
 
-                <li className="list-inline-item">|</li>
+                  <li className="list-inline-item">|</li>
 
-                <li className="list-inline-item">
-                  <Link to='/responden/profile' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Profile Responden</h4>
-                  </Link>
-                </li>
+                  <li className="list-inline-item">
+                    <Link to='/responden/profile' style={{textDecoration:"none"}}>
+                    <h4 className="title-three">Profile Responden</h4>
+                    </Link>
+                  </li>
 
-                <li className="list-inline-item">|</li>
+                  <li className="list-inline-item">|</li>
 
-                <li className="list-inline-item">
-                  <h4 className="title-three">Edit Profile Responden</h4>
-                </li>
-              </ul>
-          </Col>
-        </Row>
-        <Row className="m-t-30">
-          <Col md={12} lg={12}>
-            <div className="part-one">
-                <Form.Group>
-                  <Form.Label>Nama Lengkap</Form.Label>
-                  <Form.Control type="text" placeholder="" value={dataProfile.name} />
-                </Form.Group>
+                  <li className="list-inline-item">
+                    <h4 className="title-three">Edit Profile Responden</h4>
+                  </li>
+                </ul>
+            </Col>
+          </Row>
+          <Row className="m-t-30">
+            <Col md={12} lg={12}>
+              <Form 
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  handleProcessUpdate()
+                }}>
+                <div className="part-one">
+                    <Form.Group>
+                      <Form.Label>Nama Lengkap</Form.Label>
+                      <Form.Control type="text" placeholder="" value={ username } onChange ={ (e) => { setUsername(e.target.value) }} />
+                    </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>No. Telepon</Form.Label>
-                  <Form.Control type="text" placeholder="" value={dataProfile.phone} />
-                </Form.Group>
+                    <Form.Group>
+                      <Form.Label>No. Telepon</Form.Label>
+                      <Form.Control type="text" placeholder="" value={phone} onChange ={ (e) => { setPhone(e.target.value) }} />
+                    </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>No. Identitas</Form.Label>
-                  <Form.Control type="text" placeholder="" value={dataProfile.ktp} />
-                </Form.Group>
+                    <Form.Group>
+                      <Form.Label>No. Identitas</Form.Label>
+                      <Form.Control type="number" placeholder="" value={ktp} onChange ={ (e) => { setKtp(e.target.value) }} />
+                    </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>Tanggal Lahir</Form.Label>
-                  <Row>
-                    <Col><DatePicker selected={startDate} onChange={date => setStartDate(date)} /></Col>
-                  </Row>
-                </Form.Group>
-
-
-                <Form.Group>
-                  <Form.Label>Jenis Pekerjaan</Form.Label>
-                  <Form.Control as="select" onChange={pekerjaan => setPekerjaan(pekerjaan)}>
-                    <option>{dataProfile.pekerjaan}</option>
-                    <option>Swasta</option>
-                    <option>PNS/TNI/Polri</option>
-                    <option>Sekolah/Kuliah</option>
-                    <option>Ibu Rumah Tangga</option>
-                    <option>Lainnya</option>
-                  </Form.Control>
-                </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Tanggal Lahir</Form.Label>
+                      <Row>
+                        <Col><DatePicker selected={birth} onChange={date => setBirth(date)} /></Col>
+                      </Row>
+                    </Form.Group>
 
 
-                {/* <Form.Group>
-                    <Form.Label>Unggah Kartu Tanda Penduduk</Form.Label>
-                    <Form.Control type="file" placeholder="" />
-                  </Form.Group> */}
-
-                <Form.Group>
-                  <Form.Label>Provinsi Tempat Tinggal</Form.Label>
-                  <Form.Control as="select">
-                    <option>-- Pilih --</option>
-                  </Form.Control>
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
-                  <Form.Control as="select">
-                    <option>-- Pilih --</option>
-                  </Form.Control>
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
-                  <Form.Control as="select" onChange={sumber => setSumber(sumber)}>
-                    <option>{dataProfile.sumber}</option>
-                    <option>Jaringan Pribadi</option>
-                    <option>Media Sosial</option>
-                    <option>Iklan Surat Kabar/TV</option>
-                    <option>Lainnya</option>
-                  </Form.Control>
-                </Form.Group>
-
-                <Form.Group>
-                  <Button variant="primary">Update</Button>
-                </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Jenis Pekerjaan</Form.Label>
+                      <Form.Control as="select" onChange={(e) => setPekerjaan(e.target.value)}>
+                        <option>{dataProfile.pekerjaan}</option>
+                        {
+                          optionDataPekerjaan
+                            .filter(pekerjaan => pekerjaan != dataProfile.pekerjaan)
+                            .map((dataOption) => {
+                              return(
+                                <option>{ dataOption }</option>
+                              )
+                            })
+                        }
+                      </Form.Control>
+                    </Form.Group>
 
 
-            {/* <Tabs defaultActiveKey="Identitas Diri" id="noanim-tab-example"> */}
+                    {/* <Form.Group>
+                        <Form.Label>Unggah Kartu Tanda Penduduk</Form.Label>
+                        <Form.Control type="file" placeholder="" />
+                      </Form.Group> */}
 
-              {/* <Tab eventKey="Identitas Diri" title="Identitas Diri" className="m-t-15">
-                  
-              </Tab> */}
-              {/* <Tab eventKey="tempat" title="Tempat Tinggal" className="m-t-15">
-                  
-              </Tab> */}
+                    <Form.Group>
+                      <Form.Label>Provinsi Tempat Tinggal</Form.Label>
+                      <Form.Control as="select">
+                        <option>-- Pilih --</option>
+                      </Form.Control>
+                    </Form.Group>
 
-              {/* <Tab eventKey="pendidikan" title="Pendidikan & Pekerjaan" className="m-t-15">
-                  <Form.Group>
-                    <Form.Label>Pendidikan Terakhir</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                      <option>SD</option>
-                      <option>SMP</option>
-                      <option>SMA</option>
-                      <option>S1</option>
-                      <option>S2</option>
-                      <option>S3</option>
-                    </Form.Control>
-                  </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
+                      <Form.Control as="select">
+                        <option>-- Pilih --</option>
+                      </Form.Control>
+                    </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Bidang Pendidikan (bisa lebih dari satu)</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
+                      <Form.Control as="select" onChange={(e) => setSumber(e.target.value)}>
+                        <option>{dataProfile.sumber}</option>
+                        {
+                          optionSumber
+                            .filter(sumber => sumber != dataProfile.sumber)
+                            .map((dataOption) => {
+                              return(
+                                <option>{ dataOption }</option>
+                              )
+                            })
+                        }
+                      </Form.Control>
+                    </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Unggah Kartu Mahasiswa</Form.Label>
-                    <Form.Control type="file" placeholder="" />
-                  </Form.Group>
+                    <Form.Group>
+                      <Button variant="primary" type="submit" block>Update</Button>
+                    </Form.Group>
 
+                </div>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+        </div>
 
-                  <Form.Group>
-                    <Form.Label>Jenis Pekerjaan</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Lama Kerja Dari Awal Kerja Tetap</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                      <option>0-5 Tahun</option>
-                      <option>6-10 Tahun</option>
-                      <option>> 11 Tahun</option>
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Jumlah Pendapatan</Form.Label>
-                    <Form.Control type="text" placeholder="" />
-                  </Form.Group>
-              </Tab>
-
-              <Tab eventKey="keluarga" title="Keluarga" className="m-t-15">
-                  <Form.Group>
-                    <Form.Label>Status Pernikahan</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                      <option>Menikah</option>
-                      <option>Cerai</option>
-                      <option>Belum Menikah</option>
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Jumlah Anak</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Jenis Kelamin (sediakan field sesuai dengan jumlah anak yang dipilih)</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                      <option>Laki-Laki</option>
-                      <option>Perempuan</option>
-                    </Form.Control>
-                  </Form.Group>
-              </Tab>
-
-              <Tab eventKey="kesehatan" title="Kesehatan" className="m-t-15">
-                  <Form.Group>
-                    <Form.Label>Golongan Darah</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                      <option>O</option>
-                      <option>A</option>
-                      <option>B</option>
-                      <option>AB</option>
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Sakit Yang Pernah Dialami</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
-              </Tab>
-
-              <Tab eventKey="minat" title="Minat & Hobby" className="m-t-15">
-                  <Form.Group>
-                    <Form.Label>Jenis Kendaraan Yang Dimiliki</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Apa Saja Hobby Anda ? (*bisa lebih dari satu)</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group>
-              </Tab> */}
-            {/* </Tabs> */}
-
-            </div>
-          </Col>
-        </Row>
-      </Container>
-      </div>
-
-      <Footer/>
+        <Footer/>
+      </>
+      }
     </>
   )
 }
