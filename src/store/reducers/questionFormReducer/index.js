@@ -1,4 +1,5 @@
 import update from 'immutability-helper'
+import { bindFormDataToState } from '../../utils/formUtils'
 
 const questionForm = (state = {} , action) => {
   switch( action.type ){
@@ -54,6 +55,13 @@ const questionForm = (state = {} , action) => {
             $splice: [[answerOptionIndex, 1]]
           }
         }
+      });
+    }
+    case 'SURVEY_BIND_FORM_DATA': {
+      const {questions} = action.payload;
+      return bindFormDataToState({
+        formFields: questions,
+        state
       });
     }
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom'
+import { useDispatch  } from 'react-redux';
 
 import './css/style.css';
 import {  Container, Row, Col, Table, Button, Alert} from 'react-bootstrap'
@@ -7,8 +8,26 @@ import {  Container, Row, Col, Table, Button, Alert} from 'react-bootstrap'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
+import { FIND_STUDY_USER } from '../../../store/actions/surveyFormAction'
+
 const ListStudy = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch()
+  const [ dataSurvey , setDataSurvey ] = useState([])
+
+  
+  useEffect( () => {
+    if(!dataSurvey.length){
+      loadDataSurvey()
+    }
+  })
+  
+  const loadDataSurvey = () => {
+    dispatch(FIND_STUDY_USER())
+      .then( data => {
+        setDataSurvey(data)
+      })
+  }
+
 
   return(
     <>
@@ -39,145 +58,82 @@ const ListStudy = () => {
             <Button variant="primary" >Tambah Study</Button>
           </Link>
           </Col>
-          <Col md={12} lg={12} className="m-t-15">
-            <div className="part-one-list">
-              <Row>
-                <Col md={12} lg={12}>
-                  <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
+
+          {
+            dataSurvey.map((data, i) => {
+              return(
+                <Col key={i} md={12} lg={12} className="m-t-15">
+                  <div className="part-one-list">
+                    <Row>
+                      <Col md={12} lg={12}>
+                      <h4 className="m-t-0 m-b-0 title-two"><strong>{data.judul}</strong></h4>
+                      </Col>
+                    </Row>
+
+                    <Row className="m-t-15">
+                      <Col md={5} lg={5} className="table-no-border">
+                        <Alert variant="success">
+                          <Table bordered size="sm" className="m-b-0">
+                            <tbody>
+                              <tr>
+                                <td style={{width:"220px"}}>Jumlah Soal</td>
+                                <td style={{width:"1px"}}>:</td>
+                                <td>{data.jumlahSoal}</td>
+                              </tr>
+
+                              <tr>
+                                <td>Waktu Menjawab (menit)</td>
+                                <td>:</td>
+                                <td>{data.waktuJawab}</td>
+                              </tr>
+
+                              <tr>
+                                <td>Jumlah Responden</td>
+                                <td>:</td>
+                                <td>{data.jumlahResponden}</td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        </Alert>
+                      </Col>
+
+                      <Col md={5} lg={5} className="table-no-border">
+                      <Alert variant="success">
+                          <Table bordered size="sm" className="m-b-0">
+                            <tbody>
+                              <tr>
+                                <td style={{width:"220px"}}>Reward Per Responden</td>
+                                <td style={{width:"1px"}}>:</td>
+                                <td>{data.rewardResponden}</td>
+                              </tr>
+
+                              <tr>
+                                <td>Tanggal Mulai</td>
+                                <td>:</td>
+                                <td>{data.tanggalMulai}</td>
+                              </tr>
+
+                              <tr>
+                                <td>Tanggal Akhir</td>
+                                <td>:</td>
+                                <td>{data.tanggalAkhir}</td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        </Alert>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col md={12} lg={12}>
+                          <Button variant="primary" href="/surveyor/detailstudy">Detail Study</Button>
+                      </Col>
+                    </Row>
+                  </div>
                 </Col>
-              </Row>
-
-              <Row className="m-t-15">
-                <Col md={5} lg={5} className="table-no-border">
-                  <Alert variant="success">
-                    <Table bordered size="sm" className="m-b-0">
-                      <tbody>
-                        <tr>
-                          <td style={{width:"220px"}}>Jumlah Soal</td>
-                          <td style={{width:"1px"}}>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Waktu Menjawab (menit)</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Jumlah Responden</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Alert>
-                </Col>
-
-                <Col md={5} lg={5} className="table-no-border">
-                <Alert variant="success">
-                    <Table bordered size="sm" className="m-b-0">
-                      <tbody>
-                        <tr>
-                          <td style={{width:"220px"}}>Reward Per Responden</td>
-                          <td style={{width:"1px"}}>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Tanggal Mulai</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Jumlah Akhir</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Alert>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col md={12} lg={12}>
-                    <Button variant="primary" href="/surveyor/detailstudy">Detail Study</Button>
-                </Col>
-              </Row>
-            </div>
-          </Col>
-
-          <Col md={12} lg={12} className="m-t-15">
-            <div className="part-one-list">
-              <Row>
-                <Col md={12} lg={12}>
-                  <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                </Col>
-              </Row>
-
-              <Row className="m-t-15">
-                <Col md={5} lg={5} className="table-no-border">
-                  <Alert variant="success">
-                    <Table bordered size="sm" className="m-b-0">
-                      <tbody>
-                        <tr>
-                          <td style={{width:"220px"}}>Jumlah Soal</td>
-                          <td style={{width:"1px"}}>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Waktu Menjawab (menit)</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Jumlah Responden</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Alert>
-                </Col>
-
-                <Col md={5} lg={5} className="table-no-border">
-                <Alert variant="success">
-                    <Table bordered size="sm" className="m-b-0">
-                      <tbody>
-                        <tr>
-                          <td style={{width:"220px"}}>Reward Per Responden</td>
-                          <td style={{width:"1px"}}>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Tanggal Mulai</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-
-                        <tr>
-                          <td>Jumlah Akhir</td>
-                          <td>:</td>
-                          <td>00</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Alert>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col md={12} lg={12}>
-                    <Button variant="primary" href="/surveyor/detailstudy">Detail Study</Button>
-                </Col>
-              </Row>
-            </div>
-          </Col>
+              )
+            })
+          }
         </Row>
       </Container>
       </div>

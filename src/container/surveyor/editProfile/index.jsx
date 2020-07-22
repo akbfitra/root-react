@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter,  Link } from 'react-router-dom'
+import { withRouter,  Link, useHistory } from 'react-router-dom'
 
-import { dataProfileUser } from '../../../store/actions/userAction'
+import { dataProfileUser, editProfileSurveyor } from '../../../store/actions/userAction'
 
 import './css/style.css';
 import { Button, Container, Row, Col, Form, Spinner} from 'react-bootstrap'
@@ -13,19 +13,39 @@ import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
 const EditProfileSurveyor = (props) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [pekerjaan, setPekerjaan] = useState('')
-  const [sumber, setSumber] = useState('')
-  const [tujuan, setTujuan] = useState('')
   const dispatch = useDispatch()
+  const history = useHistory()
+  
+  const [ dataProfile, setDataProfile ] = useState('')
+  const [ birth, setBirth ] = useState(new Date());
+  const [ username, setUsername] = useState('')
+  const [ phone, setPhone] = useState('')
+  const [ provinsi, setProvinsi] = useState('')
+  const [ kota, setKota] = useState('')
+  const [ pekerjaan, setPekerjaan] = useState('')
+  const [ sumber, setSumber] = useState('')
+  const [ ktp, setKtp] = useState('')
+  const [ tujuan, setTujuan] = useState('')
 
-  const [dataProfile, SetDataProfile] = useState('')
+  const optionDataPekerjaan = ['Swasta', 'PNS/TNI/Polri', 'Sekolah/Kuliah ', 'Ibu Rumah Tangga', 'Lainnya']
+  const optionSumber = ["Jaringan Pribadi", "Media Sosial", "Iklan Surat Kabar/TV", "Lainnya"]
+  const optionTujuan = ["Keperluan Pribadi", "Keperluan Pekerjaan", "Keperluan Tugas/Pendidikan", "Lainnya"]
 
   const getDataProfile = () => {
     if (!dataProfile) {
       dispatch(dataProfileUser())
         .then(data => {
-          SetDataProfile(data)
+          setDataProfile(data)
+          setDataProfile(data)
+          setUsername(data.name)
+          setPhone(data.phone)
+          // setBirth(data.birth)
+          setProvinsi(data.provinsi)
+          setKota(data.kota)
+          setPekerjaan(data.pekerjaan)
+          setSumber(data.sumber)
+          setKtp(data.ktp)
+          setTujuan(data.tujuan)
         })
     }
   }
@@ -33,6 +53,11 @@ const EditProfileSurveyor = (props) => {
   useEffect(() => {
     getDataProfile()
   })
+
+  const handleProcessUpdate = () => {
+    console.log(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan)
+    dispatch(editProfileSurveyor(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan, history))
+  }
 
   return(
     <>
@@ -68,10 +93,15 @@ const EditProfileSurveyor = (props) => {
             <div className="part-one">
               <Row>
                 <Col>
-                <Form>
+                <Form
+                   onSubmit={(e) => {
+                    e.preventDefault()
+                    handleProcessUpdate()
+                  }}
+                >
                   <Form.Group>
                     <Form.Label>Nama Lengkap</Form.Label>
-                        <Form.Control type="text" placeholder="" value={dataProfile.name}/>
+                        <Form.Control type="text" placeholder="" value={ username } onChange ={ (e) => { setUsername(e.target.value) }}/>
                   </Form.Group>
 
                   {/* <Form.Group>
@@ -91,18 +121,18 @@ const EditProfileSurveyor = (props) => {
                   
                   <Form.Group>
                     <Form.Label>No. Telepon</Form.Label>
-                        <Form.Control type="text" placeholder="" value={dataProfile.phone}/>
+                        <Form.Control type="text" placeholder="" value={ phone } onChange ={ (e) => { setPhone(e.target.value) }}/>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>No. Identitas</Form.Label>
-                        <Form.Control type="text" placeholder="" value={dataProfile.ktp}/>
+                        <Form.Control type="text" placeholder="" value={ ktp } onChange ={ (e) => { setKtp(e.target.value) }}/>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Row>
-                          <Col><DatePicker selected={startDate} onChange={date => setStartDate(date)}/></Col>
+                          <Col><DatePicker selected={birth} onChange={date => setBirth(date)}/></Col>
                     </Row>
                   </Form.Group>
 
@@ -122,14 +152,17 @@ const EditProfileSurveyor = (props) => {
                   
                   <Form.Group>
                     <Form.Label>Jenis Pekerjaan</Form.Label>
-                      <Form.Control as="select" onChange={pekerjaan => setPekerjaan(pekerjaan)}>
-                      <option>{dataProfile.pekerjaan}</option>
-                      <option>Swasta</option>
-                      <option>PNS/TNI/Polri</option>
-                      <option>Sedang mencari pekerjaan tetap</option>
-                      <option>Sekola/Kuliah</option>
-                      <option>Ibu Rumah Tangga</option>
-                      <option>Lainnya</option>
+                      <Form.Control as="select" onChange={(e) => setPekerjaan(e.target.value)}>
+                      <option>{ dataProfile.pekerjaan }</option>
+                        {
+                          optionDataPekerjaan
+                            .filter(e => e != dataProfile.pekerjaan)
+                            .map((dataOption) => {
+                              return(
+                                <option>{ dataOption }</option>
+                              )
+                            })
+                        }
                     </Form.Control>
                   </Form.Group>
                   
@@ -140,23 +173,33 @@ const EditProfileSurveyor = (props) => {
 
                   <Form.Group>
                     <Form.Label>Tujuan Survey (bisa pilih lebih dari satu)</Form.Label>
-                    <Form.Control as="select" onChange={tujuan => setTujuan(tujuan)}>
-                      <option>{dataProfile.tujuan}</option>
-                      <option>Keperluan Pribadi</option>
-                      <option>Keperluan Pekerjaan</option>
-                      <option>Keperluan Tugas Kuliah/Pendidikan</option>
-                      <option>Lainnya</option>
+                    <Form.Control as="select" onChange={(e) => setTujuan(e.target.value)}>
+                      <option>{ dataProfile.tujuan }</option>
+                        {
+                          optionTujuan
+                            .filter(e => e != dataProfile.tujuan)
+                            .map((dataOption) => {
+                              return(
+                                <option>{ dataOption }</option>
+                              )
+                            })
+                        }
                     </Form.Control>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
-                    <Form.Control as="select" onChange={sumber => setSumber(sumber)}>
-                      <option>{dataProfile.sumber}</option>
-                      <option>Jaringan Pribadi</option>
-                      <option>Media Sosial</option>
-                      <option>Iklan Surat Kabar/TV</option>
-                      <option>Lainnya</option>
+                    <Form.Control as="select" onChange={(e) => setSumber(e.target.value)}>
+                      <option>{ dataProfile.sumber }</option>
+                        {
+                          optionSumber
+                            .filter(e => e != dataProfile.sumber)
+                            .map((dataOption) => {
+                              return(
+                                <option>{ dataOption }</option>
+                              )
+                            })
+                        }
                     </Form.Control>
                   </Form.Group>
                 

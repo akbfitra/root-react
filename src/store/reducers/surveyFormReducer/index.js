@@ -37,6 +37,33 @@ const surveyForm = (state = {}, action) => {
         }
       });
     }
+    case 'SURVEY_BIND_FORM_DATA': {
+      const {
+        judul,
+        jumlahResponden,
+        jumlahSoal,
+        rewardResponden,
+        tanggalAkhir,
+        tanggalMulai,
+        waktuJawab
+      } = action.payload;
+
+      const surveyId = Object.keys(state)[0];
+
+      return update(state, {
+        [surveyId]: {
+          $merge: {
+            judul: judul,
+            jumlahResponden: jumlahResponden,
+            jumlahSoal: jumlahSoal,
+            rewardResponden: rewardResponden,
+            tanggalAkhir: tanggalAkhir,
+            tanggalMulai: tanggalMulai,
+            waktuJawab: waktuJawab
+          }
+        }
+      });
+    }
 
     default:
       return state

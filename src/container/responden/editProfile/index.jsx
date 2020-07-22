@@ -29,7 +29,6 @@ const EditProfileResponden = (props) => {
   const optionSumber = ["Jaringan Pribadi", "Media Sosial", "Iklan Surat Kabar/TV", "Lainnya"]
 
   const handleProcessUpdate = () => {
-    console.log(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp)
     dispatch(editProfileResponden(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, history))
   }
 

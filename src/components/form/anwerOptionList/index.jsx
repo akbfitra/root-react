@@ -31,7 +31,7 @@ export const AnswerOptionList = ({ questionId, answerOptionId, index}) =>{
                 className="input survey-builder__answer"
                 type="text"
                 component={FormInput}
-                name={`${answerOptionId}`} 
+                name={`answerOptions.${answerOptionId}`} 
                 placeholder="jawaban"
                 validate={[required()]}
               />

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom'
+import { connect, useDispatch } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
 import { required } from 'redux-form-validators'
 
 import './css/style.css';
 import { Tabs, Tab, Container, Row, Col, Form, Button} from 'react-bootstrap'
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 
 import { QuestionBuilder } from '../../../components/form/questionBuilder'
@@ -20,22 +20,13 @@ import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
 import { SAVE_STUDY } from '../../../store/actions/surveyFormAction'
 import { renderDatePicker } from '../../../components/inputForm'
-import ReactDatePicker from 'react-datepicker';
+
 
 
 
 const FormSurveyor = (props) => {
   const dispatch = useDispatch()
-  // const [startDate, setStartDate] = useState(new Date());
-  const [judul, setJudul] = useState('')
-  const [jumlahSoal, setJumlahSoal] = useState(0)
-  const [waktuJawab, setWaktuJawab] = useState(0)
-  const [jumlahResponden, setJumlahResponden] = useState(0)
-  const [rewardResponden, setRewardResponden] = useState(0)
-  const [tanggalMulai, setTanggalMulai] = useState(new Date())
-  const [tanggalAkhir, setTanggalAkhir] = useState(new Date())
-
-  const { handleSubmit} = props
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(surveyActions.INIT_QUESTION)
@@ -49,10 +40,9 @@ const FormSurveyor = (props) => {
     dispatch(questionActions.addNewQuestion(listQuestions._id))
   }
 
-  const handleSaveSurvey = (surveyFormData) => {
-    console.log(selector)
-    console.log(props.formValues)
-    // dispatch(SAVE_STUDY(listQuestions._id, judul, jumlahSoal, waktuJawab, jumlahResponden, rewardResponden, tanggalMulai, tanggalAkhir, listQuestions.questions))
+  const handleSaveSurvey = () => {
+    
+    dispatch(SAVE_STUDY(props.formValues, history))
   };
 
   return(

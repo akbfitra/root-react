@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 import {v4} from 'uuid';
 import { instance } from '../../../config/axios'
+import {getDenormalizedSurvey} from '../../selectors/denormalizesurvey'
 
 export const INIT_QUESTION = (dispatch) => {
   const isLogin = Cookies.get('test')
@@ -19,7 +20,7 @@ export const INIT_QUESTION = (dispatch) => {
         jumlahSoal: '',
         waktuJawab: 0,
         jumlahResponden: 0,
-        reward: 0,
+        rewardResponden: 0,
         tanggalMulai: '',
         tanggalAkhir: '',
         questions: [],
@@ -30,25 +31,50 @@ export const INIT_QUESTION = (dispatch) => {
   }
 }
 
-export const SAVE_STUDY = (_id, judul, jumlahSoal, waktuJawab, jumlahResponden, rewardResponden, tanggalMulai, tanggalAkhir, questions) => async dispatch => {
-  // let survey = {
-  //   _id, judul, jumlahSoal, waktuJawab, jumlahResponden, rewardResponden, tanggalMulai, tanggalAkhir, questions
-  // }
-  // console.log(survey)
+export const SAVE_STUDY = (surveyFormData, history) => async (dispatch, getState) => {
   try{
-    const { data } = instance({
+
+    await dispatch({
+      type: 'SURVEY_BIND_FORM_DATA',
+      payload: surveyFormData
+    });
+
+    const state = getState()
+    const survey = getDenormalizedSurvey(state)
+  
+    // console.log(getState())
+    // console.log(getDenormalizedSurvey(getState()))
+    const { data } = await instance({
       method: 'POST',
       url:'/project',
       headers:{
         "accesstoken": `${Cookies.get('test')}`
       },
       data:{
-        _id, judul, jumlahSoal, waktuJawab, jumlahResponden, rewardResponden, tanggalMulai, tanggalAkhir, questions
+        survey
       }
     })
-    alert(data)
+    
+    history.push('/surveyor/liststudy')
 
   } catch(err){
+    console.log(err)
+  }
+}
+
+export const FIND_STUDY_USER = () => async dispatch  => {
+  try{
+    const { data }  = await instance({
+      method: 'GET',
+      url: '/project',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    console.log(data, 'aaaaaaaaaaa')
+    return data
+  }
+  catch(err){
     console.log(err)
   }
 }

@@ -116,6 +116,25 @@ export const editProfileResponden = (username, phone, birth, provinsi, kota, pek
     history.push('/responden/profile')
   }
   catch(err){
-    console.log(err)
+    console.log(err.response)
+  }
+}
+
+export const editProfileSurveyor = (username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan, history) => async dispatch => {
+  try{
+      const { data } = await instance({
+      method: 'PUT',
+      url: `user/updateprofilesurveyor`,
+      data: {
+        username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan
+      },
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    history.push('/surveyor/profile')
+  }
+  catch(err){
+    console.log(err.response)
   }
 }
