@@ -17,8 +17,8 @@ const LandingPage = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5
+    slidesToShow: 4,
+    slidesToScroll: 4
   };
 
   const options = {
@@ -371,17 +371,82 @@ const LandingPage = () => {
 
       <div id="section-two">
         <Container>
-          <Row>
-            <Col>
-            <h3 className="text-center title-one"><strong>Bagaimana Survey Online ini Bekerja ?</strong></h3>
-            </Col>
-          </Row>
-
           <Row className="m-t-30">
-            <Col md={5} lg={5}>
-              <img src="https://via.placeholder.com/475" style={{width:"100%"}}></img>
+            <Col md={7} lg={7}>
+              <Row>
+                <Col md={12} lg={12}>
+                  <h3 className="text-center title-one"><strong>Bagaimana Survey Online ini Bekerja ?</strong></h3>
+                </Col>
+              </Row>
+              <Row className="m-t-30">
+                <Col md={12} lg={12}>
+                  <img src="https://via.placeholder.com/475" style={{ width: "100%" }}></img>
+                </Col>
+              </Row>
+              
             </Col>
-            <Col md={7} lg={7}></Col>
+            <Col md={5} lg={5}>
+              <Row className="m-b-15">
+                <Col md={12} lg={12}>
+                  <h3 className="text-left title-one"><strong>Testimony</strong></h3>
+                </Col>
+              </Row>
+              <Row className="m-t-15">
+                <Col md={12} lg={12}>
+                  <div className="part-one">
+                    <div className="left">
+                      <img src="images/user.png"></img>
+                    </div>
+                    <div className="right">
+                      <h5><strong>Nama User</strong></h5>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+
+              <Row className="m-t-15">
+                <Col md={12} lg={12}>
+                  <div className="part-one">
+                    <div className="left">
+                      <img src="images/user.png"></img>
+                    </div>
+                    <div className="right">
+                      <h5><strong>Nama User</strong></h5>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+
+              <Row className="m-t-15">
+                <Col md={12} lg={12}>
+                  <div className="part-one">
+                    <div className="left">
+                      <img src="images/user.png"></img>
+                    </div>
+                    <div className="right">
+                      <h5><strong>Nama User</strong></h5>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+
+              <Row className="m-t-15">
+                <Col md={12} lg={12}>
+                  <div className="part-one">
+                    <div className="left">
+                      <img src="images/user.png"></img>
+                    </div>
+                    <div className="right">
+                      <h5><strong>Nama User</strong></h5>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
           </Row>
           {/* <Tab.Container id="left-tabs-example" defaultActiveKey="first" className="m-t-30">
             <Row>
@@ -412,7 +477,7 @@ const LandingPage = () => {
               </Col>
             </Row>
           </Tab.Container> */}
-          <Row className="m-t-30">
+          {/* <Row className="m-t-30">
             <Col>
             <h3 className="text-center title-one"><strong>Kata Mereka Tentang suRvplus ?</strong></h3>
             </Col>
@@ -461,12 +526,47 @@ const LandingPage = () => {
               </Slider>
             </div>
             </Col>
-          </Row>
-          
-          
-          
+          </Row> */}
+        </Container>
+      </div>
 
-          
+
+      <div id="section-three">
+        <Container>
+          <Row>
+            <Col md={12} lg={12}>
+              <h3 className="text-center title-one"><strong>Perusahaan Yang Telah Bekerjasama</strong></h3>
+            </Col>
+          </Row>
+
+          <Row className="m-t-30">
+            <Col md={12} lg={12}>
+              <Slider {...settings}>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                
+              </Slider>
+            </Col>
+          </Row>
         </Container>
       </div>
 
