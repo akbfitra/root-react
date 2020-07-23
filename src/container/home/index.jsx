@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import './css/style.css';
-import { Button, Container, Row, Col, Tab, Nav } from 'react-bootstrap';
+import { Button, Container, Row, Col, Tab, Nav, Accordion, Card } from 'react-bootstrap';
 import Slider from "react-slick";
 
 
@@ -19,6 +19,18 @@ const LandingPage = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4
+  };
+
+  const settings_testi = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    vertical: true,
+    arrows: false,
+    autoplay: true,
+    // autoplaySpeed: 000,
   };
 
   const options = {
@@ -380,7 +392,7 @@ const LandingPage = () => {
               </Row>
               <Row className="m-t-30">
                 <Col md={12} lg={12}>
-                  <img src="https://via.placeholder.com/475" style={{ width: "100%" }}></img>
+                  <img src="https://via.placeholder.com/670" style={{ width: "100%" }}></img>
                 </Col>
               </Row>
               
@@ -388,64 +400,206 @@ const LandingPage = () => {
             <Col md={5} lg={5}>
               <Row className="m-b-15">
                 <Col md={12} lg={12}>
+                  <h3 className="text-center title-one"><strong>FAQ</strong></h3>
+                </Col>
+              </Row>
+
+              <Row className="m-t-30">
+                <Col md={12} lg={12}>
+                  <Accordion>
+                    <Card>
+                      <Accordion.Toggle as={Card.Header} eventKey="0" style={{ cursor: "pointer", backgroundColor:"#1f59bb", color:"#fff" }}>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat, id!
+                    </Accordion.Toggle>
+                      <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium pariatur accusantium ex inventore adipisci. Autem, iusto? Libero ipsam minima doloribus fugiat, ex, exercitationem cumque error omnis, veritatis id blanditiis asperiores animi adipisci eius. Totam beatae ullam id veritatis fugiat voluptates labore facilis. Repellat dolorem rem vitae atque, nihil quam explicabo.
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                    <Card>
+                      <Accordion.Toggle as={Card.Header} eventKey="1" style={{ cursor: "pointer", backgroundColor: "#1f59bb", color: "#fff" }}>
+                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, inventore.
+                    </Accordion.Toggle>
+                      <Accordion.Collapse eventKey="1">
+                        <Card.Body>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi molestias eum cum deserunt magni aliquid ad sapiente cumque nisi unde eaque vero animi doloribus, optio quam nostrum maxime rem praesentium incidunt! Rem tempore suscipit eos eligendi quasi exercitationem iusto voluptates.
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+
+                    <Card>
+                      <Accordion.Toggle as={Card.Header} eventKey="2" style={{ cursor: "pointer", backgroundColor: "#1f59bb", color: "#fff" }}>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae debitis laborum mollitia repellat quasi optio.
+                    </Accordion.Toggle>
+                      <Accordion.Collapse eventKey="2">
+                        <Card.Body>
+                          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id corrupti nostrum quod. Ipsam quam dolorum quasi eligendi. Veritatis omnis explicabo accusantium cupiditate. Rerum, est ab!
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+
+                    <Card>
+                      <Accordion.Toggle as={Card.Header} eventKey="4" style={{ cursor: "pointer", backgroundColor: "#1f59bb", color: "#fff" }}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis temporibus delectus maxime! Eum ipsam reprehenderit rerum quaerat voluptatibus.
+                    </Accordion.Toggle>
+                      <Accordion.Collapse eventKey="4">
+                        <Card.Body>
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga minima libero ullam sunt! Commodi harum repellat perspiciatis consequuntur aliquam velit.
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                  </Accordion>
+                </Col>
+              </Row>
+
+              {/* <Row className="m-b-15">
+                <Col md={12} lg={12}>
                   <h3 className="text-left title-one"><strong>Testimony</strong></h3>
                 </Col>
               </Row>
-              <Row className="m-t-15">
-                <Col md={12} lg={12}>
-                  <div className="part-one">
-                    <div className="left">
-                      <img src="images/user.png"></img>
-                    </div>
-                    <div className="right">
-                      <h5><strong>Nama User</strong></h5>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
 
-              <Row className="m-t-15">
-                <Col md={12} lg={12}>
-                  <div className="part-one">
-                    <div className="left">
-                      <img src="images/user.png"></img>
-                    </div>
-                    <div className="right">
-                      <h5><strong>Nama User</strong></h5>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                    </div>
+              
+              <Row className="m-t-30">
+                <Slider {...settings_testi}>
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
                   </div>
-                </Col>
-              </Row>
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
 
-              <Row className="m-t-15">
-                <Col md={12} lg={12}>
-                  <div className="part-one">
-                    <div className="left">
-                      <img src="images/user.png"></img>
-                    </div>
-                    <div className="right">
-                      <h5><strong>Nama User</strong></h5>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                    </div>
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
                   </div>
-                </Col>
-              </Row>
 
-              <Row className="m-t-15">
-                <Col md={12} lg={12}>
-                  <div className="part-one">
-                    <div className="left">
-                      <img src="images/user.png"></img>
-                    </div>
-                    <div className="right">
-                      <h5><strong>Nama User</strong></h5>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                    </div>
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
                   </div>
-                </Col>
-              </Row>
+
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+
+                  <div>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <div className="left">
+                          <img src="images/user.png"></img>
+                        </div>
+                        <div className="right">
+                          <h5><strong>Nama User</strong></h5>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
+                        </div>
+                      </div>
+                    </Col>
+                  </div>
+                </Slider>
+              </Row> */}
             </Col>
           </Row>
           {/* <Tab.Container id="left-tabs-example" defaultActiveKey="first" className="m-t-30">
@@ -563,7 +717,6 @@ const LandingPage = () => {
                 <div>
                   <img src="https://via.placeholder.com/262x100"></img>
                 </div>
-                
               </Slider>
             </Col>
           </Row>
