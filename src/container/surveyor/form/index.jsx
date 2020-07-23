@@ -19,6 +19,8 @@ import * as surveyActions from '../../../store/actions/surveyFormAction'
 import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
 import { SAVE_STUDY } from '../../../store/actions/surveyFormAction'
+import { getDataQuestions } from '../../../store/actions/questionsAction'
+import { dataCategory, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
 import { renderDatePicker } from '../../../components/inputForm'
 
 
@@ -27,6 +29,8 @@ import { renderDatePicker } from '../../../components/inputForm'
 const FormSurveyor = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const [category, setCategory ] = useState([])
+  const [dataQuestions, setDataQuestions ] = useState([])
 
   useEffect(() => {
     dispatch(surveyActions.INIT_QUESTION)
@@ -36,7 +40,6 @@ const FormSurveyor = (props) => {
   const selector = formValueSelector('surveyForm')
 
   const addQuestion = () => {
-    
     dispatch(questionActions.addNewQuestion(listQuestions._id))
   }
 
@@ -44,6 +47,29 @@ const FormSurveyor = (props) => {
     
     dispatch(SAVE_STUDY(props.formValues, history))
   };
+
+  const getCategory = () =>{
+    dispatch(dataCategory())
+      .then( data => {
+        setCategory(data)
+        // break;
+      })
+  }
+
+  useEffect(() => {
+    if(!category.length){
+      getCategory()
+    }
+  })
+
+  const processSelectCategory = (pilihCategory) => {
+    let idCategory = category.find( el => el.name == pilihCategory )
+    dispatch(getDataQuestions(idCategory._id))
+      .then( data => {
+        setDataQuestions(data)
+      })
+  }
+
 
   return(
     <>
@@ -186,12 +212,16 @@ const FormSurveyor = (props) => {
                         <Col md={12} lg={12}>
                           <Form.Group>
                             <Form.Label>Kriteria Responden</Form.Label>
-                            <Form.Control as="select">
-                              <option>-- Pilih --</option>
-                              <option>Keluarga</option>
-                              <option>Harta</option>
-                              <option>Kesehatan</option>
-                              <option>Pekerjaan</option>
+                            <Form.Control as="select" onChange={ (e) => {processSelectCategory(e.target.value); }}>
+                              <option>Pilih...</option>
+                              {
+                                category.map((data, i) => {
+                                  
+                                  return(
+                                    <option key={i}>{data.name}</option>
+                                  )
+                                })
+                              }
                             </Form.Control>
                           </Form.Group>
                         </Col>
@@ -201,7 +231,35 @@ const FormSurveyor = (props) => {
                         </Col>
 
                         <Col md={12} lg={12}>
-                        <Row className="m-t-30">
+                          {
+                            dataQuestions.map((data, i) => {
+                              return(
+                                <Row className="m-t-30" key={i}>
+                                  <Col md={12} lg={12}>
+                                    <div className="box-pertanyaan">
+                                      <div className="left"><h5>{i+1}. </h5></div>
+                                      <div className="right"><h5>{data.name}</h5></div>
+                                    </div>
+                                  </Col>
+                                  <Col md={12} lg={12}>
+                                    <div className="box-answer">
+                                    <Form.Group style={{width:'100%'}}>
+                                      <Form.Control as="select" >
+                                        { data.listAnswers.map((answer, i) => {
+                                            return(
+                                              <option key={i}>{ answer }</option>
+                                            )
+                                          })
+                                        }
+                                      </Form.Control>
+                                    </Form.Group>
+                                    </div>
+                                  </Col>
+                                </Row>
+                              )
+                            })
+                          }
+                        {/* <Row className="m-t-30">
                           <Col md={12} lg={12}>
                             <div className="box-pertanyaan">
                               <div className="left"><h5>1.</h5></div>
@@ -217,24 +275,7 @@ const FormSurveyor = (props) => {
                             </Form.Group>
                             </div>
                           </Col>
-                        </Row>
-                        <Row className="m-t-30">
-                          <Col md={12} lg={12}>
-                            <div className="box-pertanyaan">
-                              <div className="left"><h5>1.</h5></div>
-                              <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
-                            </div>
-                          </Col>
-                          <Col md={12} lg={12}>
-                            <div className="box-answer">
-                            <Form.Group style={{width:'100%'}}>
-                              <Form.Control as="select" >
-                                <option>-- Pilih --</option>
-                              </Form.Control>
-                            </Form.Group>
-                            </div>
-                          </Col>
-                        </Row>
+                        </Row> */}
                         </Col>
                         <Col md={12} lg={12}>
                           <hr/>
@@ -255,11 +296,6 @@ const FormSurveyor = (props) => {
               </Tab>
               
               <Tab eventKey="Question" title="question" className="m-t-15">
-
-                <Button variant="primary" size="sm" onClick={ addQuestion }>
-                            Tambah Opsi
-                </Button>
-
                 {
                   listQuestions && listQuestions.questions &&
                   <QuestionBuilder
@@ -267,6 +303,9 @@ const FormSurveyor = (props) => {
                     questions = { listQuestions.questions }
                   />
                 }
+                  <Button variant="primary" size="sm" onClick={ addQuestion } block>
+                              Tambah Opsi
+                  </Button>
               </Tab>
               
             </Tabs>

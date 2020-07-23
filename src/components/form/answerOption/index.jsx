@@ -29,9 +29,9 @@ export const AnswerOptions = ({ answerOptions, questionId }) =>{
             
           <div className="table-cell-three">
             <center>
-            <Button variant="primary" size="sm" onClick = {addNewAnswer}>
-              Tambah Opsi
-            </Button>
+              <Button variant="primary" size="sm" onClick = {addNewAnswer}>
+                Tambah Opsi
+              </Button>
             </center>
           </div>
         </Row>

@@ -71,7 +71,23 @@ export const FIND_STUDY_USER = () => async dispatch  => {
         "accesstoken": `${Cookies.get('test')}`
       }
     })
-    console.log(data, 'aaaaaaaaaaa')
+    
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const FIND_STUDY_WITH_RESPONDEN = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:'/project/responden',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
     return data
   }
   catch(err){

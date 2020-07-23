@@ -86,7 +86,7 @@ export const QuestionList = (props) => {
             </Col>
 
             <Col md={1} lg={1}>
-              <div style={{width:'100%', backgroundColor:'red', height:'38px', display:'flex', alignItems:'center'}}>
+              <div style={{width:'100%', height:'38px', display:'flex', alignItems:'center'}}>
                   <Button variant="danger" size="sm" onClick={handleDeleteQuestion}>Delete</Button>
               </div>
               
@@ -109,9 +109,9 @@ export const QuestionList = (props) => {
               {
                 type === 'TEXT' &&
                 <Row className="m-t-15">
-                  <Col md={8} lg={8}>
+                  {/* <Col md={8} lg={8}>
                   <Form.Control as="textarea" rows="3" />
-                  </Col>
+                  </Col> */}
                 </Row>
               }
             {/* end text */}
