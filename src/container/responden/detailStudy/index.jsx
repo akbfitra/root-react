@@ -1,6 +1,6 @@
-import React from 'react';
-
-import { withRouter, Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { withRouter, Link, useParams } from 'react-router-dom'
 
 import './css/style.css';
 import { Container, Row, Col, Button, Table} from 'react-bootstrap'
@@ -8,7 +8,30 @@ import { Container, Row, Col, Button, Table} from 'react-bootstrap'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
+import { FIND_STUDY_WITH_RESPONDEN_BY_ID } from '../../../store/actions/surveyFormAction'
+
 const DetailStudyResponden = (props) => {
+  const dispatch = useDispatch()
+  const params = useParams()
+
+  let { studyId } = params
+  const [ detailStudy, setDetailStudy ] = useState('')
+  const [ jumlahQuestionsLength, setJumlahQuestionslength ] = useState(0)
+
+  const getListStudyById = () => {
+    dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
+      .then( data => {
+        setDetailStudy(data)
+        setJumlahQuestionslength(data.questions.length)
+      })
+  }
+
+  useEffect( () => {
+    if(!detailStudy){
+      getListStudyById()
+    }
+  })
+
   return(
     <>
     <Navbar/>
@@ -50,43 +73,43 @@ const DetailStudyResponden = (props) => {
                     <tr>
                       <td style={{width:"300px"}}>Judul Study</td>
                       <td style={{width:"1px"}}>:</td>
-                      <td>-</td>
+                      <td> { detailStudy.judul } </td>
                     </tr>
 
                     <tr>
                       <td>Jumlah Soal</td>
                       <td>:</td>
-                      <td>-</td>
+                      <td> { jumlahQuestionsLength } </td>
                     </tr>
 
                     <tr>
                       <td>Waktu Menjawab Soal (menit)</td>
                       <td>:</td>
-                      <td>-</td>
+                      <td> { detailStudy.waktuJawab } </td>
                     </tr>
 
                     <tr>
                       <td>Jumlah Responden Yang Dibutuhkan</td>
                       <td>:</td>
-                      <td>-</td>
+                      <td> { detailStudy.jumlahResponden } </td>
                     </tr>
 
                     <tr>
                       <td>Reward Per Responden (Rp)</td>
                       <td>:</td>
-                      <td>-</td>
+                      <td> { detailStudy.rewardResponden } </td>
                     </tr>
 
                     <tr>
                       <td>Tanggal Mulai</td>
                       <td>:</td>
-                      <td>-</td>
+                      <td> { detailStudy.tanggalMulai } </td>
                     </tr>
 
                     <tr>
                       <td>Tanggal Akhir</td>
                       <td>:</td>
-                      <td>-</td>
+                      <td> { detailStudy.tanggalAkhir } </td>
                     </tr>
                   </tbody>
                 </Table>
@@ -94,15 +117,19 @@ const DetailStudyResponden = (props) => {
 
                 <Col md={12} lg={12}>
                   <ul className="list-inline text-right m-b-0">
-                    <li className="list-inline-item">
-                      <Button variant="primary" href="/responden/study">Mulai Study</Button>
-                    </li>
+                    <Link to={`/responden/study/${ detailStudy._id }`}>
+                      <li className="list-inline-item">
+                        <Button variant="primary" >Mulai Study</Button>
+                      </li>
+                    </Link>
 
                     <li className="list-inline-item">|</li>
 
-                    <li className="list-inline-item">
-                      <Button variant="primary" href="/responden/study">Detail Jawaban</Button>
-                    </li>
+                    <Link to={`/responden/study/${ detailStudy._id }`}>
+                      <li className="list-inline-item">
+                        <Button variant="primary">Detail Jawaban</Button>
+                      </li>
+                    </Link>
                   </ul>
                 </Col>
               </Row>

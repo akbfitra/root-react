@@ -60,8 +60,8 @@ const App = () => {
       <PrivateRouteResponden path = '/responden/category/:categoryId' component = {CategoryQuestions}/>
       <PrivateRouteResponden path = '/responden/profile/edit' component = {EditProfileResponden}/>
       <PrivateRouteResponden path = '/responden/profile' component = {ProfileResponden}/>
-      <PrivateRouteResponden path = '/responden/detailstudy' component = {DetailStudyResponden}/>
-      <PrivateRouteResponden path = '/responden/study' component = {StudyResponden}/>
+      <PrivateRouteResponden path = '/responden/detailstudy/:studyId' component = {DetailStudyResponden}/>
+      <PrivateRouteResponden path = '/responden/study/:studyId' component = {StudyResponden}/>
       <PrivateRouteResponden path = '/responden/submission' component = {SubmissionResponden}/>
       <PrivateRouteResponden path = '/responden/ticket' component = {TicketResponden}/>
       <PrivateRouteResponden path = '/responden' component = {DashboardResponden} />

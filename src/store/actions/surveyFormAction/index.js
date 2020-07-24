@@ -94,3 +94,21 @@ export const FIND_STUDY_WITH_RESPONDEN = () => async dispatch => {
     console.log(err)
   }
 }
+
+export const FIND_STUDY_WITH_RESPONDEN_BY_ID = (idStudy) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:`/project/responden/${idStudy}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+
+    console.log(data)
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}

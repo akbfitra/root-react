@@ -126,7 +126,9 @@ const ListStudy = () => {
 
                     <Row>
                       <Col md={12} lg={12}>
-                          <Button variant="primary" href="/surveyor/detailstudy">Detail Study</Button>
+                        <Link to='/surveyor/detailstudy'>
+                          <Button variant="primary">Detail Study</Button>
+                        </Link>
                       </Col>
                     </Row>
                   </div>

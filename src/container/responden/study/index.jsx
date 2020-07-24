@@ -1,14 +1,38 @@
-import React from 'react';
-
-import { withRouter, Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { withRouter, Link, useParams } from 'react-router-dom'
 
 import './css/style.css';
-import { Container, Row, Col, Button, Table} from 'react-bootstrap'
+import { Container, Row, Col, Button, Form} from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
+import { FIND_STUDY_WITH_RESPONDEN_BY_ID } from '../../../store/actions/surveyFormAction'
+
 const StudyResponden = (props) => {
+  const dispatch = useDispatch()
+  const params = useParams()
+
+  let { studyId } = params
+  const [ listOfQuestions, setListofQuestions ] = useState('')
+
+  const getListQuestions = () => {
+    dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
+      .then( data => {
+        setListofQuestions(data.questions)
+      })
+  }
+
+  useEffect( () => {
+    if(!listOfQuestions){
+      getListQuestions()
+    }
+  })
+
+  console.log(listOfQuestions)
+
+
   return(
     <>
     <Navbar/>
@@ -43,30 +67,45 @@ const StudyResponden = (props) => {
           <Row className="m-t-30">
             <Col md={12} lg={12}>
               <div className="part-one">
-                <Row className="m-t-30">
-                  <Col md={12} lg={12}>
-                    <div className="box-pertanyaan">
-                      <div className="left"><h5>1.</h5></div>
-                      <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
-                    </div>
-                  </Col>
-                  <Col md={12} lg={12}>
-                    <div className="box-answer">
-                      <Button variant="outline-dark">A.&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                    <div className="box-answer">
-                      <Button variant="outline-dark">A.&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                    <div className="box-answer">
-                      <Button variant="outline-dark">A.&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                    <div className="box-answer">
-                      <Button variant="outline-dark">A.&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
-                    </div>
-                  </Col>
-                </Row>
+                {
+                  !listOfQuestions.length ? 
+                    <p>loading</p>
+                  :
+                  listOfQuestions.map((data, i) => {
+                    return(
+                      <Row className="m-t-30" key={i}>
+                        <Col md={12} lg={12}>
+                          <div className="box-pertanyaan">
+                          <div className="left"><h5> { i+1 }.&nbsp; </h5></div>
+                            <div className="right"><h5> { data.title } </h5></div>
+                          </div>
+                        </Col>
+                        {
+                          data.type === "TEXT" ? 
+                            <Col md={12} lg={12}>
+                              <Form.Group controlId="exampleForm.ControlTextarea1">
+                                <Form.Control as="textarea" rows="3" />
+                              </Form.Group>
+                            </Col>
+                          :
+                            data.answerOptions.map((dataAnswer, i) => {
+                              return(
+                                <Col md={12} lg={12} key={i}>
+                                  <div className="box-answer">
+                                  <Button variant="outline-dark">&nbsp;{dataAnswer.title}</Button>
+                                  </div>
+                                </Col>
+                              )
+                            })
+                              
+                            
+                        }
+                      </Row>
+                    )
+                   })
+                }
 
-                <Row className="m-t-30">
+                {/* <Row className="m-t-30">
                   <Col md={12} lg={12}>
                     <div className="box-pertanyaan">
                       <div className="left"><h5>1.</h5></div>
@@ -87,7 +126,7 @@ const StudyResponden = (props) => {
                       <Button variant="outline-dark">A.&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit</Button>
                     </div>
                   </Col>
-                </Row>
+                </Row> */}
               </div>
             </Col>
           </Row>

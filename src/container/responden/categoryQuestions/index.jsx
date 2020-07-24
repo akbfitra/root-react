@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter, useHistory, useLocation, Link, useParams } from 'react-router-dom'
+import { withRouter, Link, useParams } from 'react-router-dom'
 
 import './css/style.css';
 import {Container, Row, Col, Button } from 'react-bootstrap'
@@ -12,12 +12,10 @@ import { dataQuestionByCategory, createAnswer } from '../../../store/actions/abo
 
 const CategoryQuestions = (props) => {
   const dispatch = useDispatch()
-  const history = useHistory()
-  const location = useLocation()
+
   const params = useParams()
 
   const [questions, setQuestions ] = useState([])
-  const [answer, setAnswer] = useState('')
 
   let { categoryId } = params
 

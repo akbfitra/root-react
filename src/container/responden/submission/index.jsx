@@ -66,13 +66,13 @@ const SubmissionResponden = (props) => {
                                 <Col md={12} lg={12}>
                                   <div className="box">
                                     <div className="box-left">
-                                    <h4 className="m-t-0 m-b-0 title-two"><strong>{data.judul}</strong></h4>
-                                    <h4 h4 className="m-t-5 m-b-0 title-three">{data.userId.name}</h4>
-                                    <h4 h4 className="m-t-5 m-b-0 title-three">{data.tanggalAkhir}</h4>
+                                    <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">{ data.userId.name }</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">{ data.tanggalAkhir }</h4>
                                     </div>
                                     <div className="box-right">
                                     <h4 className="title-two text-center"><strong>Rp {data.rewardResponden},-</strong></h4>
-                                      <Link to='/responden/detailstudy'>
+                                      <Link to={`/responden/detailstudy/${data._id}`}>
                                         <Button variant="danger btn-block" className="m-t-15">Join</Button>
                                       </Link>
                                     </div>
@@ -96,7 +96,7 @@ const SubmissionResponden = (props) => {
                               <div className="box">
                                 <div className="box-left">
                                 <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                                <h4 h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
+                                <h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
                                 <h4 className="m-t-5 m-b-0 title-three">6 hari yang akan lalu</h4>
                                 </div>
                                 <div className="box-right">
@@ -118,7 +118,7 @@ const SubmissionResponden = (props) => {
                               <div className="box">
                                 <div className="box-left">
                                 <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                                <h4 h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
+                                <h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
                                 <h4 className="m-t-5 m-b-0 title-three">6 hari yang akan lalu</h4>
                                 </div>
                                 <div className="box-right">
