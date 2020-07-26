@@ -4,6 +4,7 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 
 import './css/style.css';
 import { Container, Row, Col, Button, Table} from 'react-bootstrap'
+import moment from 'moment'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -103,13 +104,13 @@ const DetailStudyResponden = (props) => {
                     <tr>
                       <td>Tanggal Mulai</td>
                       <td>:</td>
-                      <td> { detailStudy.tanggalMulai } </td>
+                      <td> {moment(detailStudy.tanggalMulai).format("DD/MM/YYYY")}</td>
                     </tr>
 
                     <tr>
                       <td>Tanggal Akhir</td>
                       <td>:</td>
-                      <td> { detailStudy.tanggalAkhir } </td>
+                      <td> {moment(detailStudy.tanggalAkhir).format("DD/MM/YYYY")} </td>
                     </tr>
                   </tbody>
                 </Table>

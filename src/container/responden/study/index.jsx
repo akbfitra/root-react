@@ -109,6 +109,7 @@ const StudyResponden = (props) => {
                               <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Control 
                                 as="textarea"
+                                style={{marginBottom:'0px'}}
                                 data-i={i}
                                 className="answer"
                                 value={dataText[i].answer} 

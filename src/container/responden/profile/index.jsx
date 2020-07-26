@@ -6,6 +6,7 @@ import { dataProfileUser } from '../../../store/actions/userAction'
 
 import './css/style.css';
 import { Button,Tabs, Tab, Container, Row, Col, Table} from 'react-bootstrap'
+import moment from 'moment'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -109,7 +110,7 @@ const ProfileResponden = (props) => {
                         <tr>
                           <td>Tanggal Lahir</td>
                           <td>:</td>
-                          <td>{dataProfile.birth}</td>
+                          <td>{moment(dataProfile.birth).format("DD/MM/YYYY")}</td>
                         </tr>
 
                         <tr>

@@ -43,7 +43,10 @@ export const QuestionList = (props) => {
 
   return(
     <>
-      <Row>
+      <Row className="m-t-15">
+        <Col md={12} lg={12}>
+        <Button variant="danger" onClick={handleDeleteQuestion} className="float-right">Delete Question</Button>
+        </Col>
         <Col md={12} lg={12}>
         <div className="part-two">
           <Row className="question">
@@ -67,7 +70,7 @@ export const QuestionList = (props) => {
               </div>
             </Col>
             
-            <Col md={3} lg={3}>
+            <Col md={4} lg={4}>
               <div className="table-100">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -77,19 +80,12 @@ export const QuestionList = (props) => {
                         <option>-- Pilih --</option>
                         <option>Pilihan Ganda</option>
                         <option>Text</option>
-                        <option>Kotak Centang</option>
+                        {/* <option>Kotak Centang</option> */}
                       </Form.Control>
                     </Form.Group>
                   </div>
                 </div>
               </div>
-            </Col>
-
-            <Col md={1} lg={1}>
-              <div style={{width:'100%', height:'38px', display:'flex', alignItems:'center'}}>
-                  <Button variant="danger" size="sm" onClick={handleDeleteQuestion}>Delete</Button>
-              </div>
-              
             </Col>
           </Row>
 

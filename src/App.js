@@ -51,7 +51,7 @@ const App = () => {
       <Route path = '/register' component = {Register}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/liststudy' component = {ListStudy}/>
-      <PrivateRouteSurveyor path='/surveyor/detailstudy' component={DetailStudySurveyor} />
+      <PrivateRouteSurveyor path='/surveyor/detailstudy/:studyId' component={DetailStudySurveyor} />
       <PrivateRouteSurveyor path = '/surveyor/profile/edit' component = {EditProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/profile' component = {ProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup' component = {TopUpSurveyor}/>
