@@ -201,7 +201,7 @@ const FormSurveyor = (props) => {
                   </div>
                   </Col>
                 </Row>
-                <Button onClick= {handleSaveSurvey}>Submit</Button>
+                
               </Tab>
 
               <Tab eventKey="Kriteria Responden" title="Kriteria Responden" className="m-t-15">
@@ -295,7 +295,7 @@ const FormSurveyor = (props) => {
                 </Row>
               </Tab>
               
-              <Tab eventKey="Question" title="question" className="m-t-15">
+              <Tab eventKey="Question" title="Question" className="m-t-15">
                 {
                   listQuestions && listQuestions.questions &&
                   <QuestionBuilder
@@ -303,11 +303,15 @@ const FormSurveyor = (props) => {
                     questions = { listQuestions.questions }
                   />
                 }
-                  <Button variant="primary" size="sm" onClick={ addQuestion } block>
-                              Tambah Opsi
+                  <Button variant="primary" onClick={ addQuestion }>
+                              Tambah Question
                   </Button>
               </Tab>
               
+              <Tab eventKey="Simpan" title="Simpan Data" className="m-t-15">
+                <h5>Apakah anda yakin ingin menyimpan data ini ?</h5>
+                <Button onClick= {handleSaveSurvey} className="m-t-15">Simpan</Button>
+              </Tab>
             </Tabs>
           </Col>
           

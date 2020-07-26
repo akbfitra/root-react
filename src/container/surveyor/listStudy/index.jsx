@@ -7,6 +7,7 @@ import {  Container, Row, Col, Table, Button, Alert} from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
+import moment from 'moment'
 
 import { FIND_STUDY_USER } from '../../../store/actions/surveyFormAction'
 
@@ -110,13 +111,17 @@ const ListStudy = () => {
                               <tr>
                                 <td>Tanggal Mulai</td>
                                 <td>:</td>
-                                <td>{data.tanggalMulai}</td>
+                                <td>
+                                  {moment(data.tanggalMulai).format("DD/MM/YYYY")}
+                                </td>
                               </tr>
 
                               <tr>
                                 <td>Tanggal Akhir</td>
                                 <td>:</td>
-                                <td>{data.tanggalAkhir}</td>
+                                <td>
+                                {moment(data.tanggalAkhir).format("DD/MM/YYYY")}
+                                </td>
                               </tr>
                             </tbody>
                           </Table>
@@ -126,7 +131,7 @@ const ListStudy = () => {
 
                     <Row>
                       <Col md={12} lg={12}>
-                        <Link to='/surveyor/detailstudy'>
+                        <Link to={`/surveyor/detailstudy/${data._id}`}>
                           <Button variant="primary">Detail Study</Button>
                         </Link>
                       </Col>

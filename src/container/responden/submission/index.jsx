@@ -5,6 +5,7 @@ import { useDispatch  } from 'react-redux';
 
 import './css/style.css';
 import { Container, Row, Col, Tabs, Tab, Button} from 'react-bootstrap'
+import moment from 'moment'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -68,7 +69,7 @@ const SubmissionResponden = (props) => {
                                     <div className="box-left">
                                     <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
                                     <h4 className="m-t-5 m-b-0 title-three">{ data.userId.name }</h4>
-                                    <h4 className="m-t-5 m-b-0 title-three">{ data.tanggalAkhir }</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">{moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
                                     </div>
                                     <div className="box-right">
                                     <h4 className="title-two text-center"><strong>Rp {data.rewardResponden},-</strong></h4>

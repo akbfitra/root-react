@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Col, Form } from 'react-bootstrap'
+import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { Field } from 'redux-form';
 import { required } from 'redux-form-validators'
@@ -16,17 +16,14 @@ export const AnswerOptionList = ({ questionId, answerOptionId, index}) =>{
   }
   return(
     <>
-    <div>
-
-    </div>
       <Col md={8} lg={8} key={index}>
-        <div className="table-100">
-          <div className="table-row">
-            <div className="table-cell-one">
+        <Row>
+          <Col md={2} lg={2}>
+            <div style={{width:'100%', display:'flex', alignItems:'center', height:'38px', backgroundColor:''}}>
               <h4 className="title-three">Opsi {index +1}</h4>
             </div>
-
-            <div className="table-cell-two">
+          </Col>
+          <Col md={8} lg={8}>
               <Field
                 className="input survey-builder__answer"
                 type="text"
@@ -35,17 +32,15 @@ export const AnswerOptionList = ({ questionId, answerOptionId, index}) =>{
                 placeholder="jawaban"
                 validate={[required()]}
               />
-              {/* <Form.Control type="text" placeholder="Opsi"/> */}
-            </div>
-            <div className="table-cell-three">
-              <center>
+          </Col>
+          <Col md={2} lg={2}>
+            <div style={{width:'100%', display:'flex', alignItems:'center', height:'38px', backgroundColor:''}}>
                 <Button variant="danger" size="sm" onClick = {deleteAnswer}>
-                  delete
+                  Delete Opsi
                 </Button>
-              </center>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Col>
     </>
   )

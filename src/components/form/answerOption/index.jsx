@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button,  Row } from 'react-bootstrap'
+import { Button,  Col, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
 import { addNewAnswerOption } from '../../../store/actions/answerOptionAction'
@@ -26,14 +26,12 @@ export const AnswerOptions = ({ answerOptions, questionId }) =>{
                 />
             ))
           }
-            
-          <div className="table-cell-three">
-            <center>
-              <Button variant="primary" size="sm" onClick = {addNewAnswer}>
+          
+          <Col md={12} lg={12}>
+            <Button variant="warning" size="sm" onClick = {addNewAnswer}>
                 Tambah Opsi
-              </Button>
-            </center>
-          </div>
+            </Button>
+          </Col>
         </Row>
       </div>
       

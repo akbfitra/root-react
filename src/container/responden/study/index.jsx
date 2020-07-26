@@ -82,10 +82,15 @@ const StudyResponden = (props) => {
                         </Col>
                         {
                           data.type === "TEXT" ? 
-                            <Col md={12} lg={12}>
-                              <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Control as="textarea" rows="3" />
-                              </Form.Group>
+                            <Col md={12} lg={12} className="m-t-10">
+                              <div className="box-pertanyaan">
+                                <div className="left"></div>
+                                <div className="right">
+                                <Form.Group controlId="exampleForm.ControlTextarea1" style={{marginBottom:'0px'}}>
+                                  <Form.Control as="textarea" rows="3" />
+                                </Form.Group>
+                                </div>
+                              </div>
                             </Col>
                           :
                             data.answerOptions.map((dataAnswer, i) => {
