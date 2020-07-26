@@ -16,6 +16,7 @@ const CategoryQuestions = (props) => {
   const params = useParams()
 
   const [questions, setQuestions ] = useState([])
+  const [getChangeData, setGetChangeData ] = useState(false)
 
   let { categoryId } = params
 
@@ -23,15 +24,19 @@ const CategoryQuestions = (props) => {
     dispatch(dataQuestionByCategory(categoryId))
       .then( data => {
         setQuestions(data)
+        setGetChangeData(false)
       })
       .catch(err => console.log(err))
   }
 
   useEffect(() => {
-    getQuestions()
+    if(!questions.length || getChangeData ){
+      getQuestions()
+    }
   })
 
   const chooseAnswer = (answer, questionId) => {
+    setGetChangeData(true)
     dispatch(createAnswer(answer, questionId, categoryId))
   }
 

@@ -45,7 +45,6 @@ export const createAnswer = (answer, questionId, categoryId) => async dispatch =
       },
       data:{ answer }
     })
-    console.log(data)
   }
   catch(err){
     console.log(err.response)

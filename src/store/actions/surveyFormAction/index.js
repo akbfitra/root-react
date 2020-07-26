@@ -104,11 +104,45 @@ export const FIND_STUDY_WITH_RESPONDEN_BY_ID = (idStudy) => async dispatch => {
         "accesstoken": `${Cookies.get('test')}`
       }
     })
-
-    console.log(data)
     return data
   }
   catch(err){
     console.log(err)
   }
 }
+
+
+
+export const FIND_ANSWER_QUESTIONS_WITH_RESPONDEN_BY_ID = (idStudy) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:`/answer_form/${idStudy}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN = (answer, questionId, projectId) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'POST',
+      url: `/answer_form/${projectId}/${questionId}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      },
+      data:{ answer }
+    })
+    
+  }
+  catch(err){
+    console.log(err.response)
+  }
+}
+
