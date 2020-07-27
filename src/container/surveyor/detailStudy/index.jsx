@@ -132,18 +132,22 @@ const DetailStudyResponden = (props) => {
                           <Table striped bordered>
                             <thead>
                               <tr>
-                                <th>No.</th>
-                                <th>Responden</th>
-                                <th>Option</th>
+                                <th style={{textAlign:"center"}}>No.</th>
+                                <th style={{textAlign:"center"}}>Responden</th>
+                                <th style={{textAlign:"center"}}>Approval</th>
+                                <th style={{textAlign:"center"}}>Paid</th>
+                                <th style={{textAlign:"center"}}>Option</th>
                               </tr>
                             </thead>
 
 
                             <tbody>
                               <tr>
-                                <td>1.</td>
-                                <td>-</td>
-                                  <td><Button variant="primary" href="#">Detail Jawaban</Button></td>
+                                <td  style={{textAlign:"center"}}>1.</td>
+                                <td>Nama Responden</td>
+                                <td><center><Button variant="primary">Approval</Button></center></td>
+                                <td><center><Button variant="primary">Paid</Button></center></td>
+                                <td><center><Button variant="primary" href="#">Detail Jawaban</Button></center></td>
                               </tr>
                             </tbody>
                           </Table>

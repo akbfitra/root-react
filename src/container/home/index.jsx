@@ -133,6 +133,44 @@ const LandingPage = () => {
       </div>
 
 
+      <div id="section-three">
+        <Container>
+          <Row>
+            <Col md={12} lg={12}>
+              <h3 className="text-center title-one"><strong>Perusahaan Yang Telah Bekerjasama</strong></h3>
+            </Col>
+          </Row>
+
+          <Row className="m-t-30">
+            <Col md={12} lg={12}>
+              <Slider {...settings}>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+                <div>
+                  <img src="https://via.placeholder.com/262x100"></img>
+                </div>
+              </Slider>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      
       <div id="section-one">
         <Container>
           <Row>
@@ -685,43 +723,7 @@ const LandingPage = () => {
       </div>
 
 
-      <div id="section-three">
-        <Container>
-          <Row>
-            <Col md={12} lg={12}>
-              <h3 className="text-center title-one"><strong>Perusahaan Yang Telah Bekerjasama</strong></h3>
-            </Col>
-          </Row>
-
-          <Row className="m-t-30">
-            <Col md={12} lg={12}>
-              <Slider {...settings}>
-                <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
-                </div>
-              </Slider>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      
 
       <Footer/>
     </>
