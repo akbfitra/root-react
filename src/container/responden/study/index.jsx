@@ -102,9 +102,13 @@ const StudyResponden = (props) => {
                           </div>
                         </Col>
                         {
-                          data.type === "TEXT" ? 
+                          data.type === "TEXT" 
+                          ?
                             <Col md={12} lg={12}>
-                              <Form.Group controlId="exampleForm.ControlTextarea1">
+                              <div className="box-pertanyaan">
+                                <div className="left"></div>
+                                <div className="right">
+                                <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Control 
                                 as="textarea"
                                 style={{marginBottom:'0px'}}
@@ -114,7 +118,10 @@ const StudyResponden = (props) => {
                                 rows="3" 
                                 onChange={handleTextChange}
                                 onBlur={ (e) => cekTextArea(e.target.value,data._id)} />
-                              </Form.Group>
+                                </Form.Group>
+                                </div>
+                              </div>
+                              
                             </Col>
                           :
                             data.listAnswer.map((dataAnswer, i) => {
@@ -157,6 +164,10 @@ const StudyResponden = (props) => {
                   </Col>
                 </Row> */}
               </div>
+            </Col>
+
+            <Col md={12} lg={12} className="m-t-15">
+              <Button variant="primary">Simpan</Button>{' '}
             </Col>
           </Row>
         </Container>
