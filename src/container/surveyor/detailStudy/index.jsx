@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, useParams } from 'react-router-dom'
+import moment from 'moment'
 
 import './css/style.css';
 import { Container, Row, Col, Button, Table, Tabs, Tab} from 'react-bootstrap'
+
+import { FIND_STUDY_WITH_RESPONDEN_BY_ID } from '../../../store/actions/surveyFormAction'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
 const DetailStudyResponden = (props) => {
+  const dispatch = useDispatch()
+  const params = useParams()
+
+  let { studyId } = params
+  const [ detailStudy, setDetailStudy ] = useState('')
+  const [ jumlahQuestionsLength, setJumlahQuestionslength ] = useState(0)
+
+  const getListStudyById = () => {
+    dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
+      .then( data => {
+        setDetailStudy(data)
+        setJumlahQuestionslength(data.questions.length)
+      })
+  }
+
+  useEffect( () => {
+    if(!detailStudy){
+      getListStudyById()
+    }
+  })
+
+  console.log(detailStudy)
+  console.log(jumlahQuestionsLength)
+
   return(
     <>
     <Navbar/>
@@ -54,43 +82,43 @@ const DetailStudyResponden = (props) => {
                                 <tr>
                                   <td style={{ width: "300px" }}>Judul Study</td>
                                   <td style={{ width: "1px" }}>:</td>
-                                  <td>-</td>
+                                  <td> {detailStudy.judul} </td>
                                 </tr>
 
                                 <tr>
                                   <td>Jumlah Soal</td>
                                   <td>:</td>
-                                  <td>-</td>
+                                  <td> { jumlahQuestionsLength } </td>
                                 </tr>
 
                                 <tr>
                                   <td>Waktu Menjawab Soal (menit)</td>
                                   <td>:</td>
-                                  <td>-</td>
+                                  <td> { detailStudy.waktuJawab } </td>
                                 </tr>
 
                                 <tr>
                                   <td>Jumlah Responden Yang Dibutuhkan</td>
                                   <td>:</td>
-                                  <td>-</td>
+                                  <td> { detailStudy.jumlahResponden } </td>
                                 </tr>
 
                                 <tr>
                                   <td>Reward Per Responden (Rp)</td>
                                   <td>:</td>
-                                  <td>-</td>
+                                  <td> { detailStudy.rewardResponden } </td>
                                 </tr>
 
                                 <tr>
                                   <td>Tanggal Mulai</td>
                                   <td>:</td>
-                                  <td>-</td>
+                                  <td> {moment(detailStudy.tanggalMulai).format("DD/MM/YYYY")} </td>
                                 </tr>
 
                                 <tr>
                                   <td>Tanggal Akhir</td>
                                   <td>:</td>
-                                  <td>-</td>
+                                  <td> {moment(detailStudy.tanggalAkhir).format("DD/MM/YYYY")} </td>
                                 </tr>
                               </tbody>
                             </Table>

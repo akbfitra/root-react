@@ -16,7 +16,7 @@ const StudyResponden = (props) => {
 
   let { studyId } = params
   const [ listOfQuestions, setListofQuestions ] = useState([])
-  const [dataText, setDataText ] = useState( [{}] )
+  const [dataText, setDataText ] = useState( [{answer: ' test'}] )
   const [getChangeData, setGetChangeData ] = useState(false)
 
 
@@ -53,7 +53,6 @@ const StudyResponden = (props) => {
     updatedText[e.target.dataset.i][e.target.className.split(' ')[0]] = e.target.value;
     setDataText(updatedText);
   };
-
 
   return(
     <>
@@ -104,7 +103,6 @@ const StudyResponden = (props) => {
                         </Col>
                         {
                           data.type === "TEXT" ? 
-                          
                             <Col md={12} lg={12}>
                               <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Control 
@@ -112,7 +110,7 @@ const StudyResponden = (props) => {
                                 style={{marginBottom:'0px'}}
                                 data-i={i}
                                 className="answer"
-                                value={dataText[i].answer} 
+                                value={listOfQuestions[i].answer} 
                                 rows="3" 
                                 onChange={handleTextChange}
                                 onBlur={ (e) => cekTextArea(e.target.value,data._id)} />
