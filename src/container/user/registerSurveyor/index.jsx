@@ -17,7 +17,7 @@ const RegisterSurveyor = (props) => {
   const [ password, setPassword] = useState('')
   const [ username, setUsername] = useState('')
   const [ phone, setPhone] = useState('')
-  const [ birth, setBirth] = useState('')
+  const [ birth, setBirth] = useState(new Date())
   const [ provinsi, setProvinsi] = useState('')
   const [ kota, setKota] = useState('')
   const [ pekerjaan, setPekerjaan] = useState('')
@@ -29,7 +29,7 @@ const RegisterSurveyor = (props) => {
   const location = useLocation()
 
   const processRegisterSurveyor = () => {
-    dispatch(registerSurveyorProcess(email, password, username, phone, startDate, provinsi, kota, pekerjaan, sumber, history, location))
+    dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location))
   }
   return(
     <>
@@ -38,23 +38,27 @@ const RegisterSurveyor = (props) => {
           <Container>
             <Row>
               <Col md={8} lg={8} className="part-one">
-                <div className="table-100">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                      <img src="https://via.placeholder.com/60"></img>
-                    </div>
+                <Link to='/'>
+                  <div className="table-100">
+                    <div className="table-row">
+                      <div className="table-cell-one">
+                        <img src="https://via.placeholder.com/60"></img>
+                      </div>
 
-                    <div className="table-cell-two">
-                      <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
+                      <div className="table-cell-two">
+                        <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </Col>
               <Col md={4} lg={4} className="part-two">
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
-                    <Button variant="primary" className="float-right">LOGIN</Button>
+                      <Link to="/login">
+                        <Button variant="primary" className="float-right">LOGIN</Button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -122,13 +126,13 @@ const RegisterSurveyor = (props) => {
 
                   <Form.Group>
                     <Form.Label>No. Identitas</Form.Label>
-                    <Form.Control type="text" placeholder="" onChange={ (e) => {setKtp( e.target.value )}}/>
+                    <Form.Control type="number" placeholder="" onChange={ (e) => {setKtp( e.target.value )}}/>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Row>
-                    <Col><DatePicker selected={startDate} onChange={date => setStartDate(date)} /></Col>
+                    <Col><DatePicker selected={birth} onChange={date => setStartDate(date)} /></Col>
                     </Row>
                   </Form.Group>
 
