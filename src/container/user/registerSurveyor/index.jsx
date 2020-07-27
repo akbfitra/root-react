@@ -29,7 +29,7 @@ const RegisterSurveyor = (props) => {
   const location = useLocation()
 
   const processRegisterSurveyor = () => {
-    dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location))
+    dispatch(registerSurveyorProcess(email, password, username, phone, startDate, provinsi, kota, pekerjaan, sumber, history, location))
   }
   return(
     <>
