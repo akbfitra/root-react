@@ -17,8 +17,10 @@ const LandingPage = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000
   };
 
   const settings_testi = {
@@ -77,7 +79,7 @@ const LandingPage = () => {
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
-                      <img src="https://via.placeholder.com/60"></img>
+                      <img src="images/logo.png" style={{height:'80px'}}></img>
                     </div>
 
                     <div className="table-cell-two">
@@ -145,25 +147,35 @@ const LandingPage = () => {
             <Col md={12} lg={12}>
               <Slider {...settings}>
                 <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
+                  <img src="images/TJD.png"></img>
                 </div>
+
                 <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
+                  <img src="images/HRV.png"></img>
                 </div>
+
                 <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
+                  <img src="images/TJD.png"></img>
                 </div>
+
                 <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
+                  <img src="images/HRV.png"></img>
                 </div>
+
                 <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
+                  <img src="images/TJD.png"></img>
                 </div>
+
                 <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
+                  <img src="images/HRV.png"></img>
                 </div>
+
                 <div>
-                  <img src="https://via.placeholder.com/262x100"></img>
+                  <img src="images/TJD.png"></img>
+                </div>
+
+                <div>
+                  <img src="images/HRV.png"></img>
                 </div>
               </Slider>
             </Col>
