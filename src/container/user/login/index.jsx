@@ -8,6 +8,8 @@ import { loginProcess } from '../../../store/actions/userAction'
 import './css/style.css';
 import { Button, Container, Row, Col, Form} from 'react-bootstrap';
 
+import { Footer } from '../../../components/footer'
+
 const Login = (props) => {
   const dispatch = useDispatch()
   const [ email, setEmail] = useState('')
@@ -31,17 +33,17 @@ const Login = (props) => {
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">
-                        <img src="https://via.placeholder.com/60"></img>
+                        <img src="images/logo second.png" style={{height:'60px'}}></img>
                       </div>
 
-                      <div className="table-cell-two">
+                      {/* <div className="table-cell-two">
                         <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </Link>
               </Col>
-              <Col md={4} lg={4} className="part-two">
+              {/* <Col md={4} lg={4} className="part-two">
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
@@ -49,7 +51,7 @@ const Login = (props) => {
                     </div>
                   </div>
                 </div>
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </div>
@@ -112,28 +114,7 @@ const Login = (props) => {
       </Container>
       </div>
 
-      <div id="main-footer-one">
-        <Container>
-          <Row>
-            <Col md={4} lg={4} className="part-one">
-              <Row>
-                <Col><h3 className="title-one"><strong>suRvplus</strong></h3></Col>
-              </Row>
-
-              <Row className="m-t-30">
-                <Col><p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p></Col>
-              </Row>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-      <div id="main-footer-two">
-        <Container>
-          <Row>
-            <Col><h4 className="text-center title-three">Copyright © 2020 suRvplus  </h4></Col>
-          </Row>
-        </Container>
-      </div>
+      <Footer/>
     </>
   )
 }

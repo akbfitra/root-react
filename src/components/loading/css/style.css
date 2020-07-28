@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Questrial&display=swap";
+
 /* Margin top */
 .m-t-0{
   margin-top: 0px !important;
@@ -400,10 +400,6 @@
   padding-right: 30px !important;
 }
 /* End padding Right */
-body{
-    font-family: 'Questrial', sans-serif !important;
-}
-
 .title-one{
 	font-size: 36px !important;
 }

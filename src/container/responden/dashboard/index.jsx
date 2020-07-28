@@ -16,8 +16,8 @@ const RespondenDashboard = (props) => {
       <div id="dashboard-responden">
       <Container>
         <Row>
-          <Col>
-            <h3 className="title-one text-center"><strong>Dashboard Responden</strong></h3>
+          <Col md={12} lg={12}>
+            <h3 className="title-one text-center"><strong>Responden</strong></h3>
           </Col>
         </Row>
         <Row className="m-t-30">
@@ -26,7 +26,7 @@ const RespondenDashboard = (props) => {
             <div className="part-one">
               <center>
               <img src="images/profile.png"/>
-              <h4 className="title-two m-t-15"><strong>Profile</strong></h4>
+              <h4 className="title-two m-t-15"><strong>Profil</strong></h4>
               </center>
             </div>
             </Link>
@@ -37,7 +37,7 @@ const RespondenDashboard = (props) => {
             <div className="part-one">
               <center>
               <img src="images/aboutus.png"/>
-              <h4 className="title-two m-t-15"><strong>About Us</strong></h4>
+              <h4 className="title-two m-t-15"><strong>Tentang</strong></h4>
               </center>
             </div>
             </Link>
@@ -48,7 +48,7 @@ const RespondenDashboard = (props) => {
             <div className="part-one">
               <center>
               <img src="images/submission.png"/>
-              <h4 className="title-two m-t-15"><strong>Submission</strong></h4>
+              <h4 className="title-two m-t-15"><strong>Survey</strong></h4>
               </center>
             </div>
             </Link>
@@ -59,7 +59,7 @@ const RespondenDashboard = (props) => {
             <div className="part-one">
               <center>
               <img src="images/help.png"/>
-              <h4 className="title-two m-t-15"><strong>Help</strong></h4>
+              <h4 className="title-two m-t-15"><strong>Bantuan</strong></h4>
               </center>
             </div>
             </Link>

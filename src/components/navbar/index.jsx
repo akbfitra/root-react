@@ -27,11 +27,11 @@ export const Navbar = (props) => {
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">
-                        <img src="https://via.placeholder.com/60"></img>
+                        <img src="../images/logo second.png" style={{height:'60px'}}></img>
                       </div>
-                      <div className="table-cell-two">
+                      {/* <div className="table-cell-two">
                         <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </Link>
