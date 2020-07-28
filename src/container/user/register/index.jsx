@@ -15,7 +15,7 @@ const Register = (props) => {
   const history = useHistory()
   const location = useLocation()
   
-  const [startDate, setStartDate] = useState('');
+  // const [startDate, setStartDate] = useState('');
   let listKota = useSelector( state => state.tempat.tempat.kota)
 
   const [ email, setEmail] = useState('')
@@ -42,7 +42,7 @@ const Register = (props) => {
   };
 
   const processRegister = () => {
-    dispatch(registerProcess(email, password, username, phone, startDate, provinsi, kota, pekerjaan, sumber, history, location, ktp))
+    dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp))
   }
 
   function processSelectProvinsi(data){
@@ -193,12 +193,12 @@ const Register = (props) => {
                     <Row>
                     <Col>
                       <DatePicker 
-                        selected={startDate}
+                        selected={birth}
                         dateFormat="dd/MM/yyyy"
                         peekNextMonth
                         showMonthDropdown
                         showYearDropdown 
-                        onChange={date => setStartDate(date)} />
+                        onChange={date => setBirth(date)} />
                     </Col>
                     </Row>
                   </Form.Group>

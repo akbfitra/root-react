@@ -132,7 +132,16 @@ const RegisterSurveyor = (props) => {
                   <Form.Group>
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Row>
-                    <Col><DatePicker selected={birth} onChange={date => setStartDate(date)} /></Col>
+                    <Col>
+                      <DatePicker 
+                        selected={birth}
+                        dateFormat="dd/MM/yyyy"
+                        peekNextMonth
+                        showMonthDropdown
+                        showYearDropdown  
+                        onChange={date => setStartDate(date)} 
+                      />
+                    </Col>
                     </Row>
                   </Form.Group>
 
