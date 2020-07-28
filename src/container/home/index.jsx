@@ -79,12 +79,12 @@ const LandingPage = () => {
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
-                      <img src="images/logo.png" style={{height:'80px'}}></img>
+                      <img src="images/logo second.png" style={{height:'60px'}}></img>
                     </div>
 
-                    <div className="table-cell-two">
+                    {/* <div className="table-cell-two">
                       <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 </Link>
@@ -186,7 +186,7 @@ const LandingPage = () => {
       <div id="section-one">
         <Container>
           <Row>
-            <Col>
+            <Col md={12} lg={12}>
             <h3 className="text-center title-one"><strong>Kenapa memilih suRvplus ?</strong></h3>
             </Col>
           </Row>
@@ -240,9 +240,9 @@ const LandingPage = () => {
 
           <Row className="m-t-30">
             <Col md={4} lg={4}>
-            <h3 className="m-t-0 title-one text-right"><strong>Manfaat Bagi Surveyor</strong></h3>
+            <h3 className="m-t-0 text-right" style={{fontSize:'32px'}}><strong>Manfaat Bagi Surveyor</strong></h3>
             <Row className="m-t-30">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-two">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -258,7 +258,7 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-two">
                 <div className="table-row">
                     <div className="table-cell-one">
@@ -274,7 +274,7 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-two">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -290,7 +290,7 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-two">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -313,12 +313,12 @@ const LandingPage = () => {
               </Col>
               <Col md={12} lg={12}>
               <ul className="list-inline float-right m-t-15">
-                <li class="list-inline-item">
+                <li className="list-inline-item">
                   <Link to="/surveyor/register">
                   <Button variant="primary">DAFTAR SURVEYOR</Button>
                   </Link>
                 </li>
-                <li class="list-inline-item">
+                <li className="list-inline-item">
 
                   <Button variant="primary">SELENGKAPNYA</Button>{' '}
                 </li>
@@ -341,9 +341,9 @@ const LandingPage = () => {
               </Row>
             </Col>
             <Col md={4} lg={4}>
-            <h3 className="m-t-0 title-one"><strong>Manfaat Bagi Responden</strong></h3>
+            <h3 className="m-t-0" style={{fontSize:'32px'}}><strong>Manfaat Bagi Responden</strong></h3>
             <Row className="m-t-30">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-three">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -359,7 +359,7 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-three">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -375,7 +375,7 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-three">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -391,7 +391,7 @@ const LandingPage = () => {
             </Row>
 
             <Row className="m-t-15">
-              <Col>
+              <Col md={12} lg={12}>
               <div className="table-100 part-three">
                 <div className="table-row">
                   <div className="table-cell-one">
@@ -414,12 +414,12 @@ const LandingPage = () => {
               </Col>
               <Col md={12} lg={12} className="m-t-15">
               <ul className="list-inline float-left">
-                <li class="list-inline-item">
+                <li className="list-inline-item">
                   <Link to="/register">
                     <Button variant="primary">DAFTAR RESPONDEN</Button>
                   </Link>
                 </li>
-                <li class="list-inline-item">
+                <li className="list-inline-item">
                   <Button variant="primary">SELENGKAPNYA</Button>
                 </li>
               </ul>

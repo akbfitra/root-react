@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Questrial&display=swap";
+
 /* Margin top */
 .m-t-0{
   margin-top: 0px !important;
@@ -400,10 +400,6 @@
   padding-right: 30px !important;
 }
 /* End padding Right */
-body{
-    font-family: 'Questrial', sans-serif !important;
-}
-
 .title-one{
 	font-size: 36px !important;
 }
@@ -508,7 +504,7 @@ p{
 #header .main-header-two .part-one .table-cell-one{
     display: table-cell;
     vertical-align: middle;
-    height: 90px;
+    height: 80px;
     width: 80px;
     /* background-color: yellow; */
 }
@@ -516,16 +512,15 @@ p{
 #header .main-header-two .part-one .table-cell-two{
     display: table-cell;
     vertical-align: middle;
-    height: 90px;
-    /* background-color: red; */
+    height: 80px;
 }
 
 #header .main-header-two .part-two .table-cell-one{
     display: table-cell;
     vertical-align: middle;
     width: 100%;
-    height: 90px;
-    /* background-color: pink; */
+    height: 80px;
+    /* background-color: yellow; */
 }
 /* ======================================== end header ============================================= */
 /* ======================================== main-footer ============================================= */
@@ -692,8 +687,8 @@ p{
   padding-top: 60px;
   padding-bottom: 60px;
   /* background-image: url('/images/background1.png'); */
-  /* background-position: center center;
-  background-repeat: no-repeat; */
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 
