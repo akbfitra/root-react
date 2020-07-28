@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
 import { registerSurveyorProcess } from '../../../store/actions/userAction'
 import './css/style.css';
-import { Button, Modal, Tabs, Tab, Container, Row, Col, Nav, Form} from 'react-bootstrap';
+import { Button, Container, Row, Col, Form} from 'react-bootstrap';
 import { Footer } from '../../../components/footer';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
+
 const RegisterSurveyor = (props) => {
-  const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch()
+
+  let listKota = useSelector( state => state.tempat.tempat.kota)
 
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('')
@@ -25,6 +28,7 @@ const RegisterSurveyor = (props) => {
   const [ sumber, setSumber] = useState('')
   const [ tujuan, setTujuan ] = useState('')
   const [ ktp, setKtp] = useState('')
+  const [ listProvinsi, SetListProvinsi ] = useState([])
 
   const history = useHistory()
   const location = useLocation()
@@ -32,6 +36,24 @@ const RegisterSurveyor = (props) => {
   const processRegisterSurveyor = () => {
     dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location))
   }
+
+  function processSelectProvinsi(data){
+    setProvinsi(data)
+    let idProvinsi = listProvinsi.find( el => el.nama === data )
+    dispatch(dataKota(idProvinsi.id))
+  }
+  
+  function getDataProvinsi(){
+    dispatch(dataProvinsi())
+      .then( data => {
+        SetListProvinsi(data)
+      })
+  }
+  
+  useEffect(() => {
+    getDataProvinsi()
+  }, [])
+  
   return(
     <>
       <div id="general-header">
@@ -161,15 +183,31 @@ const RegisterSurveyor = (props) => {
 
                   <Form.Group>
                     <Form.Label>Provinsi Tempat Tinggal</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setProvinsi( e.target.value )}}>
-                      <option>-- Pilih --</option>
+                    <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }}>
+                      { 
+                        !listProvinsi 
+                        ? 
+                          <option>-- Pilih --</option>
+                        :
+                          listProvinsi.map( (data, i) => 
+                          <option key={data.id}>{data.nama}</option>
+                          )
+                      }
                     </Form.Control>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
                     <Form.Control as="select" onChange={ (e) => {setKota( e.target.value )}}>
-                      <option>-- Pilih --</option>
+                      { 
+                        !listKota 
+                        ? 
+                          <option>-- Pilih --</option>
+                        :
+                          listKota.map( (data, i) => 
+                          <option key={data.id}>{data.nama}</option>
+                          )
+                      }
                     </Form.Control>
                   </Form.Group>
 

@@ -15,6 +15,7 @@ import LandingPage from './container/home'
 import Login from './container/user/login'
 import Register from './container/user/register'
 import RegisterSurveyor from './container/user/registerSurveyor'
+import SuccessRegister from './container/user/succesRegister'
 
 import DashboardSurveyor from './container/surveyor/dashboard'
 import FormSurveyor from './container/surveyor/form'
@@ -49,6 +50,7 @@ const App = () => {
       <Route path = '/login' component = {Login}/>
       <Route path = '/surveyor/register' component = {RegisterSurveyor}/>
       <Route path = '/register' component = {Register}/>
+      <Route path = '/success' component = {SuccessRegister}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/liststudy' component = {ListStudy}/>
       <PrivateRouteSurveyor path='/surveyor/detailstudy/:studyId' component={DetailStudySurveyor} />

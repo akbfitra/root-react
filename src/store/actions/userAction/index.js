@@ -51,11 +51,11 @@ export const registerProcess = (email, password, name, phone, birth, provinsi, k
       method: 'POST',
       url: '/user/register/',
       data: {
-        email, password, name, phone, birth, provinsi: 'jateng', kota: 'semarang', pekerjaan, sumber, ktp
+        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, ktp
       }
     })
     if(data){
-      history.replace(location.state ? location.state.from : '/login')
+      history.replace(location.state ? location.state.from : '/success')
     }
 
   }
@@ -70,10 +70,10 @@ export const registerSurveyorProcess = (email, password, name, phone, birth, pro
       method: 'POST',
       url: '/user/register/surveyor',
       data: {
-        email, password, name, phone, birth, provinsi: 'jateng', kota: 'semarang', pekerjaan, sumber, tujuan, ktp
+        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp
       }
     })
-    history.replace(location.state ? location.state.from : '/login')
+    history.replace(location.state ? location.state.from : '/success')
   }
   catch(err){
     console.log(err.response)

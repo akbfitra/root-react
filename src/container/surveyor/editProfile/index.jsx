@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter,  Link, useHistory } from 'react-router-dom'
 
 import { dataProfileUser, editProfileSurveyor } from '../../../store/actions/userAction'
@@ -11,6 +11,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
+
+import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
 
 const EditProfileSurveyor = (props) => {
   const dispatch = useDispatch()
@@ -26,6 +28,9 @@ const EditProfileSurveyor = (props) => {
   const [ sumber, setSumber] = useState('')
   const [ ktp, setKtp] = useState('')
   const [ tujuan, setTujuan] = useState('')
+  const [ listProvinsi, SetListProvinsi ] = useState([])
+  
+  let listKota = useSelector( state => state.tempat.tempat.kota)
 
   const optionDataPekerjaan = ['Swasta', 'PNS/TNI/Polri', 'Sekolah/Kuliah ', 'Ibu Rumah Tangga', 'Lainnya']
   const optionSumber = ["Jaringan Pribadi", "Media Sosial", "Iklan Surat Kabar/TV", "Lainnya"]
@@ -39,7 +44,7 @@ const EditProfileSurveyor = (props) => {
           setDataProfile(data)
           setUsername(data.name)
           setPhone(data.phone)
-          // setBirth(data.birth)
+          setBirth(new Date(data.birth))
           setProvinsi(data.provinsi)
           setKota(data.kota)
           setPekerjaan(data.pekerjaan)
@@ -50,12 +55,29 @@ const EditProfileSurveyor = (props) => {
     }
   }
 
+  function processSelectProvinsi(data){
+    setProvinsi(data)
+    let idProvinsi = listProvinsi.find( el => el.nama == data )
+    dispatch(dataKota(idProvinsi.id))
+  }
+  
+  function getDataProvinsi(){
+    dispatch(dataProvinsi())
+      .then( data => {
+        SetListProvinsi(data)
+      })
+  }
+
+  useEffect(() => {
+    getDataProvinsi()
+  }, [])
+
+
   useEffect(() => {
     getDataProfile()
   })
 
   const handleProcessUpdate = () => {
-    console.log(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan)
     dispatch(editProfileSurveyor(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan, history))
   }
 
@@ -132,21 +154,47 @@ const EditProfileSurveyor = (props) => {
                   <Form.Group>
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Row>
-                          <Col><DatePicker selected={birth} onChange={date => setBirth(date)}/></Col>
+                      <Col>
+                        <DatePicker
+                          dateFormat="dd/MM/yyyy"
+                          peekNextMonth
+                          showMonthDropdown
+                          showYearDropdown  
+                          selected={birth} 
+                          onChange={date => setBirth(date)}/>
+                      </Col>
                     </Row>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Provinsi Tempat Tinggal</Form.Label>
-                    <Form.Control as="select" >
-                      <option>-- Pilih --</option>
+                    <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }}>
+                      <option>{ dataProfile.provinsi } </option>
+                        { 
+                          !listProvinsi 
+                          ? 
+                            <option>-- Pilih --</option>
+                          :
+                            listProvinsi.map( (data, i) => 
+                            <option key={data.id}>{data.nama}</option>
+                            )
+                        }
                     </Form.Control>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
-                    <Form.Control as="select" >
-                      <option>-- Pilih --</option>
+                    <Form.Control as="select" onChange={ (e) => {setKota( e.target.value )}}>
+                      <option> { dataProfile.kota } </option>
+                        { 
+                          !listKota 
+                          ? 
+                            <option>-- Pilih --</option>
+                          :
+                            listKota.map( (data, i) => 
+                            <option key={data.id}>{data.nama}</option>
+                            )
+                        }
                     </Form.Control>
                   </Form.Group>
                   

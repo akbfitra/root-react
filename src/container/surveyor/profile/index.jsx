@@ -65,7 +65,7 @@ const ProfileSurveyor = (props) => {
               </Row>
               <Row>
                 <Col>
-                      <h3 className="title-two  m-t-15 text-center"><strong>Nama Lengkap</strong></h3>
+                      <h3 className="title-two  m-t-15 text-center"><strong> {dataProfile.name} </strong></h3>
                 </Col>
               </Row>
 
