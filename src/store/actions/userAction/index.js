@@ -46,7 +46,7 @@ export const CekLogin = () => {
 
 export const registerProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp ) => async dispatch => {
   try{
-    console.log(email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber,ktp, history, location)
+    // console.log(email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber,ktp, history, location)
     const { data } = await instance({
       method: 'POST',
       url: '/user/register/',
@@ -54,7 +54,9 @@ export const registerProcess = (email, password, name, phone, birth, provinsi, k
         email, password, name, phone, birth, provinsi: 'jateng', kota: 'semarang', pekerjaan, sumber, ktp
       }
     })
-    history.replace(location.state ? location.state.from : '/login')
+    if(data){
+      history.replace(location.state ? location.state.from : '/login')
+    }
 
   }
   catch(err){

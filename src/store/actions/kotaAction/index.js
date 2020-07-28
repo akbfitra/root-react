@@ -1,15 +1,14 @@
 import axios from 'axios'
+import { instance } from '../../../config/axios'
 
 export const dataProvinsi = () => async dispatch => {
   try{
-    const { data } = await axios({
+    const { data } = await instance({
       method: 'GET',
-      url: 'https://api.rajaongkir.com/starter/province',
-      headers:{key: '52142a0b9fca3488f5b0a3ee23851eb7'}
+      url: '/user/provinsi'
     })
-    console.log(data)
-    dispatch({type: 'DATA_PROVINSI', payload: data.rajaongkir.results})
-    return data.rajaongkir.results
+    dispatch({type: 'DATA_PROVINSI', payload: data.provinsi})
+    return data.provinsi
   }
   catch(err){
     console.log(err.response)
@@ -18,9 +17,9 @@ export const dataProvinsi = () => async dispatch => {
 
 export const dataKota = (idProvinsi) => async dispatch => {
   try{
-    const { data } = await axios({
+    const { data } = await instance({
       method: 'GET',
-      url: `https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${idProvinsi}`
+      url: `/user/kota/${idProvinsi}`
     })
     dispatch({type: 'DATA_KOTA', payload: data.kota_kabupaten})
   }

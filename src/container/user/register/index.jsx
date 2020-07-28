@@ -34,6 +34,7 @@ const Register = (props) => {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = event => {
+    event.preventDefault()
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -44,7 +45,6 @@ const Register = (props) => {
   };
 
   const processRegister = () => {
-    console.log('aaaaa')
     dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp))
   }
 
