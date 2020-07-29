@@ -7,7 +7,7 @@ import { Button, Container, Row, Col, Tab, Nav, Accordion, Card } from 'react-bo
 import Slider from "react-slick";
 import ReactPlayer from 'react-player'
 
-import { getDataAllUser, getFaqHome } from '../../store/actions/userAction'
+import { getDataAllUser, getFaqHome, getPerusahaanHome } from '../../store/actions/userAction'
 import { Footer } from '../../components/footer'
 
 // import CanvasJSReact from '../../assets/canvasjs.react';
@@ -17,6 +17,7 @@ const LandingPage = () => {
 
   const [ allUser, setAllUser ] = useState([])
   const [ faqs, setFaqs ] = useState([])
+  const [ perusahaanImg, setPerusahaanImg ] = useState([])
 
   let dataResponden = 0
   let dataSurveyor = 0
@@ -45,6 +46,13 @@ const LandingPage = () => {
       })
   }
 
+  const getDataPerusahaan = () => {
+    dispatch(getPerusahaanHome())
+      .then( data => {
+        setPerusahaanImg(data)
+      })
+  }
+
   useEffect(() => {
     getAllUser()
   }, [])
@@ -52,6 +60,12 @@ const LandingPage = () => {
   useEffect(() => {
     getDataFaq()
   }, [])
+
+  useEffect(() => {
+    getDataPerusahaan()
+  }, [])
+
+  console.log(perusahaanImg)
 
 
   if(allUser){
@@ -186,11 +200,17 @@ const LandingPage = () => {
           <Row className="m-t-30">
             <Col md={12} lg={12}>
               <Slider {...settings}>
-                <div>
-                  <img src="images/TJD.png"></img>
-                </div>
+                {
+                  perusahaanImg.map((data, i) => {
+                    return(
+                      <div key={i}>
+                        <img src={`http://backoffice.survplus.id/foto/${data.icon}`}></img>
+                      </div>
+                    )
+                  })
+                }
 
-                <div>
+                {/* <div>
                   <img src="images/HRV.png"></img>
                 </div>
 
@@ -216,7 +236,7 @@ const LandingPage = () => {
 
                 <div>
                   <img src="images/HRV.png"></img>
-                </div>
+                </div> */}
               </Slider>
             </Col>
           </Row>

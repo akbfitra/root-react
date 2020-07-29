@@ -167,3 +167,16 @@ export const getFaqHome = () => async dispatch => {
     console.log(err.response)
   }
 }
+
+export const getPerusahaanHome = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: '/perusahaan'
+    })
+    return data
+  }
+  catch(err){
+    console.log(err.response)
+  }
+}
