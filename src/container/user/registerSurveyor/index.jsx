@@ -10,10 +10,14 @@ import { Footer } from '../../../components/footer';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+
+
 import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
 
 const RegisterSurveyor = (props) => {
   const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
 
   let listKota = useSelector( state => state.tempat.tempat.kota)
 
@@ -21,7 +25,7 @@ const RegisterSurveyor = (props) => {
   const [ password, setPassword] = useState('')
   const [ username, setUsername] = useState('')
   const [ phone, setPhone] = useState('')
-  const [ birth, setBirth] = useState(new Date())
+  const [ birth, setBirth] = useState('')
   const [ provinsi, setProvinsi] = useState('')
   const [ kota, setKota] = useState('')
   const [ pekerjaan, setPekerjaan] = useState('')
@@ -29,13 +33,23 @@ const RegisterSurveyor = (props) => {
   const [ tujuan, setTujuan ] = useState('')
   const [ ktp, setKtp] = useState('')
   const [ listProvinsi, SetListProvinsi ] = useState([])
-
-  const history = useHistory()
-  const location = useLocation()
+  const [validated, setValidated] = useState(false);
+  
 
   const processRegisterSurveyor = () => {
     dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location))
   }
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    processRegisterSurveyor()
+    setValidated(true);
+  };
 
   function processSelectProvinsi(data){
     setProvinsi(data)
@@ -105,51 +119,69 @@ const RegisterSurveyor = (props) => {
 
               <Row>
                 <Col>
-                <Form 
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    processRegisterSurveyor()
-                  }}
+                <Form
+                  noValidate validated={validated} onSubmit={ handleSubmit }
                 >
                   <Form.Group>
                     <Form.Label>Nama Lengkap</Form.Label>
-                    <Form.Control type="text" placeholder="" onChange={ (e) => {setUsername( e.target.value )}}/>
+                    <Form.Control type="text" placeholder="" required onChange={ (e) => {setUsername( e.target.value )}}/>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Nama Lengkap Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="" onChange={ (e) => {setPassword( e.target.value )}}/>
+                    <Form.Control type="password" placeholder="" required onChange={ (e) => {setPassword( e.target.value )}}/>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Password Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Konfirmasi Password</Form.Label>
-                    <Form.Control type="password" placeholder="" onChange={ (e) => {setPassword( e.target.value )}}/>
+                    <Form.Control type="password" placeholder="" required onChange={ (e) => {setPassword( e.target.value )}}/>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Konfirmasi Password Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="" onChange={ (e) => {setEmail( e.target.value )}}/>
+                    <Form.Control type="email" placeholder="" required onChange={ (e) => {setEmail( e.target.value )}}/>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Email Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
                   
                   <Form.Group>
                     <Form.Label>No. Telepon</Form.Label>
-                    <Form.Control type="text" placeholder="" onChange={ (e) => {setPhone (e.target.value )}}/>
+                    <Form.Control type="text" placeholder="" required onChange={ (e) => {setPhone (e.target.value )}}/>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Nomor Telepon Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Tujuan Survey (bisa pilih lebih dari satu)</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setTujuan( e.target.value )}}>
-                      <option>-- Pilih --</option>
-                      <option>Keperluan Pribadi</option>
-                      <option>Keperluan Pekerjaan</option>
-                      <option>Keperluan Tugas Kuliah/Pendidikan</option>
-                      <option>Lainnya</option>
+                    <Form.Control as="select" onChange={ (e) => {setTujuan( e.target.value )}} required>
+                      <option value="">-- Pilih --</option>
+                      <option value="Keperluan Pribadi">Keperluan Pribadi</option>
+                      <option value="Keperluan Pekerjaan" >Keperluan Pekerjaan</option>
+                      <option value="Keperluan Tugas Kuliah/Pendidikan">Keperluan Tugas Kuliah/Pendidikan</option>
+                      <option value="Lainnya">Lainnya</option>
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Tujuan Survey Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>No. Identitas</Form.Label>
-                    <Form.Control type="number" placeholder="" onChange={ (e) => {setKtp( e.target.value )}}/>
+                    <Form.Control type="number" placeholder="" required onChange={ (e) => {setKtp( e.target.value )}}/>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Nomor Identitas Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
@@ -170,61 +202,75 @@ const RegisterSurveyor = (props) => {
 
                   <Form.Group>
                     <Form.Label>Jenis Pekerjaan</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setPekerjaan( e.target.value )}}>
-                      <option>-- Pilih --</option>
-                      <option>Swasta</option>
-                      <option>PNS/TNI/Polri</option>
-                      <option>Sedang mencari pekerjaan tetap</option>
-                      <option>Sekola/Kuliah</option>
-                      <option>Ibu Rumah Tangga</option>
-                      <option>Lainnya</option>
+                    <Form.Control as="select" onChange={ (e) => {setPekerjaan( e.target.value )}} required>
+                      <option value="">-- Pilih --</option>
+                      <option value="Swasta">Swasta</option>
+                      <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
+                      <option value="Sedang mencari pekerjaan tetap">Sedang mencari pekerjaan tetap</option>
+                      <option value="Sekolah/Kuliah">Sekolah/Kuliah</option>
+                      <option value="Ibu Rumah Tangga">Ibu Rumah Tangga</option>
+                      <option value="Lainnya">Lainnya</option>
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Jenis Pekerjaan Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Provinsi Tempat Tinggal</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }}>
+                    <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }} required>
+                      <option value="">-- Pilih --</option>
                       { 
                         !listProvinsi 
                         ? 
                           <option>-- Pilih --</option>
                         :
                           listProvinsi.map( (data, i) => 
-                          <option key={data.id}>{data.nama}</option>
+                          <option key={data.id} value={`${data.nama}`}>{data.nama}</option>
                           )
                       }
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Provinsi Tempat Tinggal Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setKota( e.target.value )}}>
+                    <Form.Control as="select" onChange={ (e) => {setKota( e.target.value )}} required>
+                      <option value="">-- Pilih --</option>
                       { 
                         !listKota 
                         ? 
-                          <option>-- Pilih --</option>
+                          <option value="">-- Pilih --</option>
                         :
                           listKota.map( (data, i) => 
-                          <option key={data.id}>{data.nama}</option>
+                          <option key={data.id} value={`${data.nama}`}>{data.nama}</option>
                           )
                       }
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Kota Tempat Tinggal Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setSumber( e.target.value )}}>
-                      <option>-- Pilih --</option>
-                      <option>Jaringan Pribadi</option>
-                      <option>Media Sosial</option>
-                      <option>Iklan Surat Kabar/TV</option>
-                      <option>Lainnya</option>
+                    <Form.Control as="select" onChange={ (e) => {setSumber( e.target.value )}} required>
+                      <option value="">-- Pilih --</option>
+                      <option value="Jaringan Pribadi">Jaringan Pribadi</option>
+                      <option value="Media Sosial">Media Sosial</option>
+                      <option value="Iklan Surat Kabar/TV">Iklan Surat Kabar/TV</option>
+                      <option value="Lainnya">Lainnya</option>
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi dimana Anda mengetahaui survplus
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Check type="checkbox" label="Saya telah membaca, memahami, dan menyetujui Syarat dan Ketentuan bagi Surveyor" />
-                    <Form.Check type="checkbox" label="Saya bersedia menerima informasi promosi dan penawaran dari suRvplus terkait dengan layanan survey online dan lainnya" />
+                    <Form.Check type="checkbox" required label="Saya telah membaca, memahami, dan menyetujui Syarat dan Ketentuan bagi Surveyor" />
+                    <Form.Check type="checkbox" required label="Saya bersedia menerima informasi promosi dan penawaran dari suRvplus terkait dengan layanan survey online dan lainnya" />
                   </Form.Group>
                   
                   <Row>

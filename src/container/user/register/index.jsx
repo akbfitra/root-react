@@ -212,13 +212,13 @@ const Register = (props) => {
                     as="select"
                     required 
                     onChange={ (e) => {setPekerjaan( e.target.value )}}>
-                      <option>-- Pilih --</option>
-                      <option>Swasta</option>
-                      <option>PNS/TNI/Polri</option>
-                      <option>Sedang mencari pekerjaan tetap</option>
-                      <option>Sekolah/Kuliah</option>
-                      <option>Ibu Rumah Tangga</option>
-                      <option>Lainnya</option>
+                      <option value="">-- Pilih --</option>
+                      <option value="Swasta">Swasta</option>
+                      <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
+                      <option value="Sedang mencari pekerjaan tetap">Sedang mencari pekerjaan tetap</option>
+                      <option value="Sekolah/Kuliah">Sekolah/Kuliah</option>
+                      <option value="Ibu Rumah Tangga">Ibu Rumah Tangga</option>
+                      <option value="Lainnya">Lainnya</option>
                     </Form.Control>
                     <Form.Control.Feedback type="invalid">
                       Tolong Isi Jenis Pekerjaan
@@ -227,33 +227,40 @@ const Register = (props) => {
 
                   <Form.Group>
                     <Form.Label>Provinsi Tempat Tinggal</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }}>
+                    <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }} required>
+                      <option value="">-- Pilih --</option>
                       { 
                         !listProvinsi 
                         ? 
-                          <option>-- Pilih --</option>
+                          <option value="">-- Pilih --</option>
                         :
                           listProvinsi.map( (data, i) => 
-                          <option key={data.id}>{data.nama}</option>
+                          <option key={data.id} value={`${data.nama}`}>{data.nama}</option>
                           )
                       }
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Provinsi tempat Tinggal Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Kabupaten/Kota Tempat Tinggal</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setKota( e.target.value )}}>
-                      
+                    <Form.Control as="select" onChange={ (e) => {setKota( e.target.value )}}required>
+                      <option value="">-- Pilih --</option>
                       { 
                         !listKota 
                         ? 
-                          <option>-- Pilih --</option>
+                          <option value="">-- Pilih --</option>
                         :
                           listKota.map( (data, i) => 
-                          <option key={data.id}>{data.nama}</option>
+                          <option key={data.id} value={`${data.nama}`}>{data.nama}</option>
                           )
                       }
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Kota tempat Tinggal Anda
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   {/* <Form.Group>
@@ -265,13 +272,16 @@ const Register = (props) => {
 
                   <Form.Group>
                     <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setSumber( e.target.value )}}>
-                      <option>-- Pilih --</option>
-                      <option>Jaringan Pribadi</option>
-                      <option>Media Sosial</option>
-                      <option>Iklan Surat Kabar/TV</option>
-                      <option>Lainnya</option>
+                    <Form.Control as="select" onChange={ (e) => {setSumber( e.target.value )}} required>
+                      <option value="">-- Pilih --</option>
+                      <option value="Jaringan Pribadi">Jaringan Pribadi</option>
+                      <option value="Media Sosia">Media Sosial</option>
+                      <option value="Iklan Surat Kabar/TV">Iklan Surat Kabar/TV</option>
+                      <option value="Lainnya">Lainnya</option>
                     </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Bagaimana Anda Mengetahui Survplus
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
