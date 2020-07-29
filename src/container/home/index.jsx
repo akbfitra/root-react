@@ -152,8 +152,8 @@ const LandingPage = () => {
                   <div className="table-row">
                     <div className="table-cell-one">
                       <h3 className="title-one"><strong>SuRvplus</strong></h3>
-                      <h4 className="m-t-15">Survey online dengan manfaat “plus-plus”</h4>
-                      <h4 className="m-t-15">SuRvplus merupakan portal penyelenggara survey online yang hadir untuk memenuhi tantangan kelaziman baru “the new normal”. Tanpa perlu kontak fisik antara surveyor dan responden. Semuanya bisa dilakukan #dirumahaja.</h4>
+                      <h4 className="m-t-15">Survey online dengan manfaat “plus-plus"</h4>
+                      <h4 className="m-t-15">SuRvplus merupakan portal penyelenggara survey online yang hadir untuk memenuhi tantangan kelaziman baru “the new normal". Tanpa perlu kontak fisik antara surveyor dan responden. Semuanya bisa dilakukan #dirumahaja.</h4>
                       <h4 className="m-t-15">SuRvplus memberikan banyak manfaat, antara lain surveyor akan mendapatkan responden yang tervalidasi dengan cepat, sedangkan responden bisa mendapatkan tambahan penghasilan.</h4>
                     </div>
                   </div>
@@ -482,12 +482,18 @@ const LandingPage = () => {
               </Row>
               <Row className="m-t-30">
                 <Col md={12} lg={12}>
-                  <ReactPlayer
-                    url = 'https://www.youtube.com/watch?v=GdKkfCOxVcc'
+                  {/* <ReactPlayer
+                    url = 'https://www.youtube.com/watch?v=Gtg-gXGF85w'
                     width='100%'
-                    height='100%'
-                  />
-                  {/* <img src="https://via.placeholder.com/670" style={{ width: "100%" }}></img> */}
+                    height='500px'
+                  /> */}
+
+                  <iframe width="100%" height="500" src="https://www.youtube.com/embed/Gtg-gXGF85w?playlist=Gtg-gXGF85w&loop=1&autoplay=1&controls=0" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+
+
+{/* <iframe width="420" height="315"
+src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+</iframe> */}
                 </Col>
               </Row>
               
@@ -512,7 +518,7 @@ const LandingPage = () => {
                           </Accordion.Toggle>
                             <Accordion.Collapse eventKey={`${i}`}>
                               <Card.Body>
-                                <div dangerouslySetInnerHTML={{__html: data.pertanyaan}}/>
+                                <div dangerouslySetInnerHTML={{__html: data.jawaban}}/>
                               </Card.Body>
                             </Accordion.Collapse>
                           </Card>
