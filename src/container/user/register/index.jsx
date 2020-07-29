@@ -263,13 +263,6 @@ const Register = (props) => {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  {/* <Form.Group>
-                    <Form.Label>Ketertarikan</Form.Label>
-                    <Form.Control as="select">
-                      <option>-- Pilih --</option>
-                    </Form.Control>
-                  </Form.Group> */}
-
                   <Form.Group>
                     <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
                     <Form.Control as="select" onChange={ (e) => {setSumber( e.target.value )}} required>
@@ -283,8 +276,70 @@ const Register = (props) => {
                       Tolong Isi Bagaimana Anda Mengetahui Survplus
                     </Form.Control.Feedback>
                   </Form.Group>
-
+                  
                   <Form.Group>
+                    <Form.Label>Ketertarikan</Form.Label>
+                    <Row>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col>
+                    </Row>
+                    
+                    
+                  </Form.Group>
+
+                  <Row>
+                    <Col md={12} lg={12}>
+                    <hr/>
+                    </Col>
+                  </Row>
+
+                  <Form.Group className="m-b-0">
                     <Form.Check
                       type="checkbox" 
                       label="Saya telah membaca, memahami, dan menyetujui Syarat dan Ketentuan bagi Responden"
