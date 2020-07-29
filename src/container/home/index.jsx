@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom';
+
 import './css/style.css';
 import { Button, Container, Row, Col, Tab, Nav, Accordion, Card } from 'react-bootstrap';
 import Slider from "react-slick";
+import ReactPlayer from 'react-player'
 
-
+import { getDataAllUser, getFaqHome } from '../../store/actions/userAction'
 import { Footer } from '../../components/footer'
 
-import CanvasJSReact from '../../assets/canvasjs.react';
-//var CanvasJSReact = require('./canvasjs.react');
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+// import CanvasJSReact from '../../assets/canvasjs.react';
 
 const LandingPage = () => {
+  const dispatch = useDispatch()
+
+  const [ allUser, setAllUser ] = useState([])
+  const [ faqs, setFaqs ] = useState([])
+
+  let dataResponden = 0
+  let dataSurveyor = 0
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -23,50 +31,82 @@ const LandingPage = () => {
     autoplaySpeed: 2000
   };
 
-  const settings_testi = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 6,
-    vertical: true,
-    arrows: false,
-    autoplay: true,
-    // autoplaySpeed: 000,
-  };
+  const getAllUser = () => {
+    dispatch(getDataAllUser())
+      .then( data => {
+        setAllUser(data)
+      })
+  }
 
-  const options = {
-    height:400,
-    // title: {
-    //   text: "Basic Column Chart in React"
-    // },
-    data: [{				
-              type: "column",
-              dataPoints: [
-                  { label: "Laki-Laki",  y: 10  },
-                  { label: "Perempuan", y: 15  }
-              ]
-     }]
-    }
+  const getDataFaq = () => {
+    dispatch(getFaqHome())
+      .then( data => {
+        setFaqs(data)
+      })
+  }
 
-    const options2 = {
-      width:825,
-      height:400,
-      // title: {
-      //   text: "Basic Column Chart in React"
-      // },
-      data: [{				
-                type: "column",
-                dataPoints: [
-                    { label: "Swasta",  y: 10  },
-                    { label: "PNS/TNI/Polri", y: 15  },
-                    { label: "Sedang mencari pekerjaan tetep", y: 25  },
-                    { label: "Sekolah/Kuliah",  y: 30  },
-                    { label: "Ibu Rumah Tangga",  y: 28  },
-                    { label: "Lainnya",  y: 28  }
-                ]
-       }]
-      }
+  useEffect(() => {
+    getAllUser()
+  }, [])
+
+  useEffect(() => {
+    getDataFaq()
+  }, [])
+
+
+  if(allUser){
+    dataResponden = allUser.filter(el => el.role === 'responden').length
+    dataSurveyor = allUser.filter(el => el.role === 'surveyor').length
+  }
+
+  // //var CanvasJSReact = require('./canvasjs.react');
+  // var CanvasJS = CanvasJSReact.CanvasJS;
+  // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+  // const settings_testi = {
+  //   dots: false,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 6,
+  //   slidesToScroll: 6,
+  //   vertical: true,
+  //   arrows: false,
+  //   autoplay: true,
+  //   // autoplaySpeed: 000,
+  // };
+
+  // const options = {
+  //   height:400,
+  //   // title: {
+  //   //   text: "Basic Column Chart in React"
+  //   // },
+  //   data: [{				
+  //             type: "column",
+  //             dataPoints: [
+  //                 { label: "Laki-Laki",  y: 10  },
+  //                 { label: "Perempuan", y: 15  }
+  //             ]
+  //    }]
+  //   }
+
+  //   const options2 = {
+  //     width:825,
+  //     height:400,
+  //     // title: {
+  //     //   text: "Basic Column Chart in React"
+  //     // },
+  //     data: [{				
+  //               type: "column",
+  //               dataPoints: [
+  //                   { label: "Swasta",  y: 10  },
+  //                   { label: "PNS/TNI/Polri", y: 15  },
+  //                   { label: "Sedang mencari pekerjaan tetep", y: 25  },
+  //                   { label: "Sekolah/Kuliah",  y: 30  },
+  //                   { label: "Ibu Rumah Tangga",  y: 28  },
+  //                   { label: "Lainnya",  y: 28  }
+  //               ]
+  //      }]
+  //     }
 
   return(
     <>
@@ -308,7 +348,7 @@ const LandingPage = () => {
             <Row className="m-t-15">
               <Col md={12} lg={12}>
                 <div style={{width:"90%", backgroundColor:"#007bff",padding:"10px 15px",borderRadius:".25rem"}} className="float-right">
-                  <h5 style={{color:"#fff"}} className="text-right">Jumlah surveyor saat ini : 0000</h5>
+                  <h5 style={{color:"#fff"}} className="text-right">Jumlah surveyor saat ini : {dataSurveyor} </h5>
                 </div>
               </Col>
               <Col md={12} lg={12}>
@@ -363,7 +403,7 @@ const LandingPage = () => {
               <div className="table-100 part-three">
                 <div className="table-row">
                   <div className="table-cell-one">
-                   <img src="images/decor14.png" />
+                    <img src="images/decor14.png" />
                   </div>
 
                   <div className="table-cell-two">
@@ -409,7 +449,7 @@ const LandingPage = () => {
             <Row className="m-t-15">
               <Col md={12} lg={12}>
                 <div style={{width:"90%", backgroundColor:"#007bff",padding:"10px 15px",borderRadius:".25rem"}}>
-                  <h5 style={{color:"#fff"}}>Jumlah surveyor saat ini : 0000</h5>
+                  <h5 style={{color:"#fff"}}>Jumlah responden saat ini : {dataResponden} </h5>
                 </div>
               </Col>
               <Col md={12} lg={12} className="m-t-15">
@@ -442,7 +482,12 @@ const LandingPage = () => {
               </Row>
               <Row className="m-t-30">
                 <Col md={12} lg={12}>
-                  <img src="https://via.placeholder.com/670" style={{ width: "100%" }}></img>
+                  <ReactPlayer
+                    url = 'https://www.youtube.com/watch?v=GdKkfCOxVcc'
+                    width='100%'
+                    height='100%'
+                  />
+                  {/* <img src="https://via.placeholder.com/670" style={{ width: "100%" }}></img> */}
                 </Col>
               </Row>
               
@@ -457,17 +502,24 @@ const LandingPage = () => {
               <Row className="m-t-30">
                 <Col md={12} lg={12}>
                   <Accordion>
-                    <Card>
-                      <Accordion.Toggle as={Card.Header} eventKey="0" style={{ cursor: "pointer", backgroundColor:"#1f59bb", color:"#fff" }}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat, id!
-                    </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="0">
-                        <Card.Body>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium pariatur accusantium ex inventore adipisci. Autem, iusto? Libero ipsam minima doloribus fugiat, ex, exercitationem cumque error omnis, veritatis id blanditiis asperiores animi adipisci eius. Totam beatae ullam id veritatis fugiat voluptates labore facilis. Repellat dolorem rem vitae atque, nihil quam explicabo.
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                    <Card>
+                    {
+                      faqs.map( (data, i) => {
+                        return(
+                          <Card key={i}>
+                            <Accordion.Toggle as={Card.Header} eventKey={`${i}`} style={{ cursor: "pointer", backgroundColor:"#1f59bb", color:"#fff" }}>
+                            <div dangerouslySetInnerHTML={{__html: data.pertanyaan}}/>
+                            
+                          </Accordion.Toggle>
+                            <Accordion.Collapse eventKey={`${i}`}>
+                              <Card.Body>
+                                <div dangerouslySetInnerHTML={{__html: data.pertanyaan}}/>
+                              </Card.Body>
+                            </Accordion.Collapse>
+                          </Card>
+                        )
+                      })
+                    }
+                    {/* <Card>
                       <Accordion.Toggle as={Card.Header} eventKey="1" style={{ cursor: "pointer", backgroundColor: "#1f59bb", color: "#fff" }}>
                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, inventore.
                     </Accordion.Toggle>
@@ -498,7 +550,7 @@ const LandingPage = () => {
                           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga minima libero ullam sunt! Commodi harum repellat perspiciatis consequuntur aliquam velit.
                         </Card.Body>
                       </Accordion.Collapse>
-                    </Card>
+                    </Card> */}
                   </Accordion>
                 </Col>
               </Row>

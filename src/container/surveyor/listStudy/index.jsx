@@ -14,7 +14,6 @@ import { FIND_STUDY_USER } from '../../../store/actions/surveyFormAction'
 const ListStudy = () => {
   const dispatch = useDispatch()
   const [ dataSurvey , setDataSurvey ] = useState([])
-  const [ dataQuestions, setDataQuestions ] = useState([])
   
   useEffect( () => {
     if(!dataSurvey.length){

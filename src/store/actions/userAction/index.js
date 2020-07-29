@@ -141,3 +141,29 @@ export const editProfileSurveyor = (username, phone, birth, provinsi, kota, peke
     console.log(err.response)
   }
 }
+
+export const getDataAllUser = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:'user/alluser'
+    })
+    return data
+  }
+  catch(err){
+    console.log(err.response)
+  }
+}
+
+export const getFaqHome = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: '/faq'
+    })
+    return data
+  }
+  catch(err){
+    console.log(err.response)
+  }
+}

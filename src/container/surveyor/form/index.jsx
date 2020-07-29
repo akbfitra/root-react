@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
+import { reduxForm, Field, getFormValues } from 'redux-form';
 import { required } from 'redux-form-validators'
 
 import './css/style.css';
@@ -20,10 +20,8 @@ import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
 import { SAVE_STUDY } from '../../../store/actions/surveyFormAction'
 import { getDataQuestions } from '../../../store/actions/questionsAction'
-import { dataCategory, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
+import { dataCategory } from '../../../store/actions/aboutUsAction'
 import { renderDatePicker } from '../../../components/inputForm'
-
-
 
 
 const FormSurveyor = (props) => {
@@ -37,7 +35,6 @@ const FormSurveyor = (props) => {
   }, [dispatch])
 
   let listQuestions = props.survey
-  const selector = formValueSelector('surveyForm')
 
   const addQuestion = () => {
     dispatch(questionActions.addNewQuestion(listQuestions._id))
@@ -63,7 +60,7 @@ const FormSurveyor = (props) => {
   })
 
   const processSelectCategory = (pilihCategory) => {
-    let idCategory = category.find( el => el.name == pilihCategory )
+    let idCategory = category.find( el => el.name === pilihCategory )
     dispatch(getDataQuestions(idCategory._id))
       .then( data => {
         setDataQuestions(data)
@@ -245,6 +242,7 @@ const FormSurveyor = (props) => {
                                     <div className="box-answer">
                                     <Form.Group style={{width:'100%'}}>
                                       <Form.Control as="select" >
+                                        <option>Pilih..</option>
                                         { data.listAnswers.map((answer, i) => {
                                             return(
                                               <option key={i}>{ answer }</option>

@@ -1,7 +1,7 @@
 import update from 'immutability-helper'
 import { bindFormDataToState } from '../../utils/formUtils'
 
-const questionForm = (state = {} , action) => {
+const kriteriaForm = (state = {} , action) => {
   switch( action.type ){
     
     case 'ADD_NEW_QUESTION': {
@@ -13,20 +13,20 @@ const questionForm = (state = {} , action) => {
       });
     }
     
-    case 'QUESTION_CHANGE_TYPE':{
-      const {
-        questionId,
-        type
-      } = action.payload;
-      return update(state, {
-        [questionId]: {
-          $merge: {
-            answerOptions: [],
-            type
-          }
-        }
-      });
-    } 
+    // case 'QUESTION_CHANGE_TYPE':{
+    //   const {
+    //     questionId,
+    //     type
+    //   } = action.payload;
+    //   return update(state, {
+    //     [questionId]: {
+    //       $merge: {
+    //         answerOptions: [],
+    //         type
+    //       }
+    //     }
+    //   });
+    // } 
 
     case 'ANSWER_OPTION_ADD_NEW': {
       const {
@@ -70,4 +70,4 @@ const questionForm = (state = {} , action) => {
   }
 }
 
-export default questionForm
+export default kriteriaForm

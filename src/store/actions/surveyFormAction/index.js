@@ -24,7 +24,8 @@ export const INIT_QUESTION = (dispatch) => {
         tanggalMulai: '',
         tanggalAkhir: '',
         questions: [],
-        inputed: false
+        inputed: false,
+        kriteria:[]
       }
     })
     
@@ -42,8 +43,6 @@ export const SAVE_STUDY = (surveyFormData, history) => async (dispatch, getState
     const state = getState()
     const survey = getDenormalizedSurvey(state)
   
-    // console.log(getState())
-    // console.log(getDenormalizedSurvey(getState()))
     const { data } = await instance({
       method: 'POST',
       url:'/project',
