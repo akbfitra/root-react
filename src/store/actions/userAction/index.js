@@ -26,7 +26,7 @@ export const loginProcess = (email, password, history, location)  => async dispa
     }
   }
   catch(err){
-    console.log(err.response)
+    throw err.response.data.message
   }
 }
 

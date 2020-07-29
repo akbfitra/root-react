@@ -3,27 +3,45 @@ import { useDispatch } from 'react-redux'
 
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
+
 import { loginProcess } from '../../../store/actions/userAction'
 
 import './css/style.css';
-import { Button, Container, Row, Col, Form} from 'react-bootstrap';
+import { Button, Container, Row, Col, Form, Alert} from 'react-bootstrap';
 
 import { Footer } from '../../../components/footer'
 
 const Login = (props) => {
   const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('') 
 
-  const history = useHistory()
-  const location = useLocation()
+  const [ errs, setErrs] = useState('') 
+  const [show, setShow] = useState(false);
+
 
   const processLogin = () => {
     dispatch(loginProcess(email, password, history, location))
+      .then(data => {
+        
+      })
+      .catch(err => {
+        setErrs(err)
+        setShow(true)
+      })
   }
+
+  // if(errs){
+  //   setShow(true)
+  // } else {
+  //   setShow(false)
+  // }
 
   return(
     <>
+      
       <div id="general-header">
         <div className="main-header-one">
           <Container>
@@ -75,6 +93,15 @@ const Login = (props) => {
                       <Col><h3 className="title-one"><strong>Login</strong></h3></Col>
                     </Row>
 
+                    <>
+                      <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
+                        <Alert.Heading>Error?!</Alert.Heading>
+                        <p>
+                          { errs }
+                        </p>
+                      </Alert>
+                    </>
+
                     <Row className="m-t-30">
                       <Col md={8} lg={8}>
                       <Form onSubmit={(e) => {
@@ -82,13 +109,13 @@ const Login = (props) => {
                           processLogin()
                         }}>
                         <Form.Group >
-                          <Form.Label>Username</Form.Label>
-                          <Form.Control type="text" placeholder="Username" onChange={ (e) => {setEmail( e.target.value )}}/>
+                          <Form.Label>Email</Form.Label>
+                          <Form.Control type="text" required placeholder="Username" onChange={ (e) => {setEmail( e.target.value )}}/>
                         </Form.Group>
 
                         <Form.Group>
                           <Form.Label>Password</Form.Label>
-                          <Form.Control type="password" placeholder="Password" onChange={ (e) => {setPassword( e.target.value )}}/>
+                          <Form.Control type="password" required placeholder="Password" onChange={ (e) => {setPassword( e.target.value )}}/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                           Login
