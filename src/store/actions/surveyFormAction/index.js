@@ -145,3 +145,35 @@ export const POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN = (answer, questionId, proje
   }
 }
 
+export const PUSH_USER_COMPLETED_TO_STUDY = (projectId, history) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'PUT',
+      url: `/project/pushuser/${projectId}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    history.push('/responden/submission')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const COMPLETED_USER = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: `/project/completed`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+

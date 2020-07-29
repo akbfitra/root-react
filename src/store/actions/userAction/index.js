@@ -96,7 +96,6 @@ export const dataProfileUser = () => async dispatch => {
       method: 'GET',
       url: `user/profile/${id}`
     })
-    console.log(data)
     return data
   }
   catch(err){

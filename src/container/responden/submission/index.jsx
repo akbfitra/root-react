@@ -10,11 +10,12 @@ import moment from 'moment'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
-import { FIND_STUDY_WITH_RESPONDEN} from '../../../store/actions/surveyFormAction'
+import { FIND_STUDY_WITH_RESPONDEN, COMPLETED_USER} from '../../../store/actions/surveyFormAction'
 
 const SubmissionResponden = (props) => {
   const dispatch = useDispatch()
   const [ submission, setSubmission ] = useState([])
+  const [ completedSubmission, setCompletedSubmission ] = useState([])
 
   const getDataSubmission = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN())
@@ -28,6 +29,17 @@ const SubmissionResponden = (props) => {
       getDataSubmission()
     }
   })
+
+  const getDataCompletedSubmission = () => {
+    dispatch(COMPLETED_USER())
+      .then( data => {
+        setCompletedSubmission(data)
+      })
+  }
+
+  useEffect( () => {
+    getDataCompletedSubmission()
+  }, [])
 
   return(
     <>
@@ -89,29 +101,45 @@ const SubmissionResponden = (props) => {
                 </Tab>
 
                 <Tab eventKey="Sudah Terlaksana" title="Sudah Terlaksana">
-                    <Row className="m-t-15">
-                      <Col md={12} lg={12}>
-                        <div className="part-one">
-                          <Row>
+                  {
+                    !completedSubmission.length
+                    ? 
+                      <h1>Tidak ada data</h1>
+                    :
+                      completedSubmission.map((data,i) => {
+                        return(
+                          <Row className="m-t-15" key={i}>
                             <Col md={12} lg={12}>
-                              <div className="box">
-                                <div className="box-left">
-                                <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                                <h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
-                                <h4 className="m-t-5 m-b-0 title-three">6 hari yang akan lalu</h4>
-                                </div>
-                                <div className="box-right">
-                                <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
-                                <Button href="/responden/detailstudy" variant="success btn-block" className="m-t-15">Detail</Button>
-                                </div>
+                              <div className="part-one">
+                                <Row>
+                                  <Col md={12} lg={12}>
+                                    <div className="box">
+                                      <div className="box-left">
+                                      <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
+                                      <h4 className="m-t-5 m-b-0 title-three"> {data.userId.name} </h4>
+                                      <h4 className="m-t-5 m-b-0 title-three"> {data.tanggalAkhir} </h4>
+                                      </div>
+                                      <div className="box-right">
+                                        <h4 className="title-two text-center">
+                                          <strong>
+                                            Rp {data.rewardResponden},-
+                                          </strong>
+                                        </h4>
+                                        <Link to={`/responden/detailstudy/${data._id}`}>
+                                          <Button variant="success btn-block" className="m-t-15">Detail</Button>
+                                        </Link>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                </Row>
                               </div>
                             </Col>
                           </Row>
-                        </div>
-                      </Col>
-                    </Row>
+                        )
+                      })
+                  }
 
-                    <Row className="m-t-15">
+                    {/* <Row className="m-t-15">
                       <Col md={12} lg={12}>
                         <div className="part-one">
                           <Row>
@@ -131,7 +159,7 @@ const SubmissionResponden = (props) => {
                           </Row>
                         </div>
                       </Col>
-                    </Row>
+                    </Row> */}
                 </Tab>
             </Tabs>
           </Col>

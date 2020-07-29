@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter, Link, useParams } from 'react-router-dom'
+import { withRouter, Link, useParams, useHistory } from 'react-router-dom'
 
 import './css/style.css';
 import { Container, Row, Col, Button, Form} from 'react-bootstrap'
@@ -8,11 +8,12 @@ import { Container, Row, Col, Button, Form} from 'react-bootstrap'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
-import { FIND_ANSWER_QUESTIONS_WITH_RESPONDEN_BY_ID, POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN } from '../../../store/actions/surveyFormAction'
+import { FIND_ANSWER_QUESTIONS_WITH_RESPONDEN_BY_ID, POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN, PUSH_USER_COMPLETED_TO_STUDY } from '../../../store/actions/surveyFormAction'
 
 const StudyResponden = (props) => {
   const dispatch = useDispatch()
   const params = useParams()
+  const history = useHistory()
 
   let { studyId } = params
   const [ listOfQuestions, setListofQuestions ] = useState([])
@@ -53,6 +54,10 @@ const StudyResponden = (props) => {
     updatedText[e.target.dataset.i][e.target.className.split(' ')[0]] = e.target.value;
     setDataText(updatedText);
   };
+
+  const userCompleted = () => {
+    dispatch(PUSH_USER_COMPLETED_TO_STUDY(studyId, history))
+  }
 
   return(
     <>
@@ -167,7 +172,7 @@ const StudyResponden = (props) => {
             </Col>
 
             <Col md={12} lg={12} className="m-t-15">
-              <Button variant="primary">Simpan</Button>{' '}
+              <Button variant="primary" onClick ={ () => { userCompleted() }} >Simpan</Button>{' '}
             </Col>
           </Row>
         </Container>

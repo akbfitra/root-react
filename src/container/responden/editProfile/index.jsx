@@ -75,8 +75,6 @@ const EditProfileResponden = (props) => {
     getDataProvinsi()
   }, [])
 
-  console.log(listProvinsi)
-
   return(
     <>
       {
@@ -158,9 +156,9 @@ const EditProfileResponden = (props) => {
                         {
                           optionDataPekerjaan
                             .filter(pekerjaan => pekerjaan != dataProfile.pekerjaan)
-                            .map((dataOption) => {
+                            .map((dataOption, i) => {
                               return(
-                                <option>{ dataOption }</option>
+                                <option key={i}>{ dataOption }</option>
                               )
                             })
                         }
@@ -213,9 +211,9 @@ const EditProfileResponden = (props) => {
                         {
                           optionSumber
                             .filter(sumber => sumber != dataProfile.sumber)
-                            .map((dataOption) => {
+                            .map((dataOption, i) => {
                               return(
-                                <option>{ dataOption }</option>
+                                <option key={i}>{ dataOption }</option>
                               )
                             })
                         }
