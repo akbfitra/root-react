@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
-import { registerProcess } from '../../../store/actions/userAction'
 
 import './css/style.css';
-import { Button, Container, Row, Col, Form} from 'react-bootstrap';
+import { Button, Container, Row, Col, Form, Alert} from 'react-bootstrap';
 import { Footer } from '../../../components/footer';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
+import { registerProcess, getKetertarikan } from '../../../store/actions/userAction'
 import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
 
 const Register = (props) => {
@@ -20,7 +20,7 @@ const Register = (props) => {
   // const [startDate, setStartDate] = useState('');
   let listKota = useSelector( state => state.tempat.tempat.kota)
 
-  const [ email, setEmail] = useState('')
+  const [ email, setEmail ] = useState('')
   const [ password, setPassword] = useState('')
   const [ username, setUsername] = useState('')
   const [ phone, setPhone] = useState('')
@@ -29,10 +29,23 @@ const Register = (props) => {
   const [ kota, setKota] = useState('')
   const [ pekerjaan, setPekerjaan] = useState('')
   const [ sumber, setSumber] = useState('')
-  const [ ktp, setKtp] = useState('')
+  const [ ktp, setKtp ] = useState('')
   const [ listProvinsi, SetListProvinsi ] = useState([])
   const [validated, setValidated] = useState(false);
+  const [ errs, setErrs] = useState('') 
+  const [ show, setShow ] = useState(false);
+  const [ ketertarikan, setKetertarikan ] = useState([])
+  const [ pilihCategories, setPilihCategories ] = useState([])
 
+  const handlePilihKriteria = (kriteria) => {
+    let cek = pilihCategories.includes(kriteria)
+    if(!cek){
+      setPilihCategories(arr => [...pilihCategories, kriteria])
+    }else if(pilihCategories.indexOf(kriteria > -1)){
+      setPilihCategories(pilihCategories.filter(item => item !== kriteria))
+    }
+  }
+ 
   const handleSubmit = event => {
     event.preventDefault()
     const form = event.currentTarget;
@@ -45,7 +58,18 @@ const Register = (props) => {
   };
 
   const processRegister = () => {
-    dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp))
+    dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, pilihCategories))
+      .then(() => {
+        
+      })
+      .catch( err => {
+        setErrs(err)
+        setShow(true)
+      })
+  }
+
+  if(Array.isArray(errs)){
+    setErrs(errs.join(' , '))
   }
 
   function processSelectProvinsi(data){
@@ -61,8 +85,19 @@ const Register = (props) => {
       })
   }
 
+  const getDataKetertarikan = () => {
+    dispatch(getKetertarikan())
+      .then( data => {
+        setKetertarikan(data)
+      })
+  }
+
   useEffect(() => {
     getDataProvinsi()
+  }, [])
+
+  useEffect(() => {
+    getDataKetertarikan()
   }, [])
 
 
@@ -280,7 +315,21 @@ const Register = (props) => {
                   <Form.Group>
                     <Form.Label>Ketertarikan</Form.Label>
                     <Row>
-                      <Col md={3} lg={3}>
+                      {
+                        ketertarikan.map((data, i) => {
+                          return(
+                            <Col md={3} lg={3} key={i}>
+                              <Form.Check
+                              type="checkbox"
+                              label={`${data.name}`}
+                              value={`${data.name}`}
+                              onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                              />
+                            </Col>
+                          )
+                        })
+                      }
+                      {/* <Col md={3} lg={3}>
                         <Form.Check
                         type="checkbox" 
                         label="Ketertarikan1"
@@ -327,7 +376,7 @@ const Register = (props) => {
                         type="checkbox" 
                         label="Ketertarikan2" 
                         required/>
-                      </Col>
+                      </Col> */}
                     </Row>
                     
                     
@@ -350,6 +399,15 @@ const Register = (props) => {
                       required/>
                   </Form.Group>
                   
+                  <>
+                    <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
+                      <Alert.Heading>Error?!</Alert.Heading>
+                      <p>
+                        { errs }
+                      </p>
+                    </Alert>
+                  </>
+
                   <Row>
                     <Col md={12} lg={12}>
                     <hr/>
@@ -362,6 +420,13 @@ const Register = (props) => {
                     </Col>
                   </Row>
                 </Form>
+
+                  <Row>
+                      <Col md={12} lg={12}>
+                      <hr/>
+                      </Col>
+                  </Row>
+                  
                 </Col>
               </Row>
             </div>

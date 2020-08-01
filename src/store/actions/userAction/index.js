@@ -44,14 +44,14 @@ export const CekLogin = () => {
     )
 }
 
-export const registerProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp ) => async dispatch => {
+export const registerProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, categories ) => async dispatch => {
   try{
     // console.log(email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber,ktp, history, location)
     const { data } = await instance({
       method: 'POST',
       url: '/user/register/',
       data: {
-        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, ktp
+        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, categories
       }
     })
     if(data){
@@ -60,11 +60,11 @@ export const registerProcess = (email, password, name, phone, birth, provinsi, k
 
   }
   catch(err){
-    console.log(err.response)
+    throw err.response.data.message
   }
 }
 
-export const registerSurveyorProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location) => async dispatch => {
+export const registerSurveyorProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, categories, history, location) => async dispatch => {
   try{
     const { data } = await instance({
       method: 'POST',
@@ -76,7 +76,7 @@ export const registerSurveyorProcess = (email, password, name, phone, birth, pro
     history.replace(location.state ? location.state.from : '/success')
   }
   catch(err){
-    console.log(err.response)
+    throw err.response.data.message
   }
 }
 
@@ -172,6 +172,19 @@ export const getPerusahaanHome = () => async dispatch => {
     const { data } = await instance({
       method: 'GET',
       url: '/perusahaan'
+    })
+    return data
+  }
+  catch(err){
+    console.log(err.response)
+  }
+}
+
+export const getKetertarikan = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:'/category'
     })
     return data
   }

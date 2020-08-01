@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
-import { registerSurveyorProcess } from '../../../store/actions/userAction'
 import './css/style.css';
-import { Button, Container, Row, Col, Form} from 'react-bootstrap';
+import { Button, Container, Row, Col, Form, Alert} from 'react-bootstrap';
 import { Footer } from '../../../components/footer';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-
+import { registerSurveyorProcess, getKetertarikan } from '../../../store/actions/userAction'
 import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
 
 const RegisterSurveyor = (props) => {
@@ -34,10 +33,38 @@ const RegisterSurveyor = (props) => {
   const [ ktp, setKtp] = useState('')
   const [ listProvinsi, SetListProvinsi ] = useState([])
   const [validated, setValidated] = useState(false);
+  const [ errs, setErrs] = useState('') 
+  const [show, setShow] = useState(false);
+  const [ ketertarikan, setKetertarikan ] = useState([])
+
+  const [ pilihCategories, setPilihCategories ] = useState([])
+
+  const handlePilihKriteria = (kriteria) => {
+    let cek = pilihCategories.includes(kriteria)
+    if(!cek){
+      setPilihCategories(arr => [...pilihCategories, kriteria])
+    }else if(pilihCategories.indexOf(kriteria > -1)){
+      setPilihCategories(pilihCategories.filter(item => item !== kriteria))
+    }
+  }
   
 
+  const getDataKetertarikan = () => {
+    dispatch(getKetertarikan())
+      .then( data => {
+        setKetertarikan(data)
+      })
+  }
+
   const processRegisterSurveyor = () => {
-    dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location))
+    dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp,pilihCategories, history, location))
+    .then(() => {
+        
+    })
+    .catch( err => {
+      setErrs(err)
+      setShow(true)
+    })
   }
 
   const handleSubmit = event => {
@@ -67,6 +94,16 @@ const RegisterSurveyor = (props) => {
   useEffect(() => {
     getDataProvinsi()
   }, [])
+
+  useEffect(() => {
+    getDataKetertarikan()
+  }, [])
+
+  if(Array.isArray(errs)){
+    setErrs(errs.join(' , '))
+  }
+
+  
   
   return(
     <>
@@ -269,10 +306,83 @@ const RegisterSurveyor = (props) => {
                   </Form.Group>
 
                   <Form.Group>
+                    <Form.Label>Ketertarikan</Form.Label>
+                    <Row>
+                      {
+                        ketertarikan.map((data, i) => {
+                          return(
+                            <Col md={3} lg={3} key={i}>
+                              <Form.Check
+                              type="checkbox" 
+                              label={`${data.name}`}
+                              value={`${data.name}`}
+                              onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                              />
+                            </Col>
+                          )
+                        })
+                      }
+                      {/* <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check 
+                        type="checkbox" 
+                        label="Ketertarikan2" 
+                        required/>
+                      </Col> */}
+                    </Row>
+                    
+                    
+                  </Form.Group>
+
+                  <Form.Group>
                     <Form.Check type="checkbox" required label="Saya telah membaca, memahami, dan menyetujui Syarat dan Ketentuan bagi Surveyor" />
                     <Form.Check type="checkbox" required label="Saya bersedia menerima informasi promosi dan penawaran dari suRvplus terkait dengan layanan survey online dan lainnya" />
                   </Form.Group>
                   
+                  <>
+                    <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
+                      <Alert.Heading>Error?!</Alert.Heading>
+                      <p>
+                        { errs }
+                      </p>
+                    </Alert>
+                  </>
+
                   <Row>
                     <Col>
                     <hr/>
@@ -285,6 +395,7 @@ const RegisterSurveyor = (props) => {
                     </Col>
                   </Row>
                 </Form>
+
                 </Col>
               </Row>
             </div>
