@@ -17,7 +17,7 @@ const SurveyorDashboard = (props) => {
       <Container>
         <Row>
           <Col>
-            <h3 className="title-one text-center"><strong>Dashboard Surveyor</strong></h3>
+            <h3 className="title-one text-center"><strong>Beranda Surveyor</strong></h3>
           </Col>
         </Row>
         <Row className="m-t-30">
@@ -28,7 +28,7 @@ const SurveyorDashboard = (props) => {
               <div className="part-one">
                 <center>
                 <img src="images/profile.png"/>
-                <h4 className="title-two m-t-15"><strong>Profile</strong></h4>
+                <h4 className="title-two m-t-15"><strong>Profil</strong></h4>
                 </center>
               </div>
               </Link>
@@ -38,8 +38,8 @@ const SurveyorDashboard = (props) => {
               <Link to = '/surveyor/liststudy' style={{textDecoration:"none"}}>
               <div className="part-one">
                 <center>
-                <img src="https://via.placeholder.com/140" className="img-responsive"/>
-                <h4 className="title-two m-t-15"><strong>Study</strong></h4>
+                <img src="images/submission.png" className="img-responsive"/>
+                <h4 className="title-two m-t-15"><strong>Studi</strong></h4>
                 </center>
               </div>
               </Link>
@@ -49,8 +49,8 @@ const SurveyorDashboard = (props) => {
               <Link to = '/surveyor/topup' style={{textDecoration:"none"}}>
               <div className="part-one">
                 <center>
-                <img src="https://via.placeholder.com/140" className="img-responsive"/>
-                <h4 className="title-two m-t-15"><strong>Top Up</strong></h4>
+                <img src="images/topup.png" className="img-responsive"/>
+                <h4 className="title-two m-t-15"><strong>Isi Ulang</strong></h4>
                 </center>
               </div>
               </Link>

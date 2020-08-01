@@ -70,7 +70,7 @@ export const registerSurveyorProcess = (email, password, name, phone, birth, pro
       method: 'POST',
       url: '/user/register/surveyor',
       data: {
-        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp
+        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, categories
       }
     })
     history.replace(location.state ? location.state.from : '/success')

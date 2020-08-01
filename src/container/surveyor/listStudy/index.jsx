@@ -37,25 +37,25 @@ const ListStudy = () => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Data Study</strong></h3>
+            <h3 className="title-one text-center"><strong>Data Studi</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Surveyor</h4>
+                  <h4 className="title-three">Beranda Surveyor</h4>
                   </Link>
                 </li>
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Data Study</h4>
+                  <h4 className="title-three">Data Studi</h4>
                 </li>
               </ul>
           </Col>
         </Row>
         
-        <Row>
+        <Row className="m-t-30">
           <Col md={12} lg={12}>
           <Link to='/surveyor/form'>
-            <Button variant="primary" >Tambah Study</Button>
+            <Button variant="primary" >Tambah Studi</Button>
           </Link>
           </Col>
 
@@ -82,7 +82,7 @@ const ListStudy = () => {
                               </tr>
 
                               <tr>
-                                <td>Waktu Menjawab (menit)</td>
+                                <td>Waktu Menjawab Soal (menit)</td>
                                 <td>:</td>
                                 <td>{data.waktuJawab}</td>
                               </tr>
@@ -104,7 +104,7 @@ const ListStudy = () => {
                               <tr>
                                 <td style={{width:"220px"}}>Reward Per Responden</td>
                                 <td style={{width:"1px"}}>:</td>
-                                <td>{data.rewardResponden}</td>
+                                <td>Rp {data.rewardResponden},-</td>
                               </tr>
 
                               <tr>
@@ -131,7 +131,7 @@ const ListStudy = () => {
                     <Row>
                       <Col md={12} lg={12}>
                         <Link to={`/surveyor/detailstudy/${data._id}`}>
-                          <Button variant="primary">Detail Study</Button>
+                          <Button variant="primary">Detail Studi</Button>
                         </Link>
                       </Col>
                     </Row>

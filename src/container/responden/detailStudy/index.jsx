@@ -41,11 +41,11 @@ const DetailStudyResponden = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Detail Study</strong></h3>
+            <h3 className="title-one text-center"><strong>Detail Studi</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/responden' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Responden</h4>
+                  <h4 className="title-three">Beranda Responden</h4>
                   </Link>
                 </li>
 
@@ -53,13 +53,13 @@ const DetailStudyResponden = (props) => {
 
                 <li className="list-inline-item">
                   <Link to='/responden/submission' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Submission Responden</h4>
+                  <h4 className="title-three">Studi Responden</h4>
                   </Link>
                 </li>
 
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Detail Study Responden</h4>
+                  <h4 className="title-three">Detail Studi Responden</h4>
                 </li>
               </ul>
           </Col>
@@ -72,7 +72,7 @@ const DetailStudyResponden = (props) => {
                 <Table striped bordered>
                   <tbody>
                     <tr>
-                      <td style={{width:"300px"}}>Judul Study</td>
+                      <td style={{width:"300px"}}>Judul Studi</td>
                       <td style={{width:"1px"}}>:</td>
                       <td> { detailStudy.judul } </td>
                     </tr>
@@ -120,7 +120,7 @@ const DetailStudyResponden = (props) => {
                   <ul className="list-inline text-right m-b-0">
                     <Link to={`/responden/study/${ detailStudy._id }`}>
                       <li className="list-inline-item">
-                        <Button variant="primary" >Mulai Study</Button>
+                        <Button variant="primary" >Mulai Studi</Button>
                       </li>
                     </Link>
 

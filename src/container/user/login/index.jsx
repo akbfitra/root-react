@@ -51,12 +51,12 @@ const Login = (props) => {
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">
-                        <img src="images/logo second.png" style={{height:'60px'}}></img>
+                        <img src="images/logo three.png" style={{height:'60px'}}></img>
                       </div>
 
-                      {/* <div className="table-cell-two">
-                        <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
-                      </div> */}
+                      <div className="table-cell-two">
+                        <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -110,7 +110,7 @@ const Login = (props) => {
                         }}>
                         <Form.Group >
                           <Form.Label>Email</Form.Label>
-                          <Form.Control type="text" required placeholder="Username" onChange={ (e) => {setEmail( e.target.value )}}/>
+                          <Form.Control type="text" required placeholder="Email" onChange={ (e) => {setEmail( e.target.value )}}/>
                         </Form.Group>
 
                         <Form.Group>

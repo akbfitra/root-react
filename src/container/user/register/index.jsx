@@ -74,8 +74,7 @@ const Register = (props) => {
 
   function processSelectProvinsi(data){
     setProvinsi(data)
-    let idProvinsi = listProvinsi.find( el => el.nama == data )
-    dispatch(dataKota(idProvinsi.id))
+    dispatch(dataKota(data))
   }
 
   function getDataProvinsi(){
@@ -112,12 +111,12 @@ const Register = (props) => {
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">
-                        <img src="images/logo second.png" style={{height:'60px'}}></img>
+                        <img src="images/logo three.png" style={{height:'60px'}}></img>
                       </div>
 
-                      {/* <div className="table-cell-two">
-                        <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
-                      </div> */}
+                      <div className="table-cell-two">
+                        <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -270,7 +269,7 @@ const Register = (props) => {
                           <option value="">-- Pilih --</option>
                         :
                           listProvinsi.map( (data, i) => 
-                          <option key={data.id} value={`${data.nama}`}>{data.nama}</option>
+                          <option key={data._id} value={`${data.Provinsi}`}>{data.Provinsi}</option>
                           )
                       }
                     </Form.Control>
@@ -289,7 +288,7 @@ const Register = (props) => {
                           <option value="">-- Pilih --</option>
                         :
                           listKota.map( (data, i) => 
-                          <option key={data.id} value={`${data.nama}`}>{data.nama}</option>
+                          <option key={data._id} value={`${data["Kabupaten/kota"]}`}>{data["Kabupaten/kota"]}</option>
                           )
                       }
                     </Form.Control>

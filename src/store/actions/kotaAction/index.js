@@ -1,13 +1,14 @@
 import { instance } from '../../../config/axios'
+import axios from 'axios'
 
 export const dataProvinsi = () => async dispatch => {
   try{
-    const { data } = await instance({
+    const { data } = await axios({
       method: 'GET',
-      url: '/user/provinsi'
+      url: 'http://backoffice.survplus.id/get_prov'
     })
-    dispatch({type: 'DATA_PROVINSI', payload: data.provinsi})
-    return data.provinsi
+    dispatch({type: 'DATA_PROVINSI', payload: data})
+    return data
   }
   catch(err){
     console.log(err.response)
@@ -16,11 +17,13 @@ export const dataProvinsi = () => async dispatch => {
 
 export const dataKota = (idProvinsi) => async dispatch => {
   try{
-    const { data } = await instance({
+    console.log(idProvinsi)
+    const { data } = await axios({
       method: 'GET',
-      url: `/user/kota/${idProvinsi}`
+      url: `http://backoffice.survplus.id/get_kab/${idProvinsi}`
     })
-    dispatch({type: 'DATA_KOTA', payload: data.kota_kabupaten})
+    console.log(data)
+    dispatch({type: 'DATA_KOTA', payload: data})
   }
   catch(err){
     console.log(err.response)

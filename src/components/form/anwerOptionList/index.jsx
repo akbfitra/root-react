@@ -36,7 +36,7 @@ export const AnswerOptionList = ({ questionId, answerOptionId, index}) =>{
           <Col md={2} lg={2}>
             <div style={{width:'100%', display:'flex', alignItems:'center', height:'38px', backgroundColor:''}}>
                 <Button variant="danger" size="sm" onClick = {deleteAnswer}>
-                  Delete Opsi
+                  Hapus Opsi
                 </Button>
             </div>
           </Col>

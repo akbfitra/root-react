@@ -11,11 +11,30 @@ export const Footer = () => {
           <Row>
             <Col md={4} lg={4} className="part-one">
               <Row>
-                <Col><h3 className="title-one"><strong>suRvplus</strong></h3></Col>
+                <Col md={12} lg={12}><h3 className="title-one"><strong>suRvplus</strong></h3></Col>
               </Row>
 
-              <Row className="m-t-30">
-                <Col><p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p></Col>
+              <Row className="m-t-15">
+                <Col md={12} lg={12}>
+                  <p>Jl. Sawunggaling 2 No. 6a, Kelurahan Pedalangan, Kecamatan Banyumanik, Kota Semarang</p>
+                  <p>Jawa Tengah 50268</p>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={12} lg={12}>
+                <ul className="list-inline m-t-15">
+                  <li className="list-inline-item">
+                    <img src="../../images/facebook.png" style={{width:'50px'}}></img>
+                  </li>
+                  <li className="list-inline-item">
+                    <img src="../../images/twitter.png" style={{width:'50px'}}></img>
+                  </li>
+                  <li className="list-inline-item">
+                    <img src="../../images/instagram.png" style={{width:'50px'}}></img>
+                  </li>
+                </ul>
+                </Col>
               </Row>
             </Col>
           </Row>
@@ -24,7 +43,7 @@ export const Footer = () => {
       <div id="main-footer-two">
         <Container>
           <Row>
-            <Col><h4 className="text-center title-three">Copyright © 2020 suRvplus  </h4></Col>
+            <Col md={12} lg={12}><h4 className="text-center title-three">Copyright © 2020 suRvplus  </h4></Col>
           </Row>
         </Container>
       </div>

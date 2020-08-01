@@ -26,29 +26,29 @@ const TopUpSurveyor = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Top Up</strong></h3>
+            <h3 className="title-one text-center"><strong>Isi Ulang</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Surveyor</h4>
+                  <h4 className="title-three">Beranda Surveyor</h4>
                   </Link>
                 </li>
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Top Up</h4>
+                  <h4 className="title-three">Isi Ulang</h4>
                 </li>
               </ul>
           </Col>
         </Row>
 
 
-        <Row>
+        <Row className="m-t-30">
           <Col md={12} lg={12}>
             <div className="part-one">
               <Row>
                 <Col md={6} lg={6}>
                     <Form.Group>
-                      <Form.Label>Jumlah Saldo Topup</Form.Label>
+                      <Form.Label>Jumlah Saldo Isi Ulang</Form.Label>
                       <Form.Control type="text" placeholder="" />
                     </Form.Group>
 
