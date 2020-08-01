@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
-import { dataCategory, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
+import { dataCategoryUser, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
 import './css/style.css';
 import { Container, Row, Col} from 'react-bootstrap'
 import { CardCategory } from '../../../components/aboutUs/cardCategory/index'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
-import ConnectedFormSurveyor from '../../surveyor/form';
 
 const AboutUsResponden = (props) => {
   const dispatch = useDispatch()
@@ -15,7 +14,7 @@ const AboutUsResponden = (props) => {
   const [dataAnswerUser, setDataAnswerUser ] = useState([])
 
   const getCategory = () =>{
-    dispatch(dataCategory())
+    dispatch(dataCategoryUser())
       .then( data => {
         setCategory(data)
         // break;

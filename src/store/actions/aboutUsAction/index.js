@@ -18,6 +18,23 @@ export const dataCategory = () => async dispatch => {
   }
 }
 
+export const dataCategoryUser = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: '/category/user',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    await dispatch({type: 'DATA_CATEGORY', payload: data})
+    return data
+  }
+  catch(err){
+    console.log(err.response)
+  }
+}
+
 export const dataQuestionByCategory = (categoryId) => async dispatch => {
   try{
     const { data } = await instance({

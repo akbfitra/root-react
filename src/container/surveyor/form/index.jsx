@@ -29,6 +29,16 @@ const FormSurveyor = (props) => {
   const history = useHistory()
   const [category, setCategory ] = useState([])
   const [dataQuestions, setDataQuestions ] = useState([])
+  const [ pilihCategories, setPilihCategories ] = useState([])
+
+  const handlePilihKriteria = (kriteria) => {
+    let cek = pilihCategories.includes(kriteria)
+    if(!cek){
+      setPilihCategories(arr => [...pilihCategories, kriteria])
+    }else if(pilihCategories.indexOf(kriteria > -1)){
+      setPilihCategories(pilihCategories.filter(item => item !== kriteria))
+    }
+  }
 
   useEffect(() => {
     dispatch(surveyActions.INIT_QUESTION)
@@ -42,7 +52,7 @@ const FormSurveyor = (props) => {
 
   const handleSaveSurvey = () => {
     
-    dispatch(SAVE_STUDY(props.formValues, history))
+    dispatch(SAVE_STUDY(props.formValues, pilihCategories, history))
   };
 
   const getCategory = () =>{
@@ -206,7 +216,27 @@ const FormSurveyor = (props) => {
                   <Col md={12} lg={12}>
                     <div className="part-one">
                       <Row>
-                        <Col md={12} lg={12}>
+                      <Form.Group>
+                        <Form.Label>Kriteria Responden</Form.Label>
+                        <Row>
+                          {
+                            category.map((data, i) => {
+                              return(
+                                <Col md={3} lg={3} key={i}>
+                                  <Form.Check
+                                  type="checkbox"
+                                  label={`${data.name}`}
+                                  value={`${data.name}`}
+                                  onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                                  />
+                                </Col>
+                              )
+                            })
+                          }
+                          
+                        </Row>
+                      </Form.Group>
+                        {/* <Col md={12} lg={12}>
                           <Form.Group>
                             <Form.Label>Kriteria Responden</Form.Label>
                             <Form.Control as="select" onChange={ (e) => {processSelectCategory(e.target.value); }}>
@@ -257,23 +287,7 @@ const FormSurveyor = (props) => {
                               )
                             })
                           }
-                        {/* <Row className="m-t-30">
-                          <Col md={12} lg={12}>
-                            <div className="box-pertanyaan">
-                              <div className="left"><h5>1.</h5></div>
-                              <div className="right"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores, necessitatibus asperiores omnis laudantium voluptas doloribus eius alias modi ex maiores quis mollitia, tempora commodi officiis voluptatibus esse repellendus dignissimos optio?</h5></div>
-                            </div>
-                          </Col>
-                          <Col md={12} lg={12}>
-                            <div className="box-answer">
-                            <Form.Group style={{width:'100%'}}>
-                              <Form.Control as="select" >
-                                <option>-- Pilih --</option>
-                              </Form.Control>
-                            </Form.Group>
-                            </div>
-                          </Col>
-                        </Row> */}
+                        
                         </Col>
                         <Col md={12} lg={12}>
                           <hr/>
@@ -286,7 +300,7 @@ const FormSurveyor = (props) => {
                               <Button variant="danger">Hapus Kriteria</Button>{' '}
                             </li>
                           </ul>
-                        </Col>
+                        </Col> */}
                       </Row>
                     </div>
                   </Col>

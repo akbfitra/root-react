@@ -32,7 +32,7 @@ export const INIT_QUESTION = (dispatch) => {
   }
 }
 
-export const SAVE_STUDY = (surveyFormData, history) => async (dispatch, getState) => {
+export const SAVE_STUDY = (surveyFormData,kriteria, history) => async (dispatch, getState) => {
   try{
 
     await dispatch({
@@ -42,6 +42,8 @@ export const SAVE_STUDY = (surveyFormData, history) => async (dispatch, getState
 
     const state = getState()
     const survey = getDenormalizedSurvey(state)
+
+    survey.kriteria = kriteria
   
     const { data } = await instance({
       method: 'POST',
