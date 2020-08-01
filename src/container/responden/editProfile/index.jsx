@@ -220,6 +220,36 @@ const EditProfileResponden = (props) => {
                       </Form.Control>
                     </Form.Group>
 
+                    <Form.Group>
+                      <Form.Label>Ketertarikan</Form.Label>
+                      <Row>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      <Col md={3} lg={3}>
+                        <Form.Check
+                        type="checkbox" 
+                        label="Ketertarikan1"
+                        required/>
+                      </Col>
+                      </Row>
+                    </Form.Group>
+
                     <Row>
                         <Col md={12} lg={12}>
                           <hr/>
