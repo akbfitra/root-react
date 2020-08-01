@@ -142,6 +142,12 @@ const ProfileResponden = (props) => {
                           <td>:</td>
                           <td>{dataProfile.sumber}</td>
                         </tr>
+
+                        <tr>
+                          <td>Ketertarikan</td>
+                          <td>:</td>
+                          <td></td>
+                        </tr>
                       </tbody>
                     </Table>
                   </Col>
