@@ -88,11 +88,11 @@ const EditProfileResponden = (props) => {
         <Container>
           <Row>
             <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-              <h3 className="title-one text-center"><strong>Edit Profile Responden</strong></h3>
+              <h3 className="title-one text-center"><strong>Edit Profil Responden</strong></h3>
                 <ul className="list-inline text-center">
                   <li className="list-inline-item">
                     <Link to='/responden' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Dashboard Responden</h4>
+                    <h4 className="title-three">Beranda Responden</h4>
                     </Link>
                   </li>
 
@@ -100,20 +100,20 @@ const EditProfileResponden = (props) => {
 
                   <li className="list-inline-item">
                     <Link to='/responden/profile' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Profile Responden</h4>
+                    <h4 className="title-three">Profil Responden</h4>
                     </Link>
                   </li>
 
                   <li className="list-inline-item">|</li>
 
                   <li className="list-inline-item">
-                    <h4 className="title-three">Edit Profile Responden</h4>
+                    <h4 className="title-three">Edit Profil Responden</h4>
                   </li>
                 </ul>
             </Col>
           </Row>
           <Row className="m-t-30">
-            <Col md={12} lg={12}>
+            <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
               <Form 
                 onSubmit={(e) => {
                   e.preventDefault()
@@ -220,9 +220,16 @@ const EditProfileResponden = (props) => {
                       </Form.Control>
                     </Form.Group>
 
-                    <Form.Group>
-                      <Button variant="primary" type="submit" block>Update</Button>
-                    </Form.Group>
+                    <Row>
+                        <Col md={12} lg={12}>
+                          <hr/>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col md={{ span: 4, offset:4}} lg={{span: 4, offset:4}}>
+                        <Button variant="primary" type="submit" block>Simpan</Button>
+                        </Col>
+                      </Row>
 
                 </div>
               </Form>

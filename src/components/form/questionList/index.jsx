@@ -45,7 +45,7 @@ export const QuestionList = (props) => {
     <>
       <Row className="m-t-15">
         <Col md={12} lg={12}>
-        <Button variant="danger" onClick={handleDeleteQuestion} className="float-right">Delete Question</Button>
+        <Button variant="danger" onClick={handleDeleteQuestion} className="float-right">Hapus Pertanyaan</Button>
         </Col>
         <Col md={12} lg={12}>
         <div className="part-two">

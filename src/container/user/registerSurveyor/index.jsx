@@ -79,17 +79,17 @@ const RegisterSurveyor = (props) => {
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">
-                        <img src="../images/logo second.png" style={{height:'60px'}}></img>
+                        <img src="../images/logo three.png" style={{height:'60px'}}></img>
                       </div>
 
-                      {/* <div className="table-cell-two">
-                        <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
-                      </div> */}
+                      <div className="table-cell-two">
+                        <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
+                      </div>
                     </div>
                   </div>
                 </Link>
               </Col>
-              <Col md={4} lg={4} className="part-two">
+              {/* <Col md={4} lg={4} className="part-two">
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
@@ -99,7 +99,7 @@ const RegisterSurveyor = (props) => {
                     </div>
                   </div>
                 </div>
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </div>
@@ -159,20 +159,6 @@ const RegisterSurveyor = (props) => {
                     <Form.Control type="text" placeholder="" required onChange={ (e) => {setPhone (e.target.value )}}/>
                     <Form.Control.Feedback type="invalid">
                       Tolong Isi Nomor Telepon Anda
-                    </Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Tujuan Survey (bisa pilih lebih dari satu)</Form.Label>
-                    <Form.Control as="select" onChange={ (e) => {setTujuan( e.target.value )}} required>
-                      <option value="">-- Pilih --</option>
-                      <option value="Keperluan Pribadi">Keperluan Pribadi</option>
-                      <option value="Keperluan Pekerjaan" >Keperluan Pekerjaan</option>
-                      <option value="Keperluan Tugas Kuliah/Pendidikan">Keperluan Tugas Kuliah/Pendidikan</option>
-                      <option value="Lainnya">Lainnya</option>
-                    </Form.Control>
-                    <Form.Control.Feedback type="invalid">
-                      Tolong Isi Tujuan Survey Anda
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -253,7 +239,21 @@ const RegisterSurveyor = (props) => {
                       Tolong Isi Kota Tempat Tinggal Anda
                     </Form.Control.Feedback>
                   </Form.Group>
-
+                  
+                  <Form.Group>
+                    <Form.Label>Tujuan Survey</Form.Label>
+                    <Form.Control as="select" onChange={ (e) => {setTujuan( e.target.value )}} required>
+                      <option value="">-- Pilih --</option>
+                      <option value="Keperluan Pribadi">Keperluan Pribadi</option>
+                      <option value="Keperluan Pekerjaan" >Keperluan Pekerjaan</option>
+                      <option value="Keperluan Tugas Kuliah/Pendidikan">Keperluan Tugas Kuliah/Pendidikan</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                      Tolong Isi Tujuan Survey Anda
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  
                   <Form.Group>
                     <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
                     <Form.Control as="select" onChange={ (e) => {setSumber( e.target.value )}} required>
@@ -268,7 +268,13 @@ const RegisterSurveyor = (props) => {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group>
+                  <Row>
+                    <Col md={12} lg={12}>
+                    <hr/>
+                    </Col>
+                  </Row>
+
+                  <Form.Group className="m-b-0">
                     <Form.Check type="checkbox" required label="Saya telah membaca, memahami, dan menyetujui Syarat dan Ketentuan bagi Surveyor" />
                     <Form.Check type="checkbox" required label="Saya bersedia menerima informasi promosi dan penawaran dari suRvplus terkait dengan layanan survey online dan lainnya" />
                   </Form.Group>

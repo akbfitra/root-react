@@ -17,7 +17,7 @@ const RespondenDashboard = (props) => {
       <Container>
         <Row>
           <Col md={12} lg={12}>
-            <h3 className="title-one text-center"><strong>Responden</strong></h3>
+            <h3 className="title-one text-center"><strong>Beranda Responden</strong></h3>
           </Col>
         </Row>
         <Row className="m-t-30">
@@ -37,7 +37,7 @@ const RespondenDashboard = (props) => {
             <div className="part-one">
               <center>
               <img src="images/aboutus.png"/>
-              <h4 className="title-two m-t-15"><strong>Tentang</strong></h4>
+              <h4 className="title-two m-t-15"><strong>Biodata</strong></h4>
               </center>
             </div>
             </Link>
@@ -48,7 +48,7 @@ const RespondenDashboard = (props) => {
             <div className="part-one">
               <center>
               <img src="images/submission.png"/>
-              <h4 className="title-two m-t-15"><strong>Survey</strong></h4>
+              <h4 className="title-two m-t-15"><strong>Studi</strong></h4>
               </center>
             </div>
             </Link>

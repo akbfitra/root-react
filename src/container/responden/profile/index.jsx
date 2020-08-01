@@ -37,18 +37,18 @@ const ProfileResponden = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Profile Responden</strong></h3>
+            <h3 className="title-one text-center"><strong>Profil Responden</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/responden' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Responden</h4>
+                  <h4 className="title-three">Beranda Responden</h4>
                   </Link>
                 </li>
 
                 <li className="list-inline-item">|</li>
 
                 <li className="list-inline-item">
-                  <h4 className="title-three">Profile Responden</h4>
+                  <h4 className="title-three">Profil Responden</h4>
                 </li>
               </ul>
           </Col>
@@ -57,25 +57,25 @@ const ProfileResponden = (props) => {
           <Col md={3} lg={3}>
             <div className="part-one">
               <Row>
-                <Col>
+                <Col md={12} lg={12}>
                   <center>
-                  <img src="https://via.placeholder.com/180" style={{borderRadius:"100%"}}/>
+                  <img src="../images/user_profil.png" style={{borderRadius:"100%",width:'180px'}}/>
                   </center>
                 </Col>
               </Row>
               <Row>
-                <Col>
+                <Col md={12} lg={12}>
                   <h3 className="title-two  m-t-15 text-center"><strong>{dataProfile.name}</strong></h3>
-                  <h3 className="title-three text-center m-t-5"><strong>{dataProfile.email}</strong></h3>
-                  <h3 className="title-three text-center m-t-5"><strong>{dataProfile.phone}</strong></h3>
+                  {/* <h3 className="title-three text-center m-t-5"><strong>{dataProfile.email}</strong></h3>
+                  <h3 className="title-three text-center m-t-5"><strong>{dataProfile.phone}</strong></h3> */}
                 </Col>
               </Row>
 
-              <Row className="m-t-15">
-                <Col>
+              <Row>
+                <Col md={12} lg={12}>
                 <hr/>
                 <Link to='/responden/profile/edit' style={{textDecoration:"none"}}>
-                  <Button variant="primary" block>Edit Profile</Button>
+                  <Button variant="primary" block>Edit Profil</Button>
                 </Link>
                 </Col>
               </Row>
@@ -93,6 +93,12 @@ const ProfileResponden = (props) => {
                           <td style={{width:"340px"}}>Nama Lengkap</td>
                           <td style={{width:"1px"}}>:</td>
                           <td>{dataProfile.name}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Email</td>
+                          <td>:</td>
+                          <td>{dataProfile.email}</td>
                         </tr>
 
                         <tr>
@@ -126,7 +132,7 @@ const ProfileResponden = (props) => {
                         </tr>
 
                         <tr>
-                          <td>Kab/Kota Tempat Tinggal</td>
+                          <td>Kabupaten/Kota Tempat Tinggal</td>
                           <td>:</td>
                           <td>{dataProfile.kota}</td>
                         </tr>

@@ -76,36 +76,36 @@ const FormSurveyor = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Tambah Study</strong></h3>
+            <h3 className="title-one text-center"><strong>Tambah Studi</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Surveyor</h4>
+                  <h4 className="title-three">Beranda Surveyor</h4>
                   </Link>
                 </li>
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
                   <Link to='/surveyor/liststudy' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Data Study</h4>
+                  <h4 className="title-three">Data Studi</h4>
                   </Link>
                 </li>
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Tambah Study</h4>
+                  <h4 className="title-three">Tambah Studi</h4>
                 </li>
               </ul>
           </Col>
         </Row>
         
-        <Row>
+        <Row className="m-t-30">
           <Col>
             <Tabs defaultActiveKey="Project" id="noanim-tab-example">
-              <Tab eventKey="Project" title="Project" className="m-t-15">
+              <Tab eventKey="Project" title="Studi" className="m-t-15">
                 <Row>
                   <Col>
                   <div className="part-one">
                     <Form.Group>
-                      <Form.Label>Judul Survey</Form.Label>
+                      <Form.Label>Judul Studi</Form.Label>
                       <Field
                           // className="input survey-builder__title"
                           type="text"
@@ -293,7 +293,7 @@ const FormSurveyor = (props) => {
                 </Row>
               </Tab>
               
-              <Tab eventKey="Question" title="Question" className="m-t-15">
+              <Tab eventKey="Question" title="Pertanyaan Studi" className="m-t-15">
                 {
                   listQuestions && listQuestions.questions &&
                   <QuestionBuilder
@@ -302,7 +302,7 @@ const FormSurveyor = (props) => {
                   />
                 }
                   <Button variant="primary" onClick={ addQuestion }>
-                              Tambah Question
+                              Tambah Pertanyaan
                   </Button>
               </Tab>
               

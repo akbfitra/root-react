@@ -37,18 +37,18 @@ const ProfileSurveyor = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Profile Surveyor</strong></h3>
+            <h3 className="title-one text-center"><strong>Profil Surveyor</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Surveyor</h4>
+                  <h4 className="title-three">Beranda Surveyor</h4>
                   </Link>
                 </li>
 
                 <li className="list-inline-item">|</li>
 
                 <li className="list-inline-item">
-                  <h4 className="title-three">Profile Surveyor</h4>
+                  <h4 className="title-three">Profil Surveyor</h4>
                 </li>
               </ul>
           </Col>
@@ -57,23 +57,23 @@ const ProfileSurveyor = (props) => {
           <Col md={3} lg={3}>
             <div className="part-one">
               <Row>
-                <Col>
+                <Col md={12} lg={12}>
                   <center>
-                  <img src="https://via.placeholder.com/180" style={{borderRadius:"100%"}}/>
+                  <img src="../images/user_profil.png" style={{borderRadius:"100%", width:'180px'}}/>
                   </center>
                 </Col>
               </Row>
               <Row>
-                <Col>
+                <Col md={12} lg={12}>
                       <h3 className="title-two  m-t-15 text-center"><strong> {dataProfile.name} </strong></h3>
                 </Col>
               </Row>
 
-              <Row className="m-t-15">
-                <Col>
+              <Row>
+                <Col md={12} lg={12}>
                 <hr/>
                 <Link to='/surveyor/profile/edit' style={{textDecoration:"none"}}>
-                  <Button variant="primary" block>Edit Profile</Button>
+                  <Button variant="primary" block>Edit Profil</Button>
                 </Link>
                 </Col>
               </Row>
@@ -118,6 +118,12 @@ const ProfileSurveyor = (props) => {
                         </tr>
 
                         <tr>
+                          <td>Pekerjaan</td>
+                          <td>:</td>
+                          <td>{dataProfile.pekerjaan}</td>
+                        </tr>
+                        
+                        <tr>
                           <td>Provinsi Tempat Tinggal</td>
                           <td>:</td>
                           <td>{dataProfile.provinsi}</td>
@@ -129,11 +135,7 @@ const ProfileSurveyor = (props) => {
                           <td>{dataProfile.kota}</td>
                         </tr>
 
-                        <tr>
-                          <td>Jenis Pekerjaan</td>
-                          <td>:</td>
-                          <td>{dataProfile.pekerjaan}</td>
-                        </tr>
+                        
                         
                         {/* <tr>
                           <td>Nama Institusi</td>

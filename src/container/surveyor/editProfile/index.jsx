@@ -93,7 +93,7 @@ const EditProfileSurveyor = (props) => {
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Surveyor</h4>
+                  <h4 className="title-three">Beranda Surveyor</h4>
                   </Link>
                 </li>
 
@@ -105,12 +105,12 @@ const EditProfileSurveyor = (props) => {
                 </li>
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Edit Profile Surveyor</h4>
+                  <h4 className="title-three">Edit Profil Surveyor</h4>
                 </li>
               </ul>
           </Col>
         </Row>
-        <Row>
+        <Row className="m-t-30">
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
             <div className="part-one">
               <Row>
@@ -167,6 +167,22 @@ const EditProfileSurveyor = (props) => {
                   </Form.Group>
 
                   <Form.Group>
+                    <Form.Label>Jenis Pekerjaan</Form.Label>
+                      <Form.Control as="select" onChange={(e) => setPekerjaan(e.target.value)}>
+                      <option>{ dataProfile.pekerjaan }</option>
+                        {
+                          optionDataPekerjaan
+                            .filter(e => e != dataProfile.pekerjaan)
+                            .map((dataOption) => {
+                              return(
+                                <option>{ dataOption }</option>
+                              )
+                            })
+                        }
+                    </Form.Control>
+                  </Form.Group>
+
+                  <Form.Group>
                     <Form.Label>Provinsi Tempat Tinggal</Form.Label>
                     <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }}>
                       <option>{ dataProfile.provinsi } </option>
@@ -198,29 +214,13 @@ const EditProfileSurveyor = (props) => {
                     </Form.Control>
                   </Form.Group>
                   
-                  <Form.Group>
-                    <Form.Label>Jenis Pekerjaan</Form.Label>
-                      <Form.Control as="select" onChange={(e) => setPekerjaan(e.target.value)}>
-                      <option>{ dataProfile.pekerjaan }</option>
-                        {
-                          optionDataPekerjaan
-                            .filter(e => e != dataProfile.pekerjaan)
-                            .map((dataOption) => {
-                              return(
-                                <option>{ dataOption }</option>
-                              )
-                            })
-                        }
-                    </Form.Control>
-                  </Form.Group>
-                  
                   {/* <Form.Group>
                     <Form.Label>Nama Institusi</Form.Label>
                     <Form.Control type="text" placeholder="" />
                   </Form.Group> */}
 
                   <Form.Group>
-                    <Form.Label>Tujuan Survey (bisa pilih lebih dari satu)</Form.Label>
+                    <Form.Label>Tujuan Survey</Form.Label>
                     <Form.Control as="select" onChange={(e) => setTujuan(e.target.value)}>
                       <option>{ dataProfile.tujuan }</option>
                         {

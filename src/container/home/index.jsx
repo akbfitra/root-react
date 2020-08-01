@@ -137,7 +137,7 @@ const LandingPage = () => {
                     </div>
 
                     <div className="table-cell-two">
-                      <h4 className="m-t-0 m-b-0 title-two"><strong>suRvplus</strong></h4>
+                      <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
                     </div>
                   </div>
                 </div>
@@ -204,7 +204,7 @@ const LandingPage = () => {
                   perusahaanImg.map((data, i) => {
                     return(
                       <div key={i}>
-                        <img src={`http://backoffice.survplus.id/foto/${data.icon}`}></img>
+                        <img src={`http://backoffice.survplus.id/foto/${data.icon}`} style={{height:'100px'}}></img>
                       </div>
                     )
                   })

@@ -45,11 +45,11 @@ const DetailStudyResponden = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Detail Study</strong></h3>
+            <h3 className="title-one text-center"><strong>Detail Studi</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Dashboard Surveyor</h4>
+                  <h4 className="title-three">Beranda Surveyor</h4>
                   </Link>
                 </li>
 
@@ -57,30 +57,28 @@ const DetailStudyResponden = (props) => {
 
                 <li className="list-inline-item">
                   <Link to='/surveyor/liststudy' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Data Study</h4>
+                  <h4 className="title-three">Data Studi</h4>
                   </Link>
                 </li>
 
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Detail Study Surveyor</h4>
+                  <h4 className="title-three">Detail Studi Surveyor</h4>
                 </li>
               </ul>
           </Col>
         </Row>
         <Row className="m-t-30">
-          <Col md={12} lg={12}>
-            <div className="part-one">
-              <Row>
                 <Col md={12} lg={12}>
                   <Tabs defaultActiveKey="study" id="noanim-tab-example">
-                    <Tab eventKey="study" title="Detail Study" className="m-t-15">
+                    <Tab eventKey="study" title="Detail Studi" className="m-t-15">
                       <Row>
                         <Col md={12} lg={12} className="table-no-border">
+                          <div className="part-one">
                             <Table striped bordered>
                               <tbody>
                                 <tr>
-                                  <td style={{ width: "300px" }}>Judul Study</td>
+                                  <td style={{ width: "300px" }}>Judul Studi</td>
                                   <td style={{ width: "1px" }}>:</td>
                                   <td> {detailStudy.judul} </td>
                                 </tr>
@@ -122,6 +120,7 @@ const DetailStudyResponden = (props) => {
                                 </tr>
                               </tbody>
                             </Table>
+                          </div>
                         </Col>
                       </Row>
                     </Tab>
@@ -129,6 +128,7 @@ const DetailStudyResponden = (props) => {
                     <Tab eventKey="responden" title="Data Responden" className="m-t-15">
                       <Row>
                         <Col md={12} lg={12}>
+                        <div className="part-one">
                           <Table striped bordered>
                             <thead>
                               <tr>
@@ -151,13 +151,14 @@ const DetailStudyResponden = (props) => {
                               </tr>
                             </tbody>
                           </Table>
+                        </div>
                         </Col>
                       </Row>
                     </Tab>
 
                   </Tabs>
                 </Col>
-              </Row>
+        </Row>
               {/* <Row>
                 <Col md={12} lg={12}>
                 <Table striped bordered>
@@ -221,9 +222,6 @@ const DetailStudyResponden = (props) => {
                   </ul>
                 </Col>
               </Row> */}
-            </div>
-          </Col>
-        </Row>
       </Container>
       </div>
 
