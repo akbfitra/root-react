@@ -16,8 +16,7 @@ export const Footer = () => {
 
               <Row className="m-t-15">
                 <Col md={12} lg={12}>
-                  <p>Jl. Sawunggaling 2 No. 6a, Kelurahan Pedalangan, Kecamatan Banyumanik, Kota Semarang</p>
-                  <p>Jawa Tengah 50268</p>
+                  <p>Wisma Iskandarsyah Blok A-10, Jl. Iskandarsyah Raya Kav. 12 - 14, Kel. Melawai, Kebayoran Baru,<br/>Jakarta Selatan <br/>DKI Jakarta</p>
                 </Col>
               </Row>
 

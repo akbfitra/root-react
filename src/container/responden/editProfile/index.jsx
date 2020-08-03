@@ -148,6 +148,16 @@ const EditProfileResponden = (props) => {
                       </Row>
                     </Form.Group>
 
+                    <Form.Group>
+                      <Form.Label>Jenis Kelamin</Form.Label>
+                      <Form.Control as="select" required>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                      </Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        Tolong Isi Jenis Kelamin Anda
+                      </Form.Control.Feedback>
+                    </Form.Group>
 
                     <Form.Group>
                       <Form.Label>Jenis Pekerjaan</Form.Label>

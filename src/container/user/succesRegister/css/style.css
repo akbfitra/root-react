@@ -468,12 +468,12 @@ p{
 }
 /* end datepicker */
 /* ======================================== edit profile-responden ============================================= */
-#topup-surveyor {
+#success-register {
   padding-top: 60px;
   padding-bottom: 60px;
 }
 
-#topup-surveyor .part-one{
+#success-register .part-one{
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
