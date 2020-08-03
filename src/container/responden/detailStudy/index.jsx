@@ -31,7 +31,7 @@ const DetailStudyResponden = (props) => {
     if(!detailStudy){
       getListStudyById()
     }
-  })
+  },[])
 
   return(
     <>

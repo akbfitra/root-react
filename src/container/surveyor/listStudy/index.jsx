@@ -19,7 +19,7 @@ const ListStudy = () => {
     if(!dataSurvey.length){
       loadDataSurvey()
     }
-  })
+  }, [])
   
   const loadDataSurvey = () => {
     dispatch(FIND_STUDY_USER())

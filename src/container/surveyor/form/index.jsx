@@ -11,6 +11,7 @@ import { Tabs, Tab, Container, Row, Col, Form, Button} from 'react-bootstrap'
 import "react-datepicker/dist/react-datepicker.css";
 
 import { QuestionBuilder } from '../../../components/form/questionBuilder'
+import { KriteriaQuestionList } from '../../../components/form/kriteriaQuestionList'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 import { FormInput } from '../../../components/inputForm'
@@ -216,29 +217,45 @@ const FormSurveyor = (props) => {
                   <Col md={12} lg={12}>
                     <div className="part-one">
                       <Row>
-                      <Form.Group>
-                        <Form.Label>Kriteria Responden</Form.Label>
-                        <Row>
-                          {
-                            category.map((data, i) => {
-                              return(
-                                <Col md={3} lg={3} key={i}>
-                                  <Form.Check
-                                  type="checkbox"
-                                  label={`${data.name}`}
-                                  value={`${data.name}`}
-                                  onChange={ (e) => {handlePilihKriteria(e.target.value)}}
-                                  />
-                                </Col>
-                              )
-                            })
-                          }
-                          
-                        </Row>
-                      </Form.Group>
+
+                        {/* pilih kriteria */}
+                        <Form.Group>
+                          <Form.Label>Kriteria Responden</Form.Label>
+                          <Row>
+                            {
+                              category.map((data, i) => {
+                                return(
+                                  <Col md={3} lg={3} key={i}>
+                                    <Form.Check
+                                    type="checkbox"
+                                    label={`${data.name}`}
+                                    value={`${data.name}`}
+                                    onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                                    />
+                                  </Col>
+                                )
+                              })
+                            }
+                            
+                          </Row>
+                        </Form.Group>
+                        
+                        {
+                          pilihCategories.map((data, i) => {
+                            let idCategory = category.find( el => el.name === data )
+
+                            return (
+                              <KriteriaQuestionList
+                                kriteria = { data }
+                                idCategory = { idCategory._id }
+                              />
+
+                            )
+                          })
+                        }
                         {/* <Col md={12} lg={12}>
                           <Form.Group>
-                            <Form.Label>Kriteria Responden</Form.Label>
+                            <Form.Label>Question Responden</Form.Label>
                             <Form.Control as="select" onChange={ (e) => {processSelectCategory(e.target.value); }}>
                               <option>Pilih...</option>
                               {
@@ -253,54 +270,54 @@ const FormSurveyor = (props) => {
                           </Form.Group>
                         </Col>
 
-                        <Col md={12} lg={12}>
-                        <hr className="m-b-0"></hr>
-                        </Col>
+                          <Col md={12} lg={12}>
+                          <hr className="m-b-0"></hr>
+                          </Col> */}
 
-                        <Col md={12} lg={12}>
-                          {
-                            dataQuestions.map((data, i) => {
-                              return(
-                                <Row className="m-t-30" key={i}>
-                                  <Col md={12} lg={12}>
-                                    <div className="box-pertanyaan">
-                                      <div className="left"><h5>{i+1}. </h5></div>
-                                      <div className="right"><h5>{data.name}</h5></div>
-                                    </div>
-                                  </Col>
-                                  <Col md={12} lg={12}>
-                                    <div className="box-answer">
-                                    <Form.Group style={{width:'100%'}}>
-                                      <Form.Control as="select" >
-                                        <option>Pilih..</option>
-                                        { data.listAnswers.map((answer, i) => {
-                                            return(
-                                              <option key={i}>{ answer }</option>
-                                            )
-                                          })
-                                        }
-                                      </Form.Control>
-                                    </Form.Group>
-                                    </div>
-                                  </Col>
-                                </Row>
-                              )
-                            })
-                          }
-                        
-                        </Col>
-                        <Col md={12} lg={12}>
-                          <hr/>
-                          <ul className="list-inline text-right m-b-0">
-                            <li className="list-inline-item">
-                              <Button variant="primary">Tambah Kriteria</Button>{' '}
-                            </li>
-                            <li className="list-inline-item">|</li>
-                            <li className="list-inline-item">
-                              <Button variant="danger">Hapus Kriteria</Button>{' '}
-                            </li>
-                          </ul>
-                        </Col> */}
+                          {/* <Col md={12} lg={12}>
+                            {
+                              dataQuestions.map((data, i) => {
+                                return(
+                                  <Row className="m-t-30" key={i}>
+                                    <Col md={12} lg={12}>
+                                      <div className="box-pertanyaan">
+                                        <div className="left"><h5>{i+1}. </h5></div>
+                                        <div className="right"><h5>{data.name}</h5></div>
+                                      </div>
+                                    </Col>
+                                    <Col md={12} lg={12}>
+                                      <div className="box-answer">
+                                      <Form.Group style={{width:'100%'}}>
+                                        <Form.Control as="select" >
+                                          <option>Pilih..</option>
+                                          { data.listAnswers.map((answer, i) => {
+                                              return(
+                                                <option key={i}>{ answer }</option>
+                                              )
+                                            })
+                                          }
+                                        </Form.Control>
+                                      </Form.Group>
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                )
+                              })
+                            }
+                          </Col> */}
+                          
+                          {/* <Col md={12} lg={12}>
+                            <hr/>
+                            <ul className="list-inline text-right m-b-0">
+                              <li className="list-inline-item">
+                                <Button variant="primary">Tambah Kriteria</Button>{' '}
+                              </li>
+                              <li className="list-inline-item">|</li>
+                              <li className="list-inline-item">
+                                <Button variant="danger">Hapus Kriteria</Button>{' '}
+                              </li>
+                            </ul>
+                          </Col>  */}
                       </Row>
                     </div>
                   </Col>

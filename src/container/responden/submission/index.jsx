@@ -28,7 +28,7 @@ const SubmissionResponden = (props) => {
     if(!submission.length){
       getDataSubmission()
     }
-  })
+  }, [])
 
   const getDataCompletedSubmission = () => {
     dispatch(COMPLETED_USER())
