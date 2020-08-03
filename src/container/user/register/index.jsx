@@ -36,6 +36,7 @@ const Register = (props) => {
   const [ show, setShow ] = useState(false);
   const [ ketertarikan, setKetertarikan ] = useState([])
   const [ pilihCategories, setPilihCategories ] = useState([])
+  const [ jenisKelamin, setJenisKelamin ] = useState('')
 
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
@@ -58,7 +59,7 @@ const Register = (props) => {
   };
 
   const processRegister = () => {
-    dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, pilihCategories))
+    dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, pilihCategories, jenisKelamin))
       .then(() => {
         
       })
@@ -242,8 +243,8 @@ const Register = (props) => {
 
                   <Form.Group>
                     <Form.Label>Jenis Kelamin</Form.Label>
-                    <Form.Control as="select" required>
-                      {/* <option value="">-- Pilih --</option>  */}
+                    <Form.Control as="select" required onChange={ (e) => {setJenisKelamin (e.target.value )}}>
+                      <option value="">-- Pilih --</option> 
                       <option value="Laki-laki">Laki-laki</option>
                       <option value="Perempuan">Perempuan</option>
                     </Form.Control>

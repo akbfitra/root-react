@@ -44,14 +44,14 @@ export const CekLogin = () => {
     )
 }
 
-export const registerProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, categories ) => async dispatch => {
+export const registerProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, categories, jenisKelamin ) => async dispatch => {
   try{
     // console.log(email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber,ktp, history, location)
     const { data } = await instance({
       method: 'POST',
       url: '/user/register/',
       data: {
-        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, categories
+        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, categories, jenisKelamin
       }
     })
     if(data){
