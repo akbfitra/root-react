@@ -226,7 +226,6 @@ const RegisterSurveyor = (props) => {
                   <Form.Group>
                     <Form.Label>Jenis Pekerjaan</Form.Label>
                     <Form.Control as="select" onChange={ (e) => {setPekerjaan( e.target.value )}} required>
-                      <option value="">-- Pilih --</option>
                       <option value="Swasta">Swasta</option>
                       <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
                       <option value="Sedang mencari pekerjaan tetap">Sedang mencari pekerjaan tetap</option>
