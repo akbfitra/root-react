@@ -4,8 +4,11 @@ import { connect, useDispatch } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { reduxForm, Field, getFormValues } from 'redux-form';
 import { required } from 'redux-form-validators'
+import InputRange from 'react-input-range';
+
 
 import './css/style.css';
+import 'react-input-range/lib/css/index.css';
 import { Tabs, Tab, Container, Row, Col, Form, Button} from 'react-bootstrap'
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -31,6 +34,8 @@ const FormSurveyor = (props) => {
   const [category, setCategory ] = useState([])
   const [dataQuestions, setDataQuestions ] = useState([])
   const [ pilihCategories, setPilihCategories ] = useState([])
+
+  const [value, setValue] = useState({min: 0, max: 0})
 
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
@@ -77,7 +82,7 @@ const FormSurveyor = (props) => {
         setDataQuestions(data)
       })
   }
-
+   console.log(value)
 
   return(
     <>
@@ -213,6 +218,53 @@ const FormSurveyor = (props) => {
               </Tab>
 
               <Tab eventKey="Kriteria Responden" title="Kriteria Responden" className="m-t-15">
+                <Row>
+                  <Col md={6} lg={6} className="m-t-30">
+                    <div className="part-one">
+                    <Form.Group>
+                      <Form.Label style={{marginBottom:'30px'}}>Usia</Form.Label>
+                      <InputRange
+                        maxValue={20}
+                        minValue={0}
+                        value={value}
+                        onChange={value => setValue( value )}
+                      />
+                    </Form.Group>
+                    </div>
+                  </Col>
+
+                  <Col md={6} lg={6} className="m-t-30">
+                    <div className="part-one">
+                    <Form.Group>
+                      <Form.Label>Jenis Kelamin</Form.Label>
+                      <Form.Control as="select">
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                      </Form.Control>
+                    </Form.Group>
+                    </div>
+                  </Col>
+
+                  <Col md={6} lg={6} className="m-t-30">
+                    <div className="part-one">
+                    <Form.Group>
+                      <Form.Label>Provinsi</Form.Label>
+                      <Form.Control as="select">
+                      </Form.Control>
+                    </Form.Group>
+                    </div>
+                  </Col>
+
+                  <Col md={6} lg={6} className="m-t-30">
+                    <div className="part-one">
+                    <Form.Group>
+                      <Form.Label>Kabupaten</Form.Label>
+                      <Form.Control as="select">
+                      </Form.Control>
+                    </Form.Group>
+                    </div>
+                  </Col>
+                </Row>
                 <Row className="m-t-30">
                   <Col md={12} lg={12}>
                     <div className="part-one">
@@ -321,6 +373,13 @@ const FormSurveyor = (props) => {
                       </Row>
                     </div>
                   </Col>
+                </Row>
+                <Row>
+                  <div md={6} lg={6}>
+                          <div style={{width:'100%',padding:'15px',backgroundColor:'#cce5ff',borderRadius:'10px'}}> 
+                            <h4>Jumlah Responden Yang Tersedia : 00</h4>
+                          </div>
+                  </div>
                 </Row>
               </Tab>
               
