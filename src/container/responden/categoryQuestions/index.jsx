@@ -33,7 +33,7 @@ const CategoryQuestions = (props) => {
     if(!questions.length || getChangeData ){
       getQuestions()
     }
-  },[])
+  })
 
   const chooseAnswer = (answer, questionId) => {
     setGetChangeData(true)
