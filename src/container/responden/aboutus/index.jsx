@@ -33,13 +33,13 @@ const AboutUsResponden = (props) => {
     if(!category.length){
       getCategory()
     }
-  })
+  },[])
 
   useEffect(() => {
     if(!dataAnswerUser.length){
       getAnswerUser()
     }
-  })
+  },[])
 
   return(
     <>

@@ -1,28 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter, useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { Row, Col, Form, Button} from 'react-bootstrap'
-import { getDataQuestions } from '../../../store/actions/questionsAction'
+// import { getDataQuestions } from '../../../store/actions/questionsAction'
 
 
 export const KriteriaQuestionList = (props) => {
   const dispatch = useDispatch()
-  const history = useHistory()
-  const location = useLocation()
+  // const history = useHistory()
+  // const location = useLocation()
 
-  const [dataQuestions, setDataQuestions ] = useState([])
+  // const [dataQuestions, setDataQuestions ] = useState([])
 
-  const processSelectCategory = (id) => {
-    // let idCategory = category.find( el => el.name === pilihCategory )
-    dispatch(getDataQuestions(id))
-      .then( data => {
-        setDataQuestions(data)
-      })
+  
+  //   const processSelectCategory = (id) => {
+  //     // let idCategory = category.find( el => el.name === pilihCategory )
+  //     dispatch(getDataQuestions(id))
+  //       .then( data => {
+  //         setDataQuestions(data)
+  //       })
+  //   }
+  
+
+  const getData = (questionId, answer) => {
+    let obj = {questionId, answer}
+    props.onchange(obj)
   }
 
-  useEffect(() => {
-    processSelectCategory(props.idCategory)
-  }, [])
+  // useEffect(() => {
+  //   processSelectCategory(props.idCategory) 
+  // }, [])
 
   return(
     <>
@@ -52,7 +59,7 @@ export const KriteriaQuestionList = (props) => {
 
         <Col md={12} lg={12}>
           {
-            dataQuestions.map((data, i) => {
+            props.dataQuestions.map((data, i) => {
               return(
                 <Row className="m-t-30" key={i}>
                   <Col md={12} lg={12}>
@@ -64,11 +71,11 @@ export const KriteriaQuestionList = (props) => {
                   <Col md={12} lg={12}>
                     <div className="box-answer">
                     <Form.Group style={{width:'100%'}}>
-                      <Form.Control as="select" >
-                        <option>Pilih..</option>
+                      <Form.Control as="select" onChange={(e) => { getData(data._id, e.target.value)}} >
+                        <option value= "remove">Semua</option>
                         { data.listAnswers.map((answer, i) => {
                             return(
-                              <option key={i}>{ answer }</option>
+                              <option key={i} value={answer}>{ answer }</option>
                             )
                           })
                         }

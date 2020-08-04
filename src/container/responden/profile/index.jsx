@@ -122,7 +122,7 @@ const ProfileResponden = (props) => {
                         <tr>
                           <td>Jenis Kelamin</td>
                           <td>:</td>
-                          <td>Belum diload</td>
+                          <td> {dataProfile.jenisKelamin} </td>
                         </tr>
 
                         <tr>
@@ -152,7 +152,7 @@ const ProfileResponden = (props) => {
                         <tr>
                           <td>Ketertarikan</td>
                           <td>:</td>
-                          <td>Belum diload</td>
+                          <td> {dataProfile.categories} </td>
                         </tr>
                       </tbody>
                     </Table>

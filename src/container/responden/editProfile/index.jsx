@@ -6,7 +6,7 @@ import './css/style.css';
 import {  Container, Row, Col, Form, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { dataProfileUser, editProfileResponden } from '../../../store/actions/userAction'
+import { dataProfileUser, editProfileResponden, getKetertarikan } from '../../../store/actions/userAction'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -26,7 +26,10 @@ const EditProfileResponden = (props) => {
   const [ pekerjaan, setPekerjaan] = useState('')
   const [ sumber, setSumber] = useState('')
   const [ ktp, setKtp] = useState('')
+  const [ jenisKelamin, setJenisKelamin ] = useState('')
   const [ listProvinsi, SetListProvinsi ] = useState([])
+  const [ kriteria, setKriteria ] = useState([])
+  const [ ketertarikan, setKetertarikan ] = useState([])
   
   let listKota = useSelector( state => state.tempat.tempat.kota)
   
@@ -34,7 +37,7 @@ const EditProfileResponden = (props) => {
   const optionSumber = ["Jaringan Pribadi", "Media Sosial", "Iklan Surat Kabar/TV", "Lainnya"]
 
   const handleProcessUpdate = () => {
-    dispatch(editProfileResponden(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, history))
+    dispatch(editProfileResponden(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin, history))
   }
 
   const getDataProfile = () => {
@@ -47,9 +50,11 @@ const EditProfileResponden = (props) => {
           setBirth(new Date(data.birth))
           setProvinsi(data.provinsi)
           setKota(data.kota)
+          setJenisKelamin(data.jenisKelamin)
           setPekerjaan(data.pekerjaan)
           setSumber(data.sumber)
           setKtp(data.ktp)
+          setKriteria(data.categories)
         })
     }
   }
@@ -66,6 +71,17 @@ const EditProfileResponden = (props) => {
         SetListProvinsi(data)
       })
   }
+
+  const getDataKetertarikan = () => {
+    dispatch(getKetertarikan())
+      .then( data => {
+        setKetertarikan(data)
+      })
+  }
+
+  useEffect(() => {
+    getDataKetertarikan()
+  }, [])
 
   useEffect(() => {
     getDataProfile()
@@ -150,9 +166,21 @@ const EditProfileResponden = (props) => {
 
                     <Form.Group>
                       <Form.Label>Jenis Kelamin</Form.Label>
-                      <Form.Control as="select" required>
-                        <option value="Laki-laki">Laki-laki</option>
-                        <option value="Perempuan">Perempuan</option>
+                      <Form.Control as="select" required onChange ={ (e) => { setJenisKelamin(e.target.value) }}>
+                        <option value= {`${dataProfile.jenisKelamin}`} > { dataProfile.jenisKelamin } </option>
+                        {
+                          dataProfile.jenisKelamin === 'Laki-laki' 
+                          ? 
+                          <>
+                            <option value="Perempuan">Perempuan</option>
+                          </>
+                          :
+                          <>
+                            <option value="Laki-laki">Laki-laki</option>
+                          </>
+                        }
+                        {/* <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option> */}
                       </Form.Control>
                       <Form.Control.Feedback type="invalid">
                         Tolong Isi Jenis Kelamin Anda
@@ -233,7 +261,37 @@ const EditProfileResponden = (props) => {
                     <Form.Group>
                       <Form.Label>Ketertarikan</Form.Label>
                       <Row>
-                      <Col md={3} lg={3}>
+                        {
+                          kriteria.map((data, i) => {
+                            
+                            return(
+                              <Col md={3} lg={3} key={i}>
+                                <Form.Check
+                                checked={`${Boolean(data)}`}
+                                type="checkbox" 
+                                label={`${data}`}
+                                required/>
+                              </Col>
+                            )
+                          })
+
+                        
+                        }
+                        {
+                          ketertarikan.map((data, i) => {
+                            return(
+                              <Col md={3} lg={3} key={i}>
+                                <Form.Check
+                                type="checkbox"
+                                label={`${data.name}`}
+                                value={`${data.name}`}
+                                // onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                                />
+                              </Col>
+                            )
+                          })
+                        }
+                      {/* <Col md={3} lg={3}>
                         <Form.Check
                         type="checkbox" 
                         label="Ketertarikan1"
@@ -250,13 +308,7 @@ const EditProfileResponden = (props) => {
                         type="checkbox" 
                         label="Ketertarikan1"
                         required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col>
+                      </Col> */}
                       </Row>
                     </Form.Group>
 

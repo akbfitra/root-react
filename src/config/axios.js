@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const instance = axios.create({
-  baseURL: 'http://149.129.240.254:8889'
+  baseURL: 'https://backend.survplus.id'
 })
 
 export const instanceTempat = axios.create({

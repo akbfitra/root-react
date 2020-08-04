@@ -1,7 +1,9 @@
 import Cookies from 'js-cookie'
 import {v4} from 'uuid';
 import { instance } from '../../../config/axios'
+import axios from 'axios'
 import {getDenormalizedSurvey} from '../../selectors/denormalizesurvey'
+import { verifyToken } from '../../../config/jwt'
 
 export const INIT_QUESTION = (dispatch) => {
   const isLogin = Cookies.get('test')
@@ -32,7 +34,7 @@ export const INIT_QUESTION = (dispatch) => {
   }
 }
 
-export const SAVE_STUDY = (surveyFormData,kriteria, history) => async (dispatch, getState) => {
+export const SAVE_STUDY = (surveyFormData, answerKriteria, jenisKelamin, umurMin, umurMax, provinsi, kota, history) => async (dispatch, getState) => {
   try{
 
     await dispatch({
@@ -43,8 +45,13 @@ export const SAVE_STUDY = (surveyFormData,kriteria, history) => async (dispatch,
     const state = getState()
     const survey = getDenormalizedSurvey(state)
 
-    survey.kriteria = kriteria
-  
+    survey.answerKriteria = answerKriteria
+    survey.jenisKelamin = jenisKelamin
+    survey.umurMin = umurMin
+    survey.umurMax = umurMax
+    survey.provinsi = provinsi
+    survey.kota = kota
+    
     const { data } = await instance({
       method: 'POST',
       url:'/project',
@@ -82,13 +89,15 @@ export const FIND_STUDY_USER = () => async dispatch  => {
 
 export const FIND_STUDY_WITH_RESPONDEN = () => async dispatch => {
   try{
-    const { data } = await instance({
+    const { id } = await verifyToken(Cookies.get('test'))
+    const { data } = await axios({
       method: 'GET',
-      url:'/project/responden',
-      headers:{
-        "accesstoken": `${Cookies.get('test')}`
-      }
+      url:`https://backoffice.survplus.id/manajemen_responden/getProject/${id}`,
+      // headers:{
+      //   "accesstoken": `${Cookies.get('test')}`
+      // }
     })
+    console.log(data)
     return data
   }
   catch(err){
@@ -170,6 +179,22 @@ export const COMPLETED_USER = () => async dispatch => {
       url: `/project/completed`,
       headers:{
         "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const COUNTER_RESPONDEN = ( answerKriteria,jenisKelamin, umurMin, umurMax, provinsi, kota ) => async dispatch => {
+  try{
+    const { data } = await axios({
+      method: 'POST',
+      url: `https://backoffice.survplus.id/manajemen_responden/counter/`,
+      data: {
+        jenisKelamin, umurMin, umurMax, provinsi, kota, answerKriteria
       }
     })
     return data

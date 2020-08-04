@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { reduxForm, Field, getFormValues } from 'redux-form';
 import { required } from 'redux-form-validators'
@@ -22,20 +22,30 @@ import { FormInput } from '../../../components/inputForm'
 import * as surveyActions from '../../../store/actions/surveyFormAction'
 import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
-import { SAVE_STUDY } from '../../../store/actions/surveyFormAction'
+import { SAVE_STUDY, COUNTER_RESPONDEN } from '../../../store/actions/surveyFormAction'
 import { getDataQuestions } from '../../../store/actions/questionsAction'
 import { dataCategory } from '../../../store/actions/aboutUsAction'
 import { renderDatePicker } from '../../../components/inputForm'
+import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
 
 
 const FormSurveyor = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const [category, setCategory ] = useState([])
-  const [dataQuestions, setDataQuestions ] = useState([])
+  const [ category, setCategory ] = useState([])
+  const [ dataQuestions, setDataQuestions ] = useState([])
   const [ pilihCategories, setPilihCategories ] = useState([])
+  const [ listProvinsi, SetListProvinsi ] = useState([])
+  const [ kota, setKota] = useState('')
+  const [ provinsi, setProvinsi] = useState('')
+  const [ jenisKelamin, setJenisKelamin ] = useState('')
+  const [ value, setValue] = useState({min: 18, max: 50})
+  const [ getFilterQuestion, setFilterQuestion ] = useState([])
+  const [ counterUser, setCounterUser ] = useState(0)
+  const [ flagsFilterQuestions, setFlagsFilterQuestions ] = useState(false)
 
-  const [value, setValue] = useState({min: 0, max: 0})
+  let listKota = useSelector( state => state.tempat.tempat.kota)
+
 
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
@@ -45,6 +55,63 @@ const FormSurveyor = (props) => {
       setPilihCategories(pilihCategories.filter(item => item !== kriteria))
     }
   }
+
+  function processSelectProvinsi(data){
+    setProvinsi(data)
+    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, data, kota)
+    dispatch(dataKota(data))
+  }
+
+  const processSelectKota = (data) => {
+    setKota(data)
+    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, data)
+  }
+
+  const processSelectUmur = (data) => {
+    setValue(data)
+    getCounterResponden(getFilterQuestion, jenisKelamin, data.min, data.max, provinsi, kota)
+  }
+
+  function getDataProvinsi(){
+    dispatch(dataProvinsi())
+      .then( data => {
+        SetListProvinsi(data)
+      })
+  }
+
+  const onchange = async (data) => {
+    let cek =  getFilterQuestion.some(item => item.questionId === data.questionId)
+    
+    let elementPos =  getFilterQuestion.findIndex(x => x.questionId === data.questionId);
+    
+    if(!cek){
+      setFilterQuestion(arr => arr.concat(data))
+      setFlagsFilterQuestions(true)
+    }
+    else{
+      if(data.answer === 'remove'){
+        setFilterQuestion((prev) => {
+          const prevQuestion = [...prev]
+          return prevQuestion.filter(item => item.questionId !== data.questionId)
+        })
+        setFlagsFilterQuestions(true)
+      }else{
+        setFilterQuestion((prev) => {
+          const backQuestion = [...prev]
+          backQuestion[elementPos] = {
+            ...backQuestion[elementPos],
+            ...data
+          }
+          return backQuestion
+        })
+        setFlagsFilterQuestions(true)
+      }
+    }
+  }
+
+  useEffect(() => {
+    getDataProvinsi()
+  }, [])
 
   useEffect(() => {
     dispatch(surveyActions.INIT_QUESTION)
@@ -58,7 +125,7 @@ const FormSurveyor = (props) => {
 
   const handleSaveSurvey = () => {
     
-    dispatch(SAVE_STUDY(props.formValues, pilihCategories, history))
+    dispatch(SAVE_STUDY(props.formValues, getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, kota, history))
   };
 
   const getCategory = () =>{
@@ -69,11 +136,30 @@ const FormSurveyor = (props) => {
       })
   }
 
+  const getCounterResponden = (dataQuestion, dataJenisKelamin, dataValueUmurMin, dataValueUmurMax, dataProvinsi, dataKota) => {
+    dispatch(COUNTER_RESPONDEN(dataQuestion, dataJenisKelamin, dataValueUmurMin,dataValueUmurMax, dataProvinsi, dataKota))
+      .then(data => {
+        setCounterUser(data)
+        setFlagsFilterQuestions(false)
+      })
+  }
+
+  const getJenisKelamin = (dataGender) => {
+     setJenisKelamin(dataGender)
+     getCounterResponden(getFilterQuestion, dataGender, value.min, value.max, provinsi, kota)
+  }
+
+  useEffect(() => {
+    if(counterUser === 0 || flagsFilterQuestions){
+      getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, kota)
+    }
+  })
+
   useEffect(() => {
     if(!category.length){
       getCategory()
     }
-  })
+  },[])
 
   const processSelectCategory = (pilihCategory) => {
     let idCategory = category.find( el => el.name === pilihCategory )
@@ -82,7 +168,7 @@ const FormSurveyor = (props) => {
         setDataQuestions(data)
       })
   }
-   console.log(value)
+
 
   return(
     <>
@@ -224,10 +310,10 @@ const FormSurveyor = (props) => {
                     <Form.Group>
                       <Form.Label style={{marginBottom:'30px'}}>Usia</Form.Label>
                       <InputRange
-                        maxValue={20}
+                        maxValue={100}
                         minValue={0}
                         value={value}
-                        onChange={value => setValue( value )}
+                        onChange={value => processSelectUmur( value )}
                       />
                     </Form.Group>
                     </div>
@@ -237,7 +323,8 @@ const FormSurveyor = (props) => {
                     <div className="part-one">
                     <Form.Group>
                       <Form.Label>Jenis Kelamin</Form.Label>
-                      <Form.Control as="select">
+                      <Form.Control as="select" onChange={e => getJenisKelamin( e.target.value )} >
+                        <option value="">semua</option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                       </Form.Control>
@@ -249,7 +336,17 @@ const FormSurveyor = (props) => {
                     <div className="part-one">
                     <Form.Group>
                       <Form.Label>Provinsi</Form.Label>
-                      <Form.Control as="select">
+                        <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }} required>
+                        <option value="">-- Pilih --</option>
+                        { 
+                          !listProvinsi 
+                          ? 
+                            <option value="">-- Pilih --</option>
+                          :
+                            listProvinsi.map( (data, i) => 
+                            <option key={data._id} value={`${data.Provinsi}`}>{data.Provinsi}</option>
+                            )
+                        }
                       </Form.Control>
                     </Form.Group>
                     </div>
@@ -259,8 +356,18 @@ const FormSurveyor = (props) => {
                     <div className="part-one">
                     <Form.Group>
                       <Form.Label>Kabupaten</Form.Label>
-                      <Form.Control as="select">
-                      </Form.Control>
+                      <Form.Control as="select" onChange={ (e) => {processSelectKota( e.target.value )}}required>
+                      <option value="">-- Pilih --</option>
+                      { 
+                        !listKota 
+                        ? 
+                          <option value="">-- Pilih --</option>
+                        :
+                          listKota.map( (data, i) => 
+                          <option key={data._id} value={`${data["Kabupaten/kota"]}`}>{data["Kabupaten/kota"]}</option>
+                          )
+                      }
+                    </Form.Control>
                     </Form.Group>
                     </div>
                   </Col>
@@ -295,11 +402,14 @@ const FormSurveyor = (props) => {
                         {
                           pilihCategories.map((data, i) => {
                             let idCategory = category.find( el => el.name === data )
-
+                            
                             return (
                               <KriteriaQuestionList
                                 kriteria = { data }
+                                categoryName = {idCategory.name}
                                 idCategory = { idCategory._id }
+                                dataQuestions = { idCategory.listQuestions}
+                                onchange={(e) => { onchange(e) }} 
                               />
 
                             )
@@ -377,7 +487,7 @@ const FormSurveyor = (props) => {
                 <Row>
                   <div md={6} lg={6}>
                           <div style={{width:'100%',padding:'15px',backgroundColor:'#cce5ff',borderRadius:'10px'}}> 
-                            <h4>Jumlah Responden Yang Tersedia : 00</h4>
+                            <h4>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </h4>
                           </div>
                   </div>
                 </Row>

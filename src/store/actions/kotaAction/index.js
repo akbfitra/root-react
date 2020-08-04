@@ -5,7 +5,7 @@ export const dataProvinsi = () => async dispatch => {
   try{
     const { data } = await axios({
       method: 'GET',
-      url: 'http://backoffice.survplus.id/get_prov'
+      url: 'https://backoffice.survplus.id/get_prov'
     })
     dispatch({type: 'DATA_PROVINSI', payload: data})
     return data
@@ -20,7 +20,7 @@ export const dataKota = (idProvinsi) => async dispatch => {
     console.log(idProvinsi)
     const { data } = await axios({
       method: 'GET',
-      url: `http://backoffice.survplus.id/get_kab/${idProvinsi}`
+      url: `https://backoffice.survplus.id/get_kab/${idProvinsi}`
     })
     console.log(data)
     dispatch({type: 'DATA_KOTA', payload: data})
