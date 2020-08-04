@@ -305,21 +305,21 @@ const RegisterSurveyor = (props) => {
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label>Ketertarikan</Form.Label>
+                    {/* <Form.Label>Ketertarikan</Form.Label> */}
                     <Row>
                       {
-                        ketertarikan.map((data, i) => {
-                          return(
-                            <Col md={3} lg={3} key={i}>
-                              <Form.Check
-                              type="checkbox" 
-                              label={`${data.name}`}
-                              value={`${data.name}`}
-                              onChange={ (e) => {handlePilihKriteria(e.target.value)}}
-                              />
-                            </Col>
-                          )
-                        })
+                        // ketertarikan.map((data, i) => {
+                        //   return(
+                        //     <Col md={3} lg={3} key={i}>
+                        //       <Form.Check
+                        //       type="checkbox" 
+                        //       label={`${data.name}`}
+                        //       value={`${data.name}`}
+                        //       onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                        //       />
+                        //     </Col>
+                        //   )
+                        // })
                       }
                       {/* <Col md={3} lg={3}>
                         <Form.Check 

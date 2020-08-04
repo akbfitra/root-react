@@ -204,7 +204,7 @@ const LandingPage = () => {
                   perusahaanImg.map((data, i) => {
                     return(
                       <div key={i}>
-                        <img src={`http://backoffice.survplus.id/foto/${data.icon}`} style={{height:'100px'}}></img>
+                        <img src={`https://backoffice.survplus.id/foto/${data.icon}`} style={{height:'100px'}}></img>
                       </div>
                     )
                   })
