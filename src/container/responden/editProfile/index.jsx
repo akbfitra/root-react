@@ -37,7 +37,16 @@ const EditProfileResponden = (props) => {
   const optionSumber = ["Jaringan Pribadi", "Media Sosial", "Iklan Surat Kabar/TV", "Lainnya"]
 
   const handleProcessUpdate = () => {
-    dispatch(editProfileResponden(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin, history))
+    dispatch(editProfileResponden(username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin, kriteria, history))
+  }
+
+  const handlePilihKriteria = (data) => {
+    let cek = kriteria.includes(data)
+    if(!cek){
+      setKriteria(arr => [...kriteria, data])
+    }else if(kriteria.indexOf(data > -1)){
+      setKriteria(kriteria.filter(item => item !== data))
+    }
   }
 
   const getDataProfile = () => {
@@ -61,7 +70,6 @@ const EditProfileResponden = (props) => {
 
   function processSelectProvinsi(data){
     setProvinsi(data)
-    // let idProvinsi = listProvinsi.find( el => el.nama == data )
     dispatch(dataKota(data))
   }
   
@@ -262,53 +270,21 @@ const EditProfileResponden = (props) => {
                       <Form.Label>Ketertarikan</Form.Label>
                       <Row>
                         {
-                          kriteria.map((data, i) => {
-                            
+                          ketertarikan
+                            .map((data, i) => {
                             return(
                               <Col md={3} lg={3} key={i}>
                                 <Form.Check
-                                checked={`${Boolean(data)}`}
-                                type="checkbox" 
-                                label={`${data}`}
-                                required/>
-                              </Col>
-                            )
-                          })
-
-                        
-                        }
-                        {
-                          ketertarikan.map((data, i) => {
-                            return(
-                              <Col md={3} lg={3} key={i}>
-                                <Form.Check
-                                type="checkbox"
-                                label={`${data.name}`}
-                                value={`${data.name}`}
-                                // onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                                  type="checkbox"
+                                  checked={kriteria.some((nama) => nama === data.name)}
+                                  label={`${data.name}`}
+                                  value={`${data.name}`}
+                                  onChange={ (e) => {handlePilihKriteria(e.target.value)}}
                                 />
                               </Col>
                             )
                           })
                         }
-                      {/* <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col> */}
                       </Row>
                     </Form.Group>
 

@@ -103,13 +103,13 @@ export const dataProfileUser = () => async dispatch => {
   }
 }
 
-export const editProfileResponden = (username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin, history) => async dispatch => {
+export const editProfileResponden = (username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin,categories, history) => async dispatch => {
   try{
     const { data } = await instance({
       method: 'PUT',
       url: `user/updateprofileresponden`,
       data: {
-        username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin
+        username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin, categories
       },
       headers:{
         "accesstoken": `${Cookies.get('test')}`

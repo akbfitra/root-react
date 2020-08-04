@@ -41,6 +41,9 @@ const SubmissionResponden = (props) => {
     getDataCompletedSubmission()
   }, [])
 
+  console.log(submission)
+  console.log(completedSubmission)
+
   return(
     <>
     <Navbar/>
@@ -80,7 +83,7 @@ const SubmissionResponden = (props) => {
                                   <div className="box">
                                     <div className="box-left">
                                     <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
-                                    <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name }</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : </h4>
                                     <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
                                     </div>
                                     <div className="box-right">
@@ -108,7 +111,9 @@ const SubmissionResponden = (props) => {
                   {
                     !completedSubmission.length
                     ? 
+                    
                       <h1>Tidak ada data</h1>
+                    
                     :
                       completedSubmission.map((data,i) => {
                         return(
@@ -120,7 +125,7 @@ const SubmissionResponden = (props) => {
                                     <div className="box">
                                       <div className="box-left">
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
-                                      <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name} </h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : </h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
                                       </div>
                                       <div className="box-right">
@@ -143,28 +148,6 @@ const SubmissionResponden = (props) => {
                         )
                       })
                   }
-
-                    {/* <Row className="m-t-15">
-                      <Col md={12} lg={12}>
-                        <div className="part-one">
-                          <Row>
-                            <Col md={12} lg={12}>
-                              <div className="box">
-                                <div className="box-left">
-                                <h4 className="m-t-0 m-b-0 title-two"><strong>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequatQuis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat</strong></h4>
-                                <h4 className="m-t-5 m-b-0 title-three">PT. Maju Jaya Makmur Mandiri</h4>
-                                <h4 className="m-t-5 m-b-0 title-three">6 hari yang akan lalu</h4>
-                                </div>
-                                <div className="box-right">
-                                <h4 className="title-two text-center"><strong>Rp 100.000,-</strong></h4>
-                                <Button href="/responden/submission/detailstudy" variant="success btn-block" className="m-t-15">Detail</Button>
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Col>
-                    </Row> */}
                 </Tab>
             </Tabs>
           </Col>
