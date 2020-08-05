@@ -35,7 +35,7 @@ const StudyResponden = (props) => {
     if(!listOfQuestions.length || getChangeData){
       getListQuestions()
     }
-  }, [])
+  })
 
 
   const chooseAnswer = (answer, questionId) => {
