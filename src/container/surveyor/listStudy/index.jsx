@@ -133,6 +133,10 @@ const ListStudy = () => {
                         <Link to={`/surveyor/detailstudy/${data._id}`}>
                           <Button variant="primary">Detail Studi</Button>
                         </Link>
+                        <br></br>
+                        <Link to={`/surveyor/form/edit/${data._id}`}>
+                          <Button variant="warning">Edit Studi</Button>
+                        </Link>
                       </Col>
                     </Row>
                   </div>

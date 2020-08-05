@@ -1,19 +1,37 @@
 import Cookies from 'js-cookie'
 import {v4} from 'uuid';
+import { normalize } from 'normalizr';
 import { instance } from '../../../config/axios'
 import axios from 'axios'
 import {getDenormalizedSurvey} from '../../selectors/denormalizesurvey'
 import { verifyToken } from '../../../config/jwt'
+import survey from '../../models/schema';
 
-export const INIT_QUESTION = (dispatch) => {
+export const INIT_QUESTION = (studyId) =>  async (dispatch) => {
   const isLogin = Cookies.get('test')
   const role = Cookies.get('role')
   const username = Cookies.get('username')
-  const data = {
+  const dataUser = {
     isLogin, role, username
   }
 
-  if(data.isLogin){
+  const {data} = await instance({
+    method: 'GET',
+    url:`/project/responden/${studyId}`,
+    headers:{
+      "accesstoken": `${Cookies.get('test')}`
+    }
+  })
+
+
+  if(data  && role === 'surveyor'){
+    console.log(normalize(data, survey))
+    dispatch({
+      type: 'SURVEY_LOAD_SUCCESS',
+      payload: (normalize(data, survey))
+    });
+   
+  } else if(dataUser.isLogin && role === 'surveyor'){
     dispatch({ 
       type: 'INIT_QUESTIONS' , 
       payload: { 
@@ -97,7 +115,6 @@ export const FIND_STUDY_WITH_RESPONDEN = () => async dispatch => {
       //   "accesstoken": `${Cookies.get('test')}`
       // }
     })
-    console.log(data)
     return data
   }
   catch(err){
@@ -198,6 +215,21 @@ export const COUNTER_RESPONDEN = ( answerKriteria,jenisKelamin, umurMin, umurMax
       }
     })
     return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const UPDATE_DATA_APPROVAL_RESPONDEN = (idStudy, idResponden) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'PUT',
+      url: `/project/approval/${idStudy}/${idResponden}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
   }
   catch(err){
     console.log(err)

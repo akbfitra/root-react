@@ -2,6 +2,14 @@ import update from 'immutability-helper'
 
 const surveyForm = (state = {}, action) => {
   switch( action.type ){
+    case 'SURVEY_LOAD_SUCCESS': {
+      const {surveys} = action.payload.entities;
+
+      return {
+        ...surveys
+      }
+    }
+
     case 'INIT_QUESTIONS':{
       const {_id} = action.payload;
       return {

@@ -3,6 +3,13 @@ import { bindFormDataToState } from '../../utils/formUtils'
 
 const answerOptionsReducer = (state = {}, action) => {
   switch (action.type) {
+    case 'SURVEY_LOAD_SUCCESS': {
+      const {answerOptions} = action.payload.entities;
+
+      return {
+        ...answerOptions
+      }
+    }
     case 'ANSWER_OPTION_ADD_NEW':
     case 'ANSWER_OPTION_CHANGE_TITLE': {
       const {answerOptionId, title} = action.payload;

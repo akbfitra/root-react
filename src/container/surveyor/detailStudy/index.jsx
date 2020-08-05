@@ -7,7 +7,7 @@ import moment from 'moment'
 import './css/style.css';
 import { Container, Row, Col, Button, Table, Tabs, Tab} from 'react-bootstrap'
 
-import { FIND_STUDY_WITH_RESPONDEN_BY_ID } from '../../../store/actions/surveyFormAction'
+import { FIND_STUDY_WITH_RESPONDEN_BY_ID, UPDATE_DATA_APPROVAL_RESPONDEN } from '../../../store/actions/surveyFormAction'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -19,23 +19,32 @@ const DetailStudyResponden = (props) => {
   let { studyId } = params
   const [ detailStudy, setDetailStudy ] = useState('')
   const [ jumlahQuestionsLength, setJumlahQuestionslength ] = useState(0)
+  const [ completeUsers, setCompleteUsers ] = useState([])
+  const [getChangeData, setGetChangeData ] = useState(false)
 
   const getListStudyById = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
       .then( data => {
         setDetailStudy(data)
         setJumlahQuestionslength(data.questions.length)
+        setCompleteUsers(data.completedUser)
+        setGetChangeData(false)
       })
   }
 
   useEffect( () => {
-    if(!detailStudy){
+    if(!detailStudy || getChangeData){
       getListStudyById()
     }
   })
 
+  const updatedDataApproval = (idResponden) => {
+    setGetChangeData(true)
+    dispatch(UPDATE_DATA_APPROVAL_RESPONDEN(studyId, idResponden))
+  }
+
+
   console.log(detailStudy)
-  console.log(jumlahQuestionsLength)
 
   return(
     <>
@@ -135,21 +144,40 @@ const DetailStudyResponden = (props) => {
                                 <th style={{textAlign:"center"}}>No.</th>
                                 <th style={{textAlign:"center"}}>Responden</th>
                                 <th style={{textAlign:"center"}}>Approval</th>
-                                <th style={{textAlign:"center"}}>Paid</th>
+                                {/* <th style={{textAlign:"center"}}>Paid</th> */}
                                 <th style={{textAlign:"center"}}>Option</th>
                               </tr>
                             </thead>
 
 
-                            <tbody>
-                              <tr>
-                                <td  style={{textAlign:"center"}}>1.</td>
-                                <td>Nama Responden</td>
-                                <td><center><Button variant="primary">Approval</Button></center></td>
-                                <td><center><Button variant="primary">Paid</Button></center></td>
-                                <td><center><Button variant="primary" href="#">Detail Jawaban</Button></center></td>
-                              </tr>
-                            </tbody>
+                            {/* <tbody> */}
+                              {
+                                !completeUsers.length ? 
+                                <tbody>
+                                  <tr>
+                                    <td  style={{textAlign:"center"}}>-</td>
+                                    <td>NoData</td>
+                                    <td>-</td>
+                                    {/* <td>-</td> */}
+                                    <td>-</td>
+                                  </tr>
+                                </tbody>
+                                :
+                                completeUsers.map((data, i) => {
+                                  return(
+                                    <tbody key={i}>
+                                      <tr>
+                                        <td  style={{textAlign:"center"}}> {i+1} </td>
+                                        <td> {data.userId.name} </td>
+                                        <td><center><Button variant={data.verifikasiSelesai ? 'primary': 'outline-primary' } onClick = { () => updatedDataApproval(data.userId._id)} > {data.verifikasiSelesai ? 'Approved': 'Approval' } </Button></center></td>
+                                        {/* <td><center><Button variant="primary">Paid</Button></center></td> */}
+                                        <td><center><Button variant="info" href="#">Detail Jawaban</Button></center></td>
+                                      </tr>
+                                    </tbody>
+                                  )
+                                })
+                              }
+                            {/* </tbody> */}
                           </Table>
                         </div>
                         </Col>

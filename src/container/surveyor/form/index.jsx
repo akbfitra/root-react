@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { reduxForm, Field, getFormValues } from 'redux-form';
@@ -32,6 +32,7 @@ import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
 const FormSurveyor = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const params = useParams()
   const [ category, setCategory ] = useState([])
   const [ dataQuestions, setDataQuestions ] = useState([])
   const [ pilihCategories, setPilihCategories ] = useState([])
@@ -45,7 +46,7 @@ const FormSurveyor = (props) => {
   const [ flagsFilterQuestions, setFlagsFilterQuestions ] = useState(false)
 
   let listKota = useSelector( state => state.tempat.tempat.kota)
-
+  let { studyId } = params
 
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
@@ -114,7 +115,7 @@ const FormSurveyor = (props) => {
   }, [])
 
   useEffect(() => {
-    dispatch(surveyActions.INIT_QUESTION)
+    dispatch(surveyActions.INIT_QUESTION(studyId))
   }, [dispatch])
 
   let listQuestions = props.survey

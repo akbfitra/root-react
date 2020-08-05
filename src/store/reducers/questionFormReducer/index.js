@@ -3,6 +3,13 @@ import { bindFormDataToState } from '../../utils/formUtils'
 
 const questionForm = (state = {} , action) => {
   switch( action.type ){
+    case 'SURVEY_LOAD_SUCCESS': {
+      const {questions} = action.payload.entities;
+
+      return {
+        ...questions
+      }
+    }
     
     case 'ADD_NEW_QUESTION': {
       const {question} = action.payload;
