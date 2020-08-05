@@ -22,6 +22,7 @@ const Register = (props) => {
 
   const [ email, setEmail ] = useState('')
   const [ password, setPassword] = useState('')
+  const [ konfirmasiPassword, setKonfirmasiPassword] = useState('')
   const [ username, setUsername] = useState('')
   const [ phone, setPhone] = useState('')
   const [ birth, setBirth] = useState('')
@@ -46,15 +47,20 @@ const Register = (props) => {
       setPilihCategories(pilihCategories.filter(item => item !== kriteria))
     }
   }
+
+
  
   const handleSubmit = event => {
     event.preventDefault()
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    let jumlahKategori = pilihCategories.length
+
+    if ((form.checkValidity() === false) && (jumlahKategori < 4) && (password !== konfirmasiPassword) ) {
       event.preventDefault();
       event.stopPropagation();
+    } else if((jumlahKategori >= 4 )&& (form.checkValidity() === true) && (password === konfirmasiPassword)) {
+      processRegister()
     }
-    processRegister()
     setValidated(true);
   };
 
@@ -184,9 +190,10 @@ const Register = (props) => {
                     type="password" 
                     placeholder=""
                     required 
-                    onChange={ (e) => {setPassword( e.target.value )}}/>
+                    isInvalid={ konfirmasiPassword !== password ? true : false}
+                    onChange={ (e) => {setKonfirmasiPassword( e.target.value )}}/>
                     <Form.Control.Feedback type="invalid">
-                      Tolong Isi Konfirmasi Password Anda
+                      Konfirmasi Password Anda tidak sama
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -205,7 +212,7 @@ const Register = (props) => {
                   <Form.Group>
                     <Form.Label>No. Telepon</Form.Label>
                     <Form.Control 
-                      type="text" 
+                      type="number" 
                       placeholder="" 
                       required
                       onChange={ (e) => {setPhone (e.target.value )}}/>
@@ -217,7 +224,7 @@ const Register = (props) => {
                   <Form.Group>
                     <Form.Label>No. Identitas</Form.Label>
                     <Form.Control 
-                      type="text" 
+                      type="number" 
                       placeholder=""
                       required 
                       onChange={ (e) => {setKtp( e.target.value )}}/>
@@ -331,66 +338,20 @@ const Register = (props) => {
                         ketertarikan.map((data, i) => {
                           return(
                             <Col md={3} lg={3} key={i}>
-                              <Form.Check
-                              type="checkbox"
-                              label={`${data.name}`}
-                              value={`${data.name}`}
-                              onChange={ (e) => {handlePilihKriteria(e.target.value)}}
-                              />
+                              <Form.Check>
+                                <Form.Check.Input type="checkbox"
+                                  isInvalid={pilihCategories.length < 4 ? true : false} 
+                                  value={`${data.name}`}
+                                  onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                                />
+                                <Form.Check.Label>{`${data.name}`}</Form.Check.Label>
+                                <Form.Control.Feedback type="invalid">Minimal 4 Ketertarikan</Form.Control.Feedback>
+                              </Form.Check>
                             </Col>
                           )
                         })
                       }
-                      {/* <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check 
-                        type="checkbox" 
-                        label="Ketertarikan2" 
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check 
-                        type="checkbox" 
-                        label="Ketertarikan2" 
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check 
-                        type="checkbox" 
-                        label="Ketertarikan2" 
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check
-                        type="checkbox" 
-                        label="Ketertarikan1"
-                        required/>
-                      </Col>
-                      <Col md={3} lg={3}>
-                        <Form.Check 
-                        type="checkbox" 
-                        label="Ketertarikan2" 
-                        required/>
-                      </Col> */}
                     </Row>
-                    
                     
                   </Form.Group>
 

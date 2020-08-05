@@ -22,6 +22,7 @@ const RegisterSurveyor = (props) => {
 
   const [ email, setEmail] = useState('')
   const [ password, setPassword] = useState('')
+  const [ konfirmasiPassword, setKonfirmasiPassword] = useState('')
   const [ username, setUsername] = useState('')
   const [ phone, setPhone] = useState('')
   const [ birth, setBirth] = useState('')
@@ -35,29 +36,10 @@ const RegisterSurveyor = (props) => {
   const [validated, setValidated] = useState(false);
   const [ errs, setErrs] = useState('') 
   const [show, setShow] = useState(false);
-  const [ ketertarikan, setKetertarikan ] = useState([])
 
-  const [ pilihCategories, setPilihCategories ] = useState([])
-
-  const handlePilihKriteria = (kriteria) => {
-    let cek = pilihCategories.includes(kriteria)
-    if(!cek){
-      setPilihCategories(arr => [...pilihCategories, kriteria])
-    }else if(pilihCategories.indexOf(kriteria > -1)){
-      setPilihCategories(pilihCategories.filter(item => item !== kriteria))
-    }
-  }
-  
-
-  const getDataKetertarikan = () => {
-    dispatch(getKetertarikan())
-      .then( data => {
-        setKetertarikan(data)
-      })
-  }
 
   const processRegisterSurveyor = () => {
-    dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp,pilihCategories, history, location))
+    dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location))
     .then(() => {
         
     })
@@ -70,17 +52,18 @@ const RegisterSurveyor = (props) => {
   const handleSubmit = event => {
     event.preventDefault()
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if ((form.checkValidity() === false) && (password !== konfirmasiPassword)) {
       event.preventDefault();
       event.stopPropagation();
+    } else if((form.checkValidity() === true) && (password === konfirmasiPassword)) {
+      processRegisterSurveyor()
+
     }
-    processRegisterSurveyor()
     setValidated(true);
   };
 
   function processSelectProvinsi(data){
     setProvinsi(data)
-    // let idProvinsi = listProvinsi.find( el => el.nama === data )
     dispatch(dataKota(data))
   }
   
@@ -95,9 +78,6 @@ const RegisterSurveyor = (props) => {
     getDataProvinsi()
   }, [])
 
-  useEffect(() => {
-    getDataKetertarikan()
-  }, [])
 
   if(Array.isArray(errs)){
     setErrs(errs.join(' , '))
@@ -177,9 +157,13 @@ const RegisterSurveyor = (props) => {
 
                   <Form.Group>
                     <Form.Label>Konfirmasi Password</Form.Label>
-                    <Form.Control type="password" placeholder="" required onChange={ (e) => {setPassword( e.target.value )}}/>
+                    <Form.Control type="password" 
+                    placeholder="" 
+                    required
+                    isInvalid={ konfirmasiPassword !== password ? true : false} 
+                    onChange={ (e) => {setKonfirmasiPassword( e.target.value )}}/>
                     <Form.Control.Feedback type="invalid">
-                      Tolong Isi Konfirmasi Password Anda
+                      Konfirmasi Password Anda tidak sama
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -193,7 +177,7 @@ const RegisterSurveyor = (props) => {
                   
                   <Form.Group>
                     <Form.Label>No. Telepon</Form.Label>
-                    <Form.Control type="text" placeholder="" required onChange={ (e) => {setPhone (e.target.value )}}/>
+                    <Form.Control type="number" placeholder="" required onChange={ (e) => {setPhone (e.target.value )}}/>
                     <Form.Control.Feedback type="invalid">
                       Tolong Isi Nomor Telepon Anda
                     </Form.Control.Feedback>
@@ -226,6 +210,7 @@ const RegisterSurveyor = (props) => {
                   <Form.Group>
                     <Form.Label>Jenis Pekerjaan</Form.Label>
                     <Form.Control as="select" onChange={ (e) => {setPekerjaan( e.target.value )}} required>
+                      <option value="">-- Pilih --</option> 
                       <option value="Swasta">Swasta</option>
                       <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
                       <option value="Sedang mencari pekerjaan tetap">Sedang mencari pekerjaan tetap</option>

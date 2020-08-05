@@ -15,15 +15,20 @@ const ProfileResponden = (props) => {
   const dispatch = useDispatch()
 
   const [dataProfile, SetDataProfile] = useState('')
+  const [dataKetertarikan, setDataKetertarikan ] = useState([])
   
   const getDataProfile = () => {
     if(!dataProfile){
       dispatch(dataProfileUser())
         .then( data => {
           SetDataProfile(data)
+          setDataKetertarikan(data.categories)
         })
     }
   }
+
+  // // let ketertarikanProfile = dataProfile.categories.join(' ,')
+  // console.log(dataProfile.categories)
 
   useEffect( () => {
     getDataProfile()
@@ -152,7 +157,7 @@ const ProfileResponden = (props) => {
                         <tr>
                           <td>Ketertarikan</td>
                           <td>:</td>
-                          <td> {dataProfile.categories} </td>
+                          <td> {dataKetertarikan.join(', ') } </td>
                         </tr>
                       </tbody>
                     </Table>

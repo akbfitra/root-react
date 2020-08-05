@@ -64,13 +64,13 @@ export const registerProcess = (email, password, name, phone, birth, provinsi, k
   }
 }
 
-export const registerSurveyorProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, categories, history, location) => async dispatch => {
+export const registerSurveyorProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location) => async dispatch => {
   try{
     const { data } = await instance({
       method: 'POST',
       url: '/user/register/surveyor',
       data: {
-        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, categories
+        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp
       }
     })
     history.replace(location.state ? location.state.from : '/success')
