@@ -17,6 +17,7 @@ import Register from './container/user/register'
 import RegisterSurveyor from './container/user/registerSurveyor'
 import SuccessRegister from './container/user/succesRegister'
 import LupaPassword from './container/user/forgotPassword'
+import AktivasiSuccess from './container/user/successAktivasi'
 
 import DashboardSurveyor from './container/surveyor/dashboard'
 import FormSurveyor from './container/surveyor/form'
@@ -55,6 +56,7 @@ const App = () => {
       <Route path = '/register' component = {Register}/>
       <Route path = '/success' component = {SuccessRegister}/>
       <Route path = '/forgotpassword' component = {LupaPassword}/>
+      <Route path = '/aktivasisuccess' component = {AktivasiSuccess}/>
 
       <PrivateRouteSurveyor path = '/surveyor/form/edit/:studyId' component = {FormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
