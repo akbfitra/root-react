@@ -22,12 +22,13 @@ const DetailStudyResponden = (props) => {
   const [ completeUsers, setCompleteUsers ] = useState([])
   const [getChangeData, setGetChangeData ] = useState(false)
 
+
   const getListStudyById = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
       .then( data => {
-        setDetailStudy(data)
-        setJumlahQuestionslength(data.questions.length)
-        setCompleteUsers(data.completedUser)
+        setDetailStudy(data.data)
+        setJumlahQuestionslength(data.data.questions.length)
+        setCompleteUsers(data.data.completedUser)
         setGetChangeData(false)
       })
   }

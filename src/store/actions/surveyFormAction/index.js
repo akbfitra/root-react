@@ -145,6 +145,7 @@ export const FIND_STUDY_WITH_RESPONDEN_BY_ID = (idStudy) => async dispatch => {
       data,
       userCompleted
     }
+    console.log(dataDetail)
     return dataDetail
   }
   catch(err){

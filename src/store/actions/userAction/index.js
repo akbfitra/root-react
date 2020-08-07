@@ -192,3 +192,19 @@ export const getKetertarikan = () => async dispatch => {
     console.log(err.response)
   }
 }
+
+export const GET_SALDO = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: `/saldo`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}

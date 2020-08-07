@@ -118,6 +118,7 @@ const StudyResponden = (props) => {
                                 <div className="right">
                                 <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Control 
+                                disabled
                                 as="textarea"
                                 style={{marginBottom:'0px'}}
                                 data-i={i}
@@ -139,7 +140,7 @@ const StudyResponden = (props) => {
                                   <div className="box-answer">
                                     <div className="left"></div>
                                     <div className="right">
-                                    <Button variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} >&nbsp;{dataAnswer.title}</Button>
+                                    <Button disabled variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} >&nbsp;{dataAnswer.title}</Button>
                                     </div>
                                   </div>
                                 </Col>
