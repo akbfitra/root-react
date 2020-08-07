@@ -228,11 +228,11 @@ const SubmissionResponden = (props) => {
                                       {
                                         dataUsers ? 
                                         <>
-                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Belum Di Review </Badge></h4>
+                                        <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
                                         </>
                                         :
                                         <>
-                                        <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
+                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Belum Di Review </Badge></h4>
                                         </>
                                       }
                                       {/* <h4 className="m-t-0 m-b-0 title-two"><Badge variant="danger"> Telah Di Tolak </Badge></h4> */}
@@ -259,11 +259,11 @@ const SubmissionResponden = (props) => {
                                       {
                                         dataUsers ? 
                                         <>
-                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Belum Di Review </Badge></h4>
+                                        <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
                                         </>
                                         :
                                         <>
-                                        <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
+                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Belum Di Review </Badge></h4>
                                         </>
                                       }
                                       <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4>
