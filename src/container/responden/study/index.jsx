@@ -40,6 +40,7 @@ const StudyResponden = (props) => {
 
   const chooseAnswer = (answer, questionId) => {
     setGetChangeData(true)
+    console.log(answer)
     dispatch(POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN(answer, questionId, studyId))
   }
 
@@ -58,6 +59,8 @@ const StudyResponden = (props) => {
   const userCompleted = () => {
     dispatch(PUSH_USER_COMPLETED_TO_STUDY(studyId, history))
   }
+
+  console.log(listOfQuestions)
 
   return(
     <>

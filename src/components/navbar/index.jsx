@@ -33,8 +33,6 @@ export const Navbar = (props) => {
     dapetinSaldo()
   }, [])
 
-  console.log(saldoUser)
-
   return(
     <>
       <div id="general-header">

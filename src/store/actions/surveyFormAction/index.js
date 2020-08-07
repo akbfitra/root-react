@@ -157,7 +157,7 @@ export const FIND_STUDY_RESPONDEN_BY_SURVEYOR = (idStudy, idResponden) => async 
   try{
     const { data } = await instance({
       method: 'GET',
-      url:`/answer_form/${idStudy}/${idResponden}`,
+      url:`/answer_form/completed/${idStudy}/${idResponden}`,
       headers:{
         "accesstoken": `${Cookies.get('test')}`
       }
@@ -189,6 +189,8 @@ export const FIND_ANSWER_QUESTIONS_WITH_RESPONDEN_BY_ID = (idStudy) => async dis
 
 export const POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN = (answer, questionId, projectId) => async dispatch => {
   try{
+
+    console.log(answer)
     const { data } = await instance({
       method: 'POST',
       url: `/answer_form/${projectId}/${questionId}`,
