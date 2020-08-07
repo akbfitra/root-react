@@ -41,7 +41,7 @@ const FormSurveyor = (props) => {
   const [ kota, setKota] = useState('')
   const [ provinsi, setProvinsi] = useState('')
   const [ jenisKelamin, setJenisKelamin ] = useState('')
-  const [ value, setValue] = useState({min: 18, max: 50})
+  const [ value, setValue] = useState({min: 2, max: 17})
   const [ getFilterQuestion, setFilterQuestion ] = useState([])
   const [ counterUser, setCounterUser ] = useState(0)
   const [ flagsFilterQuestions, setFlagsFilterQuestions ] = useState(false)
@@ -65,25 +65,27 @@ const FormSurveyor = (props) => {
     let cek = pilihCategories.includes(kriteria)
     if(!cek){
       setPilihCategories(arr => [...pilihCategories, kriteria])
+      setFlagsFilterQuestions(true)
     }else if(pilihCategories.indexOf(kriteria > -1)){
       setPilihCategories(pilihCategories.filter(item => item !== kriteria))
+      setFlagsFilterQuestions(true)
     }
   }
 
   function processSelectProvinsi(data){
     setProvinsi(data)
-    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, data, kota)
+    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, data, kota, pilihCategories)
     dispatch(dataKota(data))
   }
 
   const processSelectKota = (data) => {
     setKota(data)
-    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, data)
+    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, data, pilihCategories)
   }
 
   const processSelectUmur = (data) => {
     setValue(data)
-    getCounterResponden(getFilterQuestion, jenisKelamin, data.min, data.max, provinsi, kota)
+    getCounterResponden(getFilterQuestion, jenisKelamin, data.min, data.max, provinsi, kota, pilihCategories)
   }
 
   function getDataProvinsi(){
@@ -92,6 +94,9 @@ const FormSurveyor = (props) => {
         SetListProvinsi(data)
       })
   }
+
+  console.log(pilihCategories)
+
 
   const onchange = async (data) => {
     let cek =  getFilterQuestion.some(item => item.questionId === data.questionId)
@@ -139,7 +144,7 @@ const FormSurveyor = (props) => {
 
   const handleSaveSurvey = () => {
     
-    dispatch(SAVE_STUDY(props.formValues, getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, kota, history))
+    dispatch(SAVE_STUDY(props.formValues, getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, pilihCategories, kota, history))
   };
 
   const getCategory = () =>{
@@ -150,8 +155,8 @@ const FormSurveyor = (props) => {
       })
   }
 
-  const getCounterResponden = (dataQuestion, dataJenisKelamin, dataValueUmurMin, dataValueUmurMax, dataProvinsi, dataKota) => {
-    dispatch(COUNTER_RESPONDEN(dataQuestion, dataJenisKelamin, dataValueUmurMin,dataValueUmurMax, dataProvinsi, dataKota))
+  const getCounterResponden = (dataQuestion, dataJenisKelamin, dataValueUmurMin, dataValueUmurMax, dataProvinsi, dataKota, kriteria) => {
+    dispatch(COUNTER_RESPONDEN(dataQuestion, dataJenisKelamin, dataValueUmurMin,dataValueUmurMax, dataProvinsi, dataKota, kriteria))
       .then(data => {
         setCounterUser(data)
         setFlagsFilterQuestions(false)
@@ -160,12 +165,12 @@ const FormSurveyor = (props) => {
 
   const getJenisKelamin = (dataGender) => {
      setJenisKelamin(dataGender)
-     getCounterResponden(getFilterQuestion, dataGender, value.min, value.max, provinsi, kota)
+     getCounterResponden(getFilterQuestion, dataGender, value.min, value.max, provinsi, kota, pilihCategories)
   }
 
   useEffect(() => {
     if(counterUser === 0 || flagsFilterQuestions){
-      getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, kota)
+      getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, kota, pilihCategories)
     }
   })
 
@@ -398,8 +403,9 @@ const FormSurveyor = (props) => {
                             {
                               category.map((data, i) => {
                                 return(
-                                  <Col md={3} lg={3} key={i}>
+                                  <Col md={3} lg={3}>
                                     <Form.Check
+                                    key={i}
                                     type="checkbox"
                                     label={`${data.name}`}
                                     value={`${data.name}`}

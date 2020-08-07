@@ -18,12 +18,14 @@ const DetailStudyResponden = (props) => {
   let { studyId } = params
   const [ detailStudy, setDetailStudy ] = useState('')
   const [ jumlahQuestionsLength, setJumlahQuestionslength ] = useState(0)
+  const [ cekUserCompleted, setUserCompleted] = useState(undefined)
 
   const getListStudyById = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
       .then( data => {
-        setDetailStudy(data)
-        setJumlahQuestionslength(data.questions.length)
+        setDetailStudy(data.data)
+        setJumlahQuestionslength(data.data.questions.length)
+        setUserCompleted(Boolean(data.userCompleted))
       })
   }
 
@@ -33,6 +35,8 @@ const DetailStudyResponden = (props) => {
     }
   },[])
 
+  console.log(cekUserCompleted)
+  // let a = detailStudy.completedUser.find(el => el.userId ===)
   return(
     <>
     <Navbar/>
@@ -118,19 +122,27 @@ const DetailStudyResponden = (props) => {
 
                 <Col md={12} lg={12}>
                   <ul className="list-inline text-right m-b-0">
-                    <Link to={`/responden/study/${ detailStudy._id }`}>
+                    {/* <Link to={`/responden/study/${ detailStudy._id }`}>
                       <li className="list-inline-item">
                         <Button variant="primary" >Mulai Studi</Button>
                       </li>
-                    </Link>
+                    </Link> */}
 
                     <li className="list-inline-item">|</li>
-
-                    <Link to={`/responden/study/${ detailStudy._id }`}>
-                      <li className="list-inline-item">
-                        <Button variant="primary">Detail Jawaban</Button>
-                      </li>
-                    </Link>
+                    {
+                      cekUserCompleted === true ?
+                        <Link to={`/responden/study/completed/${ detailStudy._id }`}>
+                          <li className="list-inline-item">
+                            <Button variant="primary">Detail Jawaban</Button>
+                          </li>
+                        </Link>
+                      :
+                      <Link to={`/responden/study/${ detailStudy._id }`}>
+                        <li className="list-inline-item">
+                          <Button variant="primary">Detail Jawaban</Button>
+                        </li>
+                      </Link>
+                    }
                   </ul>
                 </Col>
               </Row>

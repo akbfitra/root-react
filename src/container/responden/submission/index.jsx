@@ -10,12 +10,13 @@ import moment from 'moment'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
-import { FIND_STUDY_WITH_RESPONDEN, COMPLETED_USER} from '../../../store/actions/surveyFormAction'
+import { FIND_STUDY_WITH_RESPONDEN, COMPLETED_USER, GET_DATA_ONGOING_RESPONDEN} from '../../../store/actions/surveyFormAction'
 
 const SubmissionResponden = (props) => {
   const dispatch = useDispatch()
   const [ submission, setSubmission ] = useState([])
   const [ completedSubmission, setCompletedSubmission ] = useState([])
+  const [ sedangBerlangsung, setSedangBerlangsung ] = useState([])
 
   const getDataSubmission = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN())
@@ -37,12 +38,20 @@ const SubmissionResponden = (props) => {
       })
   }
 
+  const getStudyOngoing = () => {
+    dispatch(GET_DATA_ONGOING_RESPONDEN())
+      .then( data => {
+        setSedangBerlangsung(data)
+      })
+  }
+
   useEffect( () => {
     getDataCompletedSubmission()
   }, [])
 
-  console.log(submission)
-  console.log(completedSubmission)
+  useEffect(() => {
+    getStudyOngoing()
+  },[])
 
   return(
     <>
@@ -118,6 +127,63 @@ const SubmissionResponden = (props) => {
                         </Row>
                       )
                     })
+                  }
+                </Tab>
+
+                <Tab eventKey="Sedang Berlangsung" title="Studi Sedang Berlangsung">
+                {
+                    !sedangBerlangsung.length
+                    ? 
+                    
+                      <h1>Tidak ada data</h1>
+                    
+                    :
+                      sedangBerlangsung.map((data,i) => {
+                        return(
+                          <Row className="m-t-15" key={i}>
+                            <Col md={12} lg={12}>
+                              <div className="part-one">
+                                {/* untuk dekstop */}
+                                <Row className="d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+                                  <Col md={12} lg={12}>
+                                    <div className="box">
+                                      <div className="box-left">
+                                      <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
+                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                      <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
+                                      </div>
+                                      <div className="box-right">
+                                        <h4 className="title-two text-center">
+                                        <p className="text-center" style={{fontSize:'14px'}}>Reward Responden</p>
+                                          <strong>
+                                            Rp {data.rewardResponden},-
+                                          </strong>
+                                        </h4>
+                                        <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
+                                          <Button variant="success btn-block" className="m-t-15">Detail Studi</Button>
+                                        </Link>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                </Row>
+
+                                {/* untuk mobile */}
+                                <Row className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
+                                  <Col xs={12} sm={12}>
+                                      <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
+                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                      <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Reward :   Rp {data.rewardResponden},-</h4>
+                                      <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
+                                        <Button variant="success" className="m-t-15">Detail Studi</Button>
+                                      </Link>
+                                  </Col>
+                                </Row>
+                              </div>
+                            </Col>
+                          </Row>
+                        )
+                      })
                   }
                 </Tab>
 

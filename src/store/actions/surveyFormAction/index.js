@@ -58,7 +58,7 @@ export const INIT_QUESTION = async (dispatch, urlPath) => {
   }
 }
 
-export const SAVE_STUDY = (surveyFormData, answerKriteria, jenisKelamin, umurMin, umurMax, provinsi, kota, history) => async (dispatch, getState) => {
+export const SAVE_STUDY = (surveyFormData, answerKriteria, jenisKelamin, umurMin, umurMax, provinsi,kriteria, kota, history) => async (dispatch, getState) => {
   try{
 
     await dispatch({
@@ -75,6 +75,7 @@ export const SAVE_STUDY = (surveyFormData, answerKriteria, jenisKelamin, umurMin
     survey.umurMax = umurMax
     survey.provinsi = provinsi
     survey.kota = kota
+    survey.kriteria = kriteria
     
     const { data } = await instance({
       method: 'POST',
@@ -130,6 +131,7 @@ export const FIND_STUDY_WITH_RESPONDEN = () => async dispatch => {
 
 export const FIND_STUDY_WITH_RESPONDEN_BY_ID = (idStudy) => async dispatch => {
   try{
+    const { id } = await verifyToken(Cookies.get('test'))
     const { data } = await instance({
       method: 'GET',
       url:`/project/responden/${idStudy}`,
@@ -137,7 +139,13 @@ export const FIND_STUDY_WITH_RESPONDEN_BY_ID = (idStudy) => async dispatch => {
         "accesstoken": `${Cookies.get('test')}`
       }
     })
-    return data
+    let userCompleted = data.completedUser.find(el => el.userId._id === id)
+
+    let dataDetail = {
+      data,
+      userCompleted
+    }
+    return dataDetail
   }
   catch(err){
     console.log(err)
@@ -227,13 +235,13 @@ export const COMPLETED_USER = () => async dispatch => {
   }
 }
 
-export const COUNTER_RESPONDEN = ( answerKriteria,jenisKelamin, umurMin, umurMax, provinsi, kota ) => async dispatch => {
+export const COUNTER_RESPONDEN = ( answerKriteria,jenisKelamin, umurMin, umurMax, provinsi, kota, kriteria ) => async dispatch => {
   try{
     const { data } = await axios({
       method: 'POST',
       url: `https://backoffice.survplus.id/manajemen_responden/counter/`,
       data: {
-        jenisKelamin, umurMin, umurMax, provinsi, kota, answerKriteria
+        jenisKelamin, umurMin, umurMax, provinsi, kota, answerKriteria, kriteria
       }
     })
     return data
@@ -269,6 +277,23 @@ export const UPDATE_DATA_APPROVAL_RESPONDEN_PAGE = (idStudy, idResponden, histor
       }
     })
     history.push(`/surveyor/detailstudy/${idStudy}`)
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const GET_DATA_ONGOING_RESPONDEN = () => async dispatch => {
+  try{
+    const { id } = await verifyToken(Cookies.get('test'))
+    const { data } = await axios({
+      method: 'GET',
+      url:`https://backoffice.survplus.id/manajemen_responden/getOnGoingProject/${id}`,
+      // headers:{
+      //   "accesstoken": `${Cookies.get('test')}`
+      // }
+    })
+    return data
   }
   catch(err){
     console.log(err)

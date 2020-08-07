@@ -38,6 +38,7 @@ import StudyResponden from './container/responden/study'
 import TicketResponden from './container/responden/ticket'
 import EditProfileResponden from './container/responden/editProfile'
 import TarikSaldo from './container/responden/tarikSaldo'
+import StudyCompletedResponden from './container/responden/studyCompleted'
 
 import { CekLogin } from './store/actions/userAction'
 
@@ -67,11 +68,13 @@ const App = () => {
       <PrivateRouteSurveyor path = '/surveyor/profile' component = {ProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup' component = {TopUpSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor' component = {DashboardSurveyor}/>
+
       <PrivateRouteResponden path = '/responden/aboutus' component = {AboutUsResponden}/>
       <PrivateRouteResponden path = '/responden/category/:categoryId' component = {CategoryQuestions}/>
       <PrivateRouteResponden path = '/responden/profile/edit' component = {EditProfileResponden}/>
       <PrivateRouteResponden path = '/responden/profile' component = {ProfileResponden}/>
       <PrivateRouteResponden path = '/responden/detailstudy/:studyId' component = {DetailStudyResponden}/>
+      <PrivateRouteResponden path = '/responden/study/completed/:studyId' component = {StudyCompletedResponden}/>
       <PrivateRouteResponden path = '/responden/study/:studyId' component = {StudyResponden}/>
       <PrivateRouteResponden path = '/responden/submission' component = {SubmissionResponden}/>
       <PrivateRouteResponden path = '/responden/ticket' component = {TicketResponden}/>
