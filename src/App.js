@@ -36,6 +36,7 @@ import DetailStudyResponden from './container/responden/detailStudy'
 import StudyResponden from './container/responden/study'
 import TicketResponden from './container/responden/ticket'
 import EditProfileResponden from './container/responden/editProfile'
+import TarikSaldo from './container/responden/tarikSaldo'
 
 import { CekLogin } from './store/actions/userAction'
 
@@ -72,6 +73,7 @@ const App = () => {
       <PrivateRouteResponden path = '/responden/study/:studyId' component = {StudyResponden}/>
       <PrivateRouteResponden path = '/responden/submission' component = {SubmissionResponden}/>
       <PrivateRouteResponden path = '/responden/ticket' component = {TicketResponden}/>
+      <PrivateRouteResponden path = '/responden/tariksaldo' component = {TarikSaldo}/>
       <PrivateRouteResponden path = '/responden' component = {DashboardResponden} />
       <Route exact path ='/' component = {LandingPage}/>
       <Redirect from = '*' to= '/'/>

@@ -55,7 +55,7 @@ const RespondenDashboard = (props) => {
           </Col>
 
           <Col md={3} lg={3}>
-            <Link to = '#' style={{textDecoration:"none"}}>
+            <Link to = '/responden/tariksaldo' style={{textDecoration:"none"}}>
             <div className="part-one">
               <center>
               <img src="images/topup.png"/>
