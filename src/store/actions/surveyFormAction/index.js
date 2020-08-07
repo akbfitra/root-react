@@ -224,6 +224,7 @@ export const PUSH_USER_COMPLETED_TO_STUDY = (projectId, history) => async dispat
 
 export const COMPLETED_USER = () => async dispatch => {
   try{
+    const { id } = await verifyToken(Cookies.get('test'))
     const { data } = await instance({
       method: 'GET',
       url: `/project/completed`,
@@ -231,7 +232,10 @@ export const COMPLETED_USER = () => async dispatch => {
         "accesstoken": `${Cookies.get('test')}`
       }
     })
-    return data
+    let output = {}
+    output.data = data
+    output.userId = id
+    return output
   }
   catch(err){
     console.log(err)

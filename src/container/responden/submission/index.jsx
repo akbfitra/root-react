@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { useDispatch  } from 'react-redux';
 
 import './css/style.css';
-import { Container, Row, Col, Tabs, Tab, Button} from 'react-bootstrap'
+import { Container, Row, Col, Tabs, Tab, Button, Badge} from 'react-bootstrap'
 import moment from 'moment'
 
 import { Navbar } from '../../../components/navbar'
@@ -17,6 +17,7 @@ const SubmissionResponden = (props) => {
   const [ submission, setSubmission ] = useState([])
   const [ completedSubmission, setCompletedSubmission ] = useState([])
   const [ sedangBerlangsung, setSedangBerlangsung ] = useState([])
+  const [ cekVerifikasiUser, setCekVerifikasiUser ] = useState('')
 
   const getDataSubmission = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN())
@@ -24,6 +25,9 @@ const SubmissionResponden = (props) => {
         setSubmission(data)
       })
   }
+
+  console.log(sedangBerlangsung)
+  console.log(completedSubmission)
 
   useEffect(() => {
     if(!submission.length){
@@ -34,7 +38,8 @@ const SubmissionResponden = (props) => {
   const getDataCompletedSubmission = () => {
     dispatch(COMPLETED_USER())
       .then( data => {
-        setCompletedSubmission(data)
+        setCompletedSubmission(data.data)
+        setCekVerifikasiUser(data.userId)
       })
   }
 
@@ -82,6 +87,12 @@ const SubmissionResponden = (props) => {
             <Tabs defaultActiveKey="Belum Terlaksana" id="noanim-tab-example">
                 <Tab eventKey="Belum Terlaksana" title="Studi Belum Terlaksana">
                   {
+                    !submission.length
+                    ? 
+                    
+                      <h4>Tidak ada data</h4>
+                    
+                    :
                     submission.map((data, i) => {
                       return(
                         <Row className="m-t-15" key={i}>
@@ -93,7 +104,7 @@ const SubmissionResponden = (props) => {
                                   <div className="box">
                                     <div className="box-left">
                                     <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
-                                    {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                    {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                     <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
                                     </div>
                                     <div className="box-right">
@@ -114,7 +125,7 @@ const SubmissionResponden = (props) => {
                               <Row className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
                                 <Col xs={12} sm={12}>
                                 <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
-                                    {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                    {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                     <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
                                     <h4 className="m-t-5 m-b-0 title-three">Reward Responden : {data.rewardResponden}</h4>
                                     <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
@@ -149,7 +160,7 @@ const SubmissionResponden = (props) => {
                                     <div className="box">
                                       <div className="box-left">
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
-                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
                                       </div>
                                       <div className="box-right">
@@ -171,7 +182,7 @@ const SubmissionResponden = (props) => {
                                 <Row className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
                                   <Col xs={12} sm={12}>
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
-                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Reward :   Rp {data.rewardResponden},-</h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
@@ -187,7 +198,7 @@ const SubmissionResponden = (props) => {
                   }
                 </Tab>
 
-                <Tab eventKey="Sudah Terlaksana" title="Studi Sudah Terlaksana">
+                <Tab eventKey="Sudah Telah Di Ajukan" title="Studi Telah Di Ajukan">
                   {
                     !completedSubmission.length
                     ? 
@@ -196,6 +207,12 @@ const SubmissionResponden = (props) => {
                     
                     :
                       completedSubmission.map((data,i) => {
+                        let userVerifikasi = {verifikasiSelesai: false}
+                        console.log(cekVerifikasiUser)
+                        data && cekVerifikasiUser ? userVerifikasi = data.completedUser.find(el => el.userId === cekVerifikasiUser) : userVerifikasi= {verifikasiSelesai: false}
+                        let dataUsers = userVerifikasi.verifikasiSelesai
+                        
+
                         return(
                           <Row className="m-t-15" key={i}>
                             <Col md={12} lg={12}>
@@ -206,8 +223,19 @@ const SubmissionResponden = (props) => {
                                     <div className="box">
                                       <div className="box-left">
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
-                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                      <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
+                                      {
+                                        dataUsers ? 
+                                        <>
+                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Belum Di Review </Badge></h4>
+                                        </>
+                                        :
+                                        <>
+                                        <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
+                                        </>
+                                      }
+                                      {/* <h4 className="m-t-0 m-b-0 title-two"><Badge variant="danger"> Telah Di Tolak </Badge></h4> */}
                                       </div>
                                       <div className="box-right">
                                         <h4 className="title-two text-center">
@@ -228,7 +256,17 @@ const SubmissionResponden = (props) => {
                                 <Row className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
                                   <Col xs={12} sm={12}>
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
-                                      {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.name}</h4> */}
+                                      {
+                                        dataUsers ? 
+                                        <>
+                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Belum Di Review </Badge></h4>
+                                        </>
+                                        :
+                                        <>
+                                        <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
+                                        </>
+                                      }
+                                      <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Reward :   Rp {data.rewardResponden},-</h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
