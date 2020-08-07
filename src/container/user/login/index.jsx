@@ -126,7 +126,7 @@ const Login = (props) => {
                     
                     <Row className="m-t-30">
                       <Col md={10} lg={10}>
-                      <h4 className="title-three m-b-5"><strong>Lupa Password ?</strong></h4>
+                      <h4 className="title-three m-b-5"><strong><Link to='/forgotpassword'>Lupa Password ?</Link></strong></h4>
                       <h4 className="title-three"><strong>Belum terdaftar ? <Link to = '/register' style={{textDecoration:"none"}}>Daftar Responden</Link>, <Link to = '/surveyor/register' style={{textDecoration:"none"}}>Daftar Surveyor</Link></strong></h4>
                       </Col>
                     </Row>
