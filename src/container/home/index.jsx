@@ -128,7 +128,7 @@ const LandingPage = () => {
         <div className="main-header-two">
           <Container>
             <Row>
-              <Col md={8} lg={8} className="part-one">
+              <Col xs={6} sm={6} md={8} lg={8} className="part-one">
                 <Link to='/'>
                 <div className="table-100">
                   <div className="table-row">
@@ -143,7 +143,7 @@ const LandingPage = () => {
                 </div>
                 </Link>
               </Col>
-              <Col md={4} lg={4} className="part-two">
+              <Col xs={6} sm={6} md={4} lg={4} className="part-two">
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
@@ -174,7 +174,7 @@ const LandingPage = () => {
                 </div>
               </Col>
 
-              <Col md={5} lg={5} className="part-two">
+              <Col md={5} lg={5} className="part-two d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
               <div className="table-100">
                 <div className="table-row">
                   <div className="table-cell-one">

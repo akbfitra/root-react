@@ -29,7 +29,7 @@ const SuccessRegister = (props) => {
                     <Col md={12} lg={12}>
                       <h3 className="text-center" style={{color:'#1f59bb'}}>Terima kasih anda telah mendaftar menjadi Responden/Surveyor Pada SuRvplus.id</h3>
                       <br/>
-                      <h4 className="text-center" style={{fontSize:'20px'}}>Silahkan cek email anda, kami telah mengirimkan email verifikasi kepada Anda</h4>
+                      <h4 className="text-center" style={{fontSize:'20px'}}>Silahkan cek email anda, kami telah mengirimkan email verifikasi kepada Ana</h4>
                     </Col>
                   </Row>
                 </div>

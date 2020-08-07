@@ -55,7 +55,21 @@ const RespondenDashboard = (props) => {
           </Col>
 
           <Col md={3} lg={3}>
-            <Link to = '/responden/ticket' style={{textDecoration:"none"}}>
+            <Link to = '#' style={{textDecoration:"none"}}>
+            <div className="part-one">
+              <center>
+              <img src="images/topup.png"/>
+              <h4 className="title-two m-t-15"><strong>Tarik Saldo</strong></h4>
+              </center>
+            </div>
+            </Link>
+          </Col>
+        </Row>
+
+
+        <Row className="m-t-30">
+          <Col md={3} lg={3}>
+          <Link to = '/responden/ticket' style={{textDecoration:"none"}}>
             <div className="part-one">
               <center>
               <img src="images/help.png"/>
