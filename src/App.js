@@ -24,6 +24,7 @@ import DetailStudySurveyor from './container/surveyor/detailStudy'
 import TopUpSurveyor from './container/surveyor/topup'
 import ProfileSurveyor from './container/surveyor/profile'
 import EditProfileSurveyor from './container/surveyor/editProfile'
+import StudyRespondenGetBySurveyor from './container/surveyor/studyResponden'
 
 import DashboardResponden from './container/responden/dashboard'
 import AboutUsResponden from './container/responden/aboutus'
@@ -54,7 +55,8 @@ const App = () => {
       <PrivateRouteSurveyor path = '/surveyor/form/edit/:studyId' component = {FormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/liststudy' component = {ListStudy}/>
-      <PrivateRouteSurveyor path='/surveyor/detailstudy/:studyId' component={DetailStudySurveyor} />
+      <PrivateRouteSurveyor path = '/surveyor/detailstudy/detailresponden/:studyId/:respondenId' component={StudyRespondenGetBySurveyor} />
+      <PrivateRouteSurveyor path = '/surveyor/detailstudy/:studyId' component={DetailStudySurveyor} />
       <PrivateRouteSurveyor path = '/surveyor/profile/edit' component = {EditProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/profile' component = {ProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup' component = {TopUpSurveyor}/>

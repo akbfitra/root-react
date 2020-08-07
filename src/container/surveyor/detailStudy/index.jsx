@@ -44,7 +44,6 @@ const DetailStudyResponden = (props) => {
   }
 
 
-  console.log(detailStudy)
 
   return(
     <>
@@ -169,9 +168,19 @@ const DetailStudyResponden = (props) => {
                                       <tr>
                                         <td  style={{textAlign:"center"}}> {i+1} </td>
                                         <td> {data.userId.name} </td>
-                                        <td><center><Button variant={data.verifikasiSelesai ? 'primary': 'outline-primary' } onClick = { () => updatedDataApproval(data.userId._id)} > {data.verifikasiSelesai ? 'Approved': 'Approval' } </Button></center></td>
+                                        <td>
+                                          <center>
+                                            <Button variant={data.verifikasiSelesai ? 'primary': 'outline-primary' } onClick = { () => updatedDataApproval(data.userId._id)} > {data.verifikasiSelesai ? 'Approved': 'Approval' } </Button>
+                                          </center>
+                                        </td>
                                         {/* <td><center><Button variant="primary">Paid</Button></center></td> */}
-                                        <td><center><Button variant="info" href="#">Detail Jawaban</Button></center></td>
+                                        <td>
+                                          <center>
+                                            <Link to={`/surveyor/detailstudy/detailresponden/${studyId}/${data.userId._id}`}>
+                                              <Button variant="info" >Detail Jawaban</Button>
+                                            </Link>
+                                          </center>
+                                        </td>
                                       </tr>
                                     </tbody>
                                   )

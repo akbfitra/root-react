@@ -7,7 +7,11 @@ import {getDenormalizedSurvey} from '../../selectors/denormalizesurvey'
 import { verifyToken } from '../../../config/jwt'
 import survey from '../../models/schema';
 
-export const INIT_QUESTION = (studyId) =>  async (dispatch) => {
+export const loadSurvey = (idStudy) => (dispatch) => {
+  return INIT_QUESTION(dispatch, `/project/responden/${idStudy}`);
+};
+
+export const INIT_QUESTION = async (dispatch, urlPath) => {
   const isLogin = Cookies.get('test')
   const role = Cookies.get('role')
   const username = Cookies.get('username')
@@ -17,18 +21,20 @@ export const INIT_QUESTION = (studyId) =>  async (dispatch) => {
 
   const {data} = await instance({
     method: 'GET',
-    url:`/project/responden/${studyId}`,
+    url: urlPath,
     headers:{
       "accesstoken": `${Cookies.get('test')}`
     }
   })
 
+  console.log(data)
+
 
   if(data  && role === 'surveyor'){
-    console.log(normalize(data, survey))
+    // console.log(normalize(data, survey))
     dispatch({
       type: 'SURVEY_LOAD_SUCCESS',
-      payload: (normalize(data, survey))
+      payload: normalize(data, survey)
     });
    
   } else if(dataUser.isLogin && role === 'surveyor'){
@@ -37,12 +43,12 @@ export const INIT_QUESTION = (studyId) =>  async (dispatch) => {
       payload: { 
         _id: v4(),
         judul: '',
-        jumlahSoal: '',
+        // jumlahSoal: '',
         waktuJawab: 0,
         jumlahResponden: 0,
         rewardResponden: 0,
-        tanggalMulai: '',
-        tanggalAkhir: '',
+        tanggalMulai: new Date(),
+        tanggalAkhir: new Date(),
         questions: [],
         inputed: false,
         kriteria:[]
@@ -127,6 +133,22 @@ export const FIND_STUDY_WITH_RESPONDEN_BY_ID = (idStudy) => async dispatch => {
     const { data } = await instance({
       method: 'GET',
       url:`/project/responden/${idStudy}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const FIND_STUDY_RESPONDEN_BY_SURVEYOR = (idStudy, idResponden) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:`/answer_form/${idStudy}/${idResponden}`,
       headers:{
         "accesstoken": `${Cookies.get('test')}`
       }
@@ -230,9 +252,25 @@ export const UPDATE_DATA_APPROVAL_RESPONDEN = (idStudy, idResponden) => async di
         "accesstoken": `${Cookies.get('test')}`
       }
     })
+    // history.push('/surveyor/')
   }
   catch(err){
     console.log(err)
   }
 }
 
+export const UPDATE_DATA_APPROVAL_RESPONDEN_PAGE = (idStudy, idResponden, history) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'PUT',
+      url: `/project/approval/${idStudy}/${idResponden}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    history.push(`/surveyor/detailstudy/${idStudy}`)
+  }
+  catch(err){
+    console.log(err)
+  }
+}

@@ -22,6 +22,7 @@ import { FormInput } from '../../../components/inputForm'
 import * as surveyActions from '../../../store/actions/surveyFormAction'
 import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
+import { getInitialFormBuilderValues } from '../../../store/selectors/initialFormValues'
 import { SAVE_STUDY, COUNTER_RESPONDEN } from '../../../store/actions/surveyFormAction'
 import { getDataQuestions } from '../../../store/actions/questionsAction'
 import { dataCategory } from '../../../store/actions/aboutUsAction'
@@ -46,7 +47,19 @@ const FormSurveyor = (props) => {
   const [ flagsFilterQuestions, setFlagsFilterQuestions ] = useState(false)
 
   let listKota = useSelector( state => state.tempat.tempat.kota)
-  let { studyId } = params
+  // let stateId = useSelector(state => state.surveys)
+  // const keyStudy = Object.keys(stateId)[0] 
+  // let stateStudy = useSelector(state => state.surveys[keyStudy])
+  
+  // console.log(test)
+  // let { studyId } = params
+
+  
+  // if(studyId && stateStudy){
+  //   console.log(stateStudy)
+  //   setJenisKelamin(stateStudy.jenisKelamin)
+  //   // setValue({ min: stateStudy.min, max:stateStudy.max })
+  // }
 
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
@@ -115,7 +128,7 @@ const FormSurveyor = (props) => {
   }, [])
 
   useEffect(() => {
-    dispatch(surveyActions.INIT_QUESTION(studyId))
+    dispatch(surveyActions.loadSurvey())
   }, [dispatch])
 
   let listQuestions = props.survey
@@ -220,7 +233,7 @@ const FormSurveyor = (props) => {
                       {/* <Form.Control type="text" placeholder="" onChange={ (e) => {setJudul( e.target.value )}} /> */}
                     </Form.Group>
 
-                    <Form.Group>
+                    {/* <Form.Group>
                       <Form.Label>Jumlah Soal</Form.Label>
                       <Field
                           // className="input survey-builder__title"
@@ -230,8 +243,8 @@ const FormSurveyor = (props) => {
                           placeholder="jumlah soal"
                           validate={[required()]}
                         />
-                      {/* <Form.Control type="text" placeholder="" onChange={ (e) => {setJumlahSoal( e.target.value )}}/> */}
-                    </Form.Group>
+                      <Form.Control type="text" placeholder="" onChange={ (e) => {setJumlahSoal( e.target.value )}}/>
+                    </Form.Group> */}
 
                     <Form.Group>
                       <Form.Label>Waktu Menjawab (menit)</Form.Label>
@@ -523,7 +536,7 @@ const FormSurveyor = (props) => {
 
       <Footer/>
     </>
-  )
+  ) 
 }
 
 
@@ -534,8 +547,48 @@ export const FormSurveyorForm = reduxForm({
 
 const mapStateToProps = (state) => ({
   survey: getDenormalizedSurvey(state),
-  formValues: getFormValues('surveyForm')(state)
+  formValues: getFormValues('surveyForm')(state),
+  // initialValues: getInitialFormBuilderValues(state),
 });
+
+// function mapStateToProps (state) {
+
+//   const surveyId = Object.keys(state.surveys)[0];
+//   let data = undefined
+//   if (surveyId) {
+
+//     const survey = state.surveys[surveyId];
+
+//     if(survey){
+//       data = {};
+//       data.judul= survey.judul
+//       data.jumlahSoal= survey.jumlahSoal
+//       data.waktuJawab= survey.waktuJawab
+//       data.jumlahResponden= survey.jumlahResponden
+//       data.rewardResponden= survey.rewardResponden
+//       data.tanggalMulai= new Date(survey.tanggalMulai)
+//       data.tanggalAkhir= new Date(survey.tanggalAkhir)
+//       data.questions= Object.keys(state.questions).reduce((result, nextKey) => {
+//           result[nextKey] = state.questions[nextKey].title;
+//           return result;
+//         }, {})
+//       data.answerOptions= Object.keys(state.answerOptions).reduce((result, nextKey) => {
+//           result[nextKey] = state.answerOptions[nextKey].title;
+//           return result;
+//         }, {})
+//     }
+  
+//   }
+
+//   console.log(data)
+
+//   return{
+//     survey: getDenormalizedSurvey(state),
+//     formValues: getFormValues('surveyForm')(state),
+//     // initialValues: getInitialFormBuilderValues(state)
+//     initialValues: data
+//   }
+// }
 const mapDispatchToProps = (dispatch) => ({
   surveyActions: bindActionCreators(surveyActions, dispatch),
   questionActions: bindActionCreators(questionActions, dispatch)
