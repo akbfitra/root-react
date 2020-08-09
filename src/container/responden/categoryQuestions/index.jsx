@@ -40,7 +40,6 @@ const CategoryQuestions = (props) => {
   })
 
   const chooseAnswer = (answer, questionId) => {
-    console.log(answer, 'aaaaaaaaa')
     dispatch(createAnswer(answer, questionId, categoryId))
     setGetChangeData(true)
   }
@@ -100,15 +99,18 @@ const CategoryQuestions = (props) => {
 
                               {
                                 data.listAnswers.map((answers, index) => {
-                                  
+                                  let indexData = dataAnswerUser.indexOf(answers)
                                   return(
                                     <Col md={12} lg={12} key={index} >
                                       <div className="box-answer m-b-10" >
                                         <div className="left"></div>
                                         <div className="right">
                                           <Button variant={
-                                            dataAnswerUser[index] === answers ?
-                                            "primary" : "outline-dark"
+                                            // console.log(dataAnswerUser)
+                                            dataAnswerUser[indexData] === answers 
+                                            ?
+                                            "primary" 
+                                            : "outline-dark"
                                             } 
                                             onClick={() => {
                                               let index = dataAnswerUser.indexOf(answers);
