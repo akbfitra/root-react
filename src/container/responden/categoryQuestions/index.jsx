@@ -17,6 +17,7 @@ const CategoryQuestions = (props) => {
 
   const [questions, setQuestions ] = useState([])
   const [getChangeData, setGetChangeData ] = useState(false)
+  const [ answerUser, setAnswerUser ] = useState([])
 
   let { categoryId } = params
 
@@ -24,11 +25,14 @@ const CategoryQuestions = (props) => {
     dispatch(dataQuestionByCategory(categoryId))
       .then( data => {
         setQuestions(data)
+        // setAnswerUser(data.answer)
         setGetChangeData(false)
       })
       .catch(err => console.log(err))
   }
-
+  
+  console.log(questions)
+  // console.log(answerUser)
   useEffect(() => {
     if(!questions.length || getChangeData ){
       getQuestions()
@@ -36,8 +40,9 @@ const CategoryQuestions = (props) => {
   })
 
   const chooseAnswer = (answer, questionId) => {
-    setGetChangeData(true)
+    console.log(answer, 'aaaaaaaaa')
     dispatch(createAnswer(answer, questionId, categoryId))
+    setGetChangeData(true)
   }
 
   return(
@@ -79,29 +84,55 @@ const CategoryQuestions = (props) => {
                   <Col md={12} lg={12}>
                     <div className="container-pertanyaan">
                       {
-                        questions.map((data, i) =>
-                          <Row>
+                        questions.map((data, i) =>{
+                          let dataAnswerUser = data.answer
+                          console.log(dataAnswerUser)
+                          return(
 
-                            <Col md={12} lg={12}>
-                              <div className="box-pertanyaan m-b-10">
-                                <div className="left"><h5>{i + 1}.</h5></div>
-                                <div className="right"><h5>{data.name}</h5></div>
-                              </div>
-                            </Col>
+                            <Row key={i}>
 
-                            {
-                              data.listAnswers.map((answers, i) =>
-                                <Col md={12} lg={12} >
-                                  <div className="box-answer m-b-10">
-                                    <div className="left"></div>
-                                    <div className="right">
-                                      <Button variant={data.answer === answers ? "primary" : "outline-dark"} onClick={() => chooseAnswer(answers, data._id)}>{answers}</Button>
-                                    </div>
-                                  </div>
-                                </Col>
-                              )
-                            }
-                          </Row>
+                              <Col md={12} lg={12} >
+                                <div className="box-pertanyaan m-b-10" >
+                                  <div className="left" ><h5>{i + 1}.</h5></div>
+                                  <div className="right"><h5>{data.name}</h5></div>
+                                </div>
+                              </Col>
+
+                              {
+                                data.listAnswers.map((answers, index) => {
+                                  
+                                  return(
+                                    <Col md={12} lg={12} key={index} >
+                                      <div className="box-answer m-b-10" >
+                                        <div className="left"></div>
+                                        <div className="right">
+                                          <Button variant={
+                                            dataAnswerUser[index] === answers ?
+                                            "primary" : "outline-dark"
+                                            } 
+                                            onClick={() => {
+                                              let index = dataAnswerUser.indexOf(answers);
+                                              if (index > -1) {
+                                                dataAnswerUser.splice(index, 1);
+                                              }else {
+                                                dataAnswerUser.push(answers)
+                                              }
+                                              chooseAnswer(dataAnswerUser, data._id)
+                                            }}
+                                          >
+                                            {answers}
+                                          </Button>
+                                        </div>
+                                      </div>
+                                    </Col>
+                                  )
+                                }
+
+                                )
+                              }
+                            </Row>
+                          )
+                        }
 
                         )
                       }
