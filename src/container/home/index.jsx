@@ -65,7 +65,7 @@ const LandingPage = () => {
     getDataPerusahaan()
   }, [])
 
-  console.log(perusahaanImg)
+  // console.log(perusahaanImg)
 
 
   if(allUser){
@@ -508,7 +508,7 @@ const LandingPage = () => {
                     height='500px'
                   /> */}
 
-                  <iframe width="100%" height="500" src="https://www.youtube.com/embed/Gtg-gXGF85w?playlist=Gtg-gXGF85w&loop=1&autoplay=1&controls=0" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+                  <iframe width="100%" height="500" src="https://www.youtube.com/embed/Gtg-gXGF85w?playlist=Gtg-gXGF85w&loop=1&autoplay=1&controls=0" frameBorder="0" allow="autoplay; encrypted-media;" allowFullScreen></iframe>
 
 
 {/* <iframe width="420" height="315"

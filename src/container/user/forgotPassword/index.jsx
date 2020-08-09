@@ -54,7 +54,7 @@ const LupaPassword = (props) => {
         </div>
       </div>
       
-        <div id="success-register">
+        <div id="forgot-password">
           <Container>
             <Row>
               <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}} >

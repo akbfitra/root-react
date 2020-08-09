@@ -41,7 +41,7 @@ const FormSurveyor = (props) => {
   const [ kota, setKota] = useState('')
   const [ provinsi, setProvinsi] = useState('')
   const [ jenisKelamin, setJenisKelamin ] = useState('')
-  const [ value, setValue] = useState({min: 2, max: 17})
+  const [ value, setValue] = useState({min: 18, max: 55})
   const [ getFilterQuestion, setFilterQuestion ] = useState([])
   const [ counterUser, setCounterUser ] = useState(0)
   const [ flagsFilterQuestions, setFlagsFilterQuestions ] = useState(false)
@@ -356,11 +356,11 @@ const FormSurveyor = (props) => {
                     <Form.Group>
                       <Form.Label>Provinsi</Form.Label>
                         <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }} required>
-                        <option value="">-- Pilih --</option>
+                        <option value="">-- Semua --</option>
                         { 
                           !listProvinsi 
                           ? 
-                            <option value="">-- Pilih --</option>
+                            <option value="">-- Semua --</option>
                           :
                             listProvinsi.map( (data, i) => 
                             <option key={data._id} value={`${data.Provinsi}`}>{data.Provinsi}</option>
@@ -376,11 +376,11 @@ const FormSurveyor = (props) => {
                     <Form.Group>
                       <Form.Label>Kabupaten</Form.Label>
                       <Form.Control as="select" onChange={ (e) => {processSelectKota( e.target.value )}}required>
-                      <option value="">-- Pilih --</option>
+                      <option value="">-- Semua --</option>
                       { 
                         !listKota 
                         ? 
-                          <option value="">-- Pilih --</option>
+                          <option value="">-- Semua --</option>
                         :
                           listKota.map( (data, i) => 
                           <option key={data._id} value={`${data["Kabupaten/kota"]}`}>{data["Kabupaten/kota"]}</option>
