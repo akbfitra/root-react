@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 
 export const CardCategory = (props) => {
   let dataUser = props.dataUser.flatMap( x => x === null ? [] : [x])
-  
+  // console.log(props.dataUser)
+  // console.log(dataUser)
   return(
     <>
       <Col md={3} lg={3} className="m-t-30">

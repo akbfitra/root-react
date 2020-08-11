@@ -18,6 +18,7 @@ import { KriteriaQuestionList } from '../../../components/form/kriteriaQuestionL
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 import { FormInput } from '../../../components/inputForm'
+import { ComponentProvinsiDanKota } from '../../../components/form/daerah'
 
 import * as surveyActions from '../../../store/actions/surveyFormAction'
 import * as questionActions from '../../../store/actions/questionsAction'
@@ -45,8 +46,13 @@ const FormSurveyor = (props) => {
   const [ getFilterQuestion, setFilterQuestion ] = useState([])
   const [ counterUser, setCounterUser ] = useState(0)
   const [ flagsFilterQuestions, setFlagsFilterQuestions ] = useState(false)
+  const [ pilihProvinsi, setPilihProvinsi ] = useState([])
+  
+  const [ pilihDaerah, setPilihDaerah ] = useState([])
+  
 
-  let listKota = useSelector( state => state.tempat.tempat.kota)
+  // let listKota = useSelector( state => state.tempat.tempat.kota)
+
   // let stateId = useSelector(state => state.surveys)
   // const keyStudy = Object.keys(stateId)[0] 
   // let stateStudy = useSelector(state => state.surveys[keyStudy])
@@ -61,15 +67,71 @@ const FormSurveyor = (props) => {
   //   // setValue({ min: stateStudy.min, max:stateStudy.max })
   // }
 
+  const handlePilihDaerah = (data) => {
+    let cek =  pilihDaerah.findIndex(item => item.index === data.index)
+    let test = pilihDaerah.find(item => item.provinsi === '')
+
+    
+    let elementPos =  pilihDaerah.findIndex(x => x.provinsi === data.provinsi);
+    
+    if(test && !data.delete){
+      let newArr = [...pilihDaerah]
+      
+      newArr[cek] = data
+      setPilihDaerah(newArr)
+      // setPilihProvinsi(data)
+      setFlagsFilterQuestions(true)
+    }
+    else{
+      if(data.delete){
+        console.log(data.provinsi)
+        setPilihDaerah((prev) => {
+          const prevDaerah = [...prev]
+          return prevDaerah.filter(item => item.index !== data.index)
+        })
+        setFlagsFilterQuestions(true)
+      }else{
+        setPilihDaerah((prev) => {
+          const backDaerah = [...prev]
+          backDaerah[elementPos] = {
+            ...backDaerah[elementPos],
+            ...data
+          }
+          return backDaerah
+        })
+        setFlagsFilterQuestions(true)
+      }
+    }
+  }
+
+  console.log(pilihDaerah)
+
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
+    console.log(kriteria)
     if(!cek){
       setPilihCategories(arr => [...pilihCategories, kriteria])
       setFlagsFilterQuestions(true)
     }else if(pilihCategories.indexOf(kriteria > -1)){
+      let categorys = category.find(el => el.name === kriteria)
+      // setFilterQuestion(getFilterQuestion.filter(item => item.questionId === kriteria))
+
+      setFilterQuestion((prev) => {
+        const prevQuestion = [...prev]
+        return prevQuestion.filter(item => item.categoryId !== categorys._id)
+      })
       setPilihCategories(pilihCategories.filter(item => item !== kriteria))
       setFlagsFilterQuestions(true)
     }
+  }
+
+
+  const tambahDaerahProvinsi = () => {
+
+    let dataDaerah = pilihDaerah.length
+    let data = { provinsi: '', kabKota: [], index: dataDaerah}
+
+    setPilihDaerah(arr => arr.concat(data))
   }
 
   function processSelectProvinsi(data){
@@ -78,10 +140,10 @@ const FormSurveyor = (props) => {
     dispatch(dataKota(data))
   }
 
-  const processSelectKota = (data) => {
-    setKota(data)
-    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, data, pilihCategories)
-  }
+  // const processSelectKota = (data) => {
+  //   setKota(data)
+  //   getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, data, pilihCategories)
+  // }
 
   const processSelectUmur = (data) => {
     setValue(data)
@@ -95,8 +157,6 @@ const FormSurveyor = (props) => {
       })
   }
 
-  console.log(pilihCategories)
-
 
   const onchange = async (data) => {
     let cek =  getFilterQuestion.some(item => item.questionId === data.questionId)
@@ -108,7 +168,7 @@ const FormSurveyor = (props) => {
       setFlagsFilterQuestions(true)
     }
     else{
-      if(data.answer === 'remove'){
+      if(!data.answer.length){
         setFilterQuestion((prev) => {
           const prevQuestion = [...prev]
           return prevQuestion.filter(item => item.questionId !== data.questionId)
@@ -144,7 +204,7 @@ const FormSurveyor = (props) => {
 
   const handleSaveSurvey = () => {
     
-    dispatch(SAVE_STUDY(props.formValues, getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, pilihCategories, kota, history))
+    dispatch(SAVE_STUDY(props.formValues, getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, pilihCategories, kota, pilihDaerah, history))
   };
 
   const getCategory = () =>{
@@ -187,6 +247,8 @@ const FormSurveyor = (props) => {
         setDataQuestions(data)
       })
   }
+
+  console.log(getFilterQuestion)
 
 
   return(
@@ -268,7 +330,7 @@ const FormSurveyor = (props) => {
                       <Form.Label>Jumlah Responden Yang Dibutuhkan</Form.Label>
                       <Field
                           // className="input survey-builder__title"
-                          type="text"
+                          type="number"
                           component={FormInput}
                           name='jumlahResponden'
                           placeholder="jumlah responden"
@@ -281,7 +343,7 @@ const FormSurveyor = (props) => {
                       <Form.Label>Reward Per Responden (Rp)</Form.Label>
                       <Field
                           // className="input survey-builder__title"
-                          type="text"
+                          type="number"
                           component={FormInput}
                           name='rewardResponden'
                           placeholder="reward Responden"
@@ -351,7 +413,8 @@ const FormSurveyor = (props) => {
                     </div>
                   </Col>
 
-                  <Col md={6} lg={6} className="m-t-30">
+                  
+                  {/* <Col md={6} lg={6} className="m-t-30">
                     <div className="part-one">
                     <Form.Group>
                       <Form.Label>Provinsi</Form.Label>
@@ -389,8 +452,28 @@ const FormSurveyor = (props) => {
                     </Form.Control>
                     </Form.Group>
                     </div>
-                  </Col>
+                  </Col> */}
+
+                  {
+                    pilihDaerah.map((data,i) => {
+                      
+                      return (
+                        <ComponentProvinsiDanKota
+                          key={data.index}
+                          dataProvinsi = { listProvinsi }
+                          dataIndex = { data.index }
+                          selectProvinsi = {(e) => {processSelectProvinsi(e)}}
+                          selectDataDaerah={(e) => {handlePilihDaerah(e)}}
+                        />
+                      )
+                    })
+                    
+                  }
+                    
                 </Row>
+                  <Button variant="outline-primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+
+                  
                 <Row className="m-t-30">
                   <Col md={12} lg={12}>
                     <div className="part-one">
@@ -403,9 +486,9 @@ const FormSurveyor = (props) => {
                             {
                               category.map((data, i) => {
                                 return(
-                                  <Col md={3} lg={3}>
+                                  <Col md={3} lg={3} key={i}>
                                     <Form.Check
-                                    key={i}
+                                    
                                     type="checkbox"
                                     label={`${data.name}`}
                                     value={`${data.name}`}
@@ -424,8 +507,10 @@ const FormSurveyor = (props) => {
                             let idCategory = category.find( el => el.name === data )
                             
                             return (
-                              <KriteriaQuestionList
+                              <KriteriaQuestionList 
+                                key = {i}
                                 kriteria = { data }
+                                listAnswerPilih = { getFilterQuestion}
                                 categoryName = {idCategory.name}
                                 idCategory = { idCategory._id }
                                 dataQuestions = { idCategory.listQuestions}
@@ -506,9 +591,9 @@ const FormSurveyor = (props) => {
                 </Row>
                 <Row>
                   <div md={6} lg={6}>
-                          <div style={{width:'100%',padding:'15px',backgroundColor:'#cce5ff',borderRadius:'10px'}}> 
-                            <h4>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </h4>
-                          </div>
+                    <div style={{width:'100%',padding:'15px',backgroundColor:'#cce5ff',borderRadius:'10px'}}> 
+                      <h4>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </h4>
+                    </div>
                   </div>
                 </Row>
               </Tab>

@@ -26,6 +26,7 @@ const AboutUsResponden = (props) => {
       .then( data => {
         setDataAnswerUser(data)
         // break;
+
       })
   }
 
@@ -69,9 +70,11 @@ const AboutUsResponden = (props) => {
           {
             category.map( (data, i) => {
               let dataAnswer
-              
+              // console.log(data)
+              // console.log(dataAnswerUser)
+              // console.log(dataAnswerUser.answer)
               dataAnswerUser ?
-                dataAnswer = dataAnswerUser.flatMap(x => [x.categoryId === data._id ? x : null ])
+                dataAnswer = dataAnswerUser.flatMap(x => [(x.categoryId === data._id) && (x.answer.length ) ? x : null ])
               :
                 dataAnswer = []
               

@@ -58,7 +58,7 @@ export const INIT_QUESTION = async (dispatch, urlPath) => {
   }
 }
 
-export const SAVE_STUDY = (surveyFormData, answerKriteria, jenisKelamin, umurMin, umurMax, provinsi,kriteria, kota, history) => async (dispatch, getState) => {
+export const SAVE_STUDY = (surveyFormData, answerKriteria, jenisKelamin, umurMin, umurMax, provinsi,kriteria, kota,daerah, history) => async (dispatch, getState) => {
   try{
 
     await dispatch({
@@ -76,6 +76,7 @@ export const SAVE_STUDY = (surveyFormData, answerKriteria, jenisKelamin, umurMin
     survey.provinsi = provinsi
     survey.kota = kota
     survey.kriteria = kriteria
+    survey.daerah = daerah
     
     const { data } = await instance({
       method: 'POST',

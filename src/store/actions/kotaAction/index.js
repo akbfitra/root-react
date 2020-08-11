@@ -22,8 +22,21 @@ export const dataKota = (idProvinsi) => async dispatch => {
       method: 'GET',
       url: `https://backoffice.survplus.id/get_kab/${idProvinsi}`
     })
-    console.log(data)
     dispatch({type: 'DATA_KOTA', payload: data})
+
+    console.log(data)
+    // const createOption = (label) => ({
+    //   label,
+    //   value: label.toLowerCase().replace(/\W/g, ''),
+    // });
+
+    // let dataKota = data.map((kota,i) => { return createOption(kota)})
+    let dataKota = [];
+    data.forEach(function(element) {
+        dataKota.push({ label:element['Kabupaten/kota'], value: element['Kabupaten/kota'] })
+    });
+    
+    return dataKota
   }
   catch(err){
     console.log(err.response)

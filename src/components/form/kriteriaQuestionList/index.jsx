@@ -20,10 +20,27 @@ export const KriteriaQuestionList = (props) => {
   //         setDataQuestions(data)
   //       })
   //   }
+
   
 
+  let dataAnswers = []
   const getData = (questionId, answer) => {
-    let obj = {questionId, answer}
+    let pilih = props.listAnswerPilih.find((el) => el.questionId === questionId)
+
+    if(!pilih){
+      dataAnswers = []
+    } else {
+      dataAnswers = pilih.answer
+    }
+
+    let index = dataAnswers.indexOf(answer);
+    if (index > -1) {
+      dataAnswers.splice(index, 1);
+    }else {
+      dataAnswers.push(answer)
+    }
+    
+    let obj = {questionId, answer: dataAnswers, categoryId: props.idCategory}
     props.onchange(obj)
   }
 
@@ -71,15 +88,25 @@ export const KriteriaQuestionList = (props) => {
                   <Col md={12} lg={12}>
                     <div className="box-answer">
                     <Form.Group style={{width:'100%'}}>
-                      <Form.Control as="select" onChange={(e) => { getData(data._id, e.target.value)}} >
-                        <option value= "remove">Semua</option>
+                      {/* <Form.Control as="select" onChange={(e) => { getData(data._id, e.target.value)}} > */}
+                        {/* <option value= "remove">Semua</option> */}
                         { data.listAnswers.map((answer, i) => {
                             return(
-                              <option key={i} value={answer}>{ answer }</option>
+                              <Col md={3} lg={3} key={i}>
+                                <Form.Check
+                                key={i}
+                                type="checkbox"
+                                label={`${answer}`}
+                                value={`${answer}`}
+                                onChange={(e) => { getData(data._id, e.target.value)}}
+                                // onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                                />
+                              </Col>
+                              // <option key={i} value={answer}>{ answer }</option>
                             )
                           })
                         }
-                      </Form.Control>
+                      {/* </Form.Control> */}
                     </Form.Group>
                     </div>
                   </Col>
