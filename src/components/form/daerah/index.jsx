@@ -81,46 +81,50 @@ export const ComponentProvinsiDanKota = (props) => {
 
   return(
     <>
-
-      <Col md={6} lg={6} className="m-t-30">
-        <h1> {props.dataIndex} </h1>
-      <Button variant="danger" onClick={ (e) =>  deleteDaerah(props.dataIndex) }>close</Button>
-        <div className="part-one">
-        <Form.Group>
-          <Form.Label>Provinsi</Form.Label>
-            <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }} required>
-            <option value="">-- Semua --</option>
-            { 
-              !props.dataProvinsi 
-              ? 
-                <option value="">-- Semua --</option>
-              :
-                props.dataProvinsi.map( (data, i) => 
-                <option key={i} value={`${data.Provinsi}`}>{data.Provinsi}</option>
-                )
-            }
-          </Form.Control>
-        </Form.Group>
-        </div>
+    <Row>
+      <Col md={12} lg={12}>
+        <Button variant="danger" onClick={ (e) =>  deleteDaerah(props.dataIndex) } className="float-right">Hapus</Button>
       </Col>
 
-      <Col md={6} lg={6} className="m-t-30">
+      <Col md={12} lg={12}>
         <div className="part-one">
-        <Form.Group>
-          <Form.Label>Kabupaten</Form.Label>
-          <Select
-            value={listKabKota.filter(obj => selectedValue.includes(obj.value))}
-            isMulti
-            name="kota"
-            options={listKabKota}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            placeholder="Semua Kabupaten dan Kota"
-            onChange = { (e) => {onchange(e) ; selectedDaerah(e)}  }
-          />
-        </Form.Group>
+          <Row>
+            <Col md={6} lg={6}>
+              <Form.Group>
+                <Form.Label>Provinsi</Form.Label>
+                  <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }} required>
+                  <option value="">-- Semua --</option>
+                  { 
+                    !props.dataProvinsi 
+                    ? 
+                      <option value="">-- Semua --</option>
+                    :
+                      props.dataProvinsi.map( (data, i) => 
+                      <option key={i} value={`${data.Provinsi}`}>{data.Provinsi}</option>
+                      )
+                  }
+                </Form.Control>
+              </Form.Group>
+            </Col>
+            <Col md={6} lg={6}>
+              <Form.Group>
+                <Form.Label>Kabupaten</Form.Label>
+                <Select
+                  value={listKabKota.filter(obj => selectedValue.includes(obj.value))}
+                  isMulti
+                  name="kota"
+                  options={listKabKota}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  placeholder="Semua Kabupaten dan Kota"
+                  onChange = { (e) => {onchange(e) ; selectedDaerah(e)}  }
+                />
+              </Form.Group>
+            </Col>
+          </Row>
         </div>
       </Col>
+    </Row>
     </>
   )
 }

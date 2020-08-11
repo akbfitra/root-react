@@ -44,7 +44,7 @@ const TopUpSurveyor = (props) => {
               <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
                 <Tabs defaultActiveKey="Isi Ulang" id="noanim-tab-example">
                   <Tab eventKey="Isi Ulang" title="Isi Ulang">
-                    <Row>
+                    <Row className="m-t-30">
                       <Col md={12} lg={12}>
                         <div className="part-one">
                           <Form.Group>
@@ -53,14 +53,6 @@ const TopUpSurveyor = (props) => {
                           </Form.Group>
 
                           <Form.Group>
-                            <Form.Label>Bank</Form.Label>
-                            <Form.Control as="select">
-                              <option>-- Pilih --</option>
-                            </Form.Control>
-                          </Form.Group>
-                          
-                          <Form.Group>
-                            
                           <Link to='/surveyor/topup/checkout'><Button variant="primary">Lanjut</Button></Link>
                           </Form.Group>
                         </div>
@@ -69,14 +61,14 @@ const TopUpSurveyor = (props) => {
                   </Tab>
 
                   <Tab eventKey="Riwayat" title="Riwayat Isi Ulang">
-                    <Row>
+                    <Row className="m-t-30">
                       <Col md={12} lg={12}>
                         <Table striped bordered hover>
                           <thead>
                             <tr>
                               <th>No.</th>
                               <th>Tanggal Isi Ulang</th>
-                              <th>Bank</th>
+                              {/* <th>Bank</th> */}
                               <th>Nominal Isi Ulang</th>
                             </tr>
                           </thead>
@@ -84,7 +76,7 @@ const TopUpSurveyor = (props) => {
                             <tr>
                               <td>-</td>
                               <td>-</td>
-                              <td>-</td>
+                              {/* <td>-</td> */}
                               <td>-</td>
                             </tr>
                           </tbody>
@@ -93,7 +85,7 @@ const TopUpSurveyor = (props) => {
                     </Row>
                   </Tab>
                   <Tab eventKey="Metode" title="Metode Pembayaran Isi Ulang">
-                    <Row>
+                    <Row className="m-t-30">
                       <Col md={12} lg={12}>
                       <Accordion>
                         <Card>

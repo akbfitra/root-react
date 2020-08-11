@@ -9,7 +9,7 @@ import InputRange from 'react-input-range';
 
 import './css/style.css';
 import 'react-input-range/lib/css/index.css';
-import { Tabs, Tab, Container, Row, Col, Form, Button} from 'react-bootstrap'
+import { Tabs, Tab, Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -296,11 +296,11 @@ const FormSurveyor = (props) => {
         </Row>
         
         <Row className="m-t-30">
-          <Col>
+          <Col md={12} lg={12}>
             <Tabs defaultActiveKey="Project" id="noanim-tab-example">
               <Tab eventKey="Project" title="Studi" className="m-t-15">
                 <Row>
-                  <Col>
+                  <Col md={12} lg={12}>
                   <div className="part-one">
                     <Form.Group>
                       <Form.Label>Judul Studi</Form.Label>
@@ -370,7 +370,7 @@ const FormSurveyor = (props) => {
                     <Form.Group>
                       <Form.Label>Tanggal Mulai</Form.Label>
                       <Row>
-                        <Col>
+                        <Col md={12} lg={12}>
                           <Field
                             // placeholder={tanggalMulai}
                             name="tanggalMulai"
@@ -384,7 +384,7 @@ const FormSurveyor = (props) => {
                     <Form.Group>
                       <Form.Label>Tanggal Akhir</Form.Label>
                       <Row>
-                        <Col>
+                        <Col md={12} lg={12}>
                         <Field
                             // placeholder={tanggalMulai}
                             name="tanggalAkhir"
@@ -401,7 +401,7 @@ const FormSurveyor = (props) => {
 
               <Tab eventKey="Kriteria Responden" title="Kriteria Responden" className="m-t-15">
                 <Row>
-                  <Col md={6} lg={6} className="m-t-30">
+                  <Col md={6} lg={6}>
                     <div className="part-one">
                     <Form.Group>
                       <Form.Label style={{marginBottom:'30px'}}>Usia</Form.Label>
@@ -415,7 +415,7 @@ const FormSurveyor = (props) => {
                     </div>
                   </Col>
 
-                  <Col md={6} lg={6} className="m-t-30">
+                  <Col md={6} lg={6}>
                     <div className="part-one">
                     <Form.Group>
                       <Form.Label>Jenis Kelamin</Form.Label>
@@ -469,7 +469,29 @@ const FormSurveyor = (props) => {
                     </div>
                   </Col> */}
 
-                  {
+                  {/* {
+                    pilihDaerah.map((data,i) => {
+                      
+                      return (
+                        <ComponentProvinsiDanKota
+                          key={data.index}
+                          dataProvinsi = { listProvinsi }
+                          dataIndex = { data.index }
+                          selectProvinsi = {(e) => {processSelectProvinsi(e)}}
+                          selectDataDaerah={(e) => {handlePilihDaerah(e)}}
+                        />
+                      )
+                    })
+                    
+                  } */}
+                    
+                </Row>
+                <Row>
+                  <Col md={12} lg={12}>
+                    <hr></hr>
+                  </Col>
+                </Row>
+                {
                     pilihDaerah.map((data,i) => {
                       
                       return (
@@ -484,12 +506,15 @@ const FormSurveyor = (props) => {
                     })
                     
                   }
-                    
-                </Row>
-                  <Button variant="outline-primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
 
+                <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                <Row>
+                  <Col md={12} lg={12}>
+                    <hr></hr>
+                  </Col>
+                </Row>
                   
-                <Row className="m-t-30">
+                <Row>
                   <Col md={12} lg={12}>
                     <div className="part-one">
                       <Row>
@@ -516,25 +541,7 @@ const FormSurveyor = (props) => {
                             
                           </Row>
                         </Form.Group>
-                        
-                        {
-                          pilihCategories.map((data, i) => {
-                            let idCategory = category.find( el => el.name === data )
-                            
-                            return (
-                              <KriteriaQuestionList 
-                                key = {i}
-                                kriteria = { data }
-                                listAnswerPilih = { getFilterQuestion}
-                                categoryName = {idCategory.name}
-                                idCategory = { idCategory._id }
-                                dataQuestions = { idCategory.listQuestions}
-                                onchange={(e) => { onchange(e) }} 
-                              />
-
-                            )
-                          })
-                        }
+                      
                         {/* <Col md={12} lg={12}>
                           <Form.Group>
                             <Form.Label>Question Responden</Form.Label>
@@ -604,12 +611,33 @@ const FormSurveyor = (props) => {
                     </div>
                   </Col>
                 </Row>
-                <Row>
-                  <div md={6} lg={6}>
-                    <div style={{width:'100%',padding:'15px',backgroundColor:'#cce5ff',borderRadius:'10px'}}> 
-                      <h4>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </h4>
+
+
+                {
+                          pilihCategories.map((data, i) => {
+                            let idCategory = category.find( el => el.name === data )
+                            
+                            return (
+                              <KriteriaQuestionList 
+                                key = {i}
+                                kriteria = { data }
+                                listAnswerPilih = { getFilterQuestion}
+                                categoryName = {idCategory.name}
+                                idCategory = { idCategory._id }
+                                dataQuestions = { idCategory.listQuestions}
+                                onchange={(e) => { onchange(e) }} 
+                              />
+
+                            )
+                          })
+                        }
+                <Row className="m-t-30">
+                  <Col md={{ span: 6, offset:3}} lg={{ span: 6, offset:3}}>
+                    <div style={{width:'100%',backgroundColor:'#1f59bb',padding:'15px',borderRadius:'8px'}}>
+                      <h4 className="text-center" style={{color:'white'}}>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </h4>
+                      
                     </div>
-                  </div>
+                  </Col>
                 </Row>
               </Tab>
               

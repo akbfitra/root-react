@@ -67,7 +67,7 @@ const RespondenDashboard = (props) => {
         </Row>
 
 
-        <Row className="m-t-30">
+        {/* <Row className="m-t-30">
           <Col md={3} lg={3}>
           <Link to = '/responden/ticket' style={{textDecoration:"none"}}>
             <div className="part-one">
@@ -78,7 +78,7 @@ const RespondenDashboard = (props) => {
             </div>
             </Link>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
       </div>
 
