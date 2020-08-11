@@ -29,6 +29,7 @@ import ProfileSurveyor from './container/surveyor/profile'
 import EditProfileSurveyor from './container/surveyor/editProfile'
 import StudyRespondenGetBySurveyor from './container/surveyor/studyResponden'
 import CheckOutTopSurveyor from './container/surveyor/checkoutTopUp'
+import EditPasswordSurveyor from './container/surveyor/editPassword'
 
 import DashboardResponden from './container/responden/dashboard'
 import AboutUsResponden from './container/responden/aboutus'
@@ -41,6 +42,7 @@ import TicketResponden from './container/responden/ticket'
 import EditProfileResponden from './container/responden/editProfile'
 import TarikSaldo from './container/responden/tarikSaldo'
 import StudyCompletedResponden from './container/responden/studyCompleted'
+import EditPasswordResponden from './container/responden/editPassword'
 
 import { CekLogin } from './store/actions/userAction'
 
@@ -67,6 +69,7 @@ const App = () => {
       <PrivateRouteSurveyor path = '/surveyor/liststudy' component = {ListStudy}/>
       <PrivateRouteSurveyor path = '/surveyor/detailstudy/detailresponden/:studyId/:respondenId' component={StudyRespondenGetBySurveyor} />
       <PrivateRouteSurveyor path = '/surveyor/detailstudy/:studyId' component={DetailStudySurveyor} />
+      <PrivateRouteSurveyor path = '/surveyor/profile/editpassword' component = {EditPasswordSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/profile/edit' component = {EditProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/profile' component = {ProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup/checkout' component = {CheckOutTopSurveyor}/>
@@ -75,6 +78,7 @@ const App = () => {
 
       <PrivateRouteResponden path = '/responden/aboutus' component = {AboutUsResponden}/>
       <PrivateRouteResponden path = '/responden/category/:categoryId' component = {CategoryQuestions}/>
+      <PrivateRouteResponden path = '/responden/profile/editpassword' component = {EditPasswordResponden}/>
       <PrivateRouteResponden path = '/responden/profile/edit' component = {EditProfileResponden}/>
       <PrivateRouteResponden path = '/responden/profile' component = {ProfileResponden}/>
       <PrivateRouteResponden path = '/responden/detailstudy/:studyId' component = {DetailStudyResponden}/>
