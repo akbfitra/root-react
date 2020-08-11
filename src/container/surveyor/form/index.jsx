@@ -136,11 +136,12 @@ const FormSurveyor = (props) => {
     let data = { provinsi: '', kabKota: [], index: dataDaerah}
 
     setPilihDaerah(arr => arr.concat(data))
+    setFlagsFilterQuestions(true)
   }
 
   function processSelectProvinsi(data){
     setProvinsi(data)
-    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, data, kota, pilihCategories)
+    getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, data, kota, pilihCategories, pilihDaerah)
     dispatch(dataKota(data))
   }
 
@@ -151,7 +152,7 @@ const FormSurveyor = (props) => {
 
   const processSelectUmur = (data) => {
     setValue(data)
-    getCounterResponden(getFilterQuestion, jenisKelamin, data.min, data.max, provinsi, kota, pilihCategories)
+    getCounterResponden(getFilterQuestion, jenisKelamin, data.min, data.max, provinsi, kota, pilihCategories, pilihDaerah)
   }
 
   function getDataProvinsi(){
@@ -219,9 +220,11 @@ const FormSurveyor = (props) => {
       })
   }
 
-  const getCounterResponden = (dataQuestion, dataJenisKelamin, dataValueUmurMin, dataValueUmurMax, dataProvinsi, dataKota, kriteria) => {
-    dispatch(COUNTER_RESPONDEN(dataQuestion, dataJenisKelamin, dataValueUmurMin,dataValueUmurMax, dataProvinsi, dataKota, kriteria))
+  const getCounterResponden = (dataQuestion, dataJenisKelamin, dataValueUmurMin, dataValueUmurMax, dataProvinsi, dataKota, kriteria, dataDaerah) => {
+    console.log('aaaaaaaaaa')
+    dispatch(COUNTER_RESPONDEN(dataQuestion, dataJenisKelamin, dataValueUmurMin,dataValueUmurMax, dataProvinsi, dataKota, kriteria, dataDaerah))
       .then(data => {
+        console.log(data)
         setCounterUser(data)
         setFlagsFilterQuestions(false)
       })
@@ -229,12 +232,12 @@ const FormSurveyor = (props) => {
 
   const getJenisKelamin = (dataGender) => {
      setJenisKelamin(dataGender)
-     getCounterResponden(getFilterQuestion, dataGender, value.min, value.max, provinsi, kota, pilihCategories)
+     getCounterResponden(getFilterQuestion, dataGender, value.min, value.max, provinsi, kota, pilihCategories, pilihDaerah)
   }
 
   useEffect(() => {
     if(counterUser === 0 || flagsFilterQuestions){
-      getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, kota, pilihCategories)
+      getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, kota, pilihCategories, pilihDaerah)
     }
   })
 

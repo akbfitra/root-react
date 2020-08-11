@@ -243,13 +243,13 @@ export const COMPLETED_USER = () => async dispatch => {
   }
 }
 
-export const COUNTER_RESPONDEN = ( answerKriteria,jenisKelamin, umurMin, umurMax, provinsi, kota, kriteria ) => async dispatch => {
+export const COUNTER_RESPONDEN = ( answerKriteria,jenisKelamin, umurMin, umurMax, provinsi, kota, kriteria, daerah ) => async dispatch => {
   try{
     const { data } = await axios({
       method: 'POST',
       url: `https://backoffice.survplus.id/manajemen_responden/counter/`,
       data: {
-        jenisKelamin, umurMin, umurMax, provinsi, kota, answerKriteria, kriteria
+        jenisKelamin, umurMin, umurMax, provinsi, kota, answerKriteria, kriteria, daerah
       }
     })
     return data
