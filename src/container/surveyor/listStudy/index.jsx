@@ -137,9 +137,9 @@ const ListStudy = () => {
                           <Button variant="primary">Detail Studi</Button>
                         </Link>
                         <br></br>
-                        <Link to={`/surveyor/form/edit/${data._id}`}>
+                        {/* <Link to={`/surveyor/form/edit/${data._id}`}>
                           <Button variant="warning">Edit Studi</Button>
-                        </Link>
+                        </Link> */}
                       </Col>
                     </Row>
                   </div>

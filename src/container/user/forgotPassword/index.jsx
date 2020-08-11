@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
 import './css/style.css';
 import {  Container, Row, Col, Form, Button} from 'react-bootstrap'
-import { logoutProcess } from '../../../store/actions/userAction'
+import { FORGOT_PASSWORD } from '../../../store/actions/userAction'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
+
 
 const LupaPassword = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const location = useLocation()
+  const [ email, setEmail ] = useState('')
 
-  const processLogout = () => {
-    dispatch(logoutProcess(history, location))
+  // const processLogout = () => {
+  //   dispatch(logoutProcess(history, location))
+  // }
+
+
+  const postForgotPassword = (e) => {
+    e.preventDefault()
+    dispatch(FORGOT_PASSWORD(email, history))
   }
 
-
-  console.log('aaaaaaaaaaaaaa')
   return(
     <>
         <div id="general-header">
@@ -73,26 +79,28 @@ const LupaPassword = (props) => {
                   </Col>
                 </Row>
 
-                <Row>
-                  <Col md={{span:6, offset:3}} lg={{span:6, offset:3}}>
-                    <Form>
-                      <Form.Group>
-                        <Form.Label></Form.Label>
-                        <Form.Control 
-                          type="text" 
-                          placeholder="Masukkan email anda"
-                          />
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
+                  <Form onSubmit= { postForgotPassword }>
+                    <Row>
+                      <Col md={{span:6, offset:3}} lg={{span:6, offset:3}}>
+                          <Form.Group>
+                            <Form.Label></Form.Label>
+                            <Form.Control 
+                              type="text" 
+                              placeholder="Masukkan email anda"
+                              onChange = { (e) => { setEmail(e.target.value) }}
+                              required
+                              />
+                          </Form.Group>
+                      </Col>
+                    </Row>
 
 
-                <Row>
-                  <Col md={{span:6, offset:3}} lg={{span:6, offset:3}}>
-                  <Button variant="primary" block>Kirim</Button>
-                  </Col>
-                </Row>
+                    <Row>
+                      <Col md={{span:6, offset:3}} lg={{span:6, offset:3}}>
+                      <Button type='submit' variant="primary" block  >Kirim</Button>
+                      </Col>
+                    </Row>
+                  </Form>
                 </div>
               </Col>
             </Row>

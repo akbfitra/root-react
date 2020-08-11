@@ -208,3 +208,19 @@ export const GET_SALDO = () => async dispatch => {
     console.log(err)
   }
 }
+
+export const FORGOT_PASSWORD = (email, history) =>async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'POST',
+      url:'/user/forgotpassword',
+      data:{
+        email
+      }
+    })
+    history.push('/successforgotpassword')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
