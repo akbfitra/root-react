@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter, useHistory, useLocation } from 'react-router-dom'
+import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 
 import './css/style.css';
-import {  Container, Row, Col, Form, Button, Table} from 'react-bootstrap'
+import {  Container, Row, Col, Form, Button, Table, Tab, Tabs} from 'react-bootstrap'
 import { logoutProcess } from '../../../store/actions/userAction'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -20,87 +20,97 @@ const TarikSaldo = (props) => {
   return(
     <>
     <Navbar/>
-        <div id="tarik-saldo">
-          <Container>
-            <Row>
-              <Col  md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-                <div className="part-one">
-                <Row>
-                  <Col md={12} lg={12}>
-                    <h3 className="title-one text-center"><strong>Tarik Saldo</strong></h3>
-                    <hr className=""/>
-                  </Col>
-                </Row>
+      <div id="tarik-saldo">
+        <Container>
+          <Row>
+            <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
+              <h3 className="title-one text-center"><strong>Tarik Saldo</strong></h3>
+                <ul className="list-inline text-center">
+                  <li className="list-inline-item">
+                    <Link to='/responden' style={{textDecoration:"none"}}>
+                    <h4 className="title-three">Beranda Responden</h4>
+                    </Link>
+                  </li>
 
-                <Row>
-                  <Col md={12} lg={12}>
-                  <Form>
-                    <Form.Group>
-                      <Form.Label>No. Rekening</Form.Label>
-                      <Form.Control 
-                      type="text" 
-                      placeholder=""/>
-                    </Form.Group>
+                  <li className="list-inline-item">|</li>
 
-                    <Form.Group>
-                      <Form.Label>Bank</Form.Label>
-                      <Form.Control as="select">
-                        <option value="">-- Pilih --</option> 
-                      </Form.Control>
-                    </Form.Group>
+                  <li className="list-inline-item">
+                  <h4 className="title-three">Tarik Saldo</h4>
+                  </li>
+                </ul>
+            </Col>
+          </Row>
 
-                    <Form.Group>
-                      <Form.Label>Saldo Yang diinginkan</Form.Label>
-                      <Form.Control 
-                      type="text" 
-                      placeholder="Minimal Rp 50.000,-"/>
-                    </Form.Group>
+          <Row className="m-t-30">
+            <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
+              <Tabs defaultActiveKey="Tarik Saldo" id="noanim-tab-example">
+                <Tab eventKey="Tarik Saldo" title="Tarik Saldo">
+                  <Row>
+                    <Col md={12} lg={12}>
+                      <div className="part-one">
+                        <Form.Group>
+                          <Form.Label>No. Rekening</Form.Label>
+                          <Form.Control 
+                            type="text" 
+                            placeholder=""/>
+                        </Form.Group>
 
-                    <Row>
-                      <Col md={12} lg={12}>
-                      <Button variant="primary" type="submit">Simpan </Button>
-                      </Col>
-                    </Row>
-                  </Form>
-                  </Col>
-                </Row>
+                        <Form.Group>
+                          <Form.Label>Bank</Form.Label>
+                          <Form.Control as="select">
+                            <option value="">-- Pilih --</option> 
+                          </Form.Control>
+                        </Form.Group>
 
-                <Row>
-                  <Col md={12} lg={12}>
-                    <hr className=""/>
-                  </Col>
-                </Row>
+                        <Form.Group>
+                          <Form.Label>Saldo Yang diinginkan</Form.Label>
+                          <Form.Control 
+                            type="text" 
+                            placeholder="Minimal Rp 50.000,-"/>
+                        </Form.Group>
 
+                        <Row>
+                          <Col md={12} lg={12}>
+                            <Button variant="primary" type="submit">Simpan </Button>
+                          </Col>
+                        </Row>
+                      </div>
+                    </Col>
+                  </Row>
 
-                <Row>
-                  <Col md={12} lg={12}>
-                  <Table striped bordered hover>
-                    <thead>
-                      <tr>
-                        <th>No.</th>
-                        <th>Tanggal Penarikan</th>
-                        <th>No. Rekening</th>
-                        <th>Bank</th>
-                        <th>Jumlah Penarikan</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                  </Col>
-                </Row>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+                </Tab>
+
+                <Tab eventKey="History" title="History Tarik Saldo">
+                  <Row>
+                    <Col md={12} lg={12}>
+                      <Table striped bordered hover>
+                        <thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Tanggal Penarikan</th>
+                            <th>No. Rekening</th>
+                            <th>Bank</th>
+                            <th>Jumlah Penarikan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Col>
+                  </Row>
+                </Tab>
+              </Tabs>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     <Footer/>
     </>
   )
