@@ -70,7 +70,10 @@ const FormSurveyor = (props) => {
   const handlePilihDaerah = (data) => {
     let cek =  pilihDaerah.findIndex(item => item.index === data.index)
     let test = pilihDaerah.find(item => item.provinsi === '')
-
+    
+    
+    console.log(data, pilihDaerah , 'zzzzzzzzzzz')
+    console.log(test, 'initest')
     
     let elementPos =  pilihDaerah.findIndex(x => x.provinsi === data.provinsi);
     
@@ -83,6 +86,7 @@ const FormSurveyor = (props) => {
       setFlagsFilterQuestions(true)
     }
     else{
+      console.log('masuk kedam else')
       if(data.delete){
         console.log(data.provinsi)
         setPilihDaerah((prev) => {
@@ -91,10 +95,14 @@ const FormSurveyor = (props) => {
         })
         setFlagsFilterQuestions(true)
       }else{
+        console.log('masuk kedalam else else')
+        console.log(pilihDaerah)
+        let elPos =  pilihDaerah.findIndex(x => x.index === data.index);
+        console.log(elementPos)
         setPilihDaerah((prev) => {
           const backDaerah = [...prev]
-          backDaerah[elementPos] = {
-            ...backDaerah[elementPos],
+          backDaerah[elPos] = {
+            ...backDaerah[elPos],
             ...data
           }
           return backDaerah

@@ -115,6 +115,7 @@ export const ComponentProvinsiDanKota = (props) => {
             options={listKabKota}
             className="basic-multi-select"
             classNamePrefix="select"
+            placeholder="Semua Kabupaten dan Kota"
             onChange = { (e) => {onchange(e) ; selectedDaerah(e)}  }
           />
         </Form.Group>
