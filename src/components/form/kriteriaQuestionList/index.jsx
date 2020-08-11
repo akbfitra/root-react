@@ -50,84 +50,66 @@ export const KriteriaQuestionList = (props) => {
 
   return(
     <>
-      <Col md={12} lg={12}>
-        <Form.Group>
-          {/* <Form.Label>Question Responden</Form.Label> */}
-          <Form.Label> { props.kriteria} </Form.Label>
-          {/* <Form.Control as="select" onChange={ (e) => {processSelectCategory(e.target.value); }}>
-            <option>Pilih...</option>
-            {
-              category.map((data, i) => {
-                
-                return(
-                  <option key={i}>{data.name}</option>
-                )
-              })
-            }
-          </Form.Control> */}
-        </Form.Group>
-      </Col>
-
-        <Col md={12} lg={12}>
-        <hr className="m-b-0"></hr>
-        </Col>
+      
       
       { /* load question */}
 
+      <Row className="m-t-15">
         <Col md={12} lg={12}>
-          {
-            props.dataQuestions.map((data, i) => {
-              return(
-                <Row className="m-t-30" key={i}>
-                  <Col md={12} lg={12}>
-                    <div className="box-pertanyaan">
-                      <div className="left"><h5>{i+1}. </h5></div>
-                      <div className="right"><h5>{data.name}</h5></div>
-                    </div>
-                  </Col>
-                  <Col md={12} lg={12}>
-                    <div className="box-answer">
-                    <Form.Group style={{width:'100%'}}>
-                      {/* <Form.Control as="select" onChange={(e) => { getData(data._id, e.target.value)}} > */}
-                        {/* <option value= "remove">Semua</option> */}
-                        { data.listAnswers.map((answer, i) => {
-                            return(
-                              <Col md={3} lg={3} key={i}>
-                                <Form.Check
-                                key={i}
-                                type="checkbox"
-                                label={`${answer}`}
-                                value={`${answer}`}
-                                onChange={(e) => { getData(data._id, e.target.value)}}
-                                // onChange={ (e) => {handlePilihKriteria(e.target.value)}}
-                                />
-                              </Col>
-                              // <option key={i} value={answer}>{ answer }</option>
-                            )
-                          })
-                        }
-                      {/* </Form.Control> */}
-                    </Form.Group>
-                    </div>
-                  </Col>
-                </Row>
-              )
-            })
-          }
+          <div className="part-one">
+            <Row>
+              <Col md={12} lg={12}>
+                <div style={{width:'100%',backgroundColor:'#1f59bb',padding:'15px',borderRadius:'8px'}}>
+                  <h4 style={{color:'white'}}>{ props.kriteria}</h4>
+                </div>
+              </Col>
+
+              <Col md={12} lg={12}>
+                {
+                  props.dataQuestions.map((data, i) => {
+                    return(
+                      <Row className="m-t-30" key={i}>
+                        <Col md={12} lg={12}>
+                          <div className="box-pertanyaan">
+                            <div className="left"><h5>{i+1}. </h5></div>
+                            <div className="right"><h5>{data.name}</h5></div>
+                          </div>
+                        </Col>
+                        <Col md={12} lg={12}>
+                          <div className="box-answer">
+                          <Form.Group style={{width:'100%'}}>
+                            {/* <Form.Control as="select" onChange={(e) => { getData(data._id, e.target.value)}} > */}
+                              {/* <option value= "remove">Semua</option> */}
+                              { data.listAnswers.map((answer, i) => {
+                                  return(
+                                    <Col md={3} lg={3} key={i}>
+                                      <Form.Check
+                                      key={i}
+                                      type="checkbox"
+                                      label={`${answer}`}
+                                      value={`${answer}`}
+                                      onChange={(e) => { getData(data._id, e.target.value)}}
+                                      // onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                                      />
+                                    </Col>
+                                    // <option key={i} value={answer}>{ answer }</option>
+                                  )
+                                })
+                              }
+                            {/* </Form.Control> */}
+                          </Form.Group>
+                          </div>
+                        </Col>
+                      </Row>
+                    )
+                  })
+                }
+              </Col>
+            </Row>
+          </div>
         </Col>
-        
-        {/* <Col md={12} lg={12}>
-          <hr/>
-          <ul className="list-inline text-right m-b-0">
-            <li className="list-inline-item">
-              <Button variant="primary">Tambah Kriteria</Button>{' '}
-            </li>
-            <li className="list-inline-item">|</li>
-            <li className="list-inline-item">
-              <Button variant="danger">Hapus Kriteria</Button>{' '}
-            </li>
-          </ul>
-        </Col> */}
+      </Row>
+      
     </>
   )
 }

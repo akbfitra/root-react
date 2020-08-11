@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { withRouter, Link, useParams, useHistory } from 'react-router-dom'
 
 import './css/style.css';
-import { Container, Row, Col, Button, Form} from 'react-bootstrap'
+import { Container, Row, Col, Button, Form, Modal} from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -14,12 +14,16 @@ const StudyResponden = (props) => {
   const dispatch = useDispatch()
   const params = useParams()
   const history = useHistory()
+  
 
   let { studyId } = params
   const [ listOfQuestions, setListofQuestions ] = useState([])
   const [dataText, setDataText ] = useState( [{answer: ' test'}] )
   const [getChangeData, setGetChangeData ] = useState(false)
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getListQuestions = () => {
     dispatch(FIND_ANSWER_QUESTIONS_WITH_RESPONDEN_BY_ID(studyId))
@@ -182,7 +186,8 @@ const StudyResponden = (props) => {
                   </Col>
 
                   <Col md={12} lg={12}>
-                    <Button variant="primary" onClick ={ () => { userCompleted() }} >Simpan</Button>{' '}
+                    {/* <Button variant="primary" onClick ={ () => { userCompleted() }} >Simpan</Button>{' '} */}
+                    <Button variant="primary" onClick={handleShow}>Simpan</Button>
                   </Col>
                 </Row>
               </div>
@@ -193,6 +198,21 @@ const StudyResponden = (props) => {
         </Container>
       </div>
       <Footer/>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Apakah anda sudah yakin dengan jawaban anda ?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary">
+            Ya
+          </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Tidak
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

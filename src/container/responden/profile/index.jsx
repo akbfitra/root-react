@@ -82,6 +82,9 @@ const ProfileResponden = (props) => {
                 <Link to='/responden/profile/edit' style={{textDecoration:"none"}}>
                   <Button variant="primary" block>Edit Profil</Button>
                 </Link>
+                <Link to='/responden/profile/editpassword' style={{textDecoration:"none"}}>
+                  <Button variant="primary" block style={{marginTop:'15px'}}>Edit Password</Button>
+                </Link>
                 </Col>
               </Row>
               

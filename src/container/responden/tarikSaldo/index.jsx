@@ -59,6 +59,9 @@ const TarikSaldo = (props) => {
                           <Form.Label>Bank</Form.Label>
                           <Form.Control as="select">
                             <option value="">-- Pilih --</option> 
+                            <option value="BCA">BCA</option> 
+                            <option value="Mandiri">Mandiri</option> 
+                            <option value="CIMB Niaga">CIMB Niaga</option> 
                           </Form.Control>
                         </Form.Group>
 
