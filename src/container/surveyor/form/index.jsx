@@ -87,7 +87,7 @@ const FormSurveyor = (props) => {
         console.log(data.provinsi)
         setPilihDaerah((prev) => {
           const prevDaerah = [...prev]
-          return prevDaerah.filter(item => item.index !== data.index)
+          return prevDaerah.filter(item => item.provinsi !== data.provinsi)
         })
         setFlagsFilterQuestions(true)
       }else{
@@ -127,8 +127,12 @@ const FormSurveyor = (props) => {
 
 
   const tambahDaerahProvinsi = () => {
-
-    let dataDaerah = pilihDaerah.length
+    let dataDaerah = 0
+    if(!pilihDaerah.length ){
+      dataDaerah = 0
+    } else {
+      dataDaerah = pilihDaerah[pilihDaerah.length -1].index +1
+    }
     let data = { provinsi: '', kabKota: [], index: dataDaerah}
 
     setPilihDaerah(arr => arr.concat(data))

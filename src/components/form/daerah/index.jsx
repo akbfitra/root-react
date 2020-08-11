@@ -43,10 +43,13 @@ export const ComponentProvinsiDanKota = (props) => {
   }
   console.log(provinsi)
   console.log(selectedValue)
+
+
   function processSelectProvinsi(data){
     setProvinsi(data)
     setSelectedValue([])
     props.selectProvinsi(data)
+    props.selectDataDaerah({provinsi: data, kabKota: [], index: props.dataIndex})
     // getCounterResponden(getFilterQuestion, jenisKelamin, value.min, value.max, data, kota, pilihCategories)
     dispatch(dataKota(data))
       .then( data => {

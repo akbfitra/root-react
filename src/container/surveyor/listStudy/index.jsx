@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { useDispatch  } from 'react-redux';
 
 import './css/style.css';
-import {  Container, Row, Col, Table, Button, Alert} from 'react-bootstrap'
+import {  Container, Row, Col, Table, Button, Alert, Badge} from 'react-bootstrap'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -31,6 +31,7 @@ const ListStudy = () => {
       })
   }
 
+  console.log(dataSurvey)
 
   return(
     <>
@@ -71,7 +72,19 @@ const ListStudy = () => {
                       <Col md={12} lg={12}>
                       <h4 className="m-t-0 m-b-0 title-two"><strong>{data.judul}</strong></h4>
                       </Col>
+                      
                     </Row>
+                    
+                      {
+                        data.isVerified === 'true' ?
+                        <Badge pill variant="success">
+                          Sudah Terverifikasi Admin
+                        </Badge>
+                        :
+                        <Badge pill variant="secondary">
+                          Sedang diverifikasi Admin
+                        </Badge>
+                      }
 
                     <Row className="m-t-15">
                       <Col md={5} lg={5} className="table-no-border">
@@ -130,6 +143,7 @@ const ListStudy = () => {
                         </Alert>
                       </Col>
                     </Row>
+                    
 
                     <Row>
                       <Col md={12} lg={12}>
