@@ -44,7 +44,7 @@ export const Navbar = (props) => {
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">
-                        <img src="../../images/logo three.png" style={{height:'60px'}}></img>
+                        <img src="../../../../images/logo three.png" style={{height:'60px'}}></img>
                       </div>
                       <div className="table-cell-two">
                         <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
@@ -67,7 +67,7 @@ export const Navbar = (props) => {
                             <p style={{textAlign:'right'}}><strong>Hi, {namaUser}</strong></p>
                             <p style={{textAlign:'right'}}>Saldo Anda : Rp {saldoUser.saldo}  ,-</p>
                             </div>
-                            <img src="../../images/user_profil.png" style={{height:'60px'}}></img>
+                            <img src="../../../../images/user_profil.png" style={{height:'60px'}}></img>
 
                           </div>
                         </Dropdown.Toggle>
@@ -82,7 +82,7 @@ export const Navbar = (props) => {
                       {/* untuk mobile */}
                       <Dropdown alignRight className="float-right d-none d-none d-sm-block d-md-none d-block d-sm-none" >
                         <Dropdown.Toggle variant="default" id="dropdown-basic" style={{paddingRight:'0',paddingLeft:'0'}}>
-                        <img src="../../images/user_profil.png" style={{height:'60px'}}></img>
+                        <img src="../../../../images/user_profil.png" style={{height:'60px'}}></img>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>

@@ -86,31 +86,40 @@ const StudyResponden = (props) => {
 
       <div id="study">
         <Container>
-          {/* <Row>
+          <Row>
             <Col md={12} lg={12}>
-              <h3 className="title-one text-center"><strong>Studi</strong></h3>
+              <h3 className="title-one text-center"><strong>Detail Jawaban Responden</strong></h3>
                 <ul className="list-inline text-center">
                   <li className="list-inline-item">
-                    <Link to='/responden' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Beranda Responden</h4>
+                    <Link to='/surveyor' style={{textDecoration:"none"}}>
+                    <h4 className="title-three">Beranda Surveyor</h4>
                     </Link>
                   </li>
 
                   <li className="list-inline-item">|</li>
 
                   <li className="list-inline-item">
-                    <Link to='/responden/submission' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Studi Responden</h4>
+                    <Link to='/surveyor/liststudy' style={{textDecoration:"none"}}>
+                    <h4 className="title-three">Data Studi</h4>
                     </Link>
                   </li>
+                  
+                  {/* <li className="list-inline-item">|</li>
+
+                  <li className="list-inline-item">
+                    <Link to='/surveyor/detailstudy/${data._id}' style={{textDecoration:"none"}}>
+                    <h4 className="title-three">Detail Studi</h4>
+                    </Link>
+                  </li> */}
 
                   <li className="list-inline-item">|</li>
+
                   <li className="list-inline-item">
-                    <h4 className="title-three">Studi</h4>
+                    <h4 className="title-three">Detail Jawaban Responden</h4>
                   </li>
                 </ul>
             </Col>
-          </Row> */}
+          </Row>
           <Row className="m-t-30">
             <Col md={12} lg={12}>
               <div className="part-one">
@@ -208,8 +217,21 @@ const StudyResponden = (props) => {
                   <Col md={12} lg={12}>
                     <Button variant="outline-danger" onClick = { () => updatedDataApproval(respondenId)} >Reject</Button>{' '}
                   </Col> */}
-                  <Button variant="outline-success" onClick={handleShowApproved}>Approved</Button>
-                  <Button variant="outline-danger"onClick={handleShowReject}>Reject</Button>
+                  
+                  <Col md={12} lg={12}>
+                  <ul className="list-inline">
+                    <li className="list-inline-item">
+                    <Button variant="success" onClick={handleShowApproved}>Approved</Button>
+                    </li>
+
+                    <li className="list-inline-item">|</li>
+
+                    <li className="list-inline-item">
+                    <Button variant="danger"onClick={handleShowReject}>Reject</Button>
+                    </li>
+                  </ul>
+                  </Col>
+                  
 
                 </Row>
               </div>

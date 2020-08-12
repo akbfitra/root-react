@@ -127,6 +127,12 @@ const DetailStudyResponden = (props) => {
                                   <td>:</td>
                                   <td> {moment(detailStudy.tanggalAkhir).format("DD/MM/YYYY")} </td>
                                 </tr>
+
+                                <tr>
+                                  <td>Ketertarikan</td>
+                                  <td>:</td>
+                                  <td>Belum diload </td>
+                                </tr>
                               </tbody>
                             </Table>
                           </div>
