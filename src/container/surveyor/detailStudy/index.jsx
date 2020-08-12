@@ -130,9 +130,27 @@ const DetailStudyResponden = (props) => {
                                 </tr>
 
                                 <tr>
+                                  <td>Umur Minimal Responden</td>
+                                  <td>:</td>
+                                  <td> {detailStudy.umurMin} tahun </td>
+                                </tr>
+
+                                <tr>
+                                  <td>Umur Maksimal Responen</td>
+                                  <td>:</td>
+                                  <td> {detailStudy.umurMax} tahun </td>
+                                </tr>
+
+                                <tr>
+                                  <td>Jumlah Responden Menjawab</td>
+                                  <td>:</td>
+                                  <td> {detailStudy ? detailStudy.completedUser.length : 0} </td>
+                                </tr>
+
+                                <tr>
                                   <td>Ketertarikan</td>
                                   <td>:</td>
-                                  <td>Belum diload </td>
+                                  <td> { detailStudy ? detailStudy.kriteria.join(', ') : '-'} </td>
                                 </tr>
                               </tbody>
                             </Table>
