@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, useHistory } from 'react-router-dom'
 import { dataCategoryUser, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
+import { getKetertarikan, dataProfileUser, EDIT_KRITERIA_RESPONDEN } from '../../../store/actions/userAction'
 import './css/style.css';
-import { Container, Row, Col, Button, Modal} from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal, Form} from 'react-bootstrap'
 import { CardCategory } from '../../../components/aboutUs/cardCategory/index'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
 const AboutUsResponden = (props) => {
   const dispatch = useDispatch()
+  const history = useHistory()
+
   const [category, setCategory ] = useState([])
   const [dataAnswerUser, setDataAnswerUser ] = useState([])
+  const [ ketertarikan, setKetertarikan ] = useState([])
+  const [ kriteria, setKriteria ] = useState([])
+  const [changeData, setChangeData ] = useState(false)
 
   const [show, setShow] = useState(false);
 
@@ -22,30 +28,75 @@ const AboutUsResponden = (props) => {
     dispatch(dataCategoryUser())
       .then( data => {
         setCategory(data)
-        // break;
+        setChangeData(false)
       })
+  }
+
+  const handleProcessUpdate = () => {
+    dispatch(EDIT_KRITERIA_RESPONDEN( kriteria, history))
+    setChangeData(true)
+    setShow(false)
+  }
+
+
+  const handlePilihKriteria = (data) => {
+    let cek = kriteria.includes(data)
+    if(!cek){
+      setKriteria(arr => [...kriteria, data])
+    }else if(kriteria.indexOf(data > -1)){
+      setKriteria(kriteria.filter(item => item !== data))
+    }
+  }
+
+  
+  const getDataProfile = () => {
+      dispatch(dataProfileUser())
+        .then(data => {
+          setKriteria(data.categories)
+          setChangeData(false)
+        })
   }
 
   const getAnswerUser = () => {
     dispatch(getDataAnswerUser())
       .then( data => {
         setDataAnswerUser(data)
+        setChangeData(false)
         // break;
+      })
+  }
 
+  const getDataKetertarikan = () => {
+    dispatch(getKetertarikan())
+      .then( data => {
+        setKetertarikan(data)
+        setChangeData(false)
       })
   }
 
   useEffect(() => {
-    if(!category.length){
-      getCategory()
+    if(!kriteria.length || changeData){
+      getDataProfile()
     }
-  },[])
+  })
 
   useEffect(() => {
-    if(!dataAnswerUser.length){
+    if(!ketertarikan.length || changeData){
+      getDataKetertarikan()
+    }
+  })
+
+  useEffect(() => {
+    if(!category.length || changeData){
+      getCategory()
+    }
+  })
+
+  useEffect(() => {
+    if(!dataAnswerUser.length || changeData){
       getAnswerUser()
     }
-  },[])
+  })
 
   return(
     <>
@@ -83,9 +134,7 @@ const AboutUsResponden = (props) => {
           {
             category.map( (data, i) => {
               let dataAnswer
-              // console.log(data)
-              // console.log(dataAnswerUser)
-              // console.log(dataAnswerUser.answer)
+
               dataAnswerUser ?
                 dataAnswer = dataAnswerUser.flatMap(x => [(x.categoryId === data._id) && (x.answer.length ) ? x : null ])
               :
@@ -107,13 +156,36 @@ const AboutUsResponden = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Tambah Ketertarikan</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Row>
+                {
+                  ketertarikan
+                    .map((data, i) => {
+                    return(
+                      <Col md={3} lg={3} key={i}>
+                        <Form.Check
+                          type="checkbox"
+                          checked={kriteria.some((nama) => nama === data.name)}
+                          label={`${data.name}`}
+                          value={`${data.name}`}
+                          onChange={ (e) => {handlePilihKriteria(e.target.value)}}
+                        />
+                      </Col>
+                    )
+                  })
+                }
+              </Row>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Tutup
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={handleProcessUpdate}>
+            Simpan
           </Button>
         </Modal.Footer>
       </Modal>

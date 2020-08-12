@@ -122,6 +122,27 @@ export const editProfileResponden = (username, phone, birth, provinsi, kota, pek
   }
 }
 
+export const EDIT_KRITERIA_RESPONDEN = (categories, history) => async dispatch => {
+  try{
+
+    // console.log(kriteria, 'edddiit actiioonn')
+    const { data } = await instance({
+      method: 'PUT',
+      url: `user/updateprofileresponden`,
+      data: {
+        categories
+      },
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    history.push('/responden/aboutus')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
 export const editProfileSurveyor = (username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan, history) => async dispatch => {
   try{
       const { data } = await instance({

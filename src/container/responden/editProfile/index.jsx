@@ -49,6 +49,8 @@ const EditProfileResponden = (props) => {
     }
   }
 
+  console.log(kriteria)
+
   const getDataProfile = () => {
     if (!dataProfile.length) {
       dispatch(dataProfileUser())
