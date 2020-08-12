@@ -24,13 +24,13 @@ export const Footer = () => {
                 <Col md={12} lg={12}>
                 <ul className="list-inline m-t-15">
                   <li className="list-inline-item">
-                    <img src="../../images/facebook.png" style={{width:'50px'}}></img>
+                    <img src="../../../../images/facebook.png" style={{width:'50px'}}></img>
                   </li>
                   <li className="list-inline-item">
-                    <img src="../../images/twitter.png" style={{width:'50px'}}></img>
+                    <img src="../../../../images/twitter.png" style={{width:'50px'}}></img>
                   </li>
                   <li className="list-inline-item">
-                    <img src="../../images/instagram.png" style={{width:'50px'}}></img>
+                    <img src="../../../../images/instagram.png" style={{width:'50px'}}></img>
                   </li>
                 </ul>
                 </Col>

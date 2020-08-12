@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie'
 import './css/style.css';
 import { useDispatch } from 'react-redux';
+import NumberFormat from 'react-number-format';
 import { Col, Container, Row, Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import { useHistory, useLocation, Link  } from 'react-router-dom';
 
@@ -65,7 +66,7 @@ export const Navbar = (props) => {
                           <div style={{display:"flex", alignItems:'center'}}>
                             <div style={{display:'flex', flexDirection:'column',paddingRight:'15px' }}>
                             <p style={{textAlign:'right'}}><strong>Hi, {namaUser}</strong></p>
-                            <p style={{textAlign:'right'}}>Saldo Anda : Rp {saldoUser.saldo}  ,-</p>
+                            <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
                             </div>
                             <img src="../../../../images/user_profil.png" style={{height:'60px'}}></img>
 
@@ -88,7 +89,7 @@ export const Navbar = (props) => {
                         <Dropdown.Menu>
                         <Dropdown.Item>
                             <p style={{textAlign:'right'}}><strong>Hi, {namaUser} </strong></p>
-                            <p style={{textAlign:'right'}}>Saldo Anda : Rp {saldoUser.saldo} ,-</p>
+                            <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /> ,-</p>
                         </Dropdown.Item>
                         <Dropdown.Divider />
                           <Dropdown.Item onClick = { (e) => { 

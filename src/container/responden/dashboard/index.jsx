@@ -37,7 +37,7 @@ const RespondenDashboard = (props) => {
             <div className="part-one">
               <center>
               <img src="images/aboutus.png"/>
-              <h4 className="title-two m-t-15"><strong>Biodata</strong></h4>
+              <h4 className="title-two m-t-15"><strong>Ketertarikan</strong></h4>
               </center>
             </div>
             </Link>
