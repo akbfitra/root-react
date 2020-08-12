@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { withRouter, Link, useParams, useHistory } from 'react-router-dom'
 
 import './css/style.css';
-import { Container, Row, Col, Button, Form} from 'react-bootstrap'
+import { Container, Row, Col, Button, Form, Modal} from 'react-bootstrap'
 
-import { Navbar } from '../../../components/navbar'
-import { Footer } from '../../../components/footer'
+import { Navbar } from '../../../components/navbar/index'
+import { Footer } from '../../../components/footer/index'
 
-import { FIND_STUDY_RESPONDEN_BY_SURVEYOR, UPDATE_DATA_APPROVAL_RESPONDEN_PAGE  } from '../../../store/actions/surveyFormAction'
+import { FIND_STUDY_RESPONDEN_BY_SURVEYOR, UPDATE_DATA_APPROVAL_RESPONDEN_PAGE , UPDATE_DATA_REJECT_RESPONDEN_PAGE  } from '../../../store/actions/surveyFormAction'
 
 const StudyResponden = (props) => {
   const dispatch = useDispatch()
@@ -20,9 +20,20 @@ const StudyResponden = (props) => {
   const [dataText, setDataText ] = useState( [{answer: ' test'}] )
   const [getChangeData, setGetChangeData ] = useState(false)
 
+  const [ alasanApproval, setAlasanApproval ] = useState('')
+  const [ alasanReject, setAlasanReject ] = useState('')
+
+  const [showApproved, setShowApproved] = useState(false);
+  const [showReject, setShowReject] = useState(false);
+
+  const handleCloseApproved = () => setShowApproved(false);
+  const handleCloseReject = () => setShowReject(false);
+  const handleShowApproved = () => setShowApproved(true);
+  const handleShowReject = () => setShowReject(true);
+
   console.log(respondenId)
   const getListQuestions = () => {
-    dispatch(FIND_STUDY_RESPONDEN_BY_SURVEYOR(studyId, respondenId))
+    dispatch(FIND_STUDY_RESPONDEN_BY_SURVEYOR(studyId, respondenId, alasanApproval))
       .then( data => {
         setListofQuestions(data)
         setDataText(data)
@@ -37,9 +48,16 @@ const StudyResponden = (props) => {
     // }
   }, [])
 
+  console.log(alasanApproval)
+
   const updatedDataApproval = (idUser) => {
     // setGetChangeData(true)
-    dispatch(UPDATE_DATA_APPROVAL_RESPONDEN_PAGE(studyId, idUser, history))
+    dispatch(UPDATE_DATA_APPROVAL_RESPONDEN_PAGE(studyId, idUser, alasanApproval, history))
+  }
+
+  const updatedDataReject = (idUser) => {
+    // setGetChangeData(true)
+    dispatch(UPDATE_DATA_REJECT_RESPONDEN_PAGE(studyId, idUser, alasanReject, history))
   }
   // const chooseAnswer = (answer, questionId) => {
   //   setGetChangeData(true)
@@ -182,10 +200,17 @@ const StudyResponden = (props) => {
                   <Col md={12} lg={12}>
                     <hr/>
                   </Col>
-                  {/* onClick ={ () => { userCompleted() }} */}
-                  <Col md={12} lg={12}>
-                    <Button variant="outline-danger" block onClick = { () => updatedDataApproval(respondenId)} >Approved</Button>{' '}
+                
+                  {/* <Col md={12} lg={12}>
+
+                    <Button variant="outline-success" onClick = { () => updatedDataApproval(respondenId)} >Approved</Button>{' '}
                   </Col>
+                  <Col md={12} lg={12}>
+                    <Button variant="outline-danger" onClick = { () => updatedDataApproval(respondenId)} >Reject</Button>{' '}
+                  </Col> */}
+                  <Button variant="outline-success" onClick={handleShowApproved}>Approved</Button>
+                  <Button variant="outline-danger"onClick={handleShowReject}>Reject</Button>
+
                 </Row>
               </div>
             </Col>
@@ -195,6 +220,55 @@ const StudyResponden = (props) => {
         </Container>
       </div>
       <Footer/>
+
+      <Modal show={showApproved} onHide={handleCloseApproved}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Apakah anda sudah yakin dengan jawaban responden?</Modal.Body>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Berikan Alasan Anda</Form.Label>
+              <Form.Control as="textarea" rows="3" onChange={ (e) => setAlasanApproval(e.target.value)}/>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick ={ () => { updatedDataApproval(respondenId) }} >
+            Approved
+          </Button>
+          <Button variant="secondary" onClick={handleCloseApproved}>
+            Tidak
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* onClick ={ () => { updatedDataApproval(respondenId) }} */}
+      <Modal show={showReject} onHide={handleCloseReject}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Apakah anda sudah yakin menolak jawaban responden ?
+        </Modal.Body>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Berikan Alasan Anda</Form.Label>
+              <Form.Control as="textarea" rows="3" onChange={ (e) => setAlasanReject(e.target.value)}/>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick ={ () => { updatedDataReject(respondenId) }}  >
+            Reject
+          </Button>
+          <Button variant="secondary" onClick={handleCloseReject}>
+            Tidak
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

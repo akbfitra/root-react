@@ -226,13 +226,17 @@ const SubmissionResponden = (props) => {
                                       <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
                                       {
-                                        dataUsers ? 
+                                        dataUsers === 'true' ? 
                                         <>
                                         <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
                                         </>
-                                        :
+                                        : dataUsers === 'false' ? 
                                         <>
                                           <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Baru Di Review </Badge></h4>
+                                        </>
+                                        :
+                                        <>
+                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="danger"> Telah Di Tolak </Badge></h4>
                                         </>
                                       }
                                       {/* <h4 className="m-t-0 m-b-0 title-two"><Badge variant="danger"> Telah Di Tolak </Badge></h4> */}
@@ -257,13 +261,17 @@ const SubmissionResponden = (props) => {
                                   <Col xs={12} sm={12}>
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
                                       {
-                                        dataUsers ? 
+                                        dataUsers === 'true' ? 
                                         <>
                                         <h4 className="m-t-0 m-b-0 title-two"><Badge variant="success"> Telah Di Terima </Badge></h4>
                                         </>
-                                        :
+                                        : dataUsers === 'false' ? 
                                         <>
                                           <h4 className="m-t-0 m-b-0 title-two"><Badge variant="secondary"> Baru Di Review </Badge></h4>
+                                        </>
+                                        :
+                                        <>
+                                          <h4 className="m-t-0 m-b-0 title-two"><Badge variant="danger"> Telah Di Tolak </Badge></h4>
                                         </>
                                       }
                                       <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4>

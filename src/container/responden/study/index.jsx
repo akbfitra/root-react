@@ -205,7 +205,7 @@ const StudyResponden = (props) => {
         </Modal.Header>
         <Modal.Body>Apakah anda sudah yakin dengan jawaban anda ?</Modal.Body>
         <Modal.Footer>
-          <Button variant="primary">
+          <Button variant="primary"  onClick ={ () => { userCompleted() }}>
             Ya
           </Button>
           <Button variant="secondary" onClick={handleClose}>

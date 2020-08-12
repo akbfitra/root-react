@@ -280,13 +280,35 @@ export const UPDATE_DATA_APPROVAL_RESPONDEN = (idStudy, idResponden) => async di
   }
 }
 
-export const UPDATE_DATA_APPROVAL_RESPONDEN_PAGE = (idStudy, idResponden, history) => async dispatch => {
+export const UPDATE_DATA_APPROVAL_RESPONDEN_PAGE = (idStudy, idResponden,alasan, history) => async dispatch => {
   try{
     const { data } = await instance({
       method: 'PUT',
       url: `/project/approval/${idStudy}/${idResponden}`,
       headers:{
         "accesstoken": `${Cookies.get('test')}`
+      },
+      data:{
+        alasan
+      }
+    })
+    history.push(`/surveyor/detailstudy/${idStudy}`)
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const UPDATE_DATA_REJECT_RESPONDEN_PAGE = (idStudy, idResponden,alasan, history) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'PUT',
+      url: `/project/reject/${idStudy}/${idResponden}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      },
+      data:{
+        alasan
       }
     })
     history.push(`/surveyor/detailstudy/${idStudy}`)

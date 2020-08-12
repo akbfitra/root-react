@@ -5,7 +5,7 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 import moment from 'moment'
 
 import './css/style.css';
-import { Container, Row, Col, Button, Table, Tabs, Tab} from 'react-bootstrap'
+import { Container, Row, Col, Button, Table, Tabs, Tab, Badge} from 'react-bootstrap'
 
 import { FIND_STUDY_WITH_RESPONDEN_BY_ID, UPDATE_DATA_APPROVAL_RESPONDEN } from '../../../store/actions/surveyFormAction'
 
@@ -171,7 +171,7 @@ const DetailStudyResponden = (props) => {
                                         <td> {data.userId.name} </td>
                                         <td>
                                           <center>
-                                            <Button variant={data.verifikasiSelesai ? 'primary': 'outline-primary' } onClick = { () => updatedDataApproval(data.userId._id)} > {data.verifikasiSelesai ? 'Approved': 'Approval' } </Button>
+                                            <Badge variant={data.verifikasiSelesai==='true' ? 'primary' : data.verifikasiSelesai==='false'? 'secondary' : 'danger' } > {data.verifikasiSelesai==='true' ? 'DITERIMA' : data.verifikasiSelesai==='false'? 'BELUM DIVERIVIKASI' : 'DITOLAK' } </Badge>
                                           </center>
                                         </td>
                                         {/* <td><center><Button variant="primary">Paid</Button></center></td> */}
