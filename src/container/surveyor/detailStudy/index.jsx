@@ -22,6 +22,7 @@ const DetailStudyResponden = (props) => {
   const [ completeUsers, setCompleteUsers ] = useState([])
   const [getChangeData, setGetChangeData ] = useState(false)
 
+  console.log(detailStudy)
 
   const getListStudyById = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
@@ -127,12 +128,36 @@ const DetailStudyResponden = (props) => {
                                   <td>:</td>
                                   <td> {moment(detailStudy.tanggalAkhir).format("DD/MM/YYYY")} </td>
                                 </tr>
+                                
+                                <tr>
+                                  <td>Umur Minimal Responden</td>
+                                  <td>:</td>
+                                  <td> {detailStudy.umurMin} tahun </td>
+                                </tr>
+
+                                <tr>
+                                  <td>Umur Maksimal Responen</td>
+                                  <td>:</td>
+                                  <td> {detailStudy.umurMax} tahun </td>
+                                </tr>
+
+                                <tr>
+                                  <td>Jumlah Responden Menjawab</td>
+                                  <td>:</td>
+                                  <td> {detailStudy ? detailStudy.completedUser.length : 0} </td>
+                                </tr>
 
                                 <tr>
                                   <td>Ketertarikan</td>
                                   <td>:</td>
-                                  <td>Belum diload </td>
+                                  <td> { detailStudy ? detailStudy.kriteria.join(', ') : '-'} </td>
                                 </tr>
+
+                                {/* <tr>
+                                  <td>Ketertarikan</td>
+                                  <td>:</td>
+                                  <td>Belum diload </td>
+                                </tr> */}
                               </tbody>
                             </Table>
                           </div>
