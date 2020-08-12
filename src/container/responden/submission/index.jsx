@@ -225,7 +225,7 @@ const SubmissionResponden = (props) => {
                                     <div className="box">
                                       <div className="box-left">
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
-                                     
+                                    
                                       {
                                         dataUsers === 'true' ? 
                                         <>

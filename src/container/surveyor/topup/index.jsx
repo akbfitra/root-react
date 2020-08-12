@@ -6,7 +6,7 @@ import './css/style.css';
 import { Container, Row, Col, Form, Button, Accordion, Card, Tabs, Tab, Table} from 'react-bootstrap'
 
 import { logoutProcess } from '../../../store/actions/userAction'
-
+import { TOPUP_PAYMENT_SURVEYOR } from '../../../store/actions/topupAction'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
@@ -15,8 +15,14 @@ const TopUpSurveyor = (props) => {
   const history = useHistory()
   const location = useLocation()
 
+  const [amount, setAmount] = useState('')
+
   const processLogout = () => {
     dispatch(logoutProcess(history, location))
+  }
+
+  const postTopUpSurveyor = () => {
+    dispatch(TOPUP_PAYMENT_SURVEYOR(amount, history))
   }
 
   return(
@@ -49,11 +55,13 @@ const TopUpSurveyor = (props) => {
                         <div className="part-one">
                           <Form.Group>
                             <Form.Label>Nominal Isi Ulang</Form.Label>
-                            <Form.Control type="text" placeholder="" />
+                            <Form.Control type="number" placeholder="" onChange={ (e) => setAmount(e.target.value)}/>
                           </Form.Group>
 
                           <Form.Group>
-                          <Link to='/surveyor/topup/checkout'><Button variant="primary">Lanjut</Button></Link>
+                          
+                            <Button variant="primary" onClick={ postTopUpSurveyor}>Lanjut</Button>
+                          
                           </Form.Group>
                         </div>
                       </Col>

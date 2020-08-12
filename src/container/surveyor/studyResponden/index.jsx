@@ -104,13 +104,13 @@ const StudyResponden = (props) => {
                     </Link>
                   </li>
                   
-                  {/* <li className="list-inline-item">|</li>
+                  <li className="list-inline-item">|</li>
 
                   <li className="list-inline-item">
-                    <Link to='/surveyor/detailstudy/${data._id}' style={{textDecoration:"none"}}>
+                    <Link to={`/surveyor/detailstudy/${studyId}`} style={{textDecoration:"none"}}>
                     <h4 className="title-three">Detail Studi</h4>
                     </Link>
-                  </li> */}
+                  </li>
 
                   <li className="list-inline-item">|</li>
 
