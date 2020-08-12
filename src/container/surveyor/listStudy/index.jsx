@@ -8,6 +8,7 @@ import {  Container, Row, Col, Table, Button, Alert, Badge} from 'react-bootstra
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 import moment from 'moment'
+import NumberFormat from 'react-number-format';
 
 import { FIND_STUDY_USER } from '../../../store/actions/surveyFormAction'
 
@@ -120,7 +121,7 @@ const ListStudy = () => {
                               <tr>
                                 <td style={{width:"220px"}}>Reward Per Responden</td>
                                 <td style={{width:"1px"}}>:</td>
-                                <td>Rp {data.rewardResponden},-</td>
+                                <td><NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</td>
                               </tr>
 
                               <tr>

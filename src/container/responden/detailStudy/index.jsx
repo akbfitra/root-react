@@ -5,6 +5,7 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 import './css/style.css';
 import { Container, Row, Col, Button, Table} from 'react-bootstrap'
 import moment from 'moment'
+import NumberFormat from 'react-number-format';
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -102,7 +103,7 @@ const DetailStudyResponden = (props) => {
                     <tr>
                       <td>Reward Per Responden (Rp)</td>
                       <td>:</td>
-                      <td> { detailStudy.rewardResponden } </td>
+                      <td> <NumberFormat value={detailStudy.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</td>
                     </tr>
 
                     <tr>

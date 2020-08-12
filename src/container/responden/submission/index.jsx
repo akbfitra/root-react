@@ -6,6 +6,7 @@ import { useDispatch  } from 'react-redux';
 import './css/style.css';
 import { Container, Row, Col, Tabs, Tab, Button, Badge} from 'react-bootstrap'
 import moment from 'moment'
+import NumberFormat from 'react-number-format';
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -89,9 +90,13 @@ const SubmissionResponden = (props) => {
                   {
                     !submission.length
                     ? 
-                    
-                      <h4>Tidak ada data</h4>
-                    
+                    <Row className="m-t-15">
+                      <Col md={12} lg={12}>
+                        <div className="part-one">
+                          <h4 className="m-t-0 m-b-0">Tidak ada data ....</h4>
+                        </div>
+                      </Col>
+                    </Row>
                     :
                     submission.map((data, i) => {
                       return(
@@ -111,7 +116,7 @@ const SubmissionResponden = (props) => {
                                     
                                     <h4 className="title-two text-center">
                                       <p className="text-center" style={{fontSize:'14px'}}>Reward Responden</p>
-                                      <strong>Rp {data.rewardResponden},-</strong>
+                                      <strong><NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</strong>
                                     </h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="danger btn-block" className="m-t-15">Gabung Studi</Button>
@@ -127,7 +132,7 @@ const SubmissionResponden = (props) => {
                                 <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
                                     {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                     <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
-                                    <h4 className="m-t-5 m-b-0 title-three">Reward Responden : {data.rewardResponden}</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">Reward Responden : <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /></h4>
                                     <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="danger" className="m-t-15">Gabung Studi</Button>
                                     </Link>
@@ -145,9 +150,13 @@ const SubmissionResponden = (props) => {
                 {
                     !sedangBerlangsung.length
                     ? 
-                    
-                      <h1>Tidak ada data</h1>
-                    
+                    <Row className="m-t-15">
+                      <Col md={12} lg={12}>
+                        <div className="part-one">
+                          <h4 className="m-t-0 m-b-0">Tidak ada data ....</h4>
+                        </div>
+                      </Col>
+                    </Row>
                     :
                       sedangBerlangsung.map((data,i) => {
                         return(
@@ -167,7 +176,7 @@ const SubmissionResponden = (props) => {
                                         <h4 className="title-two text-center">
                                         <p className="text-center" style={{fontSize:'14px'}}>Reward Responden</p>
                                           <strong>
-                                            Rp {data.rewardResponden},-
+                                          <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-
                                           </strong>
                                         </h4>
                                         <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
@@ -184,7 +193,7 @@ const SubmissionResponden = (props) => {
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
                                       {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
-                                      <h4 className="m-t-5 m-b-0 title-three">Reward :   Rp {data.rewardResponden},-</h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Reward :  <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="success" className="m-t-15">Detail Studi</Button>
                                       </Link>
@@ -202,9 +211,13 @@ const SubmissionResponden = (props) => {
                   {
                     !completedSubmission.length
                     ? 
-                    
-                      <h1>Tidak ada data</h1>
-                    
+                    <Row className="m-t-15">
+                      <Col md={12} lg={12}>
+                        <div className="part-one">
+                          <h4 className="m-t-0 m-b-0">Tidak ada data ....</h4>
+                        </div>
+                      </Col>
+                    </Row>
                     :
                       completedSubmission.map((data,i) => {
                         let userVerifikasi = {verifikasiSelesai: false}
@@ -250,7 +263,7 @@ const SubmissionResponden = (props) => {
                                         <h4 className="title-two text-center">
                                         <p className="text-center" style={{fontSize:'14px'}}>Reward Responden</p>
                                           <strong>
-                                            Rp {data.rewardResponden},-
+                                          <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-
                                           </strong>
                                         </h4>
                                         <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
@@ -281,7 +294,7 @@ const SubmissionResponden = (props) => {
                                       }
                                       <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
-                                      <h4 className="m-t-5 m-b-0 title-three">Reward :   Rp {data.rewardResponden},-</h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Reward :   <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Alasan : {alasan}</h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="success" className="m-t-15">Detail Studi</Button>

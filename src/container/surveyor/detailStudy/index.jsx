@@ -6,6 +6,7 @@ import moment from 'moment'
 
 import './css/style.css';
 import { Container, Row, Col, Button, Table, Tabs, Tab, Badge} from 'react-bootstrap'
+import NumberFormat from 'react-number-format';
 
 import { FIND_STUDY_WITH_RESPONDEN_BY_ID, UPDATE_DATA_APPROVAL_RESPONDEN } from '../../../store/actions/surveyFormAction'
 
@@ -22,7 +23,6 @@ const DetailStudyResponden = (props) => {
   const [ completeUsers, setCompleteUsers ] = useState([])
   const [getChangeData, setGetChangeData ] = useState(false)
 
-  console.log(detailStudy)
 
   const getListStudyById = () => {
     dispatch(FIND_STUDY_WITH_RESPONDEN_BY_ID(studyId))
@@ -114,7 +114,7 @@ const DetailStudyResponden = (props) => {
                                 <tr>
                                   <td>Reward Per Responden (Rp)</td>
                                   <td>:</td>
-                                  <td> { detailStudy.rewardResponden } </td>
+                                  <td> <NumberFormat value={detailStudy.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</td>
                                 </tr>
 
                                 <tr>
@@ -128,36 +128,12 @@ const DetailStudyResponden = (props) => {
                                   <td>:</td>
                                   <td> {moment(detailStudy.tanggalAkhir).format("DD/MM/YYYY")} </td>
                                 </tr>
-                                
-                                <tr>
-                                  <td>Umur Minimal Responden</td>
-                                  <td>:</td>
-                                  <td> {detailStudy.umurMin} tahun </td>
-                                </tr>
 
                                 <tr>
-                                  <td>Umur Maksimal Responen</td>
-                                  <td>:</td>
-                                  <td> {detailStudy.umurMax} tahun </td>
-                                </tr>
-
-                                <tr>
-                                  <td>Jumlah Responden Menjawab</td>
-                                  <td>:</td>
-                                  <td> {detailStudy ? detailStudy.completedUser.length : 0} </td>
-                                </tr>
-
-                                <tr>
-                                  <td>Ketertarikan</td>
-                                  <td>:</td>
-                                  <td> { detailStudy ? detailStudy.kriteria.join(', ') : '-'} </td>
-                                </tr>
-
-                                {/* <tr>
                                   <td>Ketertarikan</td>
                                   <td>:</td>
                                   <td>Belum diload </td>
-                                </tr> */}
+                                </tr>
                               </tbody>
                             </Table>
                           </div>
