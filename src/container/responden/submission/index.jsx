@@ -26,7 +26,7 @@ const SubmissionResponden = (props) => {
         setSubmission(data)
       })
   }
-
+  console.log(submission)
   console.log(sedangBerlangsung)
   console.log(completedSubmission)
 
@@ -111,6 +111,8 @@ const SubmissionResponden = (props) => {
                                     <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
                                     {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                     <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">Jumlah responden yang dibutuhkan : {data.jumlahResponden}</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">Responden yang sudah menjawab : {data.sudahMenjawab}</h4>
                                     </div>
                                     <div className="box-right">
                                     
@@ -132,6 +134,8 @@ const SubmissionResponden = (props) => {
                                 <h4 className="m-t-0 m-b-0 title-two"><strong>{ data.judul }</strong></h4>
                                     {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                     <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">Jumlah responden yang dibutuhkan : {data.jumlahResponden}</h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">Responden yang sudah menjawab : {data.sudahMenjawab}</h4>
                                     <h4 className="m-t-5 m-b-0 title-three">Reward Responden : <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /></h4>
                                     <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="danger" className="m-t-15">Gabung Studi</Button>
@@ -171,6 +175,8 @@ const SubmissionResponden = (props) => {
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
                                       {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Jumlah responden yang dibutuhkan : {data.jumlahResponden}</h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Responden yang sudah menjawab : {data.sudahMenjawab}</h4>
                                       </div>
                                       <div className="box-right">
                                         <h4 className="title-two text-center">
@@ -193,6 +199,8 @@ const SubmissionResponden = (props) => {
                                       <h4 className="m-t-0 m-b-0 title-two"><strong> {data.judul} </strong></h4>
                                       {/* <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4> */}
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Jumlah responden yang dibutuhkan : {data.jumlahResponden}</h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Responden yang sudah menjawab : {data.sudahMenjawab}</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Reward :  <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="success" className="m-t-15">Detail Studi</Button>

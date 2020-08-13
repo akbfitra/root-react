@@ -41,7 +41,7 @@ const EditProfileSurveyor = (props) => {
       dispatch(dataProfileUser())
         .then(data => {
           setDataProfile(data)
-          setDataProfile(data)
+          // setDataProfile(data)
           setUsername(data.name)
           setPhone(data.phone)
           setBirth(new Date(data.birth))

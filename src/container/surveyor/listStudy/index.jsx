@@ -109,6 +109,12 @@ const ListStudy = () => {
                                 <td>:</td>
                                 <td>{data.jumlahResponden}</td>
                               </tr>
+
+                              {/* <tr>
+                                <td>Jumlah Responden</td>
+                                <td>:</td>
+                                <td>{data.jumlahResponden}</td>
+                              </tr> */}
                             </tbody>
                           </Table>
                         </Alert>

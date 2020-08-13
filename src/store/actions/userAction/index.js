@@ -109,7 +109,7 @@ export const editProfileResponden = (username, phone, birth, provinsi, kota, pek
       method: 'PUT',
       url: `user/updateprofileresponden`,
       data: {
-        username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin, categories
+        name:username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, jenisKelamin, categories
       },
       headers:{
         "accesstoken": `${Cookies.get('test')}`
@@ -149,7 +149,7 @@ export const editProfileSurveyor = (username, phone, birth, provinsi, kota, peke
       method: 'PUT',
       url: `user/updateprofilesurveyor`,
       data: {
-        username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan
+        name:username, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, tujuan
       },
       headers:{
         "accesstoken": `${Cookies.get('test')}`
@@ -240,6 +240,44 @@ export const FORGOT_PASSWORD = (email, history) =>async dispatch => {
       }
     })
     history.push('/successforgotpassword')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const EDIT_PASSWORD_RESPONDEN = (password, history) =>async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'PUT',
+      url:'/user/updatepasswordresponden',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      },
+      data:{
+        password
+      }
+    })
+    history.push('/responden/profile')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export const EDIT_PASSWORD_SURVEYOR = (password, history) =>async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'PUT',
+      url:'/user/updatepasswordsurveyor',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      },
+      data:{
+        password
+      }
+    })
+    history.push('/surveyor/profile')
   }
   catch(err){
     console.log(err)
