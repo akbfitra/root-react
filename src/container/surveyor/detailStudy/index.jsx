@@ -35,6 +35,8 @@ const DetailStudyResponden = (props) => {
       })
   }
 
+  console.log(detailStudy)
+
   useEffect( () => {
     if(!detailStudy || getChangeData){
       getListStudyById()
@@ -146,6 +148,55 @@ const DetailStudyResponden = (props) => {
                                   <td>Jumlah Responden Menjawab</td>
                                   <td>:</td>
                                   <td> {detailStudy ? detailStudy.completedUser.length : 0} </td>
+                                </tr>
+
+                                <tr>
+                                  <td>Provinsi</td>
+                                  <td>:</td>
+                                  <td> {
+                                      detailStudy &&
+                                      detailStudy.daerah.length
+                                    ? 
+                                      detailStudy.daerah.map((data, i) => {
+                                        return(
+                                          <>
+                                            {data.provinsi}
+                                          </>
+                                        )
+                                      }).reduce((prev, curr) => [prev, ', ', curr])
+                                    : 
+                                      'semua provinsi di indonesia'
+                                    } 
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>Provinsi</td>
+                                  <td>:</td>
+                                  <td> {
+                                      detailStudy &&
+                                      detailStudy.daerah.length
+                                    ? 
+                                      detailStudy.daerah.map((data, i) => {
+                                        
+                                        return(
+                                          <>
+                                            {
+                                              data['kabKota'].map((dataKota, i) => {
+                                                return(
+                                                  <>
+                                                    { dataKota }
+                                                  </>
+                                                )
+                                              }).reduce((prev, curr) => [prev, ', ', curr])
+                                            }
+                                          </>
+                                        )
+                                      }).reduce((acc, x) => acc === null ? x : <>{acc} | {x}</>, null)
+                                    : 
+                                      'semua kota di indonesia'
+                                    } 
+                                  </td>
                                 </tr>
 
                                 <tr>

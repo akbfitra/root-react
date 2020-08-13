@@ -110,11 +110,11 @@ const ListStudy = () => {
                                 <td>{data.jumlahResponden}</td>
                               </tr>
 
-                              {/* <tr>
-                                <td>Jumlah Responden</td>
+                              <tr>
+                                <td>Jumlah Responden Menjawab</td>
                                 <td>:</td>
-                                <td>{data.jumlahResponden}</td>
-                              </tr> */}
+                                <td> {data ? data.completedUser.length : 0} </td>
+                              </tr>
                             </tbody>
                           </Table>
                         </Alert>
