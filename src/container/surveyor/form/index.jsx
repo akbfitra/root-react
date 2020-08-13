@@ -29,6 +29,7 @@ import { getDataQuestions } from '../../../store/actions/questionsAction'
 import { dataCategory } from '../../../store/actions/aboutUsAction'
 import { renderDatePicker } from '../../../components/inputForm'
 import { dataProvinsi, dataKota } from '../../../store/actions/kotaAction'
+import { GET_SALDO} from '../../../store/actions/userAction/index'
 
 
 const FormSurveyor = (props) => {
@@ -50,6 +51,11 @@ const FormSurveyor = (props) => {
   
   const [ pilihDaerah, setPilihDaerah ] = useState([])
   
+  const [ saldoUser, setSaldoUser ] = useState([])
+  const [ show, setShow ] = useState(false);
+  const [ totalHargaResponden, setTotalHargaResponden ] = useState(0)
+
+  console.log(saldoUser)
 
   // let listKota = useSelector( state => state.tempat.tempat.kota)
 
@@ -66,6 +72,18 @@ const FormSurveyor = (props) => {
   //   setJenisKelamin(stateStudy.jenisKelamin)
   //   // setValue({ min: stateStudy.min, max:stateStudy.max })
   // }
+
+
+  const dapetinSaldo = () => {
+    dispatch(GET_SALDO())
+      .then(data => {
+        setSaldoUser(data)
+      })
+  }
+
+  useEffect(() => {
+    dapetinSaldo()
+  }, [])
 
   const handlePilihDaerah = (data) => {
     let cek =  pilihDaerah.findIndex(item => item.index === data.index)
@@ -216,8 +234,16 @@ const FormSurveyor = (props) => {
   }
 
   const handleSaveSurvey = () => {
+    let totalSurvey = Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)
+    setTotalHargaResponden(totalSurvey)
+    // console.log(props.formValues)
+    if(totalSurvey > saldoUser.saldo){
+      setShow(true)
+    } else {
+      dispatch(SAVE_STUDY(props.formValues, getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, pilihCategories, kota, pilihDaerah, history))
+      
+    }
     
-    dispatch(SAVE_STUDY(props.formValues, getFilterQuestion, jenisKelamin, value.min, value.max, provinsi, pilihCategories, kota, pilihDaerah, history))
   };
 
   const getCategory = () =>{
@@ -295,6 +321,18 @@ const FormSurveyor = (props) => {
           </Col>
         </Row>
         
+        <Row>
+          <Col md={{span:8, offset:2}} lg={{span:8, offset:2}}>
+          <Alert variant="success">
+            <Alert.Heading>Perhatian...</Alert.Heading>
+            <p>
+              Saldo anda harus mencukupi dengan total jumlah reward dikali dengan jumlah responden yang anda ingikan
+            </p>
+          </Alert>
+          </Col>
+        </Row>
+
+
         <Row className="m-t-30">
           <Col md={12} lg={12}>
             <Tabs defaultActiveKey="Project" id="noanim-tab-example">
@@ -656,6 +694,25 @@ const FormSurveyor = (props) => {
               
               <Tab eventKey="Simpan" title="Simpan Data" className="m-t-15">
                 <h5>Apakah anda yakin ingin menyimpan data ini ?</h5>
+                <>
+                  <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
+                    <Alert.Heading>Error?!</Alert.Heading>
+                    <p>
+                      SALDO ANDA BELUM MENCUKUPI UNTUK MEMBAYAR RESPONDEN, HARAP 
+                      <Link to ="/surveyor/topup">
+                          TOP UP DISINI
+                      </Link>
+                    </p>
+                    <p>
+                      Jumlah Total untuk responden: { 
+                      totalHargaResponden ? totalHargaResponden : 0
+                      }
+                    </p>
+                    <p>
+                      saldo anda: {saldoUser.saldo}
+                    </p>
+                  </Alert>
+                </>
                 <Button onClick= {handleSaveSurvey} className="m-t-15">Simpan</Button>
               </Tab>
             </Tabs>

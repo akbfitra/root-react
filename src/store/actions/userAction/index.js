@@ -246,7 +246,7 @@ export const FORGOT_PASSWORD = (email, history) =>async dispatch => {
   }
 }
 
-export const EDIT_PASSWORD_RESPONDEN = (password, history) =>async dispatch => {
+export const EDIT_PASSWORD_RESPONDEN = (password, passwordLama, history) =>async dispatch => {
   try{
     const { data } = await instance({
       method: 'PUT',
@@ -255,17 +255,18 @@ export const EDIT_PASSWORD_RESPONDEN = (password, history) =>async dispatch => {
         "accesstoken": `${Cookies.get('test')}`
       },
       data:{
-        password
+        password,
+        passwordLama
       }
     })
     history.push('/responden/profile')
   }
   catch(err){
-    console.log(err)
+    throw err.response.data.message
   }
 }
 
-export const EDIT_PASSWORD_SURVEYOR = (password, history) =>async dispatch => {
+export const EDIT_PASSWORD_SURVEYOR = (password, passwordLama, history) =>async dispatch => {
   try{
     const { data } = await instance({
       method: 'PUT',
@@ -274,12 +275,13 @@ export const EDIT_PASSWORD_SURVEYOR = (password, history) =>async dispatch => {
         "accesstoken": `${Cookies.get('test')}`
       },
       data:{
-        password
+        password,
+        passwordLama
       }
     })
     history.push('/surveyor/profile')
   }
   catch(err){
-    console.log(err)
+    throw err.response.data.message
   }
 }

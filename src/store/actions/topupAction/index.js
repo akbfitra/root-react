@@ -23,3 +23,20 @@ export const TOPUP_PAYMENT_SURVEYOR = (amount, history) => async dispatch => {
     console.log(err)
   }
 }
+
+export const LIST_PAYMENT_USER = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:'/payment',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}

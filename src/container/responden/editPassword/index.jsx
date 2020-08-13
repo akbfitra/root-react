@@ -15,6 +15,7 @@ const EditPasswordResponden = (props) => {
   const history = useHistory()
   const location = useLocation()
 
+  const [passwordLama, setPasswordLama] = useState('')
   const [ changePassword, setChangePassword ] = useState('')
   const [ konfirmasiPasswordBaru, setKonfirmasiPasswordBaru] = useState('')
   const [ errs, setErrs] = useState('') 
@@ -36,7 +37,7 @@ const EditPasswordResponden = (props) => {
   };
 
   const processEditPasswordResponden = () => {
-    dispatch(EDIT_PASSWORD_RESPONDEN(changePassword, history))
+    dispatch(EDIT_PASSWORD_RESPONDEN(changePassword, passwordLama, history))
       .then(() => {
         
       })
@@ -86,6 +87,7 @@ const EditPasswordResponden = (props) => {
                       required
                       type="password" 
                       placeholder=""
+                      onChange={(e) => setPasswordLama(e.target.value)}
                       />
                     <Form.Control.Feedback type="invalid">
                       Tolong Isi Password Lama Anda

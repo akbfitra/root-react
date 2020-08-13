@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useStore, Connect } from 'react-redux';
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
+import moment from 'moment'
 
 import './css/style.css';
-import { Container, Row, Col, Form, Button, Accordion, Card, Tabs, Tab, Table} from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Accordion, Card, Tabs, Tab, Table , Badge} from 'react-bootstrap'
 
-import { logoutProcess } from '../../../store/actions/userAction'
-import { TOPUP_PAYMENT_SURVEYOR } from '../../../store/actions/topupAction'
+import { TOPUP_PAYMENT_SURVEYOR, LIST_PAYMENT_USER } from '../../../store/actions/topupAction'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
@@ -16,14 +16,23 @@ const TopUpSurveyor = (props) => {
   const location = useLocation()
 
   const [amount, setAmount] = useState('')
+  const [ listPaymentUser, setListPaymentUser ] = useState('')
 
-  const processLogout = () => {
-    dispatch(logoutProcess(history, location))
-  }
 
   const postTopUpSurveyor = () => {
     dispatch(TOPUP_PAYMENT_SURVEYOR(amount, history))
   }
+
+  const getDataPayment = () => {
+    dispatch(LIST_PAYMENT_USER())
+      .then(data => {
+        setListPaymentUser(data)
+      })
+  }
+
+  useEffect(() => {
+    getDataPayment()
+  }, [])
 
   return(
     <>
@@ -76,18 +85,42 @@ const TopUpSurveyor = (props) => {
                             <tr>
                               <th>No.</th>
                               <th>Tanggal Isi Ulang</th>
-                              {/* <th>Bank</th> */}
                               <th>Nominal Isi Ulang</th>
+                              <th>Status</th>
                             </tr>
                           </thead>
-                          <tbody>
-                            <tr>
-                              <td>-</td>
-                              <td>-</td>
-                              {/* <td>-</td> */}
-                              <td>-</td>
-                            </tr>
-                          </tbody>
+                          {
+                            !listPaymentUser.length 
+                            ?
+                            <tbody>
+                              <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                              </tr>
+                            </tbody>
+                            :
+                            listPaymentUser.map((data, i) => {
+                              return(
+                                <tbody>
+                                  <tr>
+                                    <td> {i+1} </td>
+                                    <td> { moment(data.createdAt).format('MMMM Do YYYY, h:mm:ss a')} </td>
+                                    <td> Rp. {data.amount} </td>
+                                    <td> 
+                                      { data.status === 'settlement' 
+                                        ?
+                                          <Badge variant="success"> {data.status} </Badge>
+                                        :
+                                          <Badge variant="danger"> {data.status} </Badge>
+                                      } 
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              )
+                            })
+                          }
                         </Table>
                       </Col>
                     </Row>
