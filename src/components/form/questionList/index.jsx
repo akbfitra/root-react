@@ -77,10 +77,10 @@ export const QuestionList = (props) => {
                       <Form.Group>
                       <Form.Label>Jawaban</Form.Label>
                       <Form.Control as="select" onChange = { (e) => { handleChangeQUestions( e.target.value )} }>
-                        <option>-- Pilih --</option>
-                        <option>Pilihan Ganda</option>
-                        <option>Text</option>
-                        {/* <option>Kotak Centang</option> */}
+                        <option value="Text">Teks</option>
+                        <option value="Pilihan Ganda">Pilihan Ganda</option>
+                        {/* <option value="Text">Teks</option> */}
+                        <option value="Kotak Centang">Multi Select</option>
                       </Form.Control>
                     </Form.Group>
                   </div>
@@ -111,6 +111,15 @@ export const QuestionList = (props) => {
                 </Row>
               }
             {/* end text */}
+             {/* pilihan ganda */}
+             {
+                type === 'KOTAK CENTANG' &&
+                <AnswerOptions
+                  answerOptions = {props.question.answerOptions}
+                  questionId={props.question._id}
+                />
+              }
+            {/* end pilihan ganda */}
             </Col>
             
           </Row>

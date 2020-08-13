@@ -93,7 +93,7 @@ const StudyResponden = (props) => {
           <Row className="m-t-30">
             <Col md={12} lg={12}>
               <div className="part-one">
-                {
+              {
                   !listOfQuestions.length ? 
                     <p>loading</p>
                   :
@@ -122,27 +122,66 @@ const StudyResponden = (props) => {
                                 className="answer"
                                 value={listOfQuestions[i].answer} 
                                 rows="3" 
-                                onChange={handleTextChange}
-                                onBlur={ (e) => cekTextArea(e.target.value,data._id)} />
+                                // onChange={handleTextChange}
+                                // onBlur={ (e) => cekTextArea(e.target.value,data._id)} 
+                                />
                                 </Form.Group>
                                 </div>
                               </div>
                               
                             </Col>
-                          :
+                          : data.type === "PILIHAN GANDA" ? 
                             data.listAnswer.map((dataAnswer, i) => {
                               return(
                                 <Col md={12} lg={12} key={i}>
                                   <div className="box-answer">
                                     <div className="left"></div>
                                     <div className="right">
-                                    <Button disabled variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} onClick={() => chooseAnswer(dataAnswer.title, data._id)}>&nbsp;{dataAnswer.title}</Button>
+                                    <Button disabled variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} >&nbsp;{dataAnswer.title}</Button>
                                     </div>
                                   </div>
                                 </Col>
                               )
                             })
-                              
+                          : data.type === "KOTAK CENTANG" ? 
+                          data.listAnswer.map((dataAnswer, i) => {
+                            let dataAnswerUser = data.answer
+                            let indexData = dataAnswerUser.indexOf(dataAnswer.title)
+
+                            console.log(dataAnswerUser, indexData, 'dalam map')
+                            return(
+                              <Col md={12} lg={12} key={i} >
+                                <div className="box-answer m-b-10" >
+                                  <div className="left"></div>
+                                  <div className="right">
+                                    <Button disabled variant={
+                                      // console.log(dataAnswerUser)
+                                      dataAnswerUser[indexData] === dataAnswer.title 
+                                      ?
+                                        "primary" 
+                                      : 
+                                        "outline-dark"
+                                      } 
+                                        onClick={() => {
+                                          let index = dataAnswerUser.indexOf(dataAnswer.title);
+                                          if (index > -1) {
+                                            dataAnswerUser.splice(index, 1);
+                                          }else {
+                                            dataAnswerUser.push(dataAnswer.title)
+                                          }
+                                          // chooseAnswerMulti(dataAnswerUser, data._id)
+                                        }}
+                                    >
+                                      {dataAnswer.title}
+                                    </Button>
+                                  </div>
+                                </div>
+                              </Col>
+                            )
+                          })
+                          :
+                          <>
+                          </>
                             
                         }
                       </Row>

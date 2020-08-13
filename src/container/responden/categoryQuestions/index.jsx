@@ -40,6 +40,7 @@ const CategoryQuestions = (props) => {
   })
 
   const chooseAnswer = (answer, questionId) => {
+    console.log(answer)
     dispatch(createAnswer(answer, questionId, categoryId))
     setGetChangeData(true)
   }

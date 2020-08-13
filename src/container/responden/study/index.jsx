@@ -41,6 +41,8 @@ const StudyResponden = (props) => {
     }
   })
 
+  console.log(listOfQuestions)
+
 
   const chooseAnswer = (answer, questionId) => {
     setGetChangeData(true)
@@ -53,16 +55,25 @@ const StudyResponden = (props) => {
     dispatch(POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN(jawaban, pertanyaanId, studyId))
   }
 
+  const chooseAnswerMulti = (answer, questionId) => {
+    console.log(answer, questionId, 'ssssss')
+    setGetChangeData(true)
+    dispatch(POST_INPUT_ANSWER_TO_FORM_BY_RESPONDEN(answer, questionId, studyId))
+  }
+
   const handleTextChange = (e) => {
     
     const updatedText = [...dataText];
     updatedText[e.target.dataset.i][e.target.className.split(' ')[0]] = e.target.value;
+    console.log(updatedText)
     setDataText(updatedText);
   };
 
   const userCompleted = () => {
     dispatch(PUSH_USER_COMPLETED_TO_STUDY(studyId, history))
   }
+
+
 
   console.log(listOfQuestions)
 
@@ -135,7 +146,7 @@ const StudyResponden = (props) => {
                               </div>
                               
                             </Col>
-                          :
+                          : data.type === "PILIHAN GANDA" ? 
                             data.listAnswer.map((dataAnswer, i) => {
                               return(
                                 <Col md={12} lg={12} key={i}>
@@ -148,7 +159,45 @@ const StudyResponden = (props) => {
                                 </Col>
                               )
                             })
-                              
+                          : data.type === "KOTAK CENTANG" ? 
+                          data.listAnswer.map((dataAnswer, i) => {
+                            let dataAnswerUser = data.answer
+                            let indexData = dataAnswerUser.indexOf(dataAnswer.title)
+
+                            console.log(dataAnswerUser, indexData, 'dalam map')
+                            return(
+                              <Col md={12} lg={12} key={i} >
+                                <div className="box-answer m-b-10" >
+                                  <div className="left"></div>
+                                  <div className="right">
+                                    <Button variant={
+                                      // console.log(dataAnswerUser)
+                                      dataAnswerUser[indexData] === dataAnswer.title 
+                                      ?
+                                        "primary" 
+                                      : 
+                                        "outline-dark"
+                                      } 
+                                        onClick={() => {
+                                          let index = dataAnswerUser.indexOf(dataAnswer.title);
+                                          if (index > -1) {
+                                            dataAnswerUser.splice(index, 1);
+                                          }else {
+                                            dataAnswerUser.push(dataAnswer.title)
+                                          }
+                                          chooseAnswerMulti(dataAnswerUser, data._id)
+                                        }}
+                                    >
+                                      {dataAnswer.title}
+                                    </Button>
+                                  </div>
+                                </div>
+                              </Col>
+                            )
+                          })
+                          :
+                          <>
+                          </>
                             
                         }
                       </Row>
