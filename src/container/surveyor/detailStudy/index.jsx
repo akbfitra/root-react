@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { withRouter, Link, useParams } from 'react-router-dom'
 import moment from 'moment'
+import { FaDownload } from 'react-icons/fa'
 
 import './css/style.css';
 import { Container, Row, Col, Button, Table, Tabs, Tab, Badge} from 'react-bootstrap'
@@ -171,6 +172,7 @@ const DetailStudyResponden = (props) => {
                                 <th style={{textAlign:"center"}}>Approval</th>
                                 {/* <th style={{textAlign:"center"}}>Paid</th> */}
                                 <th style={{textAlign:"center"}}>Option</th>
+                                <th style={{textAlign:"center"}}>Download</th>
                               </tr>
                             </thead>
 
@@ -184,6 +186,7 @@ const DetailStudyResponden = (props) => {
                                     <td>NoData</td>
                                     <td>-</td>
                                     {/* <td>-</td> */}
+                                    <td>-</td>
                                     <td>-</td>
                                   </tr>
                                 </tbody>
@@ -205,6 +208,17 @@ const DetailStudyResponden = (props) => {
                                             <Link to={`/surveyor/detailstudy/detailresponden/${studyId}/${data.userId._id}`}>
                                               <Button variant="info" >Detail Jawaban</Button>
                                             </Link>
+                                          </center>
+                                        </td>
+                                        <td>
+                                          <center>
+                                            {/* <Link to={`/surveyor/detailstudy/detailresponden/${studyId}/${data.userId._id}`}> */}
+                                            <a href= {`https://backoffice.survplus.id/cetak/${studyId}/${data.userId._id}`} target="_blank">
+                                              <Button variant="info" >
+                                                <FaDownload/>
+                                              </Button>
+                                            </a>
+                                            {/* </Link> */}
                                           </center>
                                         </td>
                                       </tr>
