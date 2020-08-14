@@ -171,7 +171,7 @@ const DetailStudyResponden = (props) => {
                                 </tr>
 
                                 <tr>
-                                  <td>Provinsi</td>
+                                  <td>Kab/Kota</td>
                                   <td>:</td>
                                   <td> {
                                       detailStudy &&

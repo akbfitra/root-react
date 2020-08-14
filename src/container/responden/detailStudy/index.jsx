@@ -37,6 +37,7 @@ const DetailStudyResponden = (props) => {
   },[])
 
   console.log(cekUserCompleted)
+  console.log(detailStudy)
   // let a = detailStudy.completedUser.find(el => el.userId ===)
   return(
     <>
@@ -134,13 +135,13 @@ const DetailStudyResponden = (props) => {
                       cekUserCompleted === true ?
                         <Link to={`/responden/study/completed/${ detailStudy._id }`}>
                           <li className="list-inline-item">
-                            <Button variant="primary">Detail Jawaban</Button>
+                            <Button variant="primary">Pertanyaan dan Jawaban Anda</Button>
                           </li>
                         </Link>
                       :
                       <Link to={`/responden/study/${ detailStudy._id }`}>
                         <li className="list-inline-item">
-                          <Button variant="primary">Detail Jawaban</Button>
+                          <Button variant="primary">Jawab Pertanyaan</Button>
                         </li>
                       </Link>
                     }

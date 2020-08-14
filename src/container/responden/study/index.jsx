@@ -236,7 +236,7 @@ const StudyResponden = (props) => {
 
                   <Col md={12} lg={12}>
                     {/* <Button variant="primary" onClick ={ () => { userCompleted() }} >Simpan</Button>{' '} */}
-                    <Button variant="primary" onClick={handleShow}>Simpan</Button>
+                    <Button variant="primary" onClick={handleShow}>Kirim Jawaban Anda Ke Surveyor</Button>
                   </Col>
                 </Row>
               </div>
