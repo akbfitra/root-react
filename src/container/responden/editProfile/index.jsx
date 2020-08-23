@@ -58,7 +58,7 @@ const EditProfileResponden = (props) => {
           setDataProfile(data)
           setUsername(data.name)
           setPhone(data.phone)
-          setBirth(new Date(data.birth))
+          setBirth(data.birth ? new Date(data.birth) : new Date())
           setProvinsi(data.provinsi)
           setKota(data.kota)
           setJenisKelamin(data.jenisKelamin)
@@ -179,7 +179,13 @@ const EditProfileResponden = (props) => {
                       <Form.Control as="select" required onChange ={ (e) => { setJenisKelamin(e.target.value) }}>
                         <option value= {`${dataProfile.jenisKelamin}`} > { dataProfile.jenisKelamin } </option>
                         {
-                          dataProfile.jenisKelamin === 'Laki-laki' 
+                          !dataProfile.jenisKelamin ?
+                          <>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                          </>
+                          :
+                            dataProfile.jenisKelamin === 'Laki-laki' 
                           ? 
                           <>
                             <option value="Perempuan">Perempuan</option>
@@ -268,7 +274,7 @@ const EditProfileResponden = (props) => {
                       </Form.Control>
                     </Form.Group>
 
-                    <Form.Group>
+                    {/* <Form.Group>
                       <Form.Label>Ketertarikan</Form.Label>
                       <Row>
                         {
@@ -288,7 +294,7 @@ const EditProfileResponden = (props) => {
                           })
                         }
                       </Row>
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Row>
                         <Col md={12} lg={12}>

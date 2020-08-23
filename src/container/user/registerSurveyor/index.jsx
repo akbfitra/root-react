@@ -39,7 +39,7 @@ const RegisterSurveyor = (props) => {
 
 
   const processRegisterSurveyor = () => {
-    dispatch(registerSurveyorProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location))
+    dispatch(registerSurveyorProcess(email, password, username, phone, history, location))
     .then(() => {
         
     })
@@ -183,7 +183,7 @@ const RegisterSurveyor = (props) => {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group>
+                  {/* <Form.Group>
                     <Form.Label>No. Identitas</Form.Label>
                     <Form.Control type="number" placeholder="" required onChange={ (e) => {setKtp( e.target.value )}}/>
                     <Form.Control.Feedback type="invalid">
@@ -287,7 +287,7 @@ const RegisterSurveyor = (props) => {
                     <Form.Control.Feedback type="invalid">
                       Tolong Isi dimana Anda mengetahaui survplus
                     </Form.Control.Feedback>
-                  </Form.Group>
+                  </Form.Group> */}
 
                   <Form.Group>
                     {/* <Form.Label>Ketertarikan</Form.Label> */}

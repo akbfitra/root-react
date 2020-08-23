@@ -53,19 +53,20 @@ const Register = (props) => {
   const handleSubmit = event => {
     event.preventDefault()
     const form = event.currentTarget;
-    let jumlahKategori = pilihCategories.length
+    // let jumlahKategori = pilihCategories.length
 
-    if ((form.checkValidity() === false) && (jumlahKategori < 4) && (password !== konfirmasiPassword) ) {
+    if ((form.checkValidity() === false) && (password !== konfirmasiPassword) ) {
       event.preventDefault();
       event.stopPropagation();
-    } else if((jumlahKategori >= 4 )&& (form.checkValidity() === true) && (password === konfirmasiPassword)) {
+    } else if((form.checkValidity() === true) && (password === konfirmasiPassword)) {
       processRegister()
     }
     setValidated(true);
   };
 
   const processRegister = () => {
-    dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, pilihCategories, jenisKelamin))
+    // dispatch(registerProcess(email, password, username, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, pilihCategories, jenisKelamin))
+    dispatch(registerProcess(email, password, username, phone, history, location))
       .then(() => {
         
       })
@@ -220,7 +221,7 @@ const Register = (props) => {
                       Tolong Isi Nomer Handphone Anda
                     </Form.Control.Feedback>
                   </Form.Group>
-
+{/* 
                   <Form.Group>
                     <Form.Label>No. Identitas</Form.Label>
                     <Form.Control 
@@ -353,7 +354,7 @@ const Register = (props) => {
                       }
                     </Row>
                     
-                  </Form.Group>
+                  </Form.Group> */}
 
                   <Row>
                     <Col md={12} lg={12}>

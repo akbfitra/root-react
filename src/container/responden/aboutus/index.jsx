@@ -41,7 +41,7 @@ const AboutUsResponden = (props) => {
       dispatch(EDIT_KRITERIA_RESPONDEN( kriteria, history))
       setChangeData(true)
       setShow(false)
-
+      setShowAlert(false)
     }
   }
 
@@ -85,13 +85,13 @@ const AboutUsResponden = (props) => {
     if(!kriteria.length || changeData){
       getDataProfile()
     }
-  })
+  }, [])
 
   useEffect(() => {
     if(!ketertarikan.length || changeData){
       getDataKetertarikan()
     }
-  })
+  },[])
 
   useEffect(() => {
     if(!category.length || changeData){
@@ -103,7 +103,7 @@ const AboutUsResponden = (props) => {
     if(!dataAnswerUser.length || changeData){
       getAnswerUser()
     }
-  })
+  },[])
 
   return(
     <>

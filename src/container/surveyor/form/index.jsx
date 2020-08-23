@@ -10,6 +10,7 @@ import InputRange from 'react-input-range';
 import './css/style.css';
 import 'react-input-range/lib/css/index.css';
 import { Tabs, Tab, Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
+import NumberFormat from 'react-number-format'
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -24,7 +25,7 @@ import * as surveyActions from '../../../store/actions/surveyFormAction'
 import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
 import { getInitialFormBuilderValues } from '../../../store/selectors/initialFormValues'
-import { SAVE_STUDY, COUNTER_RESPONDEN } from '../../../store/actions/surveyFormAction'
+import { SAVE_STUDY, COUNTER_RESPONDEN, GET_DATA_TANGGUNGAN_SURVEYOR } from '../../../store/actions/surveyFormAction'
 import { getDataQuestions } from '../../../store/actions/questionsAction'
 import { dataCategory } from '../../../store/actions/aboutUsAction'
 import { renderDatePicker } from '../../../components/inputForm'
@@ -54,8 +55,7 @@ const FormSurveyor = (props) => {
   const [ saldoUser, setSaldoUser ] = useState([])
   const [ show, setShow ] = useState(false);
   const [ totalHargaResponden, setTotalHargaResponden ] = useState(0)
-
-  console.log(saldoUser)
+  const [ dataTanggunganSurveyor, setDataTanggunganSurveyor ] = useState([])
 
   // let listKota = useSelector( state => state.tempat.tempat.kota)
 
@@ -88,10 +88,7 @@ const FormSurveyor = (props) => {
   const handlePilihDaerah = (data) => {
     let cek =  pilihDaerah.findIndex(item => item.index === data.index)
     let test = pilihDaerah.find(item => item.provinsi === '')
-    
-    
-    console.log(data, pilihDaerah , 'zzzzzzzzzzz')
-    console.log(test, 'initest')
+
     
     let elementPos =  pilihDaerah.findIndex(x => x.provinsi === data.provinsi);
     
@@ -100,23 +97,19 @@ const FormSurveyor = (props) => {
       
       newArr[cek] = data
       setPilihDaerah(newArr)
-      // setPilihProvinsi(data)
+      
       setFlagsFilterQuestions(true)
     }
     else{
-      console.log('masuk kedam else')
       if(data.delete){
-        console.log(data.provinsi)
+        
         setPilihDaerah((prev) => {
           const prevDaerah = [...prev]
           return prevDaerah.filter(item => item.provinsi !== data.provinsi)
         })
         setFlagsFilterQuestions(true)
       }else{
-        console.log('masuk kedalam else else')
-        console.log(pilihDaerah)
         let elPos =  pilihDaerah.findIndex(x => x.index === data.index);
-        console.log(elementPos)
         setPilihDaerah((prev) => {
           const backDaerah = [...prev]
           backDaerah[elPos] = {
@@ -130,7 +123,6 @@ const FormSurveyor = (props) => {
     }
   }
 
-  console.log(pilihDaerah)
 
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
@@ -227,6 +219,18 @@ const FormSurveyor = (props) => {
     dispatch(surveyActions.loadSurvey())
   }, [dispatch])
 
+  const setDataTanggunganYangBelomDijalankan = () => {
+    dispatch(GET_DATA_TANGGUNGAN_SURVEYOR())
+      .then( data => {
+        setDataTanggunganSurveyor(data)
+      })
+  }
+
+  useEffect(() => {
+    setDataTanggunganYangBelomDijalankan()
+  }, [])
+  console.log(dataTanggunganSurveyor)
+
   let listQuestions = props.survey
 
   const addQuestion = () => {
@@ -234,7 +238,7 @@ const FormSurveyor = (props) => {
   }
 
   const handleSaveSurvey = () => {
-    let totalSurvey = Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)
+    let totalSurvey = (Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) ) + dataTanggunganSurveyor.totalTanggungan
     setTotalHargaResponden(totalSurvey)
     // console.log(props.formValues)
     if(totalSurvey > saldoUser.saldo){
@@ -698,18 +702,18 @@ const FormSurveyor = (props) => {
                   <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
                     <Alert.Heading>Error?!</Alert.Heading>
                     <p>
-                      SALDO ANDA BELUM MENCUKUPI UNTUK MEMBAYAR RESPONDEN, HARAP 
+                      SALDO ANDA BELUM MENCUKUPI UNTUK MEMBAYAR RESPONDEN, HARAP TOP UP 
                       <Link to ="/surveyor/topup">
-                          TOP UP DISINI
+                          DISINI
                       </Link>
                     </p>
                     <p>
                       Jumlah Total untuk responden: { 
-                      totalHargaResponden ? totalHargaResponden : 0
+                      totalHargaResponden ?  <NumberFormat value={totalHargaResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/> : 0
                       }
                     </p>
                     <p>
-                      saldo anda: {saldoUser.saldo}
+                      saldo anda: <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
                     </p>
                   </Alert>
                 </>

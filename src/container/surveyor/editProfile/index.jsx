@@ -44,7 +44,7 @@ const EditProfileSurveyor = (props) => {
           // setDataProfile(data)
           setUsername(data.name)
           setPhone(data.phone)
-          setBirth(new Date(data.birth))
+          setBirth(data.birth ? new Date(data.birth) : new Date())
           setProvinsi(data.provinsi)
           setKota(data.kota)
           setPekerjaan(data.pekerjaan)

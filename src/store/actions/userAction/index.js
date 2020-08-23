@@ -44,18 +44,18 @@ export const CekLogin = () => {
     )
 }
 
-export const registerProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, history, location, ktp, categories, jenisKelamin ) => async dispatch => {
+export const registerProcess = (email, password, name, phone, history, location ) => async dispatch => {
   try{
     // console.log(email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber,ktp, history, location)
     const { data } = await instance({
       method: 'POST',
-      url: '/user/register/',
+      url: '/user/register',
       data: {
-        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, ktp, categories, jenisKelamin
+        email, password, name, phone
       }
     })
     if(data){
-      history.replace(location.state ? location.state.from : '/success')
+      history.push(location.state ? location.state.from : '/success')
     }
 
   }
@@ -64,13 +64,13 @@ export const registerProcess = (email, password, name, phone, birth, provinsi, k
   }
 }
 
-export const registerSurveyorProcess = (email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp, history, location) => async dispatch => {
+export const registerSurveyorProcess = (email, password, name, phone, history, location) => async dispatch => {
   try{
     const { data } = await instance({
       method: 'POST',
       url: '/user/register/surveyor',
       data: {
-        email, password, name, phone, birth, provinsi, kota, pekerjaan, sumber, tujuan, ktp
+        email, password, name, phone
       }
     })
     history.replace(location.state ? location.state.from : '/success')
@@ -280,6 +280,44 @@ export const EDIT_PASSWORD_SURVEYOR = (password, passwordLama, history) =>async 
       }
     })
     history.push('/surveyor/profile')
+  }
+  catch(err){
+    throw err.response.data.message
+  }
+}
+
+export const TARIK_SALDO_RESPONDEN = (norekening, bank, jumlah) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'POST',
+      url: '/tariksaldo',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      },
+      data:{
+        norekening,
+        bank,
+        jumlah
+      }
+    })
+    console.log(data)
+    return data
+  }
+  catch(err){
+    throw err.response.data.message
+  }
+}
+
+export const GET_DATA_TARIK_SALDO_RESPONDEN = (norekening, bank, jumlah) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: '/tariksaldo',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    return data
   }
   catch(err){
     throw err.response.data.message

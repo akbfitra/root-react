@@ -12,7 +12,7 @@ import { TOPUP_PAYMENT_SURVEYOR, LIST_PAYMENT_USER } from '../../../store/action
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 // import moment from 'moment'
-// import NumberFormat from 'react-number-format';
+// import NumberFormat frogm 'react-number-format';
 
 const TopUpSurveyor = (props) => {
   const dispatch = useDispatch()

@@ -355,3 +355,17 @@ export const GET_DATA_ONGOING_RESPONDEN = () => async dispatch => {
     console.log(err)
   }
 }
+
+export const GET_DATA_TANGGUNGAN_SURVEYOR = () => async dispatch => {
+  try{
+    const { id } = await verifyToken(Cookies.get('test'))
+    const { data } = await axios({
+      method: 'GET',
+      url:`https://backoffice.survplus.id/manajemen_study/cashholder/${id}`
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
