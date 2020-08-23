@@ -5,27 +5,12 @@ import { Row, Col, Form, Button} from 'react-bootstrap'
 // import { getDataQuestions } from '../../../store/actions/questionsAction'
 
 
-export const KriteriaQuestionList = (props) => {
+export const KriteriaQuestionListEdit = (props) => {
   const dispatch = useDispatch()
-  // const history = useHistory()
-  // const location = useLocation()
-
-  // const [dataQuestions, setDataQuestions ] = useState([])
-
-  
-  //   const processSelectCategory = (id) => {
-  //     // let idCategory = category.find( el => el.name === pilihCategory )
-  //     dispatch(getDataQuestions(id))
-  //       .then( data => {
-  //         setDataQuestions(data)
-  //       })
-  //   }
-  
-
-  
 
   let dataAnswers = [] 
-
+  console.log(props.listAnswerPilih)
+  
   const getData = (questionId, answer) => {
     let pilih = props.listAnswerPilih.find((el) => el.questionId === questionId)
 
@@ -45,6 +30,7 @@ export const KriteriaQuestionList = (props) => {
     let obj = {questionId, answer: dataAnswers, categoryId: props.idCategory}
     props.onchange(obj)
   }
+
 
   // useEffect(() => {
   //   processSelectCategory(props.idCategory) 
@@ -69,6 +55,12 @@ export const KriteriaQuestionList = (props) => {
               <Col md={12} lg={12}>
                 {
                   props.dataQuestions.map((data, i) => {
+                    let cekDataAnswerEdit = props.listAnswerPilih.find((el) => el.questionId === data._id)
+                    let dataAnswersEdit = []
+                    if(cekDataAnswerEdit){
+                      dataAnswersEdit = cekDataAnswerEdit.answer
+                    }
+                    // let getDataAnswerEdit = cekDataAnswerEdit.answer
                     return(
                       <Row className="m-t-30" key={i}>
                         <Col md={12} lg={12}>
@@ -83,12 +75,14 @@ export const KriteriaQuestionList = (props) => {
                             {/* <Form.Control as="select" onChange={(e) => { getData(data._id, e.target.value)}} > */}
                               {/* <option value= "remove">Semua</option> */}
                               { data.listAnswers.map((answer, i) => {
+
+                                
                                   return(
                                     <Col md={3} lg={3} key={i}>
                                       <Form.Check
                                       key={i}
                                       type="checkbox"
-                                      checked={dataAnswers.some((nama) => nama === data.name)}
+                                      checked={dataAnswersEdit.some((nama) => nama === answer)}
                                       label={`${answer}`}
                                       value={`${answer}`}
                                       onChange={(e) => { getData(data._id, e.target.value)}}

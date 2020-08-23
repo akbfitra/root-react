@@ -164,7 +164,6 @@ const StudyResponden = (props) => {
                             let dataAnswerUser = data.answer
                             let indexData = dataAnswerUser.indexOf(dataAnswer.title)
 
-                            console.log(dataAnswerUser, indexData, 'dalam map')
                             return(
                               <Col md={12} lg={12} key={i} >
                                 <div className="box-answer m-b-10" >

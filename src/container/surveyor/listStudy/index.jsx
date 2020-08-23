@@ -15,6 +15,7 @@ import { FIND_STUDY_USER } from '../../../store/actions/surveyFormAction'
 const ListStudy = () => {
   const dispatch = useDispatch()
   const [ dataSurvey , setDataSurvey ] = useState([])
+  const [ hariIni, setHariIni ] = useState(new Date())
   // const [ numberOfQuestions, setNumberOfQuestions ] = useState([])
   
   useEffect( () => {
@@ -158,9 +159,18 @@ const ListStudy = () => {
                           <Button variant="primary">Detail Studi</Button>
                         </Link>
                         <br></br>
-                        {/* <Link to={`/surveyor/form/edit/${data._id}`}>
-                          <Button variant="warning">Edit Studi</Button>
-                        </Link> */}
+                        {
+                          moment(hariIni).format("DD/MM/YYYY") < moment(data.tanggalMulai).format("DD/MM/YYYY")
+                          ?
+                          <>
+                            <Link to={`/surveyor/form/edit/${data._id}`}>
+                              <Button variant="warning">Edit Studi</Button>
+                            </Link>
+                          </>
+                          :
+                          <>
+                          </>
+                        }
                       </Col>
                     </Row>
                   </div>

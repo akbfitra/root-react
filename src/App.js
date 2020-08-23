@@ -30,6 +30,7 @@ import EditProfileSurveyor from './container/surveyor/editProfile'
 import StudyRespondenGetBySurveyor from './container/surveyor/studyResponden'
 import CheckOutTopSurveyor from './container/surveyor/checkoutTopUp'
 import EditPasswordSurveyor from './container/surveyor/editPassword'
+import EditFormSurveyor from './container/surveyor/formEdit'
 
 import DashboardResponden from './container/responden/dashboard'
 import AboutUsResponden from './container/responden/aboutus'
@@ -64,7 +65,7 @@ const App = () => {
       <Route path = '/aktivasisuccess' component = {AktivasiSuccess}/>
       <Route path = '/successforgotpassword' component= {SuccessForgotPassword}/>
 
-      <PrivateRouteSurveyor path = '/surveyor/form/edit/:studyId' component = {FormSurveyor}/>
+      <PrivateRouteSurveyor path = '/surveyor/form/edit/:studyId' component = {EditFormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/liststudy' component = {ListStudy}/>
       <PrivateRouteSurveyor path = '/surveyor/detailstudy/detailresponden/:studyId/:respondenId' component={StudyRespondenGetBySurveyor} />

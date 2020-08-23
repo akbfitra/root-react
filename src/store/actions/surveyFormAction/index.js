@@ -27,8 +27,6 @@ export const INIT_QUESTION = async (dispatch, urlPath) => {
     }
   })
 
-  console.log(data)
-
 
   if(data  && role === 'surveyor'){
     // console.log(normalize(data, survey))
@@ -36,7 +34,7 @@ export const INIT_QUESTION = async (dispatch, urlPath) => {
       type: 'SURVEY_LOAD_SUCCESS',
       payload: normalize(data, survey)
     });
-   
+  
   } else if(dataUser.isLogin && role === 'surveyor'){
     dispatch({ 
       type: 'INIT_QUESTIONS' , 
@@ -55,6 +53,29 @@ export const INIT_QUESTION = async (dispatch, urlPath) => {
       }
     })
     
+  }
+}
+
+export const GET_DATA_EDIT_FORM = (studyId) => async dispatch => {
+  try{
+    const {data} = await instance({
+      method: 'GET',
+      url: `/project/responden/${studyId}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    
+    
+    await dispatch({
+      type: 'SURVEY_LOAD_SUCCESS',
+      payload: normalize(data, survey)
+    });
+
+    return data
+  }
+  catch(err){
+    console.log(err)
   }
 }
 

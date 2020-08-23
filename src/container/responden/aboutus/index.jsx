@@ -4,7 +4,7 @@ import { withRouter, Link, useHistory } from 'react-router-dom'
 import { dataCategoryUser, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
 import { getKetertarikan, dataProfileUser, EDIT_KRITERIA_RESPONDEN } from '../../../store/actions/userAction'
 import './css/style.css';
-import { Container, Row, Col, Button, Modal, Form} from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal, Form, Alert} from 'react-bootstrap'
 import { CardCategory } from '../../../components/aboutUs/cardCategory/index'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -20,6 +20,7 @@ const AboutUsResponden = (props) => {
   const [changeData, setChangeData ] = useState(false)
 
   const [show, setShow] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,9 +34,15 @@ const AboutUsResponden = (props) => {
   }
 
   const handleProcessUpdate = () => {
-    dispatch(EDIT_KRITERIA_RESPONDEN( kriteria, history))
-    setChangeData(true)
-    setShow(false)
+    console.log(kriteria)
+    if(kriteria.length < 4){
+      setShowAlert(true)
+    } else {
+      dispatch(EDIT_KRITERIA_RESPONDEN( kriteria, history))
+      setChangeData(true)
+      setShow(false)
+
+    }
   }
 
 
@@ -156,6 +163,9 @@ const AboutUsResponden = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Tambah Ketertarikan</Modal.Title>
         </Modal.Header>
+          <Alert show={showAlert} variant="danger">
+            Kriteria Minimal 4
+          </Alert>
         <Modal.Body>
           <Form>
             <Form.Group>

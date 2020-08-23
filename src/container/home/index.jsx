@@ -67,6 +67,20 @@ const LandingPage = () => {
 
   // console.log(perusahaanImg)
 
+  // useEffect(() => {
+  //   const script = document.createElement('script');
+  
+  //   script.src = "https://storage.googleapis.com/f8a350-taplive-prd-public/static/launcher/web/v1.0/main.js";
+  //   script.async = true;
+  //   // script.TapTalkLive.init("0e82d43ab4972ae057c7e437450dcb6916a79bb57024706a1684aebd1a7402b0");
+  //   // script.TapTalkLive.setBrandColor(55,165,215);
+  
+  //   document.body.appendChild(script);
+  
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   }
+  // }, []);
 
   if(allUser){
     dataResponden = allUser.filter(el => el.role === 'responden').length

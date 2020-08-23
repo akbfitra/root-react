@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useStore, Connect } from 'react-redux';
 import { withRouter, useHistory, useLocation, Link } from 'react-router-dom'
 import moment from 'moment'
+import 'moment/locale/id'
 
 import './css/style.css';
 import { Container, Row, Col, Form, Button, Accordion, Card, Tabs, Tab, Table , Badge} from 'react-bootstrap'
+import NumberFormat from 'react-number-format'
 
 import { TOPUP_PAYMENT_SURVEYOR, LIST_PAYMENT_USER } from '../../../store/actions/topupAction'
 import { Navbar } from '../../../components/navbar'
@@ -106,8 +108,8 @@ const TopUpSurveyor = (props) => {
                                 <tbody>
                                   <tr>
                                     <td> {i+1} </td>
-                                    <td> { moment(data.createdAt).format('MMMM Do YYYY, h:mm:ss a')} </td>
-                                    <td> Rp. {data.amount} </td>
+                                    <td> { moment(data.createdAt).locale('id').format('Do MMMM YYYY, h:mm:ss ')} </td>
+                                    <td>  <NumberFormat value={data.amount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/> </td>
                                     <td> 
                                       { data.status === 'settlement' 
                                         ?
