@@ -9,6 +9,8 @@ import { Container, Row, Col, Form, Button, Accordion, Card, Tabs, Tab, Table , 
 import { TOPUP_PAYMENT_SURVEYOR, LIST_PAYMENT_USER } from '../../../store/actions/topupAction'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
+// import moment from 'moment'
+import NumberFormat from 'react-number-format';
 
 const TopUpSurveyor = (props) => {
   const dispatch = useDispatch()
@@ -107,7 +109,7 @@ const TopUpSurveyor = (props) => {
                                   <tr>
                                     <td> {i+1} </td>
                                     <td> { moment(data.createdAt).format('MMMM Do YYYY, h:mm:ss a')} </td>
-                                    <td> Rp. {data.amount} </td>
+                                    <td> <NumberFormat value={data.amount} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</td>
                                     <td> 
                                       { data.status === 'settlement' 
                                         ?

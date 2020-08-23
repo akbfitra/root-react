@@ -4,7 +4,7 @@ import { withRouter, Link, useHistory } from 'react-router-dom'
 import { dataCategoryUser, getDataAnswerUser } from '../../../store/actions/aboutUsAction'
 import { getKetertarikan, dataProfileUser, EDIT_KRITERIA_RESPONDEN } from '../../../store/actions/userAction'
 import './css/style.css';
-import { Container, Row, Col, Button, Modal, Form} from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal, Form, Alert} from 'react-bootstrap'
 import { CardCategory } from '../../../components/aboutUs/cardCategory/index'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -106,11 +106,11 @@ const AboutUsResponden = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Ketertarikan Responden</strong></h3>
+            <h3 className="title-one text-center color-blue"><strong>Ketertarikan Responden</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/responden' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Beranda Responden</h4>
+                  <h4 className="title-three color-blue">Beranda Responden</h4>
                   </Link>
                 </li>
 
@@ -124,6 +124,14 @@ const AboutUsResponden = (props) => {
         </Row>
 
         <Row className="m-t-30">
+          <Col md={12} lg={12}>
+          <Alert variant="primary">
+            <Alert.Heading className="text-center m-b-0">Semakin lengkap mengisi maka semakin besar peluang anda menerima tawaran studi</Alert.Heading>
+          </Alert>
+          </Col>
+        </Row>
+
+        <Row>
           <Col md={12} lg={12}>
           <Button variant="primary" onClick={handleShow}>
             Tambah Ketertarikan
@@ -152,7 +160,7 @@ const AboutUsResponden = (props) => {
 
       <Footer/>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>Tambah Ketertarikan</Modal.Title>
         </Modal.Header>
@@ -164,7 +172,7 @@ const AboutUsResponden = (props) => {
                   ketertarikan
                     .map((data, i) => {
                     return(
-                      <Col md={3} lg={3} key={i}>
+                      <Col md={4} lg={4} key={i}>
                         <Form.Check
                           type="checkbox"
                           checked={kriteria.some((nama) => nama === data.name)}

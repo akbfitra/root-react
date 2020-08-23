@@ -85,11 +85,11 @@ const StudyResponden = (props) => {
         <Container>
           <Row>
             <Col md={12} lg={12}>
-              <h3 className="title-one text-center"><strong>Studi</strong></h3>
+              <h3 className="title-one text-center color-blue"><strong>Studi</strong></h3>
                 <ul className="list-inline text-center">
                   <li className="list-inline-item">
                     <Link to='/responden' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Beranda Responden</h4>
+                    <h4 className="title-three color-blue">Beranda Responden</h4>
                     </Link>
                   </li>
 
@@ -97,7 +97,7 @@ const StudyResponden = (props) => {
 
                   <li className="list-inline-item">
                     <Link to='/responden/submission' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Studi Responden</h4>
+                    <h4 className="title-three color-blue">Studi Responden</h4>
                     </Link>
                   </li>
 
