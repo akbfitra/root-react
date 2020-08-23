@@ -79,7 +79,7 @@ const Login = (props) => {
       <Container>
         <Row>
           <Col md={6} lg={6} className="part-one">
-            <img src="images/decor7.png"/>
+            <img src="images/login.svg" style={{height:'400px'}}/>
           </Col>
 
 

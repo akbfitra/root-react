@@ -17,7 +17,7 @@ const RespondenDashboard = (props) => {
       <Container>
         <Row>
           <Col md={12} lg={12}>
-            <h3 className="title-one text-center"><strong>Beranda Responden</strong></h3>
+            <h3 className="title-one text-center color-blue"><strong>Beranda Responden</strong></h3>
           </Col>
         </Row>
         <Row className="m-t-30">
@@ -25,7 +25,7 @@ const RespondenDashboard = (props) => {
             <Link to = '/responden/profile' style={{textDecoration:"none"}}>
             <div className="part-one">
               <center>
-              <img src="images/profile.png"/>
+              <img src="images/profil.svg" style={{height:'160px', width:'160px'}}/>
               <h4 className="title-two m-t-15"><strong>Profil</strong></h4>
               </center>
             </div>
@@ -36,7 +36,7 @@ const RespondenDashboard = (props) => {
             <Link to = '/responden/aboutus' style={{textDecoration:"none"}}>
             <div className="part-one">
               <center>
-              <img src="images/aboutus.png"/>
+              <img src="images/ketertarikan.svg" style={{height:'160px', width:'160px'}}/>
               <h4 className="title-two m-t-15"><strong>Ketertarikan</strong></h4>
               </center>
             </div>
@@ -47,7 +47,7 @@ const RespondenDashboard = (props) => {
             <Link to = '/responden/submission' style={{textDecoration:"none"}}>
             <div className="part-one">
               <center>
-              <img src="images/submission.png"/>
+              <img src="images/studi.svg" style={{height:'160px', width:'160px'}}/>
               <h4 className="title-two m-t-15"><strong>Studi</strong></h4>
               </center>
             </div>
@@ -58,7 +58,7 @@ const RespondenDashboard = (props) => {
             <Link to = '/responden/tariksaldo' style={{textDecoration:"none"}}>
             <div className="part-one">
               <center>
-              <img src="images/topup.png"/>
+              <img src="images/saldo.svg" style={{height:'160px', width:'160px'}}/>
               <h4 className="title-two m-t-15"><strong>Tarik Saldo</strong></h4>
               </center>
             </div>

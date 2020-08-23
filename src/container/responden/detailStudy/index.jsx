@@ -47,11 +47,11 @@ const DetailStudyResponden = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Detail Studi</strong></h3>
+            <h3 className="title-one text-center color-blue"><strong>Detail Studi</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/responden' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Beranda Responden</h4>
+                  <h4 className="title-three color-blue">Beranda Responden</h4>
                   </Link>
                 </li>
 
@@ -59,7 +59,7 @@ const DetailStudyResponden = (props) => {
 
                 <li className="list-inline-item">
                   <Link to='/responden/submission' style={{textDecoration:"none"}}>
-                  <h4 className="title-three">Studi Responden</h4>
+                  <h4 className="title-three color-blue">Studi Responden</h4>
                   </Link>
                 </li>
 

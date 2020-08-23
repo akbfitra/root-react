@@ -114,11 +114,11 @@ const EditProfileResponden = (props) => {
         <Container>
           <Row>
             <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-              <h3 className="title-one text-center"><strong>Edit Profil Responden</strong></h3>
+              <h3 className="title-one text-center color-blue"><strong>Edit Profil Responden</strong></h3>
                 <ul className="list-inline text-center">
                   <li className="list-inline-item">
                     <Link to='/responden' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Beranda Responden</h4>
+                    <h4 className="title-three color-blue">Beranda Responden</h4>
                     </Link>
                   </li>
 
@@ -126,7 +126,7 @@ const EditProfileResponden = (props) => {
 
                   <li className="list-inline-item">
                     <Link to='/responden/profile' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Profil Responden</h4>
+                    <h4 className="title-three color-blue">Profil Responden</h4>
                     </Link>
                   </li>
 

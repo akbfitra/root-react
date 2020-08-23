@@ -24,11 +24,11 @@ const TarikSaldo = (props) => {
         <Container>
           <Row>
             <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-              <h3 className="title-one text-center"><strong>Tarik Saldo</strong></h3>
+              <h3 className="title-one text-center color-blue"><strong>Tarik Saldo</strong></h3>
                 <ul className="list-inline text-center">
                   <li className="list-inline-item">
                     <Link to='/responden' style={{textDecoration:"none"}}>
-                    <h4 className="title-three">Beranda Responden</h4>
+                    <h4 className="title-three color-blue">Beranda Responden</h4>
                     </Link>
                   </li>
 
