@@ -526,7 +526,11 @@ p{
 #login .part-two .table-cell-one{
   display: table-cell;
   vertical-align: middle;
-  height: 436px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
+  padding:30px;
 }
 /* ======================================== end login ============================================= */
 

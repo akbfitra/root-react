@@ -284,6 +284,32 @@ const DetailStudyResponden = (props) => {
                       </Row>
                     </Tab>
 
+                    <Tab eventKey="transaksi" title="Data Transaksi" className="m-t-15">
+                      <Row>
+                        <Col md={12} lg={12}>
+                          <Table striped bordered>
+                            <thead>
+                              <tr>
+                                <th style={{textAlign:"center"}}>No.</th>
+                                <th style={{textAlign:"center"}}>Tanggal</th>
+                                <th style={{textAlign:"center"}}>Jumlah</th>
+                                <th style={{textAlign:"center"}}>Status</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        </Col>
+                      </Row>
+                    </Tab>
+
                   </Tabs>
                 </Col>
         </Row>

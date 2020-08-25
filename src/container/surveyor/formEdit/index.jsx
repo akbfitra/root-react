@@ -346,7 +346,7 @@ const FormSurveyorEdit = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center"><strong>Tambah Studi</strong></h3>
+            <h3 className="title-one text-center"><strong>Edit Studi</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/surveyor' style={{textDecoration:"none"}}>
@@ -361,15 +361,15 @@ const FormSurveyorEdit = (props) => {
                 </li>
                 <li className="list-inline-item">|</li>
                 <li className="list-inline-item">
-                  <h4 className="title-three">Tambah Studi</h4>
+                  <h4 className="title-three">Edit Studi</h4>
                 </li>
               </ul>
           </Col>
         </Row>
         
         <Row>
-          <Col md={{span:8, offset:2}} lg={{span:8, offset:2}}>
-          <Alert variant="success">
+          <Col md={{span:10, offset:1}} lg={{span:10, offset:1}}>
+          <Alert variant="danger">
             <Alert.Heading>Perhatian...</Alert.Heading>
             <p>
               Saldo anda harus mencukupi dengan total jumlah reward dikali dengan jumlah responden yang anda ingikan
@@ -707,7 +707,13 @@ const FormSurveyorEdit = (props) => {
               </Tab>
               
               <Tab eventKey="Simpan" title="Simpan Data" className="m-t-15">
-                <h5>Apakah anda yakin ingin menyimpan data ini ?</h5>
+                <Row>
+                  <Col md={12} lg={12}>
+                    <div className="part-one">
+                      <p>Apakah anda yakin ingin menyimpan data ini ?</p>
+                    </div>
+                  </Col>
+                </Row>
                 <>
                   <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
                     <Alert.Heading>Error?!</Alert.Heading>
