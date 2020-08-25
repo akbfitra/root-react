@@ -12,6 +12,7 @@ import 'react-input-range/lib/css/index.css';
 import { Tabs, Tab, Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
 
 import "react-datepicker/dist/react-datepicker.css";
+import NumberFormat from 'react-number-format'
 
 import { QuestionBuilder } from '../../../components/form/questionBuilder'
 import { KriteriaQuestionListEdit } from '../../../components/form/kriteriaQuestionListEdit'
@@ -24,7 +25,7 @@ import * as surveyActions from '../../../store/actions/surveyFormAction'
 import * as questionActions from '../../../store/actions/questionsAction'
 import { getDenormalizedSurvey } from '../../../store/selectors/denormalizesurvey'
 import { getInitialFormBuilderValues } from '../../../store/selectors/initialFormValues'
-import { SAVE_STUDY, COUNTER_RESPONDEN } from '../../../store/actions/surveyFormAction'
+import { SAVE_STUDY, COUNTER_RESPONDEN,GET_DATA_TANGGUNGAN_SURVEYOR_EDIT } from '../../../store/actions/surveyFormAction'
 import { getDataQuestions } from '../../../store/actions/questionsAction'
 import { dataCategory } from '../../../store/actions/aboutUsAction'
 import { renderDatePicker } from '../../../components/inputForm'
@@ -67,6 +68,10 @@ const FormSurveyorEdit = (props) => {
   const [ saldoUser, setSaldoUser ] = useState([])
   const [ show, setShow ] = useState(false);
   const [ totalHargaResponden, setTotalHargaResponden ] = useState(0)
+  const [ totalRewardStudy, setTotalRewardStudy ] = useState(0)
+  const [ totalRewardFee, setTotalRewardFee ] = useState(0)
+  const [ totalKekurangan, setTotalKekurangan ] = useState(0)
+  const [ dataTanggunganSurveyor, setDataTanggunganSurveyor ] = useState([])
 
   console.log(saldoUser)
 
@@ -107,10 +112,6 @@ const FormSurveyorEdit = (props) => {
     let cek =  pilihDaerah.findIndex(item => item.index === data.index)
     let test = pilihDaerah.find(item => item.provinsi === '')
     
-    
-    console.log(data, pilihDaerah , 'zzzzzzzzzzz')
-    console.log(test, 'initest')
-    
     let elementPos =  pilihDaerah.findIndex(x => x.provinsi === data.provinsi);
     
     if(test && !data.delete){
@@ -122,7 +123,6 @@ const FormSurveyorEdit = (props) => {
       setFlagsFilterQuestions(true)
     }
     else{
-      console.log('masuk kedam else')
       if(data.delete){
         console.log(data.provinsi)
         setPilihDaerah((prev) => {
@@ -131,8 +131,6 @@ const FormSurveyorEdit = (props) => {
         })
         setFlagsFilterQuestions(true)
       }else{
-        console.log('masuk kedalam else else')
-        console.log(pilihDaerah)
         let elPos =  pilihDaerah.findIndex(x => x.index === data.index);
         console.log(elementPos)
         setPilihDaerah((prev) => {
@@ -206,8 +204,6 @@ const FormSurveyorEdit = (props) => {
       })
   }
 
-  console.log(pilihCategories, 'aaaaaaaaaaaaaaaaaaaaaaas')
-  console.log(category)
 
   const onchange = async (data) => {
     let cek =  getFilterQuestion.some(item => item.questionId === data.questionId)
@@ -262,10 +258,31 @@ const FormSurveyorEdit = (props) => {
     dispatch(questionActions.addNewQuestion(listQuestions._id))
   }
 
+
+  const setDataTanggunganYangBelomDijalankan = () => {
+    dispatch(GET_DATA_TANGGUNGAN_SURVEYOR_EDIT(studyId))
+      .then( data => {
+        setDataTanggunganSurveyor(data)
+      })
+  }
+
+  useEffect(() => {
+    setDataTanggunganYangBelomDijalankan()
+  }, [])
+
   const handleSaveSurvey = () => {
-    let totalSurvey = Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)
+    
+    let totalRewardStudy = Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)
+    let totalFeeStudy = 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)
+    let totalSurvey = (Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) ) + dataTanggunganSurveyor.total
+    let saldoUserSurveyor = saldoUser.saldo
+    let kekurangan = totalSurvey - saldoUserSurveyor
+
     setTotalHargaResponden(totalSurvey)
-    // console.log(props.formValues)
+    setTotalRewardStudy(totalRewardStudy)
+    setTotalRewardFee(totalFeeStudy)
+    setTotalKekurangan(kekurangan)
+    
     if(totalSurvey > saldoUser.saldo){
       setShow(true)
     } else {
@@ -356,6 +373,18 @@ const FormSurveyorEdit = (props) => {
             <Alert.Heading>Perhatian...</Alert.Heading>
             <p>
               Saldo anda harus mencukupi dengan total jumlah reward dikali dengan jumlah responden yang anda ingikan
+            </p>
+            <p>
+              Jumlah saldo tanggungan anda adalah sebesar { dataTanggunganSurveyor ? 
+                                                              <NumberFormat 
+                                                                value={dataTanggunganSurveyor.total} 
+                                                                displayType={'text'} 
+                                                                thousandSeparator={'.'} 
+                                                                decimalSeparator={','} 
+                                                                prefix={'Rp '}/>
+                                                            :
+                                                              0
+                                                            }
             </p>
           </Alert>
           </Col>
@@ -499,10 +528,12 @@ const FormSurveyorEdit = (props) => {
                           jenis.jenisKelamin === 'Laki-laki'
                           ?
                           <>
+                            <option value="">Semua</option>
                             <option value="Perempuan">Perempuan</option>
                           </>
                           :
                           <>
+                            <option value="">Semua</option>
                             <option value="Laki-laki">Laki-laki</option>
                           </>
                         }
@@ -681,18 +712,39 @@ const FormSurveyorEdit = (props) => {
                   <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
                     <Alert.Heading>Error?!</Alert.Heading>
                     <p>
-                      SALDO ANDA BELUM MENCUKUPI UNTUK MEMBAYAR RESPONDEN, HARAP 
+                      SALDO ANDA BELUM MENCUKUPI UNTUK MEMBAYAR RESPONDEN, HARAP TOP UP 
                       <Link to ="/surveyor/topup">
-                          TOP UP DISINI
+                          DISINI
                       </Link>
                     </p>
+                    
                     <p>
-                      Jumlah Total untuk responden: { 
-                      totalHargaResponden ? totalHargaResponden : 0
+                      Jumlah Tanggungan anda: <NumberFormat value={dataTanggunganSurveyor.totalTanggungan} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
+                    </p>
+                    <p>
+                      Jumlah Tanggungan Fee anda: <NumberFormat value={dataTanggunganSurveyor.totalFee} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
+                    </p>
+                    <p>
+                      Jumlah Total Tanggungan anda: <NumberFormat value={dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
+                    </p>
+                    <hr/>
+                    <p>
+                      Jumlah Total Reward Study anda sekarang: <NumberFormat value={totalRewardStudy} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
+                    </p>
+                    <p>
+                      Jumlah Total Fee Reward Study anda sekarang: <NumberFormat value={totalRewardFee} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
+                    </p>
+                    <p>
+                      Jumlah Total yang harus ada di saldo anda sebesar: { 
+                      totalHargaResponden ?  <NumberFormat value={totalHargaResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/> : 0
                       }
                     </p>
                     <p>
-                      saldo anda: {saldoUser.saldo}
+                      saldo anda: <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
+                    </p>
+                    <hr/>
+                    <p>
+                      kekurangan saldo anda: <NumberFormat value={totalKekurangan} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/>
                     </p>
                   </Alert>
                 </>

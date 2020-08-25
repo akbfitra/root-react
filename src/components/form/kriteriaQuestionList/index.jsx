@@ -34,7 +34,7 @@ export const KriteriaQuestionList = (props) => {
       dataAnswers = []
     } else {
       dataAnswers = pilih.answer
-      console.log('masuuukkk', dataAnswers)
+      
     }
 
     let index = dataAnswers.indexOf(answer);

@@ -232,8 +232,7 @@ const FormSurveyor = (props) => {
   useEffect(() => {
     setDataTanggunganYangBelomDijalankan()
   }, [])
-  console.log(dataTanggunganSurveyor)
-
+  
   let listQuestions = props.survey
 
   const addQuestion = () => {

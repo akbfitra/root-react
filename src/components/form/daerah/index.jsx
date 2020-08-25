@@ -109,16 +109,31 @@ export const ComponentProvinsiDanKota = (props) => {
             <Col md={6} lg={6}>
               <Form.Group>
                 <Form.Label>Kabupaten</Form.Label>
-                <Select
-                  value={listKabKota.filter(obj => selectedValue.includes(obj.value))}
-                  isMulti
-                  name="kota"
-                  options={listKabKota}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                  placeholder="Semua Kabupaten dan Kota"
-                  onChange = { (e) => {onchange(e) ; selectedDaerah(e)}  }
-                />
+                {
+                  listKabKota 
+                  ?
+                    <Select
+                      value={listKabKota.filter(obj => selectedValue.includes(obj.value))}
+                      isMulti
+                      name="kota"
+                      options={listKabKota}
+                      className="basic-multi-select"
+                      classNamePrefix="select"
+                      placeholder="Semua Kabupaten dan Kota"
+                      onChange = { (e) => {onchange(e) ; selectedDaerah(e)}  }
+                    />
+                  :
+                  <Select
+                      // value={listKabKota.filter(obj => selectedValue.includes(obj.value))}
+                      isMulti
+                      name="kota"
+                      // options={listKabKota}
+                      className="basic-multi-select"
+                      classNamePrefix="select"
+                      placeholder="Semua Kabupaten dan Kota"
+                      onChange = { (e) => {onchange(e) ; selectedDaerah(e)}  }
+                    />
+                }
               </Form.Group>
             </Col>
           </Row>

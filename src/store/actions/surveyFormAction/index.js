@@ -369,3 +369,17 @@ export const GET_DATA_TANGGUNGAN_SURVEYOR = () => async dispatch => {
     console.log(err)
   }
 }
+
+export const GET_DATA_TANGGUNGAN_SURVEYOR_EDIT = (studyId) => async dispatch => {
+  try{
+    const { id } = await verifyToken(Cookies.get('test'))
+    const { data } = await axios({
+      method: 'GET',
+      url:`https://backoffice.survplus.id/manajemen_study/cashholderedit/${id}/${studyId}`
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}

@@ -14,17 +14,17 @@ export const QuestionList = (props) => {
   let type = props.question.type
   
   const handleChangeQUestions = (typeQuestion) => {
-    if(typeQuestion === 'Text'){
+    if(typeQuestion === 'TEXT'){
       dispatch(changeQuestionType({
         questionId: props.question._id,
         type: 'TEXT'
       }))
-    } else if(typeQuestion === 'Pilihan Ganda'){
+    } else if(typeQuestion === 'PILIHAN GANDA'){
       dispatch(changeQuestionType({
         questionId: props.question._id,
         type: 'PILIHAN GANDA'
       }))
-    } else if(typeQuestion === 'Kotak Centang'){
+    } else if(typeQuestion === 'KOTAK CENTANG'){
       dispatch(changeQuestionType({
         questionId: props.question._id,
         type: 'KOTAK CENTANG'
@@ -33,7 +33,6 @@ export const QuestionList = (props) => {
   }
   
   const handleDeleteQuestion = () => {
-    console.log(props.question._id)
     dispatch(
       deleteQuestion({
         questionId: props.question._id, 
@@ -77,10 +76,11 @@ export const QuestionList = (props) => {
                       <Form.Group>
                       <Form.Label>Jawaban</Form.Label>
                       <Form.Control as="select" onChange = { (e) => { handleChangeQUestions( e.target.value )} }>
-                        <option value="Text">Teks</option>
-                        <option value="Pilihan Ganda">Pilihan Ganda</option>
+                        <option value= {`${props.question.type}`}> {props.question.type === "KOTAK CENTANG" ? "MULTI SELECT" : props.question.type} </option>
+                        <option value="TEXT">TEXT</option>
+                        <option value="PILIHAN GANDA">PILIHAN GANDA</option>
                         {/* <option value="Text">Teks</option> */}
-                        <option value="Kotak Centang">Multi Select</option>
+                        <option value="KOTAK CENTANG">MULTI SELECT</option>
                       </Form.Control>
                     </Form.Group>
                   </div>
