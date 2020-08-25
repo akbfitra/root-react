@@ -27,12 +27,14 @@ export const KriteriaQuestionList = (props) => {
   let dataAnswers = [] 
 
   const getData = (questionId, answer) => {
+    console.log(props.listAnswerPilih)
     let pilih = props.listAnswerPilih.find((el) => el.questionId === questionId)
-
+    console.log(pilih)
     if(!pilih){
       dataAnswers = []
     } else {
       dataAnswers = pilih.answer
+      console.log('masuuukkk', dataAnswers)
     }
 
     let index = dataAnswers.indexOf(answer);
@@ -69,6 +71,11 @@ export const KriteriaQuestionList = (props) => {
               <Col md={12} lg={12}>
                 {
                   props.dataQuestions.map((data, i) => {
+                    let cekDataAnswerEdit = props.listAnswerPilih.find((el) => el.questionId === data._id)
+                    let dataAnswersEdit = []
+                    if(cekDataAnswerEdit){
+                      dataAnswersEdit = cekDataAnswerEdit.answer
+                    }
                     return(
                       <Row className="m-t-30" key={i}>
                         <Col md={12} lg={12}>
@@ -83,12 +90,13 @@ export const KriteriaQuestionList = (props) => {
                             {/* <Form.Control as="select" onChange={(e) => { getData(data._id, e.target.value)}} > */}
                               {/* <option value= "remove">Semua</option> */}
                               { data.listAnswers.map((answer, i) => {
+                                console.log(dataAnswers)
                                   return(
                                     <Col md={3} lg={3} key={i}>
                                       <Form.Check
                                       key={i}
                                       type="checkbox"
-                                      checked={dataAnswers.some((nama) => nama === data.name)}
+                                      checked={dataAnswersEdit.some((nama) => nama === answer)}
                                       label={`${answer}`}
                                       value={`${answer}`}
                                       onChange={(e) => { getData(data._id, e.target.value)}}

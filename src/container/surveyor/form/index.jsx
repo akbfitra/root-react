@@ -680,8 +680,9 @@ const FormSurveyor = (props) => {
                 {
                           pilihCategories.map((data, i) => {
                             let idCategory = category.find( el => el.name === data )
-                            
+                            console.log(getFilterQuestion)
                             return (
+                              idCategory &&
                               <KriteriaQuestionList 
                                 key = {i}
                                 kriteria = { data }
