@@ -155,22 +155,26 @@ const ListStudy = () => {
 
                     <Row>
                       <Col md={12} lg={12}>
-                        <Link to={`/surveyor/detailstudy/${data._id}`}>
-                          <Button variant="primary">Detail Studi</Button>
-                        </Link>
-                        <br></br>
-                        {
-                          moment(hariIni).format("DD/MM/YYYY") < moment(data.tanggalMulai).format("DD/MM/YYYY")
-                          ?
-                          <>
-                            <Link to={`/surveyor/form/edit/${data._id}`}>
-                              <Button variant="warning">Edit Studi</Button>
+                        <ul className="list-inline">
+                          <li className="list-inline-item">
+                            <Link to={`/surveyor/detailstudy/${data._id}`}>
+                              <Button variant="primary">Detail Studi</Button>
                             </Link>
-                          </>
-                          :
-                          <>
-                          </>
-                        }
+                          </li>
+                          {
+                            moment(hariIni).format("DD/MM/YYYY") < moment(data.tanggalMulai).format("DD/MM/YYYY")
+                            ?
+                            <>
+                              <li className="list-inline-item">|</li>
+                              <Link to={`/surveyor/form/edit/${data._id}`}>
+                                <Button variant="warning">Edit Studi</Button>
+                              </Link>
+                            </>
+                            :
+                            <>
+                            </>
+                          }
+                        </ul>
                       </Col>
                     </Row>
                   </div>

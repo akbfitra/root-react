@@ -336,13 +336,13 @@ const FormSurveyor = (props) => {
         </Row>
         
         <Row>
-          <Col md={{span:8, offset:2}} lg={{span:8, offset:2}}>
-          <Alert variant="success">
+          <Col md={{span:10, offset:1}} lg={{span:10, offset:1}}>
+          <Alert variant="danger">
             <Alert.Heading>Perhatian...</Alert.Heading>
             <p>
               Saldo anda harus mencukupi dengan total jumlah reward dikali dengan jumlah responden yang anda ingikan
             </p>
-            <p>
+            <p style={{color:'red',fontWeight:'bold'}}>
               Jumlah saldo tanggungan anda adalah sebesar { dataTanggunganSurveyor ? 
                                                               <NumberFormat 
                                                                 value={dataTanggunganSurveyor.total} 
@@ -720,7 +720,13 @@ const FormSurveyor = (props) => {
               </Tab>
               
               <Tab eventKey="Simpan" title="Simpan Data" className="m-t-15">
-                <h5>Apakah anda yakin ingin menyimpan data ini ?</h5>
+                <Row>
+                  <Col md={12} lg={12}>
+                    <div className="part-one">
+                      <p>Apakah anda yakin ingin menyimpan data ini ?</p>
+                    </div>
+                  </Col>
+                </Row>
                 <>
                   <Alert show={show} variant="danger" onClose={() => setShow(false)} dismissible>
                     <Alert.Heading>Error?!</Alert.Heading>

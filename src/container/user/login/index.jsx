@@ -85,7 +85,7 @@ const Login = (props) => {
 
           <Col md={6} lg={6} className="part-two">
             <Row>
-              <Col>
+              <Col md={12} lg={12}>
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
@@ -103,7 +103,7 @@ const Login = (props) => {
                     </>
 
                     <Row className="m-t-30">
-                      <Col md={8} lg={8}>
+                      <Col md={12} lg={12}>
                       <Form onSubmit={(e) => {
                           e.preventDefault()
                           processLogin()
