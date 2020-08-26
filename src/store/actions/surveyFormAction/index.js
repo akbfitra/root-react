@@ -383,3 +383,19 @@ export const GET_DATA_TANGGUNGAN_SURVEYOR_EDIT = (studyId) => async dispatch => 
     console.log(err)
   }
 }
+
+export const GET_DATA_TRANSACTIONS_STUDY = (studyId) => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url:`/saldo/${studyId}`,
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      },
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}

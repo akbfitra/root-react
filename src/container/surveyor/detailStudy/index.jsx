@@ -3,13 +3,14 @@ import { useDispatch } from 'react-redux';
 
 import { withRouter, Link, useParams } from 'react-router-dom'
 import moment from 'moment'
+import 'moment/locale/id'
 import { FaDownload } from 'react-icons/fa'
 
 import './css/style.css';
 import { Container, Row, Col, Button, Table, Tabs, Tab, Badge} from 'react-bootstrap'
 import NumberFormat from 'react-number-format';
 
-import { FIND_STUDY_WITH_RESPONDEN_BY_ID, UPDATE_DATA_APPROVAL_RESPONDEN } from '../../../store/actions/surveyFormAction'
+import { FIND_STUDY_WITH_RESPONDEN_BY_ID, UPDATE_DATA_APPROVAL_RESPONDEN, GET_DATA_TRANSACTIONS_STUDY } from '../../../store/actions/surveyFormAction'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -23,6 +24,7 @@ const DetailStudyResponden = (props) => {
   const [ jumlahQuestionsLength, setJumlahQuestionslength ] = useState(0)
   const [ completeUsers, setCompleteUsers ] = useState([])
   const [getChangeData, setGetChangeData ] = useState(false)
+  const [ dataTransactions, setDataTransactions ] = useState([])
 
 
   const getListStudyById = () => {
@@ -35,13 +37,27 @@ const DetailStudyResponden = (props) => {
       })
   }
 
-  console.log(detailStudy)
+  const getDataTransactions = () => {
+    dispatch(GET_DATA_TRANSACTIONS_STUDY(studyId))
+      .then(data => {
+        setDataTransactions(data)
+      })
+  }
+
 
   useEffect( () => {
     if(!detailStudy || getChangeData){
       getListStudyById()
     }
   })
+
+  useEffect(() => {
+    if(!dataTransactions.length || getChangeData){
+      getDataTransactions()
+    }
+  })
+
+  console.log(dataTransactions)
 
   const updatedDataApproval = (idResponden) => {
     setGetChangeData(true)
@@ -298,12 +314,22 @@ const DetailStudyResponden = (props) => {
                             </thead>
 
                             <tbody>
-                              <tr>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                              </tr>
+                              {
+                                dataTransactions.map((data, i) => {
+                                  return(
+                                    <tr key={i}>
+                                      <td> {i + 1} </td>
+                                      <td> { moment(data.createdAt).locale('id').format('Do MMMM YYYY, h:mm:ss ')} </td>
+                                      <td> <NumberFormat value={data.debit} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp '}/> </td>
+                                      <td> 
+                                        {
+                                          data.kode === 'KS1' ? <Badge variant='info'>Reward Responden</Badge> : data.kode === 'FS1' ? <Badge variant='warning'>Fee Survplus</Badge> : '-'
+                                        } 
+                                      </td>
+                                    </tr>
+                                  )
+                                })
+                              }
                             </tbody>
                           </Table>
                         </Col>

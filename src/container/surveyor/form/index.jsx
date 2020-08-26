@@ -268,7 +268,7 @@ const FormSurveyor = (props) => {
   }
 
   const getCounterResponden = (dataQuestion, dataJenisKelamin, dataValueUmurMin, dataValueUmurMax, dataProvinsi, dataKota, kriteria, dataDaerah) => {
-    console.log('aaaaaaaaaa')
+    
     dispatch(COUNTER_RESPONDEN(dataQuestion, dataJenisKelamin, dataValueUmurMin,dataValueUmurMax, dataProvinsi, dataKota, kriteria, dataDaerah))
       .then(data => {
         console.log(data)

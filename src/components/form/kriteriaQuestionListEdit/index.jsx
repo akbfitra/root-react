@@ -66,7 +66,7 @@ export const KriteriaQuestionListEdit = (props) => {
                         <Col md={12} lg={12}>
                           <div className="box-pertanyaan">
                             <div className="left"><h5>{i+1}. </h5></div>
-                            <div className="right"><h5>{data.name}</h5></div>
+                            <div className="right"><h5>{data.tag}</h5></div>
                           </div>
                         </Col>
                         <Col md={12} lg={12}>
