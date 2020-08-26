@@ -131,54 +131,62 @@ const StudyResponden = (props) => {
                               
                             </Col>
                           : data.type === "PILIHAN GANDA" ? 
-                            data.listAnswer.map((dataAnswer, i) => {
-                              return(
-                                <Col md={12} lg={12} key={i}>
-                                  <div className="box-answer">
-                                    <div className="left"></div>
-                                    <div className="right">
-                                    <Button disabled variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} >&nbsp;{dataAnswer.title}</Button>
-                                    </div>
-                                  </div>
-                                </Col>
-                              )
-                            })
+                          <Col md={12} lg={12}>
+                            <div className="box-answer-pilihan">
+                              <ul className="list-inline m-b-15">
+                                {
+                                  data.listAnswer.map((dataAnswer, i) => {
+                                    return(
+                                      <li className="list-inline-item" key={i}>
+                                        <Button disabled variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} >{dataAnswer.title}</Button>
+                                      </li>
+                                    )
+                                  })
+                                }
+                              </ul>
+                            </div>
+                          </Col>
+                            
                           : data.type === "KOTAK CENTANG" ? 
-                          data.listAnswer.map((dataAnswer, i) => {
-                            let dataAnswerUser = data.answer
-                            let indexData = dataAnswerUser.indexOf(dataAnswer.title)
-
-                            console.log(dataAnswerUser, indexData, 'dalam map')
-                            return(
-                              <Col md={12} lg={12} key={i} >
-                                <div className="box-answer m-b-10" >
-                                  <div className="left"></div>
-                                  <div className="right">
-                                    <Button disabled variant={
-                                      // console.log(dataAnswerUser)
-                                      dataAnswerUser[indexData] === dataAnswer.title 
-                                      ?
-                                        "primary" 
-                                      : 
-                                        "outline-dark"
-                                      } 
-                                        onClick={() => {
-                                          let index = dataAnswerUser.indexOf(dataAnswer.title);
-                                          if (index > -1) {
-                                            dataAnswerUser.splice(index, 1);
-                                          }else {
-                                            dataAnswerUser.push(dataAnswer.title)
-                                          }
-                                          // chooseAnswerMulti(dataAnswerUser, data._id)
-                                        }}
-                                    >
-                                      {dataAnswer.title}
-                                    </Button>
-                                  </div>
-                                </div>
-                              </Col>
-                            )
-                          })
+                          <Col md={12} lg={12}>
+                            <div className="box-answer-pilihan">
+                              <ul className="list-inline m-b-15">
+                                {
+                                  data.listAnswer.map((dataAnswer, i) => {
+                                    let dataAnswerUser = data.answer
+                                    let indexData = dataAnswerUser.indexOf(dataAnswer.title)
+        
+                                    console.log(dataAnswerUser, indexData, 'dalam map')
+                                    return(
+                                      <li className="list-inline-item" key={i}>
+                                        <Button disabled variant={
+                                              // console.log(dataAnswerUser)
+                                              dataAnswerUser[indexData] === dataAnswer.title 
+                                              ?
+                                                "primary" 
+                                              : 
+                                                "outline-dark"
+                                              } 
+                                                onClick={() => {
+                                                  let index = dataAnswerUser.indexOf(dataAnswer.title);
+                                                  if (index > -1) {
+                                                    dataAnswerUser.splice(index, 1);
+                                                  }else {
+                                                    dataAnswerUser.push(dataAnswer.title)
+                                                  }
+                                                  // chooseAnswerMulti(dataAnswerUser, data._id)
+                                                }}
+                                            >
+                                              {dataAnswer.title}
+                                            </Button>
+                                      </li>
+                                    )
+                                  })
+                                }
+                              </ul>
+                            </div>
+                          </Col>
+                          
                           :
                           <>
                           </>

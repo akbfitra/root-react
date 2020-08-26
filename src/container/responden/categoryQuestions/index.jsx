@@ -97,42 +97,46 @@ const CategoryQuestions = (props) => {
                                   <div className="right"><h5>{data.name}</h5></div>
                                 </div>
                               </Col>
-
-                              {
+                              
+                              <Col md={12} lg={12}>
+                                <div className="box-answer">
+                                <ul className="list-inline m-b-15">
+                                {
                                 data.listAnswers.map((answers, index) => {
                                   let indexData = dataAnswerUser.indexOf(answers)
                                   return(
-                                    <Col md={12} lg={12} key={index} >
-                                      <div className="box-answer m-b-10" >
-                                        <div className="left"></div>
-                                        <div className="right">
+                                    <li className="list-inline-item">
                                           <Button variant={
-                                            // console.log(dataAnswerUser)
-                                            dataAnswerUser[indexData] === answers 
-                                            ?
-                                            "primary" 
-                                            : "outline-dark"
-                                            } 
-                                            onClick={() => {
-                                              let index = dataAnswerUser.indexOf(answers);
-                                              if (index > -1) {
-                                                dataAnswerUser.splice(index, 1);
-                                              }else {
-                                                dataAnswerUser.push(answers)
-                                              }
-                                              chooseAnswer(dataAnswerUser, data._id)
-                                            }}
-                                          >
-                                            {answers}
+                                              // console.log(dataAnswerUser)
+                                              dataAnswerUser[indexData] === answers 
+                                              ?
+                                              "primary" 
+                                              : "outline-dark"
+                                              } 
+                                              onClick={() => {
+                                                let index = dataAnswerUser.indexOf(answers);
+                                                if (index > -1) {
+                                                  dataAnswerUser.splice(index, 1);
+                                                }else {
+                                                  dataAnswerUser.push(answers)
+                                                }
+                                                chooseAnswer(dataAnswerUser, data._id)
+                                              }}
+                                            >
+                                              {answers}
                                           </Button>
-                                        </div>
-                                      </div>
-                                    </Col>
+                                        </li>
+                                    
                                   )
                                 }
 
                                 )
                               }
+                                </ul>
+                                
+                                </div>
+                              </Col>
+                              
                             </Row>
                           )
                         }

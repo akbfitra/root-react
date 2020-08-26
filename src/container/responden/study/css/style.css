@@ -499,14 +499,20 @@ p{
 }
 
 #study .part-one .box-answer .left{
-  width: 3%;
+  width: 30px;
+  /* background-color: yellow; */
 }
 
 #study .part-one .box-answer .right{
-  width: 97%;
+  /* width: 97%; */
+  /* background-color: red; */
 }
 
 #study .part-one .box-answer .right button{
   margin-bottom: 15px;
+}
+
+#study .part-one .box-answer-pilihan{
+  padding-left: 30px;
 }
 /* ======================================== end study-responden ============================================= */

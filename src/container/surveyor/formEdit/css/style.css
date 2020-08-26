@@ -487,15 +487,15 @@ p{
 }
 
 #form-surveyor .part-one .box-pertanyaan .left{
-  width: 3%;
+  width: 30px;
 }
 
 #form-surveyor .part-one .box-pertanyaan .right{
-  width: 97%;
+  /* width: 97%; */
 }
 
 #form-surveyor .part-one .box-answer{
   width: 100%;
-  padding-left: 3%;
+  padding-left: 30px;
 }
 /* ======================================== end form-suveyor ============================================= */

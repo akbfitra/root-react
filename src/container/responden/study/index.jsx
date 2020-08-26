@@ -147,18 +147,23 @@ const StudyResponden = (props) => {
                               
                             </Col>
                           : data.type === "PILIHAN GANDA" ? 
-                            data.listAnswer.map((dataAnswer, i) => {
-                              return(
-                                <Col md={12} lg={12} key={i}>
-                                  <div className="box-answer">
-                                    <div className="left"></div>
-                                    <div className="right">
-                                    <Button variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} onClick={() => chooseAnswer(dataAnswer.title, data._id)}>&nbsp;{dataAnswer.title}</Button>
-                                    </div>
-                                  </div>
-                                </Col>
-                              )
-                            })
+                          <Col md={12} lg={12}>
+                            <div className="box-answer-pilihan">
+                              <ul className="list-inline m-b-15">
+                                {
+                                  data.listAnswer.map((dataAnswer, i) => {
+                                    return(
+                                      <li className="list-inline-item" key={i}>
+                                        <Button variant={data.answer === dataAnswer.title ? "primary" : "outline-dark"} onClick={() => chooseAnswer(dataAnswer.title, data._id)}>{dataAnswer.title}</Button>
+                                      </li>
+                                      
+                                    )
+                                  })
+                                }
+                              </ul>
+                            </div>
+                          </Col>
+                            
                           : data.type === "KOTAK CENTANG" ? 
                           data.listAnswer.map((dataAnswer, i) => {
                             let dataAnswerUser = data.answer
