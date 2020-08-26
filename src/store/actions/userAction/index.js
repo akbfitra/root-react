@@ -323,3 +323,19 @@ export const GET_DATA_TARIK_SALDO_RESPONDEN = (norekening, bank, jumlah) => asyn
     throw err.response.data.message
   }
 }
+
+export const GET_DATA_NOTIFICATION = () => async dispatch => {
+  try{
+    const { data } = await instance({
+      method: 'GET',
+      url: '/notification',
+      headers:{
+        "accesstoken": `${Cookies.get('test')}`
+      }
+    })
+    return data
+  }
+  catch(err){
+    console.log(err)
+  }
+}
