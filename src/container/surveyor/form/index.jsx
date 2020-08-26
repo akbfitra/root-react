@@ -335,14 +335,14 @@ const FormSurveyor = (props) => {
         </Row>
         
         <Row>
-          <Col md={{span:10, offset:1}} lg={{span:10, offset:1}}>
+          <Col md={12} lg={12}>
           <Alert variant="danger">
             <Alert.Heading>Perhatian...</Alert.Heading>
             <p>
               Saldo anda harus mencukupi dengan total jumlah reward dikali dengan jumlah responden yang anda ingikan
             </p>
             <p style={{color:'red',fontWeight:'bold'}}>
-              Jumlah saldo tanggungan anda adalah sebesar { dataTanggunganSurveyor ? 
+              Jumlah saldo tanggungan survey anda sebelumnya sebesar { dataTanggunganSurveyor ? 
                                                               <NumberFormat 
                                                                 value={dataTanggunganSurveyor.total} 
                                                                 displayType={'text'} 
@@ -580,7 +580,7 @@ const FormSurveyor = (props) => {
                 <Row>
                   <Col md={12} lg={12}>
                     <div className="part-one">
-                      <Row>
+                      
 
                         {/* pilih kriteria */}
                         <Form.Group>
@@ -670,11 +670,25 @@ const FormSurveyor = (props) => {
                               </li>
                             </ul>
                           </Col>  */}
-                      </Row>
+                      
                     </div>
                   </Col>
                 </Row>
+                
+                <Row>
+                  <Col md={12} lg={12}>
+                    <hr></hr>
+                  </Col>
+                </Row>
 
+                <Row style={{position: 'sticky', top:'0', zIndex: '1'}}>
+                  <Col md={12} lg={12}>
+                  <Alert variant="primary" style={{marginBottom:'0px'}}>
+                    <Alert.Heading  style={{marginBottom:'0px', marginTop:'0px'}} className="text-center"><span>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </span></Alert.Heading>
+                    
+                  </Alert>
+                  </Col>
+                </Row>
 
                 {
                           pilihCategories.map((data, i) => {
@@ -695,14 +709,7 @@ const FormSurveyor = (props) => {
                             )
                           })
                         }
-                <Row className="m-t-30">
-                  <Col md={{ span: 6, offset:3}} lg={{ span: 6, offset:3}}>
-                    <div style={{width:'100%',backgroundColor:'#1f59bb',padding:'15px',borderRadius:'8px'}}>
-                      <h4 className="text-center" style={{color:'white'}}>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </h4>
-                      
-                    </div>
-                  </Col>
-                </Row>
+                
               </Tab>
               
               <Tab eventKey="Question" title="Pertanyaan Studi" className="m-t-15">

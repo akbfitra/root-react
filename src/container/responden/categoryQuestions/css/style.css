@@ -467,17 +467,22 @@ p{
 }
 
 #pertanyaan-responden .part-one .box-pertanyaan .left{
-  width: 3%;
+  width: 30px;
 }
 
 #pertanyaan-responden .part-one .box-pertanyaan .right{
-  width: 97%;
+  /* width: 97%; */
 }
 
 #pertanyaan-responden .part-one .box-answer{
-  width: 100%;
-  padding-left: 3%;
+  /* width: 100%; */
+  padding-left: 30px;
   /* margin-top: 15px; */
+  /* background-color: yellow; */
+}
+
+#pertanyaan-responden .part-one .box-answer ul li{
+  margin-bottom: 10px;
 }
 
 /* ======================================== end pertanyaan-responden ============================================= */
