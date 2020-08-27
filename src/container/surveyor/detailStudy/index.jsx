@@ -49,13 +49,13 @@ const DetailStudyResponden = (props) => {
     if(!detailStudy || getChangeData){
       getListStudyById()
     }
-  })
+  },[])
 
   useEffect(() => {
     if(!dataTransactions.length || getChangeData){
       getDataTransactions()
     }
-  })
+  },[])
 
   console.log(dataTransactions)
 
@@ -198,6 +198,7 @@ const DetailStudyResponden = (props) => {
                                         return(
                                           <>
                                             {
+                                              data['kabKota'].length ? 
                                               data['kabKota'].map((dataKota, i) => {
                                                 return(
                                                   <>
@@ -205,6 +206,10 @@ const DetailStudyResponden = (props) => {
                                                   </>
                                                 )
                                               }).reduce((prev, curr) => [prev, ', ', curr])
+                                              :
+                                              <>
+                                              semua
+                                              </>
                                             }
                                           </>
                                         )
@@ -218,7 +223,7 @@ const DetailStudyResponden = (props) => {
                                 <tr>
                                   <td>Ketertarikan</td>
                                   <td>:</td>
-                                  <td> { detailStudy ? detailStudy.kriteria.join(', ') : '-'} </td>
+                                  <td> { detailStudy.length ? detailStudy.kriteria.join(', ') : 'Semua Kriteria'} </td>
                                 </tr>
                               </tbody>
                             </Table>
@@ -315,6 +320,8 @@ const DetailStudyResponden = (props) => {
 
                             <tbody>
                               {
+                                dataTransactions.length 
+                                ?
                                 dataTransactions.map((data, i) => {
                                   return(
                                     <tr key={i}>
@@ -329,6 +336,13 @@ const DetailStudyResponden = (props) => {
                                     </tr>
                                   )
                                 })
+                                :
+                                <tr >
+                                  <td> - </td>
+                                  <td> - </td>
+                                  <td> - </td>
+                                  <td> -  </td>
+                                </tr>
                               }
                             </tbody>
                           </Table>

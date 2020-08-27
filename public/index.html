@@ -39,10 +39,19 @@
     
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script src="https://storage.googleapis.com/f8a350-taplive-prd-public/static/launcher/web/v1.0/main.js"></script>
-    <script>
-        TapTalkLive.init("0e82d43ab4972ae057c7e437450dcb6916a79bb57024706a1684aebd1a7402b0");
-        TapTalkLive.setBrandColor(55,165,215); //your r,g,b color code 
-    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <div id="ChitchatWidget"></div>
+    <script language="javascript"> 
+      var set = new Array(); set["c_project"] = "159846878656037998"; 
+      set["c_button_float_bg"] = "#5be3fb"; 
+      set["c_button_float_title"] = "Surv-BOT"; 
+      set["c_float_bg"] = "#3ea0d0"; set["c_float_title"] = "Survplus"; 
+      set["c_float_title_color"] = "#ffffff"; set["c_float_image"] = ""; 
+      (function(i,s,o,g,r,a,m){
+        i["chitchat"]=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })
+        (window,document,"script","https://chitchat.web.id/widget/js/chitchat.js?v=V021925", set);
+      </script>
   </body>
 </html>

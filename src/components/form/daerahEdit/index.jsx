@@ -108,7 +108,7 @@ export const ComponentProvinsiDanKotaEdit = (props) => {
               <Form.Group>
                 <Form.Label>Provinsi</Form.Label>
                   <Form.Control as="select" onChange={ (e) => {processSelectProvinsi(e.target.value); }} required>
-                  <option value={`${props.dataEdit.provinsi}`}> {props.dataEdit.provinsi} </option>
+                  <option value={`${props.dataEdit.provinsi}`}> {props.dataEdit.provinsi === ''? 'Semua' : props.dataEdit.provinsi } </option>
                   { 
                     !props.dataProvinsi 
                     ? 

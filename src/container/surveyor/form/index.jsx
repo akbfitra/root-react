@@ -555,22 +555,33 @@ const FormSurveyor = (props) => {
                   </Col>
                 </Row>
                 {
-                    pilihDaerah.map((data,i) => {
-                      
-                      return (
-                        <ComponentProvinsiDanKota
-                          key={data.index}
-                          dataProvinsi = { listProvinsi }
-                          dataIndex = { data.index }
-                          selectProvinsi = {(e) => {processSelectProvinsi(e)}}
-                          selectDataDaerah={(e) => {handlePilihDaerah(e)}}
-                        />
-                      )
-                    })
+                  pilihDaerah.map((data,i) => {
                     
-                  }
+                    return (
+                      <ComponentProvinsiDanKota
+                        key={data.index}
+                        dataProvinsi = { listProvinsi }
+                        dataIndex = { data.index }
+                        selectProvinsi = {(e) => {processSelectProvinsi(e)}}
+                        selectDataDaerah={(e) => {handlePilihDaerah(e)}}
+                      />
+                    )
+                  })
+                }
 
-                <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                {
+                  pilihDaerah.length && pilihDaerah[pilihDaerah.length-1].provinsi
+                  ?
+                  <>
+                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                  </>
+                  :
+                  !pilihDaerah.length ?
+                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                  :
+                  <>
+                  </>
+                }
                 <Row>
                   <Col md={12} lg={12}>
                     <hr></hr>

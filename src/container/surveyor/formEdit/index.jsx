@@ -621,8 +621,21 @@ const FormSurveyorEdit = (props) => {
                     })
                     
                   }
+                
+                {
+                  pilihDaerah.length && pilihDaerah[pilihDaerah.length-1].provinsi
+                  ?
+                  <>
+                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                  </>
+                  :
+                  !pilihDaerah.length ?
+                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                  :
+                  <>
+                  </>
+                }
 
-                <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
                 <Row>
                   <Col md={12} lg={12}>
                     <hr></hr>
