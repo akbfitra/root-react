@@ -301,8 +301,6 @@ const FormSurveyor = (props) => {
       })
   }
 
-  console.log(getFilterQuestion)
-
 
   return(
     <>

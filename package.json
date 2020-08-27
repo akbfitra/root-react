@@ -37,7 +37,8 @@
     "redux-form-validators": "^3.3.2",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "watch": "^1.0.2"
   },
   "scripts": {
     "start": "PORT=8888 react-scripts start",

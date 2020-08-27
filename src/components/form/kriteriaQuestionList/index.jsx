@@ -97,7 +97,7 @@ export const KriteriaQuestionList = (props) => {
                               data.listAnswers.map((answer, i) => {
                               console.log(dataAnswers)
                                 return(
-                                  <Col md={3} lg={3}>
+                                  <Col md={3} lg={3} key={i}>
                                     <Form.Check
                                         key={i}
                                         type="checkbox"

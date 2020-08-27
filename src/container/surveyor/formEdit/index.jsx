@@ -795,6 +795,7 @@ const FormSurveyorEdit = (props) => {
 export const FormSurveyorEditForm = reduxForm({
   form: 'surveyForm',
   enableReinitialize: true,
+  keepDirtyOnReinitialize: true,
   shouldValidate: () => true // Due to bug https://github.com/erikras/redux-form/issues/3276
 })(FormSurveyorEdit);
 
