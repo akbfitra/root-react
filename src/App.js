@@ -44,6 +44,7 @@ import EditProfileResponden from './container/responden/editProfile'
 import TarikSaldo from './container/responden/tarikSaldo'
 import StudyCompletedResponden from './container/responden/studyCompleted'
 import EditPasswordResponden from './container/responden/editPassword'
+import Notification from './container/responden/notification'
 
 import { CekLogin } from './store/actions/userAction'
 
@@ -75,6 +76,7 @@ const App = () => {
       <PrivateRouteSurveyor path = '/surveyor/profile' component = {ProfileSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup/checkout' component = {CheckOutTopSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/topup' component = {TopUpSurveyor}/>
+      <PrivateRouteSurveyor path = '/surveyor/notification' component = {Notification}/>
       <PrivateRouteSurveyor path = '/surveyor' component = {DashboardSurveyor}/>
 
       <PrivateRouteResponden path = '/responden/aboutus' component = {AboutUsResponden}/>
@@ -88,6 +90,7 @@ const App = () => {
       <PrivateRouteResponden path = '/responden/submission' component = {SubmissionResponden}/>
       <PrivateRouteResponden path = '/responden/ticket' component = {TicketResponden}/>
       <PrivateRouteResponden path = '/responden/tariksaldo' component = {TarikSaldo}/>
+      <PrivateRouteResponden path = '/responden/notification' component = {Notification}/>
       <PrivateRouteResponden path = '/responden' component = {DashboardResponden} />
       <Route exact path ='/' component = {LandingPage}/>
       <Redirect from = '*' to= '/'/>

@@ -85,7 +85,13 @@ export const Navbar = (props) => {
                                       {
                                         notification.map((data, i) => {
                                           return(
-                                            <Dropdown.Item key={`${i}`}> {data.content} </Dropdown.Item>
+                                            <>
+                                                <Dropdown.Item key={`${i}`}>
+                                                  <Link to = {`/${role}/notification`}>
+                                                    {data.content} 
+                                                  </Link>
+                                                </Dropdown.Item>
+                                            </>
                                             
                                           )
                                         })
@@ -135,9 +141,21 @@ export const Navbar = (props) => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item onClick = { (e) => { 
-                          e.preventDefault()
-                          }} > Notification  <div style={{height:'20px', width:'20px', backgroundColor: 'red'}}> {notification.length} </div></Dropdown.Item>
+                          {
+                            notification.length 
+                            ?
+                              <Dropdown.Item> 
+                                <Link to = {`/${role}/notification`}>
+                                  Notification  
+                                  <div style={{height:'20px', width:'20px', backgroundColor: 'red'}}> 
+                                    {notification.length} 
+                                  </div>
+                                </Link>
+                              </Dropdown.Item>
+                            : 
+                            <></>
+
+                          }
                           <Dropdown.Item onClick = { (e) => { 
                               e.preventDefault()
                               processLogout() }} >Logout</Dropdown.Item>
@@ -164,9 +182,20 @@ export const Navbar = (props) => {
                             <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /> ,-</p>
                         </Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item onClick = { (e) => { 
-                          e.preventDefault()
-                          }} >Notification</Dropdown.Item>
+                            {
+                              notification.length 
+                              ?
+                              <Dropdown.Item> 
+                                <Link to = {`/${role}/notification`}>
+                                  Notification  
+                                  <div style={{height:'20px', width:'20px', backgroundColor: 'red'}}> 
+                                    {notification.length} 
+                                  </div>
+                                </Link>
+                              </Dropdown.Item>
+                              : 
+                              <></>
+                            }
                           <Dropdown.Item onClick = { (e) => { 
                               e.preventDefault()
                               processLogout() }} >Logout</Dropdown.Item>
