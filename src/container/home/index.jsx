@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom';
 
 import './css/style.css';
-import { Button, Container, Row, Col, Tab, Nav, Accordion, Card } from 'react-bootstrap';
+import { Button, Container, Row, Col, Tab, Nav, Accordion, Card, DropdownButton, Dropdown } from 'react-bootstrap';
 import Slider from "react-slick";
 import ReactPlayer from 'react-player'
 
@@ -142,7 +142,7 @@ const LandingPage = () => {
         <div className="main-header-two">
           <Container>
             <Row>
-              <Col xs={6} sm={6} md={8} lg={8} className="part-one">
+              <Col xs={6} sm={6} md={5} lg={5} className="part-one">
                 <Link to='/'>
                 <div className="table-100">
                   <div className="table-row">
@@ -157,13 +157,45 @@ const LandingPage = () => {
                 </div>
                 </Link>
               </Col>
-              <Col xs={6} sm={6} md={4} lg={4} className="part-two">
+              <Col xs={6} sm={6} md={7} lg={7} className="part-two">
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
-                    <Link to ='/login'>
-                    <Button variant="primary" className="float-right">LOGIN</Button>
-                    </Link>
+                    <ul className="list-inline float-right m-b-0 d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+                      <li className="list-inline-item">
+                      <Link to ='/surveyor/register'>
+                        <Button Button variant="primary" className="float-right">DAFTAR SURVEYOR</Button>
+                      </Link>
+                      </li>
+
+                      {/* <li className="list-inline-item">|</li> */}
+
+                      <li className="list-inline-item">
+                      <Link to ='/register'>
+                        <Button variant="primary" className="float-right">DAFTAR RESPONDEN</Button>
+                      </Link>
+                      </li>
+
+                      {/* <li className="list-inline-item">|</li> */}
+
+                      <li className="list-inline-item">
+                      <Link to ='/login'>
+                        <Button variant="primary" className="float-right">LOGIN</Button>
+                      </Link>
+                      </li>
+                    </ul>
+                    
+                    <DropdownButton
+                      alignRight
+                      title="Login & Daftar"
+                      id="dropdown-menu-align-right"
+                      className="float-right d-none d-none d-sm-block d-md-none d-block d-sm-none"
+                    >
+                      <Dropdown.Item eventKey="1"><Link to ='/login'>Login</Link></Dropdown.Item>
+                      <Dropdown.Item eventKey="2"><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
+                      <Dropdown.Item eventKey="3"><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
+                    </DropdownButton>
+                    
                     </div>
                   </div>
                 </div>
@@ -172,7 +204,8 @@ const LandingPage = () => {
           </Container>
         </div>
         
-        <div className="main-header-one">
+        
+        <div className="main-header-one" style={{paddingTop:'30px'}}>
           <Container>
             <Row>
               <Col md={7} lg={7} className="part-one">
@@ -203,7 +236,7 @@ const LandingPage = () => {
       </div>
 
 
-      <div id="section-three">
+      {/* <div id="section-three">
         <Container>
           <Row>
             <Col md={12} lg={12}>
@@ -223,39 +256,11 @@ const LandingPage = () => {
                     )
                   })
                 }
-
-                {/* <div>
-                  <img src="images/HRV.png"></img>
-                </div>
-
-                <div>
-                  <img src="images/TJD.png"></img>
-                </div>
-
-                <div>
-                  <img src="images/HRV.png"></img>
-                </div>
-
-                <div>
-                  <img src="images/TJD.png"></img>
-                </div>
-
-                <div>
-                  <img src="images/HRV.png"></img>
-                </div>
-
-                <div>
-                  <img src="images/TJD.png"></img>
-                </div>
-
-                <div>
-                  <img src="images/HRV.png"></img>
-                </div> */}
               </Slider>
             </Col>
           </Row>
         </Container>
-      </div>
+      </div> */}
       
       <div id="section-one">
         <Container>
