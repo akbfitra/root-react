@@ -223,7 +223,7 @@ const DetailStudyResponden = (props) => {
                                 <tr>
                                   <td>Ketertarikan</td>
                                   <td>:</td>
-                                  <td> { detailStudy.length ? detailStudy.kriteria.join(', ') : 'Semua Kriteria'} </td>
+                                  <td> { detailStudy.kriteria.length ? detailStudy.kriteria.join(', ') : 'Semua Kriteria'} </td>
                                 </tr>
                               </tbody>
                             </Table>
