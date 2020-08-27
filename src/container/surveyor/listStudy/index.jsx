@@ -83,8 +83,14 @@ const ListStudy = () => {
                           Sudah Terverifikasi Admin
                         </Badge>
                         :
+                        data.isVerified === 'x'
+                        ?
                         <Badge pill variant="secondary">
-                          Sedang diverifikasi Admin
+                          Ditolak oleh Admin
+                        </Badge>
+                        :
+                        <Badge pill variant="secondary">
+                          Sedang Diverifikasi Admin
                         </Badge>
                       }
 
