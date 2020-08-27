@@ -5,6 +5,7 @@ import { Form } from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
+import subDays from "date-fns/subDays"
 
 export const FormInput = ({meta, type, input, placeholder}) => {
   const inputSyle = classnames('input', {
@@ -41,7 +42,7 @@ export const FormInput = ({meta, type, input, placeholder}) => {
 export const renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => {
   return(
     <div>
-      <DatePicker {...input} dateFormat="dd/MM/yyyy" minDate={new Date()} selected={input.value ? input.value : new Date()} />
+      <DatePicker {...input} dateFormat="dd/MM/yyyy" minDate={subDays(new Date(), -3)} selected={input.value ? input.value : new Date()} />
       {touched && error && <span>{error}</span>}
     </div>
   )
