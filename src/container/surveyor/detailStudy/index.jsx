@@ -64,6 +64,7 @@ const DetailStudyResponden = (props) => {
     dispatch(UPDATE_DATA_APPROVAL_RESPONDEN(studyId, idResponden))
   }
 
+  console.log(detailStudy)
 
 
   return(
@@ -219,11 +220,12 @@ const DetailStudyResponden = (props) => {
                                     } 
                                   </td>
                                 </tr>
-
+                                
+                                
                                 <tr>
                                   <td>Ketertarikan</td>
                                   <td>:</td>
-                                  <td> { detailStudy.kriteria.length ? detailStudy.kriteria.join(', ') : 'Semua Kriteria'} </td>
+                                  <td> { detailStudy && detailStudy.kriteria.length ? detailStudy.kriteria.join(', ') : '-'} </td>
                                 </tr>
                               </tbody>
                             </Table>

@@ -73,7 +73,8 @@ const FormSurveyorEdit = (props) => {
   const [ totalKekurangan, setTotalKekurangan ] = useState(0)
   const [ dataTanggunganSurveyor, setDataTanggunganSurveyor ] = useState([])
 
-  console.log(saldoUser)
+
+  
 
 
   // let listKota = useSelector( state => state.tempat.tempat.kota)

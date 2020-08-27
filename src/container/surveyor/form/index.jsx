@@ -76,7 +76,6 @@ const FormSurveyor = (props) => {
   //   // setValue({ min: stateStudy.min, max:stateStudy.max })
   // }
 
-
   const dapetinSaldo = () => {
     dispatch(GET_SALDO())
       .then(data => {

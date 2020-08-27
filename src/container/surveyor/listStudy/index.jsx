@@ -85,7 +85,7 @@ const ListStudy = () => {
                         :
                         data.isVerified === 'x'
                         ?
-                        <Badge pill variant="secondary">
+                        <Badge pill variant="danger">
                           Ditolak oleh Admin
                         </Badge>
                         :
