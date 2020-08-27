@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter, Link, useParams } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './css/style.css';
 import {Container, Row, Col, Button } from 'react-bootstrap'
@@ -40,7 +42,15 @@ const CategoryQuestions = (props) => {
   })
 
   const chooseAnswer = (answer, questionId) => {
-    console.log(answer)
+    toast.info('👌👌👌Anda Mengganti Jawaban!!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
     dispatch(createAnswer(answer, questionId, categoryId))
     setGetChangeData(true)
   }
@@ -152,6 +162,8 @@ const CategoryQuestions = (props) => {
       </Container>
       </div>
       <Footer/>
+
+      <ToastContainer />
     </>
   )
 }
