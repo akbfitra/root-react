@@ -40,9 +40,10 @@ export const FormInput = ({meta, type, input, placeholder}) => {
 };
 
 export const renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => {
+  
   return(
     <div>
-      <DatePicker {...input} dateFormat="dd/MM/yyyy" minDate={subDays(new Date(), -3)} selected={input.value ? input.value : new Date()} />
+      <DatePicker {...input} dateFormat="dd/MM/yyyy" minDate={subDays(new Date(), -3)} selected={input.value ? Date.parse(input.value) : null} />
       {touched && error && <span>{error}</span>}
     </div>
   )

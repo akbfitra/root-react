@@ -34,6 +34,9 @@ const ListStudy = () => {
   }
 
   console.log(dataSurvey)
+  
+  let a = moment(hariIni);
+  let b = moment([2007, 0, 28]);
 
   return(
     <>
@@ -168,7 +171,8 @@ const ListStudy = () => {
                             </Link>
                           </li>
                           {
-                            moment(hariIni).format("DD/MM/YYYY") < moment(data.tanggalMulai).format("DD/MM/YYYY")
+                          
+                            (moment(hariIni) < moment(data.tanggalMulai)) && data.isVerified === 'false'
                             ?
                             <>
                               <li className="list-inline-item">|</li>
