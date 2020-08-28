@@ -1,11 +1,11 @@
-import { instance } from '../../../config/axios'
+import { instanceBackOffice } from '../../../config/axios'
 import axios from 'axios'
 
 export const dataProvinsi = () => async dispatch => {
   try{
-    const { data } = await axios({
+    const { data } = await instanceBackOffice({
       method: 'GET',
-      url: 'https://backoffice.survplus.id/get_prov'
+      url: '/get_prov'
     })
     dispatch({type: 'DATA_PROVINSI', payload: data})
     return data
@@ -18,9 +18,9 @@ export const dataProvinsi = () => async dispatch => {
 export const dataKota = (idProvinsi) => async dispatch => {
   try{
     console.log(idProvinsi)
-    const { data } = await axios({
+    const { data } = await instanceBackOffice({
       method: 'GET',
-      url: `https://backoffice.survplus.id/get_kab/${idProvinsi}`
+      url: `/get_kab/${idProvinsi}`
     })
     dispatch({type: 'DATA_KOTA', payload: data})
 

@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie'
 import {v4} from 'uuid';
 import { normalize } from 'normalizr';
-import { instance } from '../../../config/axios'
-import axios from 'axios'
+import { instance, instanceBackOffice } from '../../../config/axios'
+// import axios from 'axios'
 import {getDenormalizedSurvey} from '../../selectors/denormalizesurvey'
 import { verifyToken } from '../../../config/jwt'
 import survey from '../../models/schema';
@@ -137,9 +137,9 @@ export const FIND_STUDY_USER = () => async dispatch  => {
 export const FIND_STUDY_WITH_RESPONDEN = () => async dispatch => {
   try{
     const { id } = await verifyToken(Cookies.get('test'))
-    const { data } = await axios({
+    const { data } = await instanceBackOffice({
       method: 'GET',
-      url:`https://backoffice.survplus.id/manajemen_responden/getProject/${id}`,
+      url:`/manajemen_responden/getProject/${id}`,
       // headers:{
       //   "accesstoken": `${Cookies.get('test')}`
       // }
@@ -271,9 +271,9 @@ export const COUNTER_RESPONDEN = ( answerKriteria,jenisKelamin, umurMin, umurMax
     } else {
       daerah = daerah
     }
-    const { data } = await axios({
+    const { data } = await instanceBackOffice({
       method: 'POST',
-      url: `https://backoffice.survplus.id/manajemen_responden/counter/`,
+      url: `/manajemen_responden/counter/`,
       data: {
         jenisKelamin, umurMin, umurMax, provinsi, kota, answerKriteria, kriteria, daerah
       }
@@ -342,9 +342,9 @@ export const UPDATE_DATA_REJECT_RESPONDEN_PAGE = (idStudy, idResponden,alasan, h
 export const GET_DATA_ONGOING_RESPONDEN = () => async dispatch => {
   try{
     const { id } = await verifyToken(Cookies.get('test'))
-    const { data } = await axios({
+    const { data } = await instanceBackOffice({
       method: 'GET',
-      url:`https://backoffice.survplus.id/manajemen_responden/getOnGoingProject/${id}`,
+      url:`/manajemen_responden/getOnGoingProject/${id}`,
       // headers:{
       //   "accesstoken": `${Cookies.get('test')}`
       // }
@@ -359,9 +359,9 @@ export const GET_DATA_ONGOING_RESPONDEN = () => async dispatch => {
 export const GET_DATA_TANGGUNGAN_SURVEYOR = () => async dispatch => {
   try{
     const { id } = await verifyToken(Cookies.get('test'))
-    const { data } = await axios({
+    const { data } = await instanceBackOffice({
       method: 'GET',
-      url:`https://backoffice.survplus.id/manajemen_study/cashholder/${id}`
+      url:`/manajemen_study/cashholder/${id}`
     })
     return data
   }
@@ -373,9 +373,9 @@ export const GET_DATA_TANGGUNGAN_SURVEYOR = () => async dispatch => {
 export const GET_DATA_TANGGUNGAN_SURVEYOR_EDIT = (studyId) => async dispatch => {
   try{
     const { id } = await verifyToken(Cookies.get('test'))
-    const { data } = await axios({
+    const { data } = await instanceBackOffice({
       method: 'GET',
-      url:`https://backoffice.survplus.id/manajemen_study/cashholderedit/${id}/${studyId}`
+      url:`/manajemen_study/cashholderedit/${id}/${studyId}`
     })
     return data
   }
