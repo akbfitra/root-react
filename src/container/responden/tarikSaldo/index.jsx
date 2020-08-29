@@ -37,7 +37,7 @@ const TarikSaldo = (props) => {
   // const [ jumlahTarikSaldo, setJumlahTarikSaldo ] = useState(0)
 
 
-  const [ getDataTarikSaldo, setGetDataTarikSaldo ] = useState([])
+  const [ getDataTarikSaldo, setGetDataTarikSaldo ] = useState('')
 
   const [validated, setValidated] = useState(false);
   const [ errs, setErrs] = useState('') 
@@ -95,12 +95,10 @@ const TarikSaldo = (props) => {
 
 
   useEffect(() => {
-    if(!getDataTarikSaldo.length || changeData){
+    if(!getDataTarikSaldo || changeData){
       processGetDataSaldo()
     }
   })
-
-  console.log(getDataTarikSaldo)
 
 
 

@@ -13,10 +13,10 @@ const AboutUsResponden = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const [category, setCategory ] = useState([])
+  const [category, setCategory ] = useState('')
   const [dataAnswerUser, setDataAnswerUser ] = useState([])
   const [ ketertarikan, setKetertarikan ] = useState([])
-  const [ kriteria, setKriteria ] = useState([])
+  const [ kriteria, setKriteria ] = useState('')
   const [changeData, setChangeData ] = useState(false)
 
   const [show, setShow] = useState(false);
@@ -54,7 +54,6 @@ const AboutUsResponden = (props) => {
       setKriteria(kriteria.filter(item => item !== data))
     }
   }
-
   
   const getDataProfile = () => {
       dispatch(dataProfileUser())
@@ -82,7 +81,7 @@ const AboutUsResponden = (props) => {
   }
 
   useEffect(() => {
-    if(!kriteria.length || changeData){
+    if(!kriteria || changeData){
       getDataProfile()
     }
   }, [])
@@ -94,7 +93,7 @@ const AboutUsResponden = (props) => {
   },[])
 
   useEffect(() => {
-    if(!category.length || changeData){
+    if(!category || changeData){
       getCategory()
     }
   })
@@ -147,7 +146,7 @@ const AboutUsResponden = (props) => {
         </Row>
         <Row>
           {
-            category.map( (data, i) => {
+            category && category.map( (data, i) => {
               let dataAnswer
 
               dataAnswerUser ?
@@ -179,13 +178,13 @@ const AboutUsResponden = (props) => {
             <Form.Group>
               <Row>
                 {
-                  ketertarikan
+                  ketertarikan && ketertarikan
                     .map((data, i) => {
                     return(
                       <Col md={4} lg={4} key={i}>
                         <Form.Check
                           type="checkbox"
-                          checked={kriteria.some((nama) => nama === data.name)}
+                          checked={ kriteria && kriteria.some((nama) => nama === data.name) }
                           label={`${data.name}`}
                           value={`${data.name}`}
                           onChange={ (e) => {handlePilihKriteria(e.target.value)}}

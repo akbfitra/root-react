@@ -31,7 +31,6 @@ export const Navbar = (props) => {
       })
   }
 
-  console.log(notification)
   const dapetinNotification = () => {
     dispatch(GET_DATA_NOTIFICATION())
       .then( data => {
@@ -41,11 +40,13 @@ export const Navbar = (props) => {
 
   useEffect(() => {
     dapetinSaldo()
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     dapetinNotification()
-  }, [])
+  }, [dispatch])
+
+
 
   return(
     <>
@@ -85,13 +86,13 @@ export const Navbar = (props) => {
                                       {
                                         notification.map((data, i) => {
                                           return(
-                                            <>
+                                            
                                                 <Dropdown.Item key={`${i}`}>
                                                   <Link to = {`/${role}/notification`}>
                                                     {data.content} 
                                                   </Link>
                                                 </Dropdown.Item>
-                                            </>
+                                          
                                             
                                           )
                                         })

@@ -33,11 +33,6 @@ const ListStudy = () => {
       })
   }
 
-  console.log(dataSurvey)
-  
-  let a = moment(hariIni);
-  let b = moment([2007, 0, 28]);
-
   return(
     <>
       <Navbar/>
