@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const instance = axios.create({
-  baseURL: 'https://backend.survplus.id'
+  baseURL: 'http://149.129.240.254:8889'
 })
 
 export const instanceTempat = axios.create({
@@ -9,7 +9,7 @@ export const instanceTempat = axios.create({
 })
 
 export const instanceBackOffice = axios.create({
-  baseURL: 'https://backoffice.survplus.id'
+  baseURL: 'http://149.129.240.254:8807'
 })
 
 // export const instancePayment = axios.create({

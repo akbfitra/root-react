@@ -15,7 +15,7 @@ export const TOPUP_PAYMENT_SURVEYOR = (amount, history) => async dispatch => {
       }
     })
     console.log(data)
-    window.location.href = `https://payment.survplus.id/${data._id}`
+    window.location.href = `http://149.129.240.254:8809/${data._id}`
     // history.push(`https://google.com/${data._id}`)
 
   }
