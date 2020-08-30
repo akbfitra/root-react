@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom';
 
 import './css/style.css';
-import { Button, Container, Row, Col, Tab, Nav, Accordion, Card, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Button, Container, Row, Col, Tab, Nav, Accordion, Card, DropdownButton, Dropdown, Navbar, NavDropdown } from 'react-bootstrap';
 import Slider from "react-slick";
 import ReactPlayer from 'react-player'
 
@@ -30,6 +30,16 @@ const LandingPage = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000
+  };
+
+  const settingslider = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1
   };
 
   const getAllUser = () => {
@@ -138,101 +148,161 @@ const LandingPage = () => {
 
   return(
     <>
-      <div id="header">
-        <div className="main-header-two">
-          <Container>
-            <Row>
-              <Col xs={6} sm={6} md={5} lg={5} className="part-one">
-                <Link to='/'>
-                <div className="table-100">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                      <img src="images/logo three.png" style={{height:'60px'}}></img>
-                    </div>
-
-                    <div className="table-cell-two">
-                      <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
-                    </div>
+      <div id="header" className="d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+        <Container fluid>
+          <Row>
+            <Col md={12} lg={12} className="p-l-0 p-r-0">
+              
+              <div style={{width:'100%', backgroundColor:'', height:'500px', overflow:'hidden', position:'relative'}}>
+              <div>
+                <Slider {...settingslider}>
+                  <div>
+                    <img src="images/slider1.jpeg" style={{width:'100%'}}></img>
                   </div>
-                </div>
-                </Link>
-              </Col>
-              <Col xs={6} sm={6} md={7} lg={7} className="part-two">
-                <div className="table-100">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                    <ul className="list-inline float-right m-b-0 d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
-                      <li className="list-inline-item">
-                      <Link to ='/surveyor/register'>
-                        <Button Button variant="primary" className="float-right">DAFTAR SURVEYOR</Button>
-                      </Link>
-                      </li>
 
-                      {/* <li className="list-inline-item">|</li> */}
-
-                      <li className="list-inline-item">
-                      <Link to ='/register'>
-                        <Button variant="primary" className="float-right">DAFTAR RESPONDEN</Button>
-                      </Link>
-                      </li>
-
-                      {/* <li className="list-inline-item">|</li> */}
-
-                      <li className="list-inline-item">
-                      <Link to ='/login'>
-                        <Button variant="primary" className="float-right">LOGIN</Button>
-                      </Link>
-                      </li>
-                    </ul>
-                    
-                    <DropdownButton
-                      alignRight
-                      title="Login & Daftar"
-                      id="dropdown-menu-align-right"
-                      className="float-right d-none d-none d-sm-block d-md-none d-block d-sm-none"
-                    >
-                      <Dropdown.Item eventKey="1"><Link to ='/login'>Login</Link></Dropdown.Item>
-                      <Dropdown.Item eventKey="2"><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
-                      <Dropdown.Item eventKey="3"><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
-                    </DropdownButton>
-                    
-                    </div>
+                  <div>
+                    <img src="images/slider2.jpeg" style={{width:'100%'}}></img>
                   </div>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        
-        
-        <div className="main-header-one" style={{paddingTop:'30px'}}>
-          <Container>
-            <Row>
-              <Col md={7} lg={7} className="part-one">
-                <div className="table-100">
-                  <div className="table-row">
-                    <div className="table-cell-one">
-                      <h3 className="title-one"><strong>SuRvplus</strong></h3>
-                      <h4 className="m-t-15">Survey online dengan manfaat “plus-plus"</h4>
-                      <h4 className="m-t-15">SuRvplus merupakan portal penyelenggara survey online yang hadir untuk memenuhi tantangan kelaziman baru “the new normal". Tanpa perlu kontak fisik antara surveyor dan responden. Semuanya bisa dilakukan #dirumahaja.</h4>
-                      <h4 className="m-t-15">SuRvplus memberikan banyak manfaat, antara lain surveyor akan mendapatkan responden yang tervalidasi dengan cepat, sedangkan responden bisa mendapatkan tambahan penghasilan.</h4>
-                    </div>
-                  </div>
-                </div>
-              </Col>
 
-              <Col md={5} lg={5} className="part-two d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
-              <div className="table-100">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <img src="images/decor1.png" style={{width: "100%"}}/>
+                  <div>
+                    <img src="images/slider3.jpeg" style={{width:'100%'}}></img>
+                  </div>
+                </Slider>
+              </div>
+                
+
+
+
+                <div style={{width:'15%', height:'500px', backgroundColor:'#333', position:'absolute', right:'0', top:'0', bottom:'0', display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                  <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                  <img src="https://via.placeholder.com/80" style={{borderRadius: '100%', marginTop:'15px', width:'80px'}}></img>
+                  <h5 className="m-t-10" style={{color:'#fff'}}><strong>SURVEYOR</strong></h5>
+                  </div>
+                  
+                  <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                  <img src="https://via.placeholder.com/80" style={{borderRadius: '100%', marginTop:'15px', width:'80px'}}></img>
+                  <h5 className="m-t-10" style={{color:'#fff'}}><strong>RESPONDEN</strong></h5>
+                  </div>
+                  <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                  <img src="https://via.placeholder.com/80" style={{borderRadius: '100%', marginTop:'15px', width:'80px'}}></img>
+                  <h5 className="m-t-10" style={{color:'#fff'}}><strong>KONTAK KAMI</strong></h5>
                   </div>
                 </div>
               </div>
+            </Col>
+          </Row>
+        </Container>
+        <div className="menu" style={{width:'100%', position:'absolute', left:'0', right:'0', top:'0', zIndex:'1'}}>
+          <Container>
+            <Row>
+              <Col md={3} lg={3}>
+              <Link to='/'>
+                <div style={{width:'100%', height:'80px', display:'flex', alignItems:'center', backgroundColor:''}}>
+                <img src="images/logo three.png" style={{height:'60px', marginRight:'10px'}}></img>
+                <h3 className="m-t-0 m-b-0"><strong>SURVPLUS</strong></h3>
+                </div>
+              </Link>
+                
+              </Col>
+
+              <Col md={7} lg={7}>
+                <div style={{width:'100%', height:'80px', display:'flex', justifyContent:'space-between', alignItems:'center', backgroundColor:''}}>
+                  <Link to ='#'>
+                    <h5>Tentang Kami</h5>
+                  </Link>
+
+                  <Link to ='#'>
+                    <h5>Surveyor</h5>
+                  </Link>
+
+                  <Link to ='#'>
+                    <h5>Responden</h5>
+                  </Link>
+
+                  <Link to ='#'>
+                    <h5>Syarat & Ketentuan</h5>
+                  </Link>
+                  
+                </div>
+                  
+              </Col>
+
+
+              <Col md={2} lg={2}>
+              <div style={{width:'100%', height:'80px', display:'flex', alignItems:'center', backgroundColor:''}}>
+                  <ul className="list-inline m-b-0">
+                    
+
+                    <li className="list-inline-item">
+                    <DropdownButton size="sm"
+                      alignRight
+                      title="DAFTAR"
+                      id="dropdown-menu-align-right"
+                     
+                    >
+                      <Dropdown.Item eventKey="2"><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
+                      <Dropdown.Item eventKey="3"><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
+                    </DropdownButton>
+                    </li>
+
+                    <li className="list-inline-item">
+                      <Link to ='/login'>
+                        <Button Button variant="primary" size="sm">LOGIN</Button>
+                      </Link>
+                    </li>
+                  </ul>
+              </div>
+                  
               </Col>
             </Row>
           </Container>
         </div>
+        <div style={{position:'absolute', top:'0', right:'0'}}>
+          <img src="images/wave2.png"></img>
+        </div>
+      </div>
+
+      <div id="header-mobile" className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
+      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+      <Navbar.Brand href="/">SURVPLUS</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="#">Tentang Kami</Nav.Link>
+          <Nav.Link href="#">Surveyor</Nav.Link>
+          <Nav.Link href="#">Responden</Nav.Link>
+          <Nav.Link href="#">Syarat & Ketentuan</Nav.Link>
+          <NavDropdown title="Daftar" id="collasible-nav-dropdown">
+            <NavDropdown.Item href="/surveyor/register">Daftar Suveyor</NavDropdown.Item>
+            <NavDropdown.Item href="/register">Daftar Responden</NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Link href="/login">Login</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+      </Navbar>
+
+      <Container>
+        <Row>
+          <Col xs={12} sm={12} className="p-l-0 p-r-0">
+            <div style={{width:'100%', backgroundColor:'', height:'', overflowX:"hidden"}}>
+              <Slider {...settingslider}>
+                  <div>
+                    <img src="images/slider1.jpeg" style={{width:'100%'}}></img>
+                  </div>
+
+                  <div>
+                    <img src="images/slider2.jpeg" style={{width:'100%'}}></img>
+                  </div>
+
+                  <div>
+                    <img src="images/slider3.jpeg" style={{width:'100%'}}></img>
+                  </div>
+              </Slider>
+            </div>
+                
+          </Col>
+        </Row>
+      </Container>
       </div>
 
 
@@ -262,285 +332,211 @@ const LandingPage = () => {
         </Container>
       </div> */}
       
-      <div id="section-one">
-        <Container>
+      <div id="section-one" className="d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+        <Container >
+          <Row>
+            <Col md={10} lg={10}>
+              <div className="part-five">
+                  <div className="box">
+                    <center>  
+                    <img src="images/Why_2.svg" style={{height:'80px'}}></img>
+                    <h4 className="m-t-15 m-b-5"><strong>UNGGUL</strong></h4>
+                    <h6 style={{fontSize:'14px'}}>Selalu berinovasi untuk menjawab tantangan-tantangan terkini dan untuk memenuhi kebutuhan komersial maupun akademis</h6>
+                    </center>
+                  </div>
+                  <div className="box">
+                    <center>
+                    <img src="images/Why_3.svg" style={{height:'80px'}}></img>
+                    <h4 className="m-t-15 m-b-5"><strong>RESPONSIF</strong></h4>
+                    <h6 style={{fontSize:'14px'}}>Selalu tanggap dalam memberikan bantuan dan solutif dalam memecahkan permasalahan, baik yang dihadapi surveyor maupun responden</h6>
+                    </center>
+                  </div>
+                  <div className="box">
+                    <center>
+                    <img src="images/Why_4.svg" style={{height:'80px'}}></img>
+                    <h4 className="m-t-15 m-b-5"><strong>VALID</strong></h4>
+                    <h6 style={{fontSize:'14px'}}>Mengedepankan validitas metode kerja maupun terhadap kualitas hasil survey yang akan dimanfaatkan oleh banyak pihak</h6>
+                    </center>
+                  </div>
+
+                  <div style={{position:'absolute', left:'-15px', top:'-100px', zIndex:'1'}}>
+                  <div className="box">
+                    <center>
+                    <img src="images/Why_1.svg" style={{height:'120px'}}></img>
+                    <h4 className="m-t-15 m-b-5"><strong>SISTEM HANDAL</strong></h4>
+                    <h6 style={{fontSize:'14px'}}>Aplikasi dan sistem informasinya dibangun dengan cermat dan matang, sehingga keandalannya tidak perlu diragukan lagi</h6>
+                    </center>
+                  </div>
+                  </div>
+
+                  <div style={{position:'absolute', right:'-15px', top:'-100px', zIndex:'1'}}>
+                  <div className="box">
+                    <center>
+                    <img src="images/Why_5.svg" style={{height:'120px'}}></img>
+                    <h4 className="m-t-15 m-b-5"><strong>PLUS</strong></h4>
+                    <h6 style={{fontSize:'14px'}}>Memberikan manfaat plus-plus, antara lain sebagai fasilitator penyelenggaraan survey bagi surveyor atau peneliti, dan memberikan tambahan penghasilan bagi para responden</h6>
+                    </center>
+                  </div>
+                  </div>
+              </div>
+            </Col>
+
+            
+          </Row>
+        </Container>
+
+        <div style={{position:'absolute', right:'0', bottom:'0', zIndex:'1'}} className="d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+          <img src="images/tangan.png"></img>
+        </div>
+
+        <div style={{position:'absolute', top:'-130px', left:'0'}}>
+          <img src="images/wave1.png"></img>
+        </div>
+      </div>
+
+
+      <div id="section-one-mobile" className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
+      <Container >
           <Row>
             <Col md={12} lg={12}>
-            <h3 className="text-center title-one"><strong>Kenapa memilih suRvplus ?</strong></h3>
+            <h3 className="text-center title-one"><strong>Kenapa memilih SURVPLUS ?</strong></h3>
             </Col>
           </Row>
-
-
-          <Row className="m-t-30">
-            <Col md={3} lg={3}>
+          <Row>
+            <Col md={12} lg={12} className="m-t-15">
               <center>
                 <img src="images/s.png" style={{height:"60px"}}></img>
-                <h5 className="m-t-15 m-b-15"><strong>Sistem yang andal</strong></h5>
+                <h5 className="m-t-15 m-b-15"><strong>SISTEM HANDAL</strong></h5>
                 <div style={{paddingLeft:"20px", paddingRight:"20px"}}><h6>Aplikasi dan sistem informasinya dibangun dengan cermat dan matang, sehingga keandalannya tidak perlu diragukan lagi</h6></div>
               </center>
             </Col>
-            <Col md={3} lg={3}>
+            <Col md={12} lg={12} className="m-t-15">
               <center>
                 <img src="images/u.png" style={{height:"60px"}}></img>
-                <h5 className="m-t-15 m-b-15"><strong>Unggul dalam inovasi</strong></h5>
-                <div style={{paddingLeft:"20px", paddingRight:"20px"}}><h6>SurvPlus hadir menjawab tantantangan-tantangan terkini dan untuk memenuhi kebutuhan komersial maupun akademis</h6></div>
+                <h5 className="m-t-15 m-b-15"><strong>UNGGUL</strong></h5>
+                <div style={{paddingLeft:"20px", paddingRight:"20px"}}><h6>Selalu berinovasi untuk menjawab tantangan-tantangan terkini dan untuk memenuhi kebutuhan komersial maupun akademis</h6></div>
               </center>
             </Col>
-            <Col md={3} lg={3}>
+            <Col md={12} lg={12} className="m-t-15">
               <center>
                 <img src="images/r.png" style={{height:"60px"}}></img>
-                <h5 className="m-t-15 m-b-15"><strong>Responsif</strong></h5>
+                <h5 className="m-t-15 m-b-15"><strong>RESPONSIF</strong></h5>
                 <div style={{paddingLeft:"20px", paddingRight:"20px"}}><h6>Selalu tanggap dalam memberikan bantuan dan solutif dalam memecahkan permasalahan, baik yang dihadapi surveyor maupun responden</h6></div>
               </center>
             </Col>
 
-            <Col md={3} lg={3}>
+            <Col md={12} lg={12} className="m-t-15">
               <center>
                 <img src="images/v.png" style={{height:"60px"}}></img>
-                <h5 className="m-t-15 m-b-15"><strong>Valid</strong></h5>
+                <h5 className="m-t-15 m-b-15"><strong>VALID</strong></h5>
                 <div style={{paddingLeft:"20px", paddingRight:"20px"}}>
-                <h6>SurvPlus mengedepankan validitas metode kerja maupun terhadap kualitas hasil survey yang akan dimanfaatkan oleh banyak pihak </h6>
+                <h6>Mengedepankan validitas metode kerja maupun terhadap kualitas hasil survey yang akan dimanfaatkan oleh banyak pihak</h6>
                 </div>
               </center>
             </Col>
-          </Row>
 
-          <Row className="m-t-30">
-            <Col md={{ span: 4, offset:4}}>
+            <Col md={12} lg={12} className="m-t-15">
               <center>
                 <img src="images/plus.png" style={{height:"60px"}}></img>
-                <h5 className="m-t-15 m-b-15"><strong>Manfaat Plus-plus</strong></h5>
+                <h5 className="m-t-15 m-b-15"><strong>PLUS</strong></h5>
                 <div style={{paddingLeft:"30px", paddingRight:"30px"}}>
-                <h6>SurvPlus memberikan manfaat plus-plus, antara lain sebagai fasilitator penyelenggaraan survey bagi surveyor atau peneliti, dan memberikan tambahan penghasilan bagi para responden.</h6>
+                <h6>Memberikan manfaat plus-plus, antara lain sebagai fasilitator penyelenggaraan survey bagi surveyor atau peneliti, dan memberikan tambahan penghasilan bagi para responden</h6>
                 </div>
               </center>
-            </Col>
-          </Row>
-
-          <Row className="m-t-30">
-            <Col md={4} lg={4}>
-            <h3 className="m-t-0 text-right" style={{fontSize:'32px'}}><strong>Manfaat Bagi Surveyor</strong></h3>
-            <Row className="m-t-30">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-two">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <h4 className="text-right title-three"><strong>Dapat responden yang terpercaya dengan cepat</strong></h4>
-                  </div>
-
-                  <div className="table-cell-two">
-                    <img src="images/decor14.png" className="float-right" />
-                  </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-two">
-                <div className="table-row">
-                    <div className="table-cell-one">
-                      <h4 className="text-right title-three"><strong>Bisa menyaring responden sesuai kriteria</strong></h4>
-                    </div>
-
-                    <div className="table-cell-two">
-                      <img src="images/decor14.png" className="float-right" />
-                    </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-two">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <h4 className="text-right title-three"><strong>Biaya terjangkau</strong></h4>
-                  </div>
-
-                  <div className="table-cell-two">
-                    <img src="images/decor14.png" className="float-right" />
-                  </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-two">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <h4 className="text-right title-three"><strong>Diberikan bantuan dari awal sampai akhir</strong></h4>
-                  </div>
-
-                  <div className="table-cell-two">
-                    <img src="images/decor14.png" className="float-right" />
-                  </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-                <div style={{width:"90%", backgroundColor:"#007bff",padding:"10px 15px",borderRadius:".25rem"}} className="float-right">
-                  <h5 style={{color:"#fff"}} className="text-right">Jumlah surveyor saat ini : {dataSurveyor} </h5>
-                </div>
-              </Col>
-              <Col md={12} lg={12}>
-              <ul className="list-inline float-right m-t-15">
-                <li className="list-inline-item">
-                  <Link to="/surveyor/register">
-                  <Button variant="primary">DAFTAR SURVEYOR</Button>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-
-                  <Button variant="primary">SELENGKAPNYA</Button>{' '}
-                </li>
-              </ul>
-              </Col>
-            </Row>
-            </Col>
-            <Col md={4} lg={4}>
-              <Row>
-                <Col md={6} lg={6}>
-                  <center>
-                    <img src="images/decor4.png" />
-                  </center>
-                </Col>
-                <Col md={6} lg={6}>
-                  <center>
-                    <img src="images/decor5.png" />
-                  </center>
-                </Col>
-              </Row>
-            </Col>
-            <Col md={4} lg={4}>
-            <h3 className="m-t-0" style={{fontSize:'32px'}}><strong>Manfaat Bagi Responden</strong></h3>
-            <Row className="m-t-30">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-three">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <img src="images/decor14.png" />
-                  </div>
-
-                  <div className="table-cell-two">
-                    <h4 className="text-left title-three"><strong>Dapat tambahan penghasilan dalam hitungan menit</strong></h4>
-                  </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-three">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <img src="images/decor14.png" />
-                  </div>
-
-                  <div className="table-cell-two">
-                    <h4 className="text-left title-three"><strong>Tanpa perlu kualifikasi pendidikan tertentu</strong></h4>
-                  </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-three">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <img src="images/decor14.png" />
-                  </div>
-
-                  <div className="table-cell-two">
-                    <h4 className="text-left title-three"><strong>Mengerjakan survey dengan menyenangkan</strong></h4>
-                  </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-              <div className="table-100 part-three">
-                <div className="table-row">
-                  <div className="table-cell-one">
-                    <img src="images/decor14.png" />
-                  </div>
-
-                  <div className="table-cell-two">
-                    <h4 className="text-left title-three"><strong>Bisa belajar banyak hal</strong></h4>
-                  </div>
-                </div>
-              </div>
-              </Col>
-            </Row>
-
-            <Row className="m-t-15">
-              <Col md={12} lg={12}>
-                <div style={{width:"90%", backgroundColor:"#007bff",padding:"10px 15px",borderRadius:".25rem"}}>
-                  <h5 style={{color:"#fff"}}>Jumlah responden saat ini : {dataResponden} </h5>
-                </div>
-              </Col>
-              <Col md={12} lg={12} className="m-t-15">
-              <ul className="list-inline float-left">
-                <li className="list-inline-item">
-                  <Link to="/register">
-                    <Button variant="primary">DAFTAR RESPONDEN</Button>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Button variant="primary">SELENGKAPNYA</Button>
-                </li>
-              </ul>
-              </Col>
-            </Row>
             </Col>
           </Row>
         </Container>
       </div>
 
+      <div id="section-one-sisip" >
+        <Container style={{position:'relative', zIndex:'1'}}>
+          <Row>
+            <Col md={12} lg={12}>
+              <h3 className="text-center title-one" ><strong>Bagaimana SURVPLUS Bekerja</strong></h3>
+            </Col>
+          </Row>
 
-      <div id="section-two">
-        <Container>
           <Row className="m-t-30">
+            <Col md={12} lg={12}>
+              <img src="images/survplus_bekerja2.svg" style={{width:'100%'}}></img>
+            </Col>
+          </Row>
+        </Container>
+
+        <div style={{width: '100%',backgroundColor:'rgba(225,225,225,0.92)', position:'absolute', top:'0', bottom:'0', left:'0', right:'0'}}></div>
+      </div>
+
+
+      
+
+      <div id="section-three-sisip">
+        <Container>
+          <Row>
+            <Col md={12} lg={12}>
+            <h3 className="text-center title-one"><strong>Cara Bergabung Dengan SURVPLUS</strong></h3>
+            </Col>
+          </Row>
+
+          <Row className="m-t-30">
+            <Col md={12} lg={12}>
+              <img src="images/cara_gabung.svg" style={{width:'100%'}}></img>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      <div id="section-two-sisip">
+        <Container>
+          <Row>
+            <Col md={12} lg={12}>
+            <h3 className="text-center title-one"><strong>Responden SURVPLUS</strong></h3>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      <div id="section-four-sisip">
+        <Container>
+          <Row>
+            <Col md={12} lg={12}>
+            <h3 className="text-center title-one"><strong>Cara Mendapatkan Studi, Mengikuti Studi, Menarik Uang</strong></h3>
+            </Col>
+          </Row>
+
+          <Row className="m-t-30">
+            <Col md={5} lg={5}>
+           
+            </Col>
+
             <Col md={7} lg={7}>
+              <img src="https://via.placeholder.com/650x500?text=1" style={{width:'100%'}}></img>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      <div id="section-five-sisip">
+        <Container>
+          <Row>
+            <Col md={7} lg={7} xs={12} sm={12}>
               <Row>
                 <Col md={12} lg={12}>
-                  <h3 className="text-center title-one"><strong>Bagaimana Survey Online ini Bekerja ?</strong></h3>
+                <h3 className="text-center title-one"><strong>Cara Survey Online Ini Bekerja</strong></h3>
                 </Col>
               </Row>
               <Row className="m-t-30">
                 <Col md={12} lg={12}>
-                  {/* <ReactPlayer
-                    url = 'https://www.youtube.com/watch?v=Gtg-gXGF85w'
-                    width='100%'
-                    height='500px'
-                  /> */}
-
-                  <iframe width="100%" height="500" src="https://www.youtube.com/embed/Gtg-gXGF85w?playlist=Gtg-gXGF85w&loop=1&autoplay=1&controls=0" frameBorder="0" allow="autoplay; encrypted-media;" allowFullScreen></iframe>
-
-
-{/* <iframe width="420" height="315"
-src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
-</iframe> */}
+                <video autoPlay muted loop style={{width:'100%'}}>
+                  <source src="images/SuRvPlus Banner.mp4" type="video/mp4"/>
+                </video>
                 </Col>
               </Row>
-              
             </Col>
-            <Col md={5} lg={5}>
-              <Row className="m-b-15">
+
+            <Col md={5} lg={5} xs={12} sm={12}>
+              <Row>
                 <Col md={12} lg={12}>
-                  <h3 className="text-center title-one"><strong>FAQ</strong></h3>
+                <h3 className="text-center title-one"><strong>Frequently Asked Question</strong></h3>
                 </Col>
               </Row>
 
@@ -564,276 +560,61 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
                         )
                       })
                     }
-                    {/* <Card>
-                      <Accordion.Toggle as={Card.Header} eventKey="1" style={{ cursor: "pointer", backgroundColor: "#1f59bb", color: "#fff" }}>
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, inventore.
-                    </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="1">
-                        <Card.Body>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi molestias eum cum deserunt magni aliquid ad sapiente cumque nisi unde eaque vero animi doloribus, optio quam nostrum maxime rem praesentium incidunt! Rem tempore suscipit eos eligendi quasi exercitationem iusto voluptates.
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-
-                    <Card>
-                      <Accordion.Toggle as={Card.Header} eventKey="2" style={{ cursor: "pointer", backgroundColor: "#1f59bb", color: "#fff" }}>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae debitis laborum mollitia repellat quasi optio.
-                    </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="2">
-                        <Card.Body>
-                          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id corrupti nostrum quod. Ipsam quam dolorum quasi eligendi. Veritatis omnis explicabo accusantium cupiditate. Rerum, est ab!
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-
-                    <Card>
-                      <Accordion.Toggle as={Card.Header} eventKey="4" style={{ cursor: "pointer", backgroundColor: "#1f59bb", color: "#fff" }}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis temporibus delectus maxime! Eum ipsam reprehenderit rerum quaerat voluptatibus.
-                    </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="4">
-                        <Card.Body>
-                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga minima libero ullam sunt! Commodi harum repellat perspiciatis consequuntur aliquam velit.
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card> */}
+                   
                   </Accordion>
                 </Col>
               </Row>
-
-              {/* <Row className="m-b-15">
-                <Col md={12} lg={12}>
-                  <h3 className="text-left title-one"><strong>Testimony</strong></h3>
-                </Col>
-              </Row>
-
-              
-              <Row className="m-t-30">
-                <Slider {...settings_testi}>
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-
-                  <div>
-                    <Col md={12} lg={12}>
-                      <div className="part-one">
-                        <div className="left">
-                          <img src="images/user.png"></img>
-                        </div>
-                        <div className="right">
-                          <h5><strong>Nama User</strong></h5>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illo asperiores amet animi ipsum similique.</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </div>
-                </Slider>
-              </Row> */}
-            </Col>
-          </Row>
-          {/* <Tab.Container id="left-tabs-example" defaultActiveKey="first" className="m-t-30">
-            <Row>
-              <Col md={3} lg={3}>
-                <Nav variant="pills" className="flex-column">
-                  <Nav.Item>
-                    <Nav.Link eventKey="first" className="text-center">JENIS KELAMIN</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="second" className="text-center">PEKERJAAN</Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Col>
-              <Col md={9} lg={9}>
-                <Tab.Content>
-                  <Tab.Pane eventKey="first">
-                    <Row>
-                      <Col><CanvasJSChart options = {options}/></Col>
-                    </Row>
                   
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="second">
-                    <Row>
-                      <Col><CanvasJSChart options = {options2}/></Col>
-                    </Row>
-                  </Tab.Pane>
-                </Tab.Content>
-              </Col>
-            </Row>
-          </Tab.Container> */}
-          {/* <Row className="m-t-30">
-            <Col>
-            <h3 className="text-center title-one"><strong>Kata Mereka Tentang suRvplus ?</strong></h3>
             </Col>
           </Row>
-
-          <Row className="m-t-30">
-            <Col>
-            <div>
-              <Slider {...settings}>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-                <div>
-                  <img src="https://via.placeholder.com/200"></img>
-                </div>
-              </Slider>
-            </div>
-            </Col>
-          </Row> */}
         </Container>
       </div>
 
+      <div id="section-six-sisip">
+        <Container>
+          <Row>
+            <Col md={12} lg={12}>
+              <h3 className="text-center title-one"><strong>Perusahaan Yang Telah Bekerjasama</strong></h3>
+            </Col>
+          </Row>
 
-      
+          <Row className="m-t-30 d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+            <Col md={12} lg={12}>
+              <Slider {...settings}>
+                {
+                  perusahaanImg.map((data, i) => {
+                    return(
+                      <div key={i}>
+                        <img src={`https://backoffice.survplus.id/foto/${data.icon}`} style={{height:'100px'}}></img>
+                      </div>
+                    )
+                  })
+                }
+              </Slider>
+            </Col>
+          </Row>
 
+
+          <Row className="d-none d-none d-sm-block d-md-none d-block d-sm-none m-t-30">
+            <Col xs={12} sm={12}>
+            <ul className="list-inline text-center m-b-0">
+            {
+            perusahaanImg.map((data, i) => {
+              return(
+                
+                  <li className="list-inline-item">
+                    <img src={`https://backoffice.survplus.id/foto/${data.icon}`} style={{width:'100px'}}></img>
+                  </li>
+              )
+            })
+            
+          }
+            </ul>
+            </Col>
+          
+          </Row>
+        </Container>
+      </div>
       <Footer/>
     </>
   )

@@ -471,10 +471,10 @@ p{
 /* ======================================== header ============================================= */
 #header{
     width: 100%;
-    height: 100vh;
-    background-image: url('/images/background1.png'); 
+    /* height: 100vh; */
+    /* background-image: url('/images/background1.png'); 
 	  background-position: center center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     position: relative;
 }
 
@@ -546,14 +546,25 @@ p{
 
 /* ======================================== section-one ============================================= */
 #section-one{
-    background-image: url('/images/background2.png'); 
+    /* background-image: url('/images/background2.png');  */
     /* background-position: center center;
     background-repeat: no-repeat; */
     /* background-size: cover; */
     padding-top: 60px;
     padding-bottom:60px;
+    position: relative;
 }
 
+
+#section-one-mobile{
+  /* background-image: url('/images/background2.png'); 
+  background-position: center center;
+  background-repeat: no-repeat; 
+   background-size: cover; */
+  padding-top: 60px;
+  padding-bottom:60px;
+  position: relative;
+}
 
 #section-one .part-one{
     background-color: #fff;
@@ -635,6 +646,38 @@ p{
     width: 40px;
     /* background-color: yellow; */
 }
+
+#section-one .part-four{
+  width: 100%;
+  position: relative;
+  background-color: pink;
+}
+
+#section-one .part-four .box{
+  width: 100%;
+  /* height: 120px; */
+  /* background-color: red; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -120px;
+}
+
+#section-one .part-five {
+  display: flex;
+  justify-content: center;
+  /* background-color: yellow; */
+  position: relative;
+}
+
+#section-one .part-five .box{
+  width: 180px;
+  /* height: 120px; */
+  /* background-color: red; */
+  margin-left: 5px;
+  margin-right:5px;
+}
+
 /* ======================================== end section-one ============================================= */
 /* ======================================== section-two ============================================= */
 #section-two{
@@ -681,6 +724,7 @@ p{
 #section-two .part-one .right p{
   font-size: 14px;
 }
+
 /* ======================================== end section-two ============================================= */
 
 #section-three {
@@ -692,7 +736,46 @@ p{
 }
 
 
+#section-one-sisip{
+  padding-top: 60px;
+  padding-bottom:60px;
+  position: relative;
+  background-image: url('/images/survplus_bekerja.jpg');
+  background-size: cover;
+}
 
+#section-two-sisip{
+  padding-top: 60px;
+  padding-bottom:60px;
+  position: relative;
+  background-image: url('/images/map.svg');
+  background-size: cover;
+}
+
+#section-three-sisip{
+  padding-top: 60px;
+  padding-bottom:60px;
+  position: relative;
+}
+
+#section-four-sisip{
+  padding-top: 60px;
+  padding-bottom:60px;
+  position: relative;
+}
+
+#section-five-sisip{
+  padding-top: 60px;
+  padding-bottom:60px;
+  position: relative;
+  background-color: whitesmoke;
+}
+
+#section-six-sisip{
+  padding-top: 60px;
+  padding-bottom:60px;
+  position: relative;
+}
 
 
 

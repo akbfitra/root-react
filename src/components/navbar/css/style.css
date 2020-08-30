@@ -485,12 +485,14 @@ p{
     display: table-cell;
     vertical-align: middle;
     height: 80px;
+    /* background-color: pink; */
 }
 
 #general-header .main-header-one .part-two .table-cell-one{
     display: table-cell;
     vertical-align: middle;
     height: 80px;
+    /* background-color: yellow; */
 }
 /* ======================================== end general-header ============================================= */
 

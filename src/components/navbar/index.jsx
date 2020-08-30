@@ -59,7 +59,7 @@ export const Navbar = (props) => {
                     <div className="table-row">
                     <Link to = {`/${role}`}>
                       <div className="table-cell-one">
-                        <img src="../../../../images/logo three.png" style={{height:'60px'}}></img>
+                        <img src="../../../../images/logo three.png" style={{height:'60px', }}></img>
                       </div>
                       <div className="table-cell-two">
                         <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
@@ -69,8 +69,35 @@ export const Navbar = (props) => {
                   </div>
               </Col>
 
-              <Col xs={6} sm={6} md={3} lg={3} className="part-two">
-                  <div className="table-100">
+              <Col xs={6} sm={6} md={4} lg={4}>
+                <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center', height:'80px',  }}>
+                  <Dropdown style={{position:'relative'}}>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                      <img src="images/bell.png" style={{height:'40px'}}></img>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu style={{wordBreak:'break-all'}}>
+                                      { 
+                                        notification.map((data, i) => {
+                                          return(
+                                            
+                                                <Dropdown.Item key={`${i}`}>
+                                                  <Link to = {`/${role}/notification`}>
+                                                    {data.content} 
+                                                  </Link>
+                                                </Dropdown.Item>
+                                          
+                                            
+                                          )
+                                        })
+                                      }
+                    </Dropdown.Menu>
+
+                    <div style={{backgroundColor:'yellow', position:'absolute', top:'0', right:'0', paddingLeft:'5px', paddingRight:'5px'}}>000</div>
+                  </Dropdown>
+                </div>
+              
+                  {/* <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-two">
                             {
@@ -107,12 +134,12 @@ export const Navbar = (props) => {
                             
                       </div>
                     </div>
-                  </div>
+                  </div> */}
               </Col>
 
               {
                 role && namaUser &&
-                <Col xs={6} sm={6} md={4} lg={4} className="part-two">
+                <Col xs={6} sm={6} md={3} lg={3} className="part-two">
                   <div className="table-100">
                     <div className="table-row">
                       <div className="table-cell-one">
@@ -120,19 +147,20 @@ export const Navbar = (props) => {
                       <Dropdown alignRight className="float-right d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none" >
                         <Dropdown.Toggle variant="default" id="dropdown-basic" style={{paddingRight:'0',paddingLeft:'0'}}>
                           <div style={{display:"flex", alignItems:'center'}}>
-                            <div style={{display:'flex', flexDirection:'column',paddingRight:'15px' }}>
+                            {/* <div style={{width:'100px',height:'20px',backgroundColor:'red'}}></div> */}
+                            <div style={{display:'flex', flexDirection:'column',paddingRight:'10px' }}>
                             <p style={{textAlign:'right'}}><strong>Hi, {namaUser}</strong></p>
                             <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
                             </div>
                             <img src="../../../../images/user_profil.png" style={{height:'60px'}}></img>
-                            {
+                            {/* {
                               notification.length 
                               ? 
                               <div style={{height:'20px', width:'20px', backgroundColor: 'red'}}> {notification.length} </div>
                               :
                               <>
                               </>
-                            }
+                            } */}
                             {/* <div style={{position: 'absolute',
                               top: '50%',
                               left: '50%',
