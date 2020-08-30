@@ -6,7 +6,7 @@ import NumberFormat from 'react-number-format';
 import { Col, Container, Row, Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import { useHistory, useLocation, Link  } from 'react-router-dom';
 
-import { logoutProcess, GET_SALDO, GET_DATA_NOTIFICATION } from '../../store/actions/userAction'
+import { logoutProcess, GET_SALDO, GET_DATA_NOTIFICATION, dataProfileUser } from '../../store/actions/userAction'
 
 export const Navbar = (props) => {
   const dispatch = useDispatch()
@@ -15,6 +15,7 @@ export const Navbar = (props) => {
 
   const [ saldoUser, setSaldoUser ] = useState([])
   const [ notification, setNotification ] = useState([])
+  const [dataProfile, SetDataProfile] = useState('')
 
   
   let role = Cookies.get('role')
@@ -38,6 +39,15 @@ export const Navbar = (props) => {
       })
   }
 
+  const getDataProfile = () => {
+    if(!dataProfile){
+      dispatch(dataProfileUser())
+        .then( data => {
+          SetDataProfile(data)
+        })
+    }
+  }
+
   useEffect(() => {
     dapetinSaldo()
   }, [dispatch])
@@ -46,7 +56,9 @@ export const Navbar = (props) => {
     dapetinNotification()
   }, [dispatch])
 
-
+  useEffect(() => {
+    getDataProfile()
+  }, [])
 
   return(
     <>
@@ -152,7 +164,7 @@ export const Navbar = (props) => {
                             <p style={{textAlign:'right'}}><strong>Hi, {namaUser}</strong></p>
                             <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
                             </div>
-                            <img src="../../../../images/user_profil.png" style={{height:'60px'}}></img>
+                            <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../../../../images/user_profil.png"} style={{height:'60px'}}></img>
                             {/* {
                               notification.length 
                               ? 
@@ -194,7 +206,7 @@ export const Navbar = (props) => {
                       {/* untuk mobile */}
                       <Dropdown alignRight className="float-right d-none d-none d-sm-block d-md-none d-block d-sm-none" >
                         <Dropdown.Toggle variant="default" id="dropdown-basic" style={{paddingRight:'0',paddingLeft:'0'}}>
-                        <img src="../../../../images/user_profil.png" style={{height:'60px'}}></img>
+                        <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../../../../images/user_profil.png"} style={{height:'60px'}}></img>
                         {
                           notification.length 
                           ? 

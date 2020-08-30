@@ -19,6 +19,7 @@ import SuccessRegister from './container/user/succesRegister'
 import LupaPassword from './container/user/forgotPassword'
 import AktivasiSuccess from './container/user/successAktivasi'
 import SuccessForgotPassword from './container/user/responForgotPassword'
+import SyaratDanKetentuan from './container/user/syarat'
 
 import DashboardSurveyor from './container/surveyor/dashboard'
 import FormSurveyor from './container/surveyor/form'
@@ -65,6 +66,7 @@ const App = () => {
       <Route path = '/forgotpassword' component = {LupaPassword}/>
       <Route path = '/aktivasisuccess' component = {AktivasiSuccess}/>
       <Route path = '/successforgotpassword' component= {SuccessForgotPassword}/>
+      <Route path = '/syaratdanketentuan' component = {SyaratDanKetentuan}/>
 
       <PrivateRouteSurveyor path = '/surveyor/form/edit/:studyId' component = {EditFormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
