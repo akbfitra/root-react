@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, Link, useHistory } from 'react-router-dom'
+import { instance } from '../../../config/axios'
+import Cookies from 'js-cookie'
 
 import './css/style.css';
-import {  Container, Row, Col, Form, Button} from 'react-bootstrap'
+import {  Container, Row, Col, Form, Button, Badge} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { dataProfileUser, editProfileResponden, getKetertarikan } from '../../../store/actions/userAction'
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -30,7 +35,58 @@ const EditProfileResponden = (props) => {
   const [ listProvinsi, SetListProvinsi ] = useState([])
   const [ kriteria, setKriteria ] = useState([])
   const [ ketertarikan, setKetertarikan ] = useState([])
+  const [ file, setFile ] = useState('')
+  const [ imagePreview, setImagePreview ] = useState('')
+  const [ percentUpload, setPercentUpload ] = useState(0)
+  // const [ changeData, setChangeData] = useState(false)
   
+  const handleImageChange = (e) => {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      
+      setFile(file)
+      setImagePreview(reader.result)
+    }
+
+    reader.readAsDataURL(file)
+  }
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    const fd = new FormData()
+    fd.append('ktp', file, file.name)
+    
+    instance.post('/user/uploadktp', fd , {headers: {"accesstoken": `${Cookies.get('test')}`}, onUploadProgress: progressEvent => setPercentUpload( Math.round(progressEvent.loaded / progressEvent.total * 100)) })
+      .then( data => {
+        setKtp(data.data['NIK'])
+        toast.info(`👌 Anda Mengupload KTP!! NIK anda ${data.data['NIK']}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      })
+      .catch( err => {
+        toast.danger('Terjadi Error', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      })
+
+  }
+
   let listKota = useSelector( state => state.tempat.tempat.kota)
   
   const optionDataPekerjaan = ['Swasta', 'PNS/TNI/Polri', 'Sekolah/Kuliah ', 'Ibu Rumah Tangga', 'Lainnya']
@@ -294,8 +350,28 @@ const EditProfileResponden = (props) => {
                           })
                         }
                       </Row>
-                    </Form.Group> */}
+                    </Form.Group> */} 
 
+                    <Form.Group>
+                      <Form.Label>Informasi KTP</Form.Label>
+                      <Form.Text>Diharapkan agar File KTP yang diupload memiliki kualitas yang baik dan jelas</Form.Text>
+                      <Form.Control type="file" placeholder=""  onChange={handleImageChange} />
+                      {
+                        file &&
+                          <Button onClick={handleUpload}>Upload file KTP</Button>
+                      }
+                      <Badge> {percentUpload}% </Badge>
+                      {/* <Form.Text>Diharapkan agar File KTP yang diupload memiliki kualitas yang baik dan jelas</Form.Text> */}
+                    </Form.Group>
+
+                    {/* <input type="file" onChange={handleImageChange} />
+                    <button onClick={handleUpload}>Upload Image</button> */}
+                    {
+                      imagePreview &&
+                      <>
+                        <img src={imagePreview} style={{ height:"200px", width:"320px"}}/>
+                      </>
+                    }
                     <Row>
                         <Col md={12} lg={12}>
                           <hr/>
@@ -315,6 +391,8 @@ const EditProfileResponden = (props) => {
         </div>
 
         <Footer/>
+
+        <ToastContainer />
       </>
       }
     </>

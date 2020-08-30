@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { instance } from '../../../config/axios'
 
 import { dataProfileUser } from '../../../store/actions/userAction'
 
 import './css/style.css';
-import { Button,Tabs, Tab, Container, Row, Col, Table, Alert} from 'react-bootstrap'
+import { Button, Modal, Container, Row, Col, Table, Alert, Form, Badge} from 'react-bootstrap'
 import moment from 'moment'
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+import { MdAddAPhoto } from 'react-icons/md'
 
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
@@ -16,13 +24,69 @@ const ProfileResponden = (props) => {
 
   const [dataProfile, SetDataProfile] = useState('')
   const [dataKetertarikan, setDataKetertarikan ] = useState([])
+  const [ file, setFile ] = useState('')
+  const [ imagePreview, setImagePreview ] = useState('')
+  const [ percentUpload, setPercentUpload ] = useState(0)
+  const [ changeData, setChangeData] = useState(false)
+
+  const [modalShow, setModalShow] = useState(false);
   
+  const handleImageChange = (e) => {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      
+      setFile(file)
+      setImagePreview(reader.result)
+    }
+
+    reader.readAsDataURL(file)
+  }
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    const fd = new FormData()
+    fd.append('profile', file, file.name)
+    console.log(file, file.name)
+    
+    instance.post('/user/uploadfoto', fd , { headers: {"accesstoken": `${Cookies.get('test')}`}, onUploadProgress: progressEvent => setPercentUpload( Math.round(progressEvent.loaded / progressEvent.total * 100)) })
+      .then( data => {
+        // setKtp(data.data['NIK'])
+        setChangeData(true)
+        setModalShow(false)
+        toast.info('👌👌👌Anda Mengupload Foto Profile!!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      })
+      .catch( err => {
+        toast.danger('👌👌👌Terjadi Error', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      })
+
+  } 
   const getDataProfile = () => {
-    if(!dataProfile){
+    if(!dataProfile || changeData){
       dispatch(dataProfileUser())
         .then( data => {
           SetDataProfile(data)
           setDataKetertarikan(data.categories)
+          setChangeData(false)
         })
     }
   }
@@ -71,7 +135,15 @@ const ProfileResponden = (props) => {
               <Row>
                 <Col md={12} lg={12}>
                   <center>
-                  <img src="../images/user_profil.png" style={{borderRadius:"100%",width:'180px'}}/>
+                  <Button variant="outline-warning" style= {{  top:'50%',
+                                    left: '50%',
+                                    position: 'absolute',
+                                    transform: 'translate(-50%, -50%)'}}
+                                    onClick={() => setModalShow(true)}>
+                    <MdAddAPhoto/>
+                  </Button>
+                  <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../images/user_profil.png"} style={{borderRadius:"100%",width:'180px'}}/>
+                  
                   </center>
                 </Col>
               </Row>
@@ -169,6 +241,12 @@ const ProfileResponden = (props) => {
                           <td>:</td>
                           <td> {dataKetertarikan.join(', ') } </td>
                         </tr>
+
+                        <tr>
+                          <td>KTP</td>
+                          <td>:</td>
+                          <td> <img src={ dataProfile && dataProfile.foto_ktp ? `http://149.129.240.254:8889/ktp/${dataProfile.foto_ktp}`:"../images/noimage.png"} style={{width:'180px', height:'100px'}}/> </td>
+                        </tr>
                       </tbody>
                     </Table>
                   </Col>
@@ -180,8 +258,49 @@ const ProfileResponden = (props) => {
       </div>
 
       <Footer/>
+
+      <ToastContainer />
+
+      <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Upload Foto Profile
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group>
+            <Form.Label>Upload Foto Profile</Form.Label>
+            <Form.Control type="file" placeholder=""  onChange={handleImageChange} />
+            <Badge variant="info"> {percentUpload}% </Badge>
+          </Form.Group>
+
+            {/* <input type="file" onChange={handleImageChange} />
+            <button onClick={handleUpload}>Upload Image</button> */}
+            {
+              imagePreview &&
+              <>
+                <img src={imagePreview} style={{ height:"200px", width:"320px"}}/>
+              </>
+            }
+        </Modal.Body>
+        <Modal.Footer>
+            {
+              file &&
+                <Button onClick={handleUpload}>Submit foto profile</Button>
+            }
+          <Button variant="secondary" onClick={() => setModalShow(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }
+
+
 
 export default withRouter(ProfileResponden)

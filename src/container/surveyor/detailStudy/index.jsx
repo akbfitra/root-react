@@ -238,6 +238,12 @@ const DetailStudyResponden = (props) => {
                       <Row>
                         <Col md={12} lg={12}>
                         <div className="part-one">
+
+                        <a href= {`http://admin.dev.survplus.id/downloadexcel/${studyId}`} target="_blank">
+                            <Button variant="info" >
+                              Download Rekap Semua
+                            </Button>
+                          </a>
                           <Table striped bordered>
                             <thead>
                               <tr>
@@ -287,7 +293,7 @@ const DetailStudyResponden = (props) => {
                                         <td>
                                           <center>
                                             {/* <Link to={`/surveyor/detailstudy/detailresponden/${studyId}/${data.userId._id}`}> */}
-                                            <a href= {`https://backoffice.survplus.id/cetak/${studyId}/${data.userId._id}`} target="_blank">
+                                            <a href= {`http://admin.dev.survplus.id/cetak/${studyId}/${data.userId._id}`} target="_blank">
                                               <Button variant="info" >
                                                 <FaDownload/>
                                               </Button>
