@@ -43,7 +43,8 @@ const LandingPage = () => {
     autoplay: true,
     autoplaySpeed: 7000,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    adaptiveHeight: true
   };
 
   const settingslidertwo = {
@@ -55,6 +56,7 @@ const LandingPage = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
+    adaptiveHeight: true
   };
 
   const getAllUser = () => {
@@ -176,11 +178,11 @@ const LandingPage = () => {
                   </div>
 
                   <div>
-                    <img src="images/Slide2.jpg" style={{width:'100%',height:'100vh'}}></img>
+                    <img src="images/Slide2New.jpg" style={{width:'100%'}}></img>
                   </div>
 
                   <div>
-                    <img src="images/Slide3.jpg" style={{width:'100%', height:'100vh'}}></img>
+                    <img src="images/Slide3New.jpg" style={{width:'100%'}}></img>
                   </div>
                 </Slider>
               </div>
@@ -207,9 +209,9 @@ const LandingPage = () => {
             </Col>
           </Row>
         </Container>
-        <div className="menu" style={{width:'100%', position:'absolute', left:'0', right:'0', top:'0', zIndex:'1'}}>
+        <div className="menu" style={{width:'100%', position:'absolute', left:'0', right:'0', top:'0', zIndex:'1', backgroundColor:'rgba(255,255,255,0.7)'}}>
           <Container>
-            <Row>
+            <Row style={{position: 'sticky', top:'0', zIndex: '1'}}>
               <Col md={3} lg={3}>
               <Link to='/'>
                 <div style={{width:'100%', height:'80px', display:'flex', alignItems:'center', backgroundColor:''}}>
@@ -500,15 +502,15 @@ const LandingPage = () => {
               <div>
                 <Slider {...settingslidertwo}>
                   <div>
-                    <img src="images/ikut_studi.svg" style={{width:'100%'}}></img>
+                    <img src="images/CaraIkutStudi.jpg" style={{width:'100%'}}></img>
                   </div>
 
                   <div>
-                    <img src="images/dapat_studi.svg" style={{width:'100%'}}></img>
+                    <img src="images/CaraDapatStudi.png" style={{width:'100%'}}></img>
                   </div>
 
                   <div>
-                    <img src="images/CaraTarikUang.png" style={{width:'100%'}}></img>
+                    <img src="images/Group 232.jpg" style={{width:'100%'}}></img>
                   </div>
                 </Slider>
               </div>
@@ -527,7 +529,7 @@ const LandingPage = () => {
             <Col md={7} lg={7} xs={12} sm={12}>
               <Row>
                 <Col md={12} lg={12}>
-                <h3 className="text-center title-one"><strong>Cara Survey Online Ini Bekerja</strong></h3>
+                <h3 className="text-center title-one"><strong>Ilustrasi Survei melalui Survplus</strong></h3>
                 </Col>
               </Row>
               <Row className="m-t-30">

@@ -170,13 +170,12 @@ export const Navbar = (props) => {
                                       {
                                         notification.map((data, i) => {
                                           return(
-                                            
+                                            <>
                                                 <Dropdown.Item key={`${i}`}>
-                                                  <Link to = {`/${role}/notification`}>
-                                                    {data.content} 
-                                                  </Link>
+                                                  <Link to = {`/${role}/notification`}><span  dangerouslySetInnerHTML={{__html: data.content}}></span></Link>
                                                 </Dropdown.Item>
-                                          
+                                                <Dropdown.Divider/>
+                                          </>
                                             
                                           )
                                         })
