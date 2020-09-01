@@ -215,61 +215,58 @@ const LandingPage = () => {
               <Col md={3} lg={3}>
               <Link to='/'>
                 <div style={{width:'100%', height:'80px', display:'flex', alignItems:'center', backgroundColor:''}}>
-                <img src="images/logo three.png" style={{height:'60px', marginRight:'10px'}}></img>
+                <img src="images/logo three.png" style={{height:'50px', marginRight:'10px'}}></img>
                 <h3 className="m-t-0 m-b-0"><strong>Survplus</strong></h3>
                 </div>
               </Link>
                 
               </Col>
 
-              <Col md={7} lg={7}>
-                <div style={{width:'100%', height:'80px', display:'flex', justifyContent:'flex-end', alignItems:'center', backgroundColor:''}}>
-                  {/* <Link to ='#'>
-                    <h5>Tentang Kami</h5>
-                  </Link>
-
-                  <Link to ='#'>
-                    <h5>Surveyor</h5>
-                  </Link>
-
-                  <Link to ='#'>
-                    <h5>Responden</h5>
-                  </Link> */}
-
-                  <Link to ='/syaratdanketentuan'>
-                    <h5>Syarat & Ketentuan</h5>
-                  </Link>
-                  
-                </div>
-                  
-              </Col>
-
-
-              <Col md={2} lg={2}>
-              <div style={{width:'100%', height:'80px', display:'flex', alignItems:'center', backgroundColor:''}}>
-                  <ul className="list-inline m-b-0">
-                    
-
-                    <li className="list-inline-item">
-                    <DropdownButton size="sm"
-                      alignRight
-                      title="DAFTAR"
-                      id="dropdown-menu-align-right"
-                     
-                    >
-                      <Dropdown.Item eventKey="2"><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
-                      <Dropdown.Item eventKey="3"><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
-                    </DropdownButton>
-                    </li>
-
-                    <li className="list-inline-item">
-                      <Link to ='/login'>
-                        <Button Button variant="primary" size="sm">LOGIN</Button>
+              <Col md={9} lg={9}>
+              <div style={{width:'100%', height:'80px', display:'flex', backgroundColor:''}}>
+                    <div style={{width:'80%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
+                      <Link to ='/'>
+                      <h6>Beranda</h6>
                       </Link>
-                    </li>
-                  </ul>
-              </div>
-                  
+
+                      <Link to ='#'>
+                      <h6>Tentang Kami</h6>
+                      </Link>
+
+                      <Link to ='#' onClick={() => setSurShow(true)}>
+                        <h6>Surveyor</h6>
+                      </Link>
+
+                      <Link to ='#' onClick={() => setResShow(true)}>
+                        <h6>Responden</h6>
+                      </Link>
+
+                      <Link to ='/syaratdanketentuan'>
+                        <h6>Syarat & Ketentuan</h6>
+                      </Link>
+
+                      <Link to ='/kontakkami'>
+                        <h6>Kontak Kami</h6>
+                      </Link>
+                    </div>
+
+                    <div style={{width:'20%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
+                    <DropdownButton size="md"
+                        alignRight
+                        title="Daftar"
+                        id="dropdown-menu-align-right"
+                      
+                      >
+                        <Dropdown.Item><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
+                    </DropdownButton>
+                    
+                    
+                    <Link to ='/login'>
+                      <Button Button variant="primary" size="md">Login</Button>
+                    </Link>
+                    </div>
+                  </div>
               </Col>
             </Row>
           </Container>
