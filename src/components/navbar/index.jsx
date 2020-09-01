@@ -108,12 +108,16 @@ export const Navbar = (props) => {
                       <Link to ='/syaratdanketentuan'>
                         <h6>Syarat & Ketentuan</h6>
                       </Link>
+
+                      <Link to ='/kontakkami'>
+                        <h6>Kontak Kami</h6>
+                      </Link>
                     </div>
 
                     <div style={{width:'20%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
                     <DropdownButton size="md"
                         alignRight
-                        title="DAFTAR"
+                        title="Daftar"
                         id="dropdown-menu-align-right"
                       
                       >
@@ -122,7 +126,7 @@ export const Navbar = (props) => {
                     </DropdownButton>
                     
                     <Link to ='/login'>
-                      <Button Button variant="primary" size="md">LOGIN</Button>
+                      <Button Button variant="primary" size="md">Login</Button>
                     </Link>
                     </div>
                     
