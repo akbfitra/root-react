@@ -213,9 +213,14 @@ const EditProfileResponden = (props) => {
                     </Form.Group>
 
                     <Form.Group>
-                      <Form.Label>No. Identitas</Form.Label>
-                      <Form.Control type="number" placeholder="" value={ktp} onChange ={ (e) => { setKtp(e.target.value) }} />
+                      <Form.Label>No. Identitas </Form.Label>
+                      <p>{dataProfile && dataProfile.foto_ktp  ? ktp : '-'}</p>
+                      {
+                        dataProfile && dataProfile.foto_ktp ? <Badge variant="success">Verified</Badge> : <Badge variant="danger">not verified</Badge>
+                      }
+                      
                     </Form.Group>
+                    
 
                     <Form.Group>
                       <Form.Label>Tanggal Lahir</Form.Label>
