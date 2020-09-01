@@ -16,7 +16,7 @@ export const CardCategory = (props) => {
               <div className="table-cell-one">
                 <Link to={`/responden/category/${props.categories._id}`}>
                   <center>
-                    <img src="../images/aboutus.png" alt=""/>
+                    <img src={ props.categories.foto && props.categories.foto ? `http://admin.dev.survplus.id/foto/${props.categories.foto}`:"../images/aboutus.png"}  alt=""/>
                     <h2>{props.answerUser}</h2>
                     <h4 className="title-two m-t-15" style={{textTransform:'Capitalize'}}><strong>{props.categories.name}</strong></h4>
                     <h4 className="title-two"><strong>{dataUser.length}/{props.categories.listQuestions.length}</strong></h4>

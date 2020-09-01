@@ -12,8 +12,8 @@ export const Footer = () => {
             <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
               <div className="part-one">
                 <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                  <img src="images/logo_white.png" style={{width:'60px', marginRight:'10px'}}></img>
-                  <h4 className="title-one" ><strong>SURVPLUS</strong></h4>
+                  <img src="../../../../images/logo_white.png" style={{width:'60px', marginRight:'10px'}}></img>
+                  <h4 className="title-one" ><strong>Survplus</strong></h4>
                 </div>
               <h5 className="text-center m-t-5">PLUS Datanya, PLUS Manfaatnya</h5>
               <p className="text-center m-t-15">Wisma Iskandarsyah Blok A-10,<br/>Jl. Iskandarsyah Raya Kav. 12 - 14, Kel. Melawai, Kebayoran Baru, Jakarta Selatan</p>

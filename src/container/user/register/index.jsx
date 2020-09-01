@@ -365,7 +365,7 @@ const Register = (props) => {
                   <Form.Group className="m-b-0">
                     <Form.Check
                       type="checkbox" 
-                      label="Saya telah membaca, memahami, dan menyetujui Syarat dan Ketentuan bagi Responden"
+                      label={<label>Saya telah membaca, memahami, dan menyetujui <a href='/syaratdanketentuan'>Syarat dan Ketentuan</a> bagi Responden</label>}
                       required/>
                     <Form.Check 
                       type="checkbox" 
@@ -395,11 +395,11 @@ const Register = (props) => {
                   </Row>
                 </Form>
 
-                  <Row>
+                  {/* <Row>
                       <Col md={12} lg={12}>
                       <hr/>
                       </Col>
-                  </Row>
+                  </Row> */}
                   
                 </Col>
               </Row>

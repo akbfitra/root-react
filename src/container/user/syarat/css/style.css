@@ -1,4 +1,3 @@
-
 /* Margin top */
 .m-t-0{
   margin-top: 0px !important;
@@ -435,6 +434,7 @@ p{
 }
 
 
+
 /* Table No Border */
 .table-no-border .table-bordered > thead > tr > th, 
 .table-no-border .table-bordered > tbody > tr > th, 
@@ -451,7 +451,6 @@ p{
 .react-datepicker-wrapper{
   width:100%;
 }
-
 .react-datepicker__input-container input{
   display: block;
   width: 100%;
@@ -468,339 +467,21 @@ p{
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 /* end datepicker */
-/* ======================================== header ============================================= */
-#header{
-    width: 100%;
-    /* height: 100vh; */
-    /* background-color:red; */
-    /* background-image: url('/images/background1.png'); 
-	  background-position: center center;
-    background-repeat: no-repeat; */
-    position: relative;
-}
-
-#header .main-header-one .part-one .table-cell-one{
-    display: table-cell;
-    vertical-align: middle;
-    height: 100vh;
-    /* background-color: yellow; */
-}
-
-#header .main-header-one .part-two .table-cell-one{
-    display: table-cell;
-    vertical-align: middle;
-    height: 100vh;
-    /* background-color: yellow; */
-}
-
-#header .main-header-two{
-   position: absolute;
-   left: 0;
-   right: 0;
-   top: 0;
-   z-index: 1000;
-   /* background-color: red; */
-}
-
-#header .main-header-two .part-one .table-cell-one{
-    display: table-cell;
-    vertical-align: middle;
-    height: 80px;
-    width: 80px;
-    /* background-color: yellow; */
-}
-
-#header .main-header-two .part-one .table-cell-two{
-    display: table-cell;
-    vertical-align: middle;
-    height: 80px;
-}
-
-#header .main-header-two .part-two .table-cell-one{
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    height: 80px;
-    /* background-color: yellow; */
-}
-/* ======================================== end header ============================================= */
-/* ======================================== main-footer ============================================= */
-#main-footer-one{
-  background-color: #1f59bb;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-#main-footer-one .part-one h3{
-  color: #fff;
-}
-
-#main-footer-one .part-one p{
-  color: #fff;
-}
-
-#main-footer-two {
-  padding-top:10px;
-  padding-bottom: 10px;
-}
-/* ======================================== end main-footer ============================================= */
-
-/* ======================================== section-one ============================================= */
-#section-one{
-    /* background-image: url('/images/background2.png');  */
-    /* background-position: center center;
-    background-repeat: no-repeat; */
-    /* background-size: cover; */
-    padding-top: 60px;
-    padding-bottom:60px;
-    position: relative;
-}
-
-
-#section-one-mobile{
-  /* background-image: url('/images/background2.png'); 
-  background-position: center center;
-  background-repeat: no-repeat; 
-   background-size: cover; */
-  padding-top: 60px;
-  padding-bottom:60px;
-  position: relative;
-}
-
-#section-one .part-one{
-    background-color: #fff;
-	border-radius: 8px;
-	box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
-}
-
-#section-one .part-one .table-cell-one{
-    display: table-cell;
-	vertical-align: middle;
-	width: 100px;
-    height: 140px;
-    /* background-color: pink; */
-}
-#section-one .part-one .table-cell-two{
-    display: table-cell;
-	vertical-align: middle;
-	height: 140px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    /* padding-top: 10px; */
-    /* background-color: yellow; */
-}
-#section-one .part-one .table-cell-one img{
-    border-radius: 100%;
-}
-
-#section-one .part-one .table-cell-two h4{
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#section-one .part-one .table-cell-two p{
-    font-size: 12px;
-}
-
-#section-one .part-two .table-cell-one{
-    display: table-cell;
-	vertical-align: middle;
-	height: 50px;
-    padding-left: 30px;
-    /* background-color: red; */
-}
-
-#section-one .part-two .table-cell-two{
-    display: table-cell;
-	vertical-align: middle;
-	height: 50px;
-    width: 55px;
-    /* background-color: yellow; */
-}
-
-#section-one .part-two .table-cell-two img{
-    height: 40px;
-    width: 40px;
-    /* background-color: yellow; */
-}
-
-#section-one .part-three .table-cell-two{
-    display: table-cell;
-	vertical-align: middle;
-	height: 50px;
-    padding-right: 30px;
-    /* background-color: red; */
-}
-
-
-#section-one .part-three .table-cell-one{
-    display: table-cell;
-	vertical-align: middle;
-	height: 50px;
-    width: 55px;
-    /* background-color: yellow; */
-}
-
-#section-one .part-three .table-cell-one img{
-	height: 40px;
-    width: 40px;
-    /* background-color: yellow; */
-}
-
-#section-one .part-four{
-  width: 100%;
-  position: relative;
-  background-color: pink;
-}
-
-#section-one .part-four .box{
-  width: 100%;
-  /* height: 120px; */
-  /* background-color: red; */
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -120px;
-}
-
-#section-one .part-five {
-  display: flex;
-  justify-content: center;
-  /* background-color: yellow; */
-  position: relative;
-}
-
-#section-one .part-five .box{
-  width: 180px;
-  /* height: 120px; */
-  /* background-color: red; */
-  margin-left: 5px;
-  margin-right:5px;
-}
-
-/* ======================================== end section-one ============================================= */
-/* ======================================== section-two ============================================= */
-#section-two{
-    padding-top: 60px;
-    padding-bottom: 60px;
-}
-
-
-#section-two .part-one{
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 7px 20px 0px rgba(0, 0, 0, 0.10);
-  padding:5px;
-  box-sizing: border-box;
-  display: flex;
-}
-
-
-#section-two .part-one .left{
-  width: 25%;
-  height: 100px;
-  /* background-color: yellow; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-#section-two .part-one .right{
-  width: 75%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-  /* background-color: red; */
-}
-
-
-#section-two .part-one .left img{
-  width: 80px;
-}
-
-#section-two .part-one .right p{
-  font-size: 14px;
-}
-
-/* ======================================== end section-two ============================================= */
-
-#section-three {
+/* ======================================== edit profile-responden ============================================= */
+#syarat-ketentuan {
   padding-top: 60px;
   padding-bottom: 60px;
-  /* background-image: url('/images/background1.png'); */
-  background-position: center center;
-  background-repeat: no-repeat;
 }
 
-
-#section-one-sisip{
-  padding-top: 60px;
-  padding-bottom:60px;
-  position: relative;
-  background-image: url('/images/survplus_bekerja.jpg');
-  background-size: cover;
+#syarat-ketentuan .part-one{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.10);
+  padding:30px;
 }
 
-#section-two-sisip{
-  padding-top: 60px;
-  padding-bottom:60px;
-  position: relative;
-  background-image: url('/images/map.svg');
-  background-size: cover;
+#syarat-ketentuan .part-one ul li{
+  margin-bottom: 10px;
 }
-
-#section-three-sisip{
-  padding-top: 60px;
-  padding-bottom:60px;
-  position: relative;
-}
-
-#section-four-sisip{
-  padding-top: 60px;
-  padding-bottom:60px;
-  position: relative;
-}
-
-#section-five-sisip{
-  padding-top: 60px;
-  padding-bottom:60px;
-  position: relative;
-  background-color: whitesmoke;
-}
-
-#section-six-sisip{
-  padding-top: 60px;
-  padding-bottom:60px;
-  position: relative;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ======================================== end edit profile-responden ============================================= */
 
