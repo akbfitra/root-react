@@ -82,50 +82,54 @@ export const Navbar = (props) => {
                 
                 
 
-              
+                
                 <Col xs={6} sm={6} md={9} lg={9} className="part-two">
-                {/* <div style={{width:'100%', height:'80px', display:'flex', backgroundColor:''}}>
-                  <div style={{width:'80%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
-                    <Link to ='/'>
-                    <h6>Beranda</h6>
-                    </Link>
+                
+                {
+                  !role && !namaUser &&
+                  <div style={{width:'100%', height:'80px', display:'flex', backgroundColor:''}}>
+                    <div style={{width:'80%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
+                      <Link to ='/'>
+                      <h6>Beranda</h6>
+                      </Link>
 
-                    <Link to ='#'>
-                    <h6>Tentang Kami</h6>
-                    </Link>
+                      <Link to ='#'>
+                      <h6>Tentang Kami</h6>
+                      </Link>
 
-                    <Link to ='#'>
-                      <h6>Surveyor</h6>
-                    </Link>
+                      <Link to ='#'>
+                        <h6>Surveyor</h6>
+                      </Link>
 
-                    <Link to ='#'>
-                      <h6>Responden</h6>
-                    </Link>
+                      <Link to ='#'>
+                        <h6>Responden</h6>
+                      </Link>
 
-                    <Link to ='/syaratdanketentuan'>
-                      <h6>Syarat & Ketentuan</h6>
+                      <Link to ='/syaratdanketentuan'>
+                        <h6>Syarat & Ketentuan</h6>
+                      </Link>
+                    </div>
+
+                    <div style={{width:'20%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
+                    <DropdownButton size="md"
+                        alignRight
+                        title="DAFTAR"
+                        id="dropdown-menu-align-right"
+                      
+                      >
+                        <Dropdown.Item eventKey="2"><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
+                        <Dropdown.Item eventKey="3"><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
+                    </DropdownButton>
+                    
+                    <Link to ='/login'>
+                      <Button Button variant="primary" size="md">LOGIN</Button>
                     </Link>
+                    </div>
+                    
+
+                    
                   </div>
-
-                  <div style={{width:'20%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
-                  <DropdownButton size="md"
-                      alignRight
-                      title="DAFTAR"
-                      id="dropdown-menu-align-right"
-                     
-                    >
-                      <Dropdown.Item eventKey="2"><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
-                      <Dropdown.Item eventKey="3"><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
-                  </DropdownButton>
-                  
-                  <Link to ='/login'>
-                    <Button Button variant="primary" size="md">LOGIN</Button>
-                  </Link>
-                  </div>
-                  
-
-                  
-                </div> */}
+                }
                 {
                 role && namaUser &&
                   <div className="table-100">
