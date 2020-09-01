@@ -21,6 +21,9 @@ import AktivasiSuccess from './container/user/successAktivasi'
 import SuccessForgotPassword from './container/user/responForgotPassword'
 import SyaratDanKetentuan from './container/user/syarat'
 import KontakKami from './container/user/kontakKami'
+import TentangKami from './container/user/tentangKami'
+import TentangSurveyor from './container/user/tentangSurveyor'
+import TentangResponden from './container/user/tentangResponden'
 
 import DashboardSurveyor from './container/surveyor/dashboard'
 import FormSurveyor from './container/surveyor/form'
@@ -69,6 +72,9 @@ const App = () => {
       <Route path = '/successforgotpassword' component= {SuccessForgotPassword}/>
       <Route path = '/syaratdanketentuan' component = {SyaratDanKetentuan}/>
       <Route path = '/kontakkami' component = {KontakKami}/>
+      <Route path = '/tentangkami' component = {TentangKami}/>
+      <Route path = '/tentangsurveyor' component = {TentangSurveyor}/>
+      <Route path = '/tentangresponden' component = {TentangResponden}/>
 
       <PrivateRouteSurveyor path = '/surveyor/form/edit/:studyId' component = {EditFormSurveyor}/>
       <PrivateRouteSurveyor path = '/surveyor/form' component = {FormSurveyor}/>
