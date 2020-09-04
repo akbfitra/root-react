@@ -220,7 +220,7 @@ export const Navbar = (props) => {
                               {/* <div style={{width:'100px',height:'20px',backgroundColor:'red'}}></div> */}
                               <div style={{display:'flex', flexDirection:'column',paddingRight:'10px' }}>
                               <p style={{textAlign:'right'}}><strong>Hi, {namaUser}</strong></p>
-                              <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
+                              <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo - dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
                               </div>
                               <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../../../../images/user_profil.png"} style={{height:'50px', width:'50px', borderRadius:'100%'}}></img>
                             </div>

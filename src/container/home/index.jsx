@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router-dom';
 import './css/style.css';
 import { Button, Container, Row, Col, Tab, Nav, Accordion, Card, DropdownButton, Dropdown, Navbar, NavDropdown, Modal } from 'react-bootstrap';
 import Slider from "react-slick";
-import ReactPlayer from 'react-player'
+// import ReactPlayer from 'react-player'
 
 import { getDataAllUser, getFaqHome, getPerusahaanHome } from '../../store/actions/userAction'
 import { Footer } from '../../components/footer'

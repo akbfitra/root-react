@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { withRouter, Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import './css/style.css';
 import { Container, Row, Col} from 'react-bootstrap'
@@ -7,11 +8,44 @@ import { Container, Row, Col} from 'react-bootstrap'
 import { Navbar } from '../../../components/navbar'
 import { Footer } from '../../../components/footer'
 
+import { getDataAllUser } from '../../../store/actions/userAction'
+
 const RespondenDashboard = (props) => {
+
+  const dispatch = useDispatch()
+
+
+  const [ allUser, setAllUser ] = useState('')
+
+  let dataResponden = 0
+  let dataSurveyor = 0
+
+
+  if(allUser){
+    dataResponden = allUser.filter(el => el.role === 'responden').length
+    dataSurveyor = allUser.filter(el => el.role === 'surveyor').length
+  }
+
+
+
+
+  const getAllUser = () => {
+    dispatch(getDataAllUser())
+      .then( data => {
+        setAllUser(data)
+      })
+  }
+
+  useEffect(() => {
+    getAllUser()
+  }, [])
 
   return(
     <>
       <Navbar/>
+
+      <h1>{dataResponden} responden</h1>
+      <h1>{dataSurveyor} surveyor</h1>
 
       <div id="dashboard-responden">
       <Container>
