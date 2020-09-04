@@ -129,48 +129,7 @@ const TopUpSurveyor = (props) => {
                       </Col>
                     </Row>
                   </Tab>
-                  <Tab eventKey="Metode" title="Metode Pembayaran Isi Ulang">
-                    <Row className="m-t-30">
-                      <Col md={12} lg={12}>
-                      <Accordion>
-                        <Card>
-                          <Accordion.Toggle as={Card.Header} eventKey="0" style={{cursor:"pointer"}}>
-                            Metode Pembayaran 1
-                          </Accordion.Toggle>
-                          <Accordion.Collapse eventKey="0">
-                            <Card.Body>Hello! I'm the body</Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-                        <Card>
-                          <Accordion.Toggle as={Card.Header} eventKey="1" style={{cursor:"pointer"}}>
-                            Metode Pembayaran 2
-                          </Accordion.Toggle>
-                          <Accordion.Collapse eventKey="1">
-                            <Card.Body>Hello! I'm another body</Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-
-                        <Card>
-                          <Accordion.Toggle as={Card.Header} eventKey="2" style={{cursor:"pointer"}}>
-                            Metode Pembayaran 3
-                          </Accordion.Toggle>
-                          <Accordion.Collapse eventKey="2">
-                            <Card.Body>Hello! I'm another body</Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-
-                        <Card>
-                          <Accordion.Toggle as={Card.Header} eventKey="4" style={{cursor:"pointer"}}>
-                            Metode Pembayaran 4
-                          </Accordion.Toggle>
-                          <Accordion.Collapse eventKey="4">
-                            <Card.Body>Hello! I'm another body</Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-                      </Accordion>
-                      </Col>
-                    </Row>
-                  </Tab>
+                  
                 </Tabs>
               </Col>
             </Row>

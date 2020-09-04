@@ -77,7 +77,7 @@ export const Footer = () => {
       <div id="main-footer-two">
         <Container>
           <Row>
-            <Col md={12} lg={12}><h4 className="text-center title-three">Copyright © 2020 suRvplus.id  </h4></Col>
+            <Col md={12} lg={12}><h4 className="text-center title-three">Copyright © 2020 Survplus.id  </h4></Col>
           </Row>
         </Container>
       </div>

@@ -486,11 +486,12 @@ p{
 }
 
 #study .part-one .box-pertanyaan .left{
-  width: 3%;
+  width: 30px !important;
+  /* background-color: red; */
 }
 
 #study .part-one .box-pertanyaan .right{
-  width: 97%;
+  /* width: 97%; */
 }
 
 #study .part-one .box-answer{

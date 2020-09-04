@@ -67,7 +67,7 @@ const SubmissionResponden = (props) => {
       <Container>
         <Row>
           <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
-            <h3 className="title-one text-center color-blue"><strong>Studi</strong></h3>
+            <h3 className="title-one text-center color-blue"><strong>Studi Responden</strong></h3>
               <ul className="list-inline text-center">
                 <li className="list-inline-item">
                   <Link to='/responden' style={{textDecoration:"none"}}>
@@ -86,7 +86,7 @@ const SubmissionResponden = (props) => {
         <Row className="m-t-30">
           <Col xs={12} sm={12} md={12} lg={12}>
             <Tabs defaultActiveKey="Belum Terlaksana" id="noanim-tab-example">
-                <Tab eventKey="Belum Terlaksana" title="Studi Belum Terlaksana">
+                <Tab eventKey="Belum Terlaksana" title="Belum Terlaksana">
                   {
                     !submission.length
                     ? 
@@ -150,7 +150,7 @@ const SubmissionResponden = (props) => {
                   }
                 </Tab>
 
-                <Tab eventKey="Sedang Berlangsung" title="Studi Sedang Berlangsung">
+                <Tab eventKey="Sedang Berlangsung" title="Sedang Berlangsung">
                 {
                     !sedangBerlangsung.length
                     ? 
@@ -215,7 +215,7 @@ const SubmissionResponden = (props) => {
                   }
                 </Tab>
 
-                <Tab eventKey="Sudah Telah Di Ajukan" title="Studi Telah Di Ajukan">
+                <Tab eventKey="Sudah Telah Di Ajukan" title="Telah Di Ajukan">
                   {
                     !completedSubmission.length
                     ? 
