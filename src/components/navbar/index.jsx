@@ -7,6 +7,7 @@ import { Col, Container, Row, Button, Dropdown, DropdownButton } from 'react-boo
 import { useHistory, useLocation, Link  } from 'react-router-dom';
 
 import { logoutProcess, GET_SALDO, GET_DATA_NOTIFICATION, dataProfileUser } from '../../store/actions/userAction'
+import { GET_DATA_TANGGUNGAN_SURVEYOR } from '../../store/actions/surveyFormAction'
 
 export const Navbar = (props) => {
   const dispatch = useDispatch()
@@ -16,6 +17,7 @@ export const Navbar = (props) => {
   const [ saldoUser, setSaldoUser ] = useState([])
   const [ notification, setNotification ] = useState([])
   const [dataProfile, SetDataProfile] = useState('')
+  const [ dataTanggunganSurveyor, setDataTanggunganSurveyor ] = useState([])
 
   
   let role = Cookies.get('role')
@@ -32,6 +34,8 @@ export const Navbar = (props) => {
       })
   }
 
+  console.log(dataTanggunganSurveyor)
+
   const dapetinNotification = () => {
     dispatch(GET_DATA_NOTIFICATION())
       .then( data => {
@@ -47,6 +51,17 @@ export const Navbar = (props) => {
         })
     }
   }
+
+  const setDataTanggunganYangBelomDijalankan = () => {
+    dispatch(GET_DATA_TANGGUNGAN_SURVEYOR())
+      .then( data => {
+        setDataTanggunganSurveyor(data)
+      })
+  }
+
+  useEffect(() => {
+    setDataTanggunganYangBelomDijalankan()
+  }, [])
 
   useEffect(() => {
     dapetinSaldo()
@@ -190,6 +205,41 @@ export const Navbar = (props) => {
                               :
                               <>
                               </>
+                            }
+
+                            {
+                            dataTanggunganSurveyor && dataTanggunganSurveyor.total > 0 && 
+                                  <Dropdown alignRight>
+                                  <Dropdown.Toggle variant="link" id="dropdown-basic" style={{position:'relative'}}>
+                                  <p style={{textAlign:'right'}}>Tanggungan Anda : <NumberFormat value={dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
+                                    {/* <img src="../../../../images/bell.png" style={{height:'35px'}}></img> */}
+                                    {/* <div style={{backgroundColor:'#1f59bb', position:'absolute', top:'0', right:'10px', width:'25px', height:'25px', borderRadius:'100%', display:'flex', justifyContent:'center', alignItems:'center', fontSize:'12px', fontWeight:'bold', color:'#fff'}}>{notification.length}</div> */}
+                                  </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                      {
+                                        dataTanggunganSurveyor.listProject.map((data, i) => {
+                                          return(
+                                            <>
+                                                <Dropdown.Item key={`${i}`}>
+                                                  <p>
+                                                    nama study : { data.namaStudi}
+                                                  </p> 
+                                                  <p>
+                                                    total biaya : { data.total}
+                                                  </p>
+                                                  {/* <Link to = {`/${role}/notification`}><span  dangerouslySetInnerHTML={{__html: data.content}}></span></Link> */}
+                                                </Dropdown.Item>
+                                                <Dropdown.Divider/>
+                                            </>
+                                            
+                                          )
+                                        })
+                                      }
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+                                
+                             
                             }
 
                             {/* untuk mobile */}

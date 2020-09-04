@@ -72,6 +72,7 @@ const FormSurveyorEdit = (props) => {
   const [ totalRewardFee, setTotalRewardFee ] = useState(0)
   const [ totalKekurangan, setTotalKekurangan ] = useState(0)
   const [ dataTanggunganSurveyor, setDataTanggunganSurveyor ] = useState([])
+  const [pilihSemuaCat, setPilihSemuaCat] = useState(false)
 
 
   
@@ -147,7 +148,6 @@ const FormSurveyorEdit = (props) => {
     }
   }
 
-  console.log(pilihDaerah)
 
   const handlePilihKriteria = (kriteria) => {
     let cek = pilihCategories.includes(kriteria)
@@ -168,6 +168,15 @@ const FormSurveyorEdit = (props) => {
     }
   }
 
+  const handlePilihSemua = (all) => {
+    if(!pilihSemuaCat && all){
+      setPilihSemuaCat(true)
+      setPilihCategories(category.map((item, i) => item.name))
+    } else if(pilihSemuaCat && all) {
+      setPilihSemuaCat(false)
+      setPilihCategories([])
+    }
+  }
 
   const tambahDaerahProvinsi = () => {
     let dataDaerah = 0
@@ -649,6 +658,13 @@ const FormSurveyorEdit = (props) => {
                         {/* pilih kriteria */}
                         <Form.Group>
                           <Form.Label>Kriteria Responden</Form.Label>
+                          <Form.Label>Kriteria Responden</Form.Label>
+                            <Form.Check
+                              type="checkbox"
+                              label="Pilih Semua"
+                              value="allcategory"
+                              onChange={(e) => { handlePilihSemua(e.target.value)}}
+                            />
                           <Row>
                             {
                               category.map((data, i) => {
