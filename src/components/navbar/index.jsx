@@ -3,13 +3,18 @@ import Cookies from 'js-cookie'
 import './css/style.css';
 import { useDispatch } from 'react-redux';
 import NumberFormat from 'react-number-format';
-import { Col, Container, Row, Button, Dropdown, DropdownButton, Nav, NavDropdown, ButtonGroup,NavLink } from 'react-bootstrap'
+import { Col, Container, Row, Button, Dropdown, DropdownButton, Nav, NavDropdown, ButtonGroup,NavLink, Modal, Table } from 'react-bootstrap'
 import { useHistory, useLocation, Link  } from 'react-router-dom';
 
 import { logoutProcess, GET_SALDO, GET_DATA_NOTIFICATION, dataProfileUser } from '../../store/actions/userAction'
 import { GET_DATA_TANGGUNGAN_SURVEYOR } from '../../store/actions/surveyFormAction'
 
 export const Navbar = (props) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const dispatch = useDispatch()
   const history = useHistory()
   const location = useLocation()
@@ -181,11 +186,10 @@ export const Navbar = (props) => {
 
 {
                             dataTanggunganSurveyor && role === 'surveyor' &&
-                                  <Dropdown alignRight>
-                                  <Dropdown.Toggle variant="link" id="dropdown-basic" style={{position:'relative'}}>
-                                  <p style={{textAlign:'right'}}>Tanggungan Anda : <NumberFormat value={dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
-                                    {/* <img src="../../../../images/bell.png" style={{height:'35px'}}></img> */}
-                                    {/* <div style={{backgroundColor:'#1f59bb', position:'absolute', top:'0', right:'10px', width:'25px', height:'25px', borderRadius:'100%', display:'flex', justifyContent:'center', alignItems:'center', fontSize:'12px', fontWeight:'bold', color:'#fff'}}>{notification.length}</div> */}
+                                  <Dropdown alignRight size="sm" style={{marginRight:'15px'}}>
+                                  <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                                  <p style={{textAlign:'right'}}>Saldo Terikat :<NumberFormat value={dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
+                                    
                                   </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
@@ -196,14 +200,14 @@ export const Navbar = (props) => {
                                             <>
                                                 <Dropdown.Item key={`${i}`}>
                                                   <p>
-                                                    nama study : { data.namaStudi}
+                                                    Study : { data.namaStudi}
                                                   </p> 
                                                   <p>
-                                                    total biaya : { data.total}
+                                                    Total Biaya : { data.total}
                                                   </p>
                                                   {/* <Link to = {`/${role}/notification`}><span  dangerouslySetInnerHTML={{__html: data.content}}></span></Link> */}
                                                 </Dropdown.Item>
-                                                <Dropdown.Divider/>
+                                                {/* <Dropdown.Divider/> */}
                                             </>
                                             
                                           )
@@ -220,7 +224,7 @@ export const Navbar = (props) => {
                               {/* <div style={{width:'100px',height:'20px',backgroundColor:'red'}}></div> */}
                               <div style={{display:'flex', flexDirection:'column',paddingRight:'10px' }}>
                               <p style={{textAlign:'right'}}><strong>Hi, {namaUser}</strong></p>
-                              <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
+                              <p style={{textAlign:'right'}}>Saldo Aktif : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
                               </div>
                               <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../../../../images/user_profil.png"} style={{height:'50px', width:'50px', borderRadius:'100%'}}></img>
                             </div>
@@ -339,8 +343,12 @@ export const Navbar = (props) => {
                               <Dropdown.Menu>
                                   <Dropdown.Item>
                                       <p style={{textAlign:'right'}}><strong>Hi, {namaUser} </strong></p>
-                                      <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /> ,-</p>
+                                      <p style={{textAlign:'right'}}>Saldo Aktif : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /> ,-</p>
+                                      
                                   </Dropdown.Item>
+                                  <Dropdown.Divider />
+                                  <Dropdown.Item><span onClick={handleShow}><p style={{textAlign:'right'}}>Saldo Terikat : <NumberFormat value={dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p></span></Dropdown.Item>
+                                  
                                   <Dropdown.Divider />
                                   <Dropdown.Item onClick = { (e) => { 
                                       e.preventDefault()
@@ -354,6 +362,48 @@ export const Navbar = (props) => {
       }
       </Container>
       </div>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Saldo Terikat</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Table bordered striped  size="sm" className="m-b-0">
+                  <tbody>
+                  {
+                                        dataTanggunganSurveyor &&
+                                        dataTanggunganSurveyor.listProject.map((data, i) => {
+                                          return(
+                                            <>
+                                            <tr key={`${i}`}>
+                                              <td>
+                                                   <p>
+                                                    Study : { data.namaStudi}
+                                                  </p> 
+                                                  <p>
+                                                    Total Biaya : { data.total}
+                                                  </p>
+                                              </td>
+                                            </tr>
+                                               
+                                                {/* <Dropdown.Divider/> */}
+                                            </>
+                                            
+                                          )
+                                        })
+                                      }
+                    
+                    
+                  </tbody>
+                </Table>
+        
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }
