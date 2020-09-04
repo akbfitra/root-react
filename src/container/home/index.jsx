@@ -307,9 +307,9 @@ const LandingPage = () => {
                   <Dropdown.Item href="/tentangresponden">Responden</Dropdown.Item>
                   <Dropdown.Item href="/syaratdanketentuan">Syarat & Ketentuan</Dropdown.Item>
                   <Dropdown.Item href="/kontakkami">Kontak Kami</Dropdown.Item>
-                  <Dropdown.Item href="/surveyor/register">Daftar Surveyor</Dropdown.Item>
+                  {/* <Dropdown.Item href="/surveyor/register">Daftar Surveyor</Dropdown.Item>
                   <Dropdown.Item href="/register">Daftar Responden</Dropdown.Item>
-                  <Dropdown.Item href="/login">Login</Dropdown.Item>
+                  <Dropdown.Item href="/login">Login</Dropdown.Item> */}
                 </Dropdown.Menu>
                 </Dropdown>
                 </div>
@@ -321,6 +321,25 @@ const LandingPage = () => {
                   <h3 className="m-t-0 m-b-0 color-blue"><strong>Survplus</strong></h3>
                 </div>
               </div>
+              
+              <div style={{position:'absolute', top:'0', bottom:'0', right:'0', margin:'auto', backgroundColor:''}}>
+                <div style={{width:'100%', display:'flex', alignItems:'center', backgroundColor:'', height:'65px'}}>
+                                <Dropdown alignRight>
+                                  <Dropdown.Toggle variant="link" id="dropdown-basic" style={{position:'relative'}}>
+                                    <img src="../../../../images/loginNew.png" style={{height:'40px'}}></img>
+                                  </Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                                    <Dropdown.Item href="/surveyor/register">Daftar Surveyor</Dropdown.Item>
+                                    <Dropdown.Item href="/register">Daftar Responden</Dropdown.Item>
+                                  </Dropdown.Menu>    
+                                </Dropdown>
+                </div>
+              </div>
+              
+
+              
             </div>
           </Col>
         </Row>
