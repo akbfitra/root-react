@@ -27,23 +27,17 @@ const LupaPassword = (props) => {
 
   return(
     <>
-        <div id="general-header">
+        <div id="general-header" style={{position:'sticky', top:'0', zIndex:'1'}}>
         <div className="main-header-one">
           <Container>
             <Row>
-              <Col md={8} lg={8} className="part-one">
-                <Link to='/'>
-                  <div className="table-100">
-                    <div className="table-row">
-                      <div className="table-cell-one">
-                        <img src="images/logo three.png" style={{height:'60px'}}></img>
-                      </div>
-
-                      <div className="table-cell-two">
-                        <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
-                      </div>
-                    </div>
-                  </div>
+              <Col md={3} lg={3} >
+                <Link to = '/'>
+                <div style={{width:'100%', display:'flex', alignItems:'center', backgroundColor:'', height:'65px'}}>
+                  <img src="../../../../images/logo three.png" style={{height:'40px',marginRight:'5px' }}></img>
+                  <h3 className="m-t-0 m-b-0 color-blue"><strong>Survplus</strong></h3>
+                  
+                </div>
                 </Link>
               </Col>
               {/* <Col md={4} lg={4} className="part-two">
@@ -75,7 +69,7 @@ const LupaPassword = (props) => {
 
                 <Row>
                   <Col md={12} lg={12}>
-                  <p className="text-center">Masukkan email Anda dan kami akan mengirimi Anda<br/>sebuah tautan untuk kembali ke akun Anda.</p>
+                  <p className="text-center">Masukkan email Anda dan kami akan mengirimkan password baru ke email Anda.</p>
                   </Col>
                 </Row>
 

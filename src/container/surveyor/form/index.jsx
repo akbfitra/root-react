@@ -592,7 +592,7 @@ const FormSurveyor = (props) => {
 
                         {/* pilih kriteria */}
                         <Form.Group>
-                          <Form.Label>Kriteria Responden</Form.Label>
+                          <Form.Label>Kriteria Ketertarikan Responden</Form.Label>
                           <Row>
                             {
                               category.map((data, i) => {
@@ -689,7 +689,7 @@ const FormSurveyor = (props) => {
                   </Col>
                 </Row>
 
-                <Row style={{position: 'sticky', top:'0', zIndex: '1'}}>
+                <Row style={{position: 'sticky', top:'80px', zIndex: '1'}}>
                   <Col md={12} lg={12}>
                   <Alert variant="primary" style={{marginBottom:'0px'}}>
                     <Alert.Heading  style={{marginBottom:'0px', marginTop:'0px'}} className="text-center"><span>Jumlah Responden Yang Tersedia : {counterUser.jumlah} </span></Alert.Heading>

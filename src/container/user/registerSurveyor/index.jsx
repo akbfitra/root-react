@@ -87,32 +87,24 @@ const RegisterSurveyor = (props) => {
   
   return(
     <>
-      <div id="general-header">
+      <div id="general-header" style={{position:'sticky', top:'0', zIndex:'1'}}>
         <div className="main-header-one">
           <Container>
             <Row>
-              <Col md={8} lg={8} className="part-one">
-                <Link to='/'>
-                  <div className="table-100">
-                    <div className="table-row">
-                      <div className="table-cell-one">
-                        <img src="../images/logo three.png" style={{height:'60px'}}></img>
-                      </div>
-
-                      <div className="table-cell-two">
-                        <h3 className="m-t-0 m-b-0"><strong>suRvplus</strong></h3>
-                      </div>
-                    </div>
-                  </div>
+              <Col md={3} lg={3} >
+                <Link to = '/'>
+                <div style={{width:'100%', display:'flex', alignItems:'center', backgroundColor:'', height:'65px'}}>
+                  <img src="../../../../images/logo three.png" style={{height:'40px',marginRight:'5px' }}></img>
+                  <h3 className="m-t-0 m-b-0 color-blue"><strong>Survplus</strong></h3>
+                  
+                </div>
                 </Link>
               </Col>
               {/* <Col md={4} lg={4} className="part-two">
                 <div className="table-100">
                   <div className="table-row">
                     <div className="table-cell-one">
-                      <Link to="/login">
-                        <Button variant="primary" className="float-right">LOGIN</Button>
-                      </Link>
+                    <Button variant="primary" className="float-right">LOGIN</Button>{' '}
                     </div>
                   </div>
                 </div>
@@ -360,7 +352,7 @@ const RegisterSurveyor = (props) => {
                   </Row>
 
                   <Form.Group className="m-b-0">
-                    <Form.Check type="checkbox" required label="Saya telah membaca, memahami, dan menyetujui Syarat dan Ketentuan bagi Surveyor" />
+                    <Form.Check type="checkbox" required label={<label>Saya telah membaca, memahami, dan menyetujui <a href='/syaratdanketentuan'>Syarat dan Ketentuan</a> bagi Surveyor</label>} />
                     <Form.Check type="checkbox" required label="Saya bersedia menerima informasi promosi dan penawaran dari suRvplus terkait dengan layanan survey online dan lainnya" />
                   </Form.Group>
                   

@@ -27,7 +27,7 @@ const SurveyorDashboard = (props) => {
               <Link to = '/surveyor/profile' style={{textDecoration:"none"}}>
               <div className="part-one">
                 <center>
-                <img src="images/profil.svg" style={{height:'160px', width:'160px'}}/>
+                <img src="images/ProfilSurveyor.svg" style={{height:'160px', width:'160px'}}/>
                 <h4 className="title-two m-t-15"><strong>Profil</strong></h4>
                 </center>
               </div>
@@ -38,7 +38,7 @@ const SurveyorDashboard = (props) => {
               <Link to = '/surveyor/liststudy' style={{textDecoration:"none"}}>
               <div className="part-one">
                 <center>
-                <img src="images/studi.svg" style={{height:'160px', width:'160px'}}/>
+                <img src="images/StudiSurveyor.svg" style={{height:'160px', width:'160px'}}/>
                 <h4 className="title-two m-t-15"><strong>Studi</strong></h4>
                 </center>
               </div>
@@ -49,8 +49,8 @@ const SurveyorDashboard = (props) => {
               <Link to = '/surveyor/topup' style={{textDecoration:"none"}}>
               <div className="part-one">
                 <center>
-                <img src="images/saldo.svg" style={{height:'160px', width:'160px'}}/>
-                <h4 className="title-two m-t-15"><strong>Isi Ulang</strong></h4>
+                <img src="images/TopupSurveyor.svg" style={{height:'160px', width:'160px'}}/>
+                <h4 className="title-two m-t-15"><strong>Isi Ulang Saldo</strong></h4>
                 </center>
               </div>
               </Link>

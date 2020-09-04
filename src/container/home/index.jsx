@@ -166,6 +166,68 @@ const LandingPage = () => {
   return(
     <>
       <div id="header" className="d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+      <div className="menu" fixed="top" style={{width:'100%', backgroundColor:'rgba(255,255,255,0.8)', position:'fixed', top:'0', zIndex:'2'}}>
+          <Container>
+            <Row>
+              <Col md={3} lg={3}>
+              <Link to='/'>
+                <div style={{width:'100%', height:'65px', display:'flex', alignItems:'center', backgroundColor:''}}>
+                <img src="images/logo three.png" style={{height:'50px', marginRight:'10px'}}></img>
+                <h3 className="m-t-0 m-b-0"><strong>Survplus</strong></h3>
+                </div>
+              </Link>
+                
+              </Col>
+
+              <Col md={9} lg={9}>
+              <div style={{width:'100%', height:'65px', display:'flex', backgroundColor:''}}>
+                    <div style={{width:'80%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
+                      <Link to ='/'>
+                      <h6>Beranda</h6>
+                      </Link>
+
+                      <Link to ='/tentangkami'>
+                      <h6>Tentang Kami</h6>
+                      </Link>
+
+                      <Link to ='/tentangsurveyor'>
+                        <h6>Surveyor</h6>
+                      </Link>
+
+                      <Link to ='/tentangresponden'>
+                        <h6>Responden</h6>
+                      </Link>
+
+                      <Link to ='/syaratdanketentuan'>
+                        <h6>Syarat & Ketentuan</h6>
+                      </Link>
+
+                      <Link to ='/kontakkami'>
+                        <h6>Kontak Kami</h6>
+                      </Link>
+                    </div>
+
+                    <div style={{width:'20%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
+                    <DropdownButton size="md"
+                        alignRight
+                        title="Daftar"
+                        id="dropdown-menu-align-right"
+                      
+                      >
+                        <Dropdown.Item><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
+                    </DropdownButton>
+                    
+                    
+                    <Link to ='/login'>
+                      <Button Button variant="primary" size="md">Login</Button>
+                    </Link>
+                    </div>
+                  </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
         <Container fluid>
           <Row>
             <Col md={12} lg={12} className="p-l-0 p-r-0">
@@ -209,110 +271,81 @@ const LandingPage = () => {
             </Col>
           </Row>
         </Container>
-        <div className="menu" style={{width:'100%', position:'absolute', left:'0', right:'0', top:'0', zIndex:'1', backgroundColor:'rgba(255,255,255,0.7)'}}>
-          <Container>
-            <Row style={{position: 'sticky', top:'0', zIndex: '1'}}>
-              <Col md={3} lg={3}>
-              <Link to='/'>
-                <div style={{width:'100%', height:'80px', display:'flex', alignItems:'center', backgroundColor:''}}>
-                <img src="images/logo three.png" style={{height:'50px', marginRight:'10px'}}></img>
-                <h3 className="m-t-0 m-b-0"><strong>Survplus</strong></h3>
-                </div>
-              </Link>
-                
-              </Col>
-
-              <Col md={9} lg={9}>
-              <div style={{width:'100%', height:'80px', display:'flex', backgroundColor:''}}>
-                    <div style={{width:'80%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
-                      <Link to ='/'>
-                      <h6>Beranda</h6>
-                      </Link>
-
-                      <Link to ='#'>
-                      <h6>Tentang Kami</h6>
-                      </Link>
-
-                      <Link to ='#' onClick={() => setSurShow(true)}>
-                        <h6>Surveyor</h6>
-                      </Link>
-
-                      <Link to ='#' onClick={() => setResShow(true)}>
-                        <h6>Responden</h6>
-                      </Link>
-
-                      <Link to ='/syaratdanketentuan'>
-                        <h6>Syarat & Ketentuan</h6>
-                      </Link>
-
-                      <Link to ='/kontakkami'>
-                        <h6>Kontak Kami</h6>
-                      </Link>
-                    </div>
-
-                    <div style={{width:'20%', display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor:''}}>
-                    <DropdownButton size="md"
-                        alignRight
-                        title="Daftar"
-                        id="dropdown-menu-align-right"
-                      
-                      >
-                        <Dropdown.Item><Link to ='/surveyor/register'>Daftar Surveyor</Link></Dropdown.Item>
-                        <Dropdown.Item><Link to ='/register'>Daftar Responden</Link></Dropdown.Item>
-                    </DropdownButton>
-                    
-                    
-                    <Link to ='/login'>
-                      <Button Button variant="primary" size="md">Login</Button>
-                    </Link>
-                    </div>
-                  </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+        
         {/* <div style={{position:'absolute', top:'0', right:'0'}}>
           <img src="images/wave2.png"></img>
         </div> */}
+
+
+        {/* <div style={{width:'80px', height:'175px', backgroundColor:'rgba(31,89,187,0.7)', position:'absolute', left:'0', top:'0', bottom:'0', margin:'auto', display:'flex', justifyContent:'center', alignItems:'center', borderTopRightRadius:'6px', borderBottomRightRadius:'6px', flexDirection:'column'}}>
+          <img src="images/decor4.png" style={{width:'50px'}}></img>
+          <h6 className="text-center m-t-5" style={{fontSize:'14px', color:'#fff'}}>Surveyor</h6>
+        </div>
+        <div style={{width:'80px', height:'175px', backgroundColor:'rgba(31,89,187,0.7)', position:'absolute', right:'0', top:'0', bottom:'0', margin:'auto', display:'flex', justifyContent:'center', alignItems:'center', borderTopLeftRadius:'6px', borderBottomLeftRadius:'6px', flexDirection:'column'}}>
+          <img src="images/decor5.png" style={{width:'50px', height:'139px'}}></img>
+          <h6 className="text-center m-t-5" style={{fontSize:'14px', color:'#fff'}}>Responden</h6>
+        </div> */}
       </div>
 
-      <div id="header-mobile" className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
-      <Navbar.Brand href="/">Survplus</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <div id="general-header-mobile"  style={{position:'sticky', top:'0', zIndex:'2', backgroundColor:'#fff', width:'100%'}} className="d-none d-none d-sm-block d-md-none d-block d-sm-none" >
+      <div >
+      <Container>
+        <Row>
+          <Col md={12} lg={12}>
+            <div style={{width:'100%', display:'table', position:'relative'}}>
+              <div style={{display:'table-row'}}>
+                <div style={{display:'table-cell', verticalAlign:'middle',height:'65px', backgroundColor:'' }}>
+                <Dropdown>
+                <Dropdown.Toggle variant="link" id="dropdown-basic">
+                <img src="../../../../images/menu.png" style={{height:'35px'}}></img>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu style={{width:'100%'}}>
+                  <Dropdown.Item href="/">Beranda</Dropdown.Item>
+                  <Dropdown.Item href="/tentangkami">Tentang Kami</Dropdown.Item>
+                  <Dropdown.Item href="/tentangsurveyor">Surveyor</Dropdown.Item>
+                  <Dropdown.Item href="/tentangresponden">Responden</Dropdown.Item>
+                  <Dropdown.Item href="/syaratdanketentuan">Syarat & Ketentuan</Dropdown.Item>
+                  <Dropdown.Item href="/kontakkami">Kontak Kami</Dropdown.Item>
+                  <Dropdown.Item href="/surveyor/register">Daftar Surveyor</Dropdown.Item>
+                  <Dropdown.Item href="/register">Daftar Responden</Dropdown.Item>
+                  <Dropdown.Item href="/login">Login</Dropdown.Item>
+                </Dropdown.Menu>
+                </Dropdown>
+                </div>
+              </div>
+
+              <div style={{position:'absolute', top:'0', bottom:'0', left:'60px', margin:'auto'}}>
+                <div style={{width:'100%', display:'flex', alignItems:'center', backgroundColor:'', height:'65px'}}>
+                  <img src="../../../../images/logo three.png" style={{height:'40px',marginRight:'5px' }}></img>
+                  <h3 className="m-t-0 m-b-0 color-blue"><strong>Survplus</strong></h3>
+                </div>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      </div>
+
       
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="#" onClick={() => setSurShow(true)}>Surveyor</Nav.Link>
-          <Nav.Link href="#" onClick={() => setResShow(true)}>Responden</Nav.Link>
-          <Nav.Link href="/syaratdanketentuan">Syarat & Ketentuan</Nav.Link>
-          <NavDropdown title="Daftar" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="/surveyor/register">Daftar Suveyor</NavDropdown.Item>
-            <NavDropdown.Item href="/register">Daftar Responden</NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link href="/login">Login</Nav.Link>
-        </Nav>
-
-
-        
-      </Navbar.Collapse>
-      </Navbar>
-
+      </div>
+      
+      <div className="d-none d-none d-sm-block d-md-none d-block d-sm-none">
       <Container>
         <Row>
           <Col xs={12} sm={12} className="p-l-0 p-r-0">
             <div style={{width:'100%', backgroundColor:'', height:'', overflowX:"hidden"}}>
               <Slider {...settingslider}>
                   <div>
-                    <img src="images/Slide1.jpg" style={{width:'100%'}}></img>
+                    <img src="images/Slide1New.jpg" style={{width:'100%'}}></img>
                   </div>
 
                   <div>
-                    <img src="images/Slide2.jpg" style={{width:'100%'}}></img>
+                    <img src="images/Slide2New.jpg" style={{width:'100%'}}></img>
                   </div>
 
                   <div>
-                    <img src="images/Slide3.jpg" style={{width:'100%'}}></img>
+                    <img src="images/Slide3New.jpg" style={{width:'100%'}}></img>
                   </div>
               </Slider>
             </div>
@@ -321,8 +354,9 @@ const LandingPage = () => {
         </Row>
       </Container>
       </div>
-      
+
       <div id="section-one" className="d-none d-none d-xl-block d-none d-lg-block d-xl-none d-none d-md-block d-lg-none">
+        
         <Container >
           <Row>
             <Col md={10} lg={10}>
@@ -480,7 +514,34 @@ const LandingPage = () => {
         <Container>
           <Row>
             <Col md={12} lg={12}>
-            <h3 className="text-center title-one"><strong>Responden Survplus</strong></h3>
+            <h3 className="text-center title-one"><strong>Surveyor dan Responden Survplus</strong></h3>
+            </Col>
+          </Row>
+
+          <Row style={{marginTop:'30px'}}>
+            <Col md={{ span: 8, offset:2}} lg={{ span: 8, offset:2}}>
+              <Row>
+                <Col xs={12}  sm={12} md={6} lg={6}>
+                  <div style={{width:'100%', height:'200px', backgroundColor:'#F9F9F9', display:'flex', justifyContent:'flex-end', alignItems:'center', flexDirection: 'row-reverse', paddingRight:'15px', borderRadius:'8px', boxShadow:' 4px 4px 4px rgba(0,0,0,0.25)'}}>
+                    
+                    <img src="images/decor4.png" style={{height:'185px', marginLeft:'15px'}}></img>
+                    <div style={{display:'flex', flexDirection:'column'}}>
+                    <h3 className="text-right"><strong>Jumlah Surveyor Terdaftar</strong></h3>
+                    <h1 className="text-right"><strong>{dataSurveyor}</strong></h1>
+                    </div>
+                    
+                  </div>
+                </Col>
+                <Col xs={12} sm={12} md={6} lg={6}>
+                  <div style={{width:'100%', height:'200px', backgroundColor:'#F9F9F9', display:'flex', justifyContent:'flex-start', alignItems:'center', paddingLeft:'15px', borderRadius:'8px', boxShadow:' 4px 4px 4px rgba(0,0,0,0.25)'}}>
+                    <img src="images/decor5.png" style={{height:'185px', marginRight:'15px'}}></img>
+                    <div style={{display:'flex', flexDirection:'column'}}>
+                    <h3 className="text-left"><strong>Jumlah Responden Terdaftar</strong></h3>
+                    <h1 className="text-left"><strong>{dataResponden}</strong></h1>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Container>
@@ -507,7 +568,7 @@ const LandingPage = () => {
                   </div>
 
                   <div>
-                    <img src="images/Group 232.jpg" style={{width:'100%'}}></img>
+                    <img src="images/CaraTarikUang.jpg" style={{width:'100%'}}></img>
                   </div>
                 </Slider>
               </div>
@@ -701,7 +762,7 @@ keseluruhan.
         <Modal.Body>
           <Row>
             <Col md={12} lg={12}>
-              <p>Responden memberikan pendapat langsung
+                <p>Responden memberikan pendapat langsung
                 melalui Survplus dalam form kuesioner survei yang dibuat oleh surveyor atau juga yang dibuat
                 oleh Survplus.</p>
                 <br/>
@@ -752,7 +813,7 @@ keseluruhan.
                 dengan profil dan ketertarikan anda yang ditentukan oleh pembuat kuesioner. Hal ini berarti,
                 semakin lengkap anda mengisi ketertarikan Anda, maka semakin besar peluang tawaran
                 pengisian kuesioner serta pemasukan finansial yang dapat Anda terima.
-              </p>
+                </p>
 
             </Col>
           </Row>
