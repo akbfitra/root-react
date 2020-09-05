@@ -57,7 +57,7 @@ const EditPasswordSurveyor = (props) => {
               <h3 className="title-one text-center"><strong>Ubah Password</strong></h3>
                 <ul className="list-inline text-center">
                   <li className="list-inline-item">
-                    <Link to='/responden' style={{textDecoration:"none"}}>
+                    <Link to='/surveyor' style={{textDecoration:"none"}}>
                     <h4 className="title-three">Beranda Surveyor</h4>
                     </Link>
                   </li>

@@ -172,7 +172,7 @@ const LandingPage = () => {
               <Col md={3} lg={3}>
               <Link to='/'>
                 <div style={{width:'100%', height:'65px', display:'flex', alignItems:'center', backgroundColor:''}}>
-                <img src="images/logo three.png" style={{height:'50px', marginRight:'10px'}}></img>
+                <img src="images/logo three.png" style={{height:'50px', marginRight:'5px'}}></img>
                 <h3 className="m-t-0 m-b-0"><strong>Survplus</strong></h3>
                 </div>
               </Link>

@@ -56,6 +56,13 @@ const ListStudy = () => {
           </Col>
         </Row>
         
+        <Row>
+          <Col md={12} lg={12}>
+          <Alert variant="primary">
+            <Alert.Heading className="text-center m-b-0"><a href="">Hubungi kami</a> untuk bantuan pembuatan kuesioner studi</Alert.Heading>
+          </Alert>
+          </Col>
+        </Row>
         <Row className="m-t-30">
           <Col md={12} lg={12}>
           <Link to='/surveyor/form'>

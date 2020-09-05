@@ -9,7 +9,7 @@ import InputRange from 'react-input-range';
 
 import './css/style.css';
 import 'react-input-range/lib/css/index.css';
-import { Tabs, Tab, Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
+import { Tabs, Tab, Container, Row, Col, Form, Button, Alert, Table } from 'react-bootstrap'
 
 import "react-datepicker/dist/react-datepicker.css";
 import NumberFormat from 'react-number-format'
@@ -172,10 +172,12 @@ const FormSurveyorEdit = (props) => {
     if(!pilihSemuaCat && all){
       setPilihSemuaCat(true)
       setPilihCategories(category.map((item, i) => item.name))
+      // setFlagsFilterQuestions(true)
     } else if(pilihSemuaCat && all) {
       setPilihSemuaCat(false)
       setPilihCategories([])
     }
+    setFlagsFilterQuestions(true)
   }
 
   const tambahDaerahProvinsi = () => {
@@ -381,11 +383,12 @@ const FormSurveyorEdit = (props) => {
           <Col md={12} lg={12}>
           <Alert variant="danger">
             <Alert.Heading>Perhatian...</Alert.Heading>
-            <p>
-              Saldo anda harus mencukupi dengan total jumlah reward dikali dengan jumlah responden yang anda ingikan
-            </p>
-            <p style={{color:'red',fontWeight:'bold'}}>
-              Jumlah saldo tanggungan survey anda sebelumnya sebesar { dataTanggunganSurveyor ? 
+            <Table borderless size="sm" className="m-b-0">
+                  <tbody>
+                    <tr>
+                      <td style={{width:'10px'}}>1.</td>
+                      <td>
+                                                            Saldo Terikat (biaya studi sedang berjalan) { dataTanggunganSurveyor ? 
                                                               <NumberFormat 
                                                                 value={dataTanggunganSurveyor.total} 
                                                                 displayType={'text'} 
@@ -395,10 +398,12 @@ const FormSurveyorEdit = (props) => {
                                                             :
                                                               0
                                                             }
-            </p>
-
-            <p style={{color:'red',fontWeight:'bold'}}>
-              Jumlah saldo Aktif { 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2.</td>
+                      <td>
+                      Saldo Aktif { 
                                     <NumberFormat 
                                       value={dataTanggunganSurveyor ? Number(saldoUser.saldo) -  Number(dataTanggunganSurveyor.total) : 0} 
                                       displayType={'text'} 
@@ -406,25 +411,34 @@ const FormSurveyorEdit = (props) => {
                                       decimalSeparator={','} 
                                       prefix={'Rp '}/>
                                   }
-            </p>
-            <p style={{color:'red',fontWeight:'bold'}}>
-              Jumlah saldo yang anda butuhkan untuk survey baru :  
-                                  <NumberFormat 
-                                    value={ props.formValues ?  Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) : 0} 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3.</td>
+                      <td>
+                      Saldo yang dibutuhkan untuk studi baru : <NumberFormat 
+                                    value={ props.formValues ?  (Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)) * 1.2  : 0} 
                                     displayType={'text'} 
                                     thousandSeparator={'.'} 
                                     decimalSeparator={','} 
                                     prefix={'Rp '}/>
-            </p>
-            <p style={{color:'red',fontWeight:'bold'}}>
-              Kekurangan Saldo baru :  
-                                  <NumberFormat 
-                                    value={ props.formValues ?  ((Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) ) + dataTanggunganSurveyor.total) - Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) : 0} 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>4.</td>
+                      <td style={{color:'red',fontWeight:'bold'}}>
+                      Kekurangan Saldo : <NumberFormat 
+                                    value={ props.formValues ?  ((Number(saldoUser.saldo) -  Number(dataTanggunganSurveyor.total))<Number((Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)) * 1.2))? Math.abs((Number(saldoUser.saldo) -  Number(dataTanggunganSurveyor.total))-Number((Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)) * 1.2)):0 : 0} 
                                     displayType={'text'} 
                                     thousandSeparator={'.'} 
                                     decimalSeparator={','} 
                                     prefix={'Rp '}/>
-            </p>
+                      </td>
+                    </tr>
+                  </tbody>
+            </Table>
+
+            
           </Alert>
           </Col>
         </Row>
@@ -464,7 +478,7 @@ const FormSurveyorEdit = (props) => {
                     </Form.Group> */}
 
                     <Form.Group>
-                      <Form.Label>Waktu Menjawab (menit)</Form.Label>
+                      <Form.Label>Perkiraan Waktu Menjawab (menit)</Form.Label>
                       <Field
                           // className="input survey-builder__title"
                           type="number"
@@ -477,7 +491,7 @@ const FormSurveyorEdit = (props) => {
                     </Form.Group>
 
                     <Form.Group>
-                      <Form.Label>Jumlah Responden Yang Dibutuhkan</Form.Label>
+                      <Form.Label>Jumlah Responden yang Dibutuhkan</Form.Label>
                       <Field
                           // className="input survey-builder__title"
                           type="number"
@@ -490,7 +504,7 @@ const FormSurveyorEdit = (props) => {
                     </Form.Group>
 
                     <Form.Group>
-                      <Form.Label>Reward Per Responden (Rp)</Form.Label>
+                      <Form.Label>Imbalan Per Responden (Rp)</Form.Label>
                       <Field
                           // className="input survey-builder__title"
                           type="number"
@@ -534,7 +548,7 @@ const FormSurveyorEdit = (props) => {
                 
               </Tab>
 
-              <Tab eventKey="Kriteria Responden" title="Kriteria Responden" className="m-t-15">
+              <Tab eventKey="Ketertarikan Responden" title="Kriteria Responden" className="m-t-15">
                 <Row>
                   <Col md={6} lg={6}>
                     <div className="part-one">
@@ -665,11 +679,11 @@ const FormSurveyorEdit = (props) => {
                   pilihDaerah.length && pilihDaerah[pilihDaerah.length-1].provinsi
                   ?
                   <>
-                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Domisili Responden </Button>
                   </>
                   :
                   !pilihDaerah.length ?
-                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Tambah Daerah </Button>
+                    <Button variant="primary" onClick={tambahDaerahProvinsi}> Domisili Responden </Button>
                   :
                   <>
                   </>
@@ -687,13 +701,20 @@ const FormSurveyorEdit = (props) => {
                         {/* pilih kriteria */}
                         <Form.Group>
                           
-                          <Form.Label>Kriteria Responden</Form.Label>
-                            <Form.Check
+                          <Form.Label>Ketertarikan Responden</Form.Label>
+                          <Row className="m-b-10">
+                            <Col md={12} lg={12}>
+                              <div style={{backgroundColor:'#cce5ff', display:'inline-block', padding:'0px 5px', borderRadius:'6px'}}>
+                              <Form.Check
                               type="checkbox"
                               label="Pilih Semua"
                               value="allcategory"
                               onChange={(e) => { handlePilihSemua(e.target.value)}}
-                            />
+                              />
+                              </div>
+                            </Col>
+                          </Row>
+                            
                           <Row>
                             {
                               category.map((data, i) => {
@@ -723,7 +744,7 @@ const FormSurveyorEdit = (props) => {
                   </Col>
                 </Row>
 
-                <Row style={{position: 'sticky', top:'80px', zIndex: '1'}}>
+                <Row style={{position: 'sticky', top:'70px', zIndex: '1'}}>
                   <Col md={12} lg={12}>
                   <Alert variant="primary" style={{marginBottom:'0px'}}>
                     <Alert.Heading  style={{marginBottom:'0px', marginTop:'0px'}} className="text-center"><span>Jumlah Responden Yang Tersedia : {counterUser.jumlah}</span></Alert.Heading>
