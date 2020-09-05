@@ -117,7 +117,7 @@ const SubmissionResponden = (props) => {
                                     <div className="box-right">
                                     
                                     <h4 className="title-two text-center">
-                                      <p className="text-center" style={{fontSize:'14px'}}>Reward Responden</p>
+                                      <p className="text-center" style={{fontSize:'14px'}}>Imbalan Responden</p>
                                       <strong><NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</strong>
                                     </h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
@@ -136,7 +136,7 @@ const SubmissionResponden = (props) => {
                                     <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")}</h4>
                                     <h4 className="m-t-5 m-b-0 title-three">Jumlah responden yang dibutuhkan : {data.jumlahResponden}</h4>
                                     <h4 className="m-t-5 m-b-0 title-three">Responden yang sudah menjawab : {data.sudahMenjawab}</h4>
-                                    <h4 className="m-t-5 m-b-0 title-three">Reward Responden : <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /></h4>
+                                    <h4 className="m-t-5 m-b-0 title-three">Imbalan Responden : <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /></h4>
                                     <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="danger" className="m-t-15">Gabung Studi</Button>
                                     </Link>
@@ -180,7 +180,7 @@ const SubmissionResponden = (props) => {
                                       </div>
                                       <div className="box-right">
                                         <h4 className="title-two text-center">
-                                        <p className="text-center" style={{fontSize:'14px'}}>Reward Responden</p>
+                                        <p className="text-center" style={{fontSize:'14px'}}>Imbalan Responden</p>
                                           <strong>
                                           <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-
                                           </strong>
@@ -201,7 +201,7 @@ const SubmissionResponden = (props) => {
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Jumlah responden yang dibutuhkan : {data.jumlahResponden}</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Responden yang sudah menjawab : {data.sudahMenjawab}</h4>
-                                      <h4 className="m-t-5 m-b-0 title-three">Reward :  <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Imbalan Responden :  <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="success" className="m-t-15">Detail Studi</Button>
                                       </Link>
@@ -269,7 +269,7 @@ const SubmissionResponden = (props) => {
                                       </div>
                                       <div className="box-right">
                                         <h4 className="title-two text-center">
-                                        <p className="text-center" style={{fontSize:'14px'}}>Reward Responden</p>
+                                        <p className="text-center" style={{fontSize:'14px'}}>Imbalan Responden</p>
                                           <strong>
                                           <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-
                                           </strong>
@@ -302,7 +302,7 @@ const SubmissionResponden = (props) => {
                                       }
                                       <h4 className="m-t-5 m-b-0 title-three">Penyelenggara studi : {data.userId.name}</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Tanggal akhir studi : {moment(data.tanggalAkhir).format("DD/MM/YYYY")} </h4>
-                                      <h4 className="m-t-5 m-b-0 title-three">Reward :   <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h4>
+                                      <h4 className="m-t-5 m-b-0 title-three">Imbalan Responden :   <NumberFormat value={data.rewardResponden} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h4>
                                       <h4 className="m-t-5 m-b-0 title-three">Alasan : {alasan}</h4>
                                       <Link to={`/responden/detailstudy/${data._id}`} style={{textDecoration:'none'}}>
                                         <Button variant="success" className="m-t-15">Detail Studi</Button>

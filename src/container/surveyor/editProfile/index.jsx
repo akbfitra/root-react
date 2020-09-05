@@ -236,7 +236,7 @@ const EditProfileSurveyor = (props) => {
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label>Bagaimana Anda Mengetahui suRvplus</Form.Label>
+                    <Form.Label>Bagaimana Anda Mengetahui Survplus</Form.Label>
                     <Form.Control as="select" onChange={(e) => setSumber(e.target.value)}>
                       <option>{ dataProfile.sumber }</option>
                         {

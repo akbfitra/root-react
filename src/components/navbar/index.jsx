@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import './css/style.css';
 import { useDispatch } from 'react-redux';
 import NumberFormat from 'react-number-format';
-import { Col, Container, Row, Button, Dropdown, DropdownButton, Nav, NavDropdown, ButtonGroup,NavLink, Modal, Table } from 'react-bootstrap'
+import { Col, Container, Row, Button, Dropdown, DropdownButton, Nav, NavDropdown, ButtonGroup,NavLink, Modal, Table, Alert } from 'react-bootstrap'
 import { useHistory, useLocation, Link  } from 'react-router-dom';
 
 import { logoutProcess, GET_SALDO, GET_DATA_NOTIFICATION, dataProfileUser } from '../../store/actions/userAction'
@@ -168,7 +168,8 @@ export const Navbar = (props) => {
                                           return(
                                             <>
                                                 <Dropdown.Item key={`${i}`}>
-                                                  <Link to = {`/${role}/notification`}><span  dangerouslySetInnerHTML={{__html: data.content}}></span></Link>
+                                                  {/* <Link to = {`/${role}/notification`}><span  dangerouslySetInnerHTML={{__html: data.content}}></span></Link> */}
+                                                  <span  dangerouslySetInnerHTML={{__html: data.content}}></span>
                                                 </Dropdown.Item>
                                                 <Dropdown.Divider/>
                                           </>
@@ -223,8 +224,9 @@ export const Navbar = (props) => {
                             <div style={{display:"flex", alignItems:'center'}}>
                               {/* <div style={{width:'100px',height:'20px',backgroundColor:'red'}}></div> */}
                               <div style={{display:'flex', flexDirection:'column',paddingRight:'10px' }}>
-                              <p style={{textAlign:'right'}}><strong>Hi, {namaUser}</strong></p>
-                              <p style={{textAlign:'right'}}>Saldo Anda : <NumberFormat value={saldoUser.saldo - dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p>
+                              <h6 style={{textAlign:'right', fontSize:'16px'}}><strong>Halo <span style={{textTransform:'capitalize'}}>{role}</span></strong>,</h6>
+                              <h6 style={{textAlign:'right', fontSize:'16px'}}><strong>{namaUser}</strong></h6>
+                              <h6 style={{textAlign:'right', fontSize:'16px'}}>Saldo Aktif : <NumberFormat value={saldoUser.saldo - dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h6>
                               </div>
                               <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../../../../images/user_profil.png"} style={{height:'50px', width:'50px', borderRadius:'100%'}}></img>
                             </div>
@@ -233,7 +235,7 @@ export const Navbar = (props) => {
                           <Dropdown.Menu>
                             <Dropdown.Item onClick = { (e) => { 
                                 e.preventDefault()
-                                processLogout() }} >Logout</Dropdown.Item>
+                                processLogout() }}  style={{textAlign:'right'}}>Logout</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
 
@@ -268,9 +270,6 @@ export const Navbar = (props) => {
                   <Dropdown.Item href="/tentangresponden">Responden</Dropdown.Item>
                   <Dropdown.Item href="/syaratdanketentuan">Syarat & Ketentuan</Dropdown.Item>
                   <Dropdown.Item href="/kontakkami">Kontak Kami</Dropdown.Item>
-                  <Dropdown.Item href="/surveyor/register">Daftar Surveyor</Dropdown.Item>
-                  <Dropdown.Item href="/register">Daftar Responden</Dropdown.Item>
-                  <Dropdown.Item href="/login">Login</Dropdown.Item>
                 </Dropdown.Menu>
                 </Dropdown>
                 </div>
@@ -280,6 +279,22 @@ export const Navbar = (props) => {
                 <div style={{width:'100%', display:'flex', alignItems:'center', backgroundColor:'', height:'65px'}}>
                   <img src="../../../../images/logo three.png" style={{height:'40px',marginRight:'5px' }}></img>
                   <h3 className="m-t-0 m-b-0 color-blue"><strong>Survplus</strong></h3>
+                </div>
+              </div>
+
+              <div style={{position:'absolute', top:'0', bottom:'0', right:'0', margin:'auto', backgroundColor:''}}>
+                <div style={{width:'100%', display:'flex', alignItems:'center', backgroundColor:'', height:'65px'}}>
+                                <Dropdown alignRight>
+                                  <Dropdown.Toggle variant="link" id="dropdown-basic" style={{position:'relative'}}>
+                                    <img src="../../../../images/loginNew.png" style={{height:'40px'}}></img>
+                                  </Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                                    <Dropdown.Item href="/surveyor/register">Daftar Surveyor</Dropdown.Item>
+                                    <Dropdown.Item href="/register">Daftar Responden</Dropdown.Item>
+                                  </Dropdown.Menu>    
+                                </Dropdown>
                 </div>
               </div>
             
@@ -318,7 +333,8 @@ export const Navbar = (props) => {
                                           return(
                                             <>
                                                 <Dropdown.Item key={`${i}`}>
-                                                  <Link to = {`/${role}/notification`}><span  dangerouslySetInnerHTML={{__html: data.content}}></span></Link>
+                                                  {/* <Link to = {`/${role}/notification`}><span  dangerouslySetInnerHTML={{__html: data.content}}></span></Link> */}
+                                                  <span  dangerouslySetInnerHTML={{__html: data.content}}></span>
                                                 </Dropdown.Item>
                                                 <Dropdown.Divider/>
                                           </>
@@ -337,22 +353,29 @@ export const Navbar = (props) => {
                             {/* untuk mobile */}
                             <Dropdown alignRight className="float-right d-none d-none d-sm-block d-md-none d-block d-sm-none" >
                               <Dropdown.Toggle  variant="link" id="dropdown-basic">
-                              <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../../../../images/user_profil.png"} style={{height:'35px', width:'35px', borderRadius:'100%'}}></img>
+                              <img src={ dataProfile && dataProfile.foto_profile ? `http://149.129.240.254:8889/profile/${dataProfile.foto_profile}`:"../../../../images/user_profil.png"} style={{height:'50px', width:'50px', borderRadius:'100%'}}></img>
                               </Dropdown.Toggle>
 
                               <Dropdown.Menu>
                                   <Dropdown.Item>
-                                      <p style={{textAlign:'right'}}><strong>Hi, {namaUser} </strong></p>
-                                      <p style={{textAlign:'right'}}>Saldo Aktif : <NumberFormat value={saldoUser.saldo} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} /> ,-</p>
+                                      <h6  style={{textAlign:'right'}}><strong>Halo <span style={{textTransform:'capitalize'}}>{role}</span>,</strong></h6>
+                                      <h6  style={{textAlign:'right'}}><strong>{namaUser}</strong></h6>
+                                      <h6 style={{textAlign:'right'}}>Saldo Aktif : <NumberFormat value={saldoUser.saldo - dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</h6>
                                       
                                   </Dropdown.Item>
+                                  {
+                                  dataTanggunganSurveyor && role === 'surveyor' &&
+                                    <>
+                            
                                   <Dropdown.Divider />
-                                  <Dropdown.Item><span onClick={handleShow}><p style={{textAlign:'right'}}>Saldo Terikat : <NumberFormat value={dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p></span></Dropdown.Item>
+                                  <Dropdown.Item><Alert variant="danger" className="m-b-0"><span onClick={handleShow}><p style={{textAlign:'right'}}>Saldo Terikat : <NumberFormat value={dataTanggunganSurveyor.total} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={'Rp'} />,-</p></span></Alert></Dropdown.Item>
+                                    </>
+                                  }
                                   
                                   <Dropdown.Divider />
                                   <Dropdown.Item onClick = { (e) => { 
                                       e.preventDefault()
-                                      processLogout() }} >Logout
+                                      processLogout() }} style={{textAlign:'right'}}>Logout
                                   </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
