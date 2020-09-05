@@ -417,9 +417,9 @@ const FormSurveyorEdit = (props) => {
                                     prefix={'Rp '}/>
             </p>
             <p style={{color:'red',fontWeight:'bold'}}>
-              Kekurangan Saldo baru :  
+              Kebutuhan Saldo anda :  
                                   <NumberFormat 
-                                    value={ props.formValues ?  ((Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) ) + dataTanggunganSurveyor.total) - Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) : 0} 
+                                    value={ props.formValues ?  Math.abs((Number(saldoUser.saldo) -  Number(dataTanggunganSurveyor.total)) - (Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + ( 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)))) : 0} 
                                     displayType={'text'} 
                                     thousandSeparator={'.'} 
                                     decimalSeparator={','} 

@@ -352,7 +352,7 @@ const FormSurveyor = (props) => {
             </p>
 
             <p style={{color:'red',fontWeight:'bold'}}>
-              Jumlah saldo tanggungan survey anda sebelumnya sebesar { dataTanggunganSurveyor ? 
+              Jumlah saldo tanggungan survey anda sebelumnya sebesar : { dataTanggunganSurveyor ? 
                                                               <NumberFormat 
                                                                 value={dataTanggunganSurveyor.total} 
                                                                 displayType={'text'} 
@@ -365,7 +365,7 @@ const FormSurveyor = (props) => {
             </p>
 
             <p style={{color:'red',fontWeight:'bold'}}>
-              Jumlah saldo Aktif { 
+              Jumlah saldo Aktif : { 
                                     <NumberFormat 
                                       value={dataTanggunganSurveyor ? Number(saldoUser.saldo) -  Number(dataTanggunganSurveyor.total) : 0} 
                                       displayType={'text'} 
@@ -377,16 +377,16 @@ const FormSurveyor = (props) => {
             <p style={{color:'red',fontWeight:'bold'}}>
               Jumlah saldo yang anda butuhkan untuk survey baru :  
                                   <NumberFormat 
-                                    value={ props.formValues ?  Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) : 0} 
+                                    value={ props.formValues ?  Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + ( 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)): 0} 
                                     displayType={'text'} 
                                     thousandSeparator={'.'} 
                                     decimalSeparator={','} 
                                     prefix={'Rp '}/>
             </p>
             <p style={{color:'red',fontWeight:'bold'}}>
-              Kekurangan Saldo baru :  
+              Kebutuhan Saldo anda :  
                                   <NumberFormat 
-                                    value={ props.formValues ?  ((Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) ) + dataTanggunganSurveyor.total) - Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) : 0} 
+                                    value={ props.formValues ?  Math.abs((Number(saldoUser.saldo) -  Number(dataTanggunganSurveyor.total)) - (Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden) + ( 0.2 * Number(props.formValues.jumlahResponden) * Number(props.formValues.rewardResponden)))) : 0} 
                                     displayType={'text'} 
                                     thousandSeparator={'.'} 
                                     decimalSeparator={','} 
